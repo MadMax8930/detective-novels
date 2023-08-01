@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   username String
+   email String
+   password String
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+
+   donations Donation[]
+}
+
+model Admin {
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   username String
+   password String
+   createdAt DateTime @default(now())
+
+   novels Novel[]
+}
+
+model Novel {
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   title String
+   description String
+   author String
+   content String
+   createdAt DateTime @default(now())
+   updatedAt DateTime @updatedAt
+   genre String?
+   coverImage String?
+
+   donations Donation[]
+
+   adminId String? @map("_admin") @db.ObjectId
+   admin Admin? @relation(fields: [adminId], references: [id], onDelete: Cascade)
+}
+
+model Donation {
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   amount Int
+   name String?
+   email String?
+   createdAt DateTime @default(now())
+
+   userId String? @map("_user") @db.ObjectId
+   user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+   novelId String? @map("_novel") @db.ObjectId
+   novel Novel? @relation(fields: [novelId], references: [id], onDelete: Cascade)
+}
