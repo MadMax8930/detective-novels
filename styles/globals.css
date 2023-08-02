@@ -13,3 +13,16 @@ body {
 html {
    @apply h-full;
 }
+
+.tooltip {
+   position: absolute;
+   top: 60px;
+   left: 55px;
+   background-color: rgba(0, 0, 11, 0.5);
+   color: gray;
+   padding: 4px 8px;
+   font-size: 10px;
+   white-space: nowrap;
+   z-index: 1000;
+   transform: translateX(-30%);
+}
