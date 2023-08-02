@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
-import { Navbar, Footer } from '@/components'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 type RootLayoutProps = {
    children: React.ReactNode;
@@ -7,11 +8,18 @@ type RootLayoutProps = {
 };
 
 export default function RootLayout({ children, metadata }: RootLayoutProps){
-   const title = metadata.title?.toString() || '';
-   const description = metadata.description?.toString() || '';
-   const keywords = metadata.keywords?.toString() || '';
-   const applicationName = metadata.applicationName?.toString() || '';
-   const themeColor = metadata.themeColor?.toString() || '';
+   const title = metadata?.title?.toString();
+   const description = metadata?.description?.toString();
+   const keywords = metadata?.keywords?.toString();
+   const applicationName = metadata?.applicationName?.toString();
+   const themeColor = metadata?.themeColor?.toString();
+
+   const router = useRouter();
+   useEffect(() => {
+     if (router.pathname === '/_layout') {
+       router.replace('/');
+     }
+   }, [router]);
 
   return (
    <>
@@ -33,17 +41,9 @@ export default function RootLayout({ children, metadata }: RootLayoutProps){
       <meta property="og:image" content="https://your-website-url.com/placeholder-image.jpg" />
       <meta property="og:url" content="https://vladnovels.com/" />
 
-      <div className="relative">
-         <div className="h-screen bg-red-700">
-           <div className="container h-full mx-auto xl:px-30 max-w-6xl">
-             <div className="grid grid-cols-4 h-full">
-               <Navbar />
-                  <div className="col-span-3 lg:col-span-2 border-x-[1px] border-neutral-800">
-                    {children}
-                  </div>
-               <Footer />
-             </div>
-           </div>
+      <div className="relative pr-8">
+         <div className="h-screen bg-[url('/images/404.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">
+            {children}
          </div>
       </div>
    </>

@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import { Toaster } from 'react-hot-toast'
 import { SessionProvider } from 'next-auth/react'
-import Layout from '@/pages/layout'
+import Layout from '@/pages/_layout'
 import '@/styles/globals.css'
 
 export const metadata = {
