@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { AiOutlineEye, AiFillEyeInvisible } from 'react-icons/ai'
+import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 
 interface InputProps {
    id: string;
@@ -61,7 +61,7 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, type, minLeng
                   cursor-pointer
                "
             >
-               {visiblePassword ? <AiFillEyeInvisible size={22} /> : <AiOutlineEye size={22} />}
+               {visiblePassword ? <AiFillEyeInvisible size={22} /> : <AiFillEye size={22} />}
             </button>
             {showTooltip && minLength && (
                <div className="tooltip">{`We recommend at least ${minLength} characters`}</div>

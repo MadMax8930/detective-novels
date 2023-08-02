@@ -43,13 +43,16 @@ const Auth = () => {
       <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">
          <div className="bg-black w-full h-full lg:bg-opacity-50">
             
-            <nav className="px-12 py-5"><img src="/images/logo.png" alt="Logo" className="h-12" /></nav>
-            <div className="flex justify-center">
+            <div className="flex justify-center pt-16">
                <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
+                  {/* Title */}
+                  <div className="flex justify-between pb-5">
+                     <h2 className="text-white text-4xl mb-8 font-semibold">
+                        {variant === 'login' ? 'Sign in' : 'Register'}
+                     </h2>
+                     <img src="/images/logo.png" alt="Logo" className="h-9" />
+                  </div>
                   {/* Form */}
-                  <h2 className="text-white text-4xl mb-8 font-semibold">
-                     {variant === 'login' ? 'Sign in' : 'Register'}
-                  </h2>
                   <div className="flex flex-col gap-4">
                      {variant === 'register' && (
                      <Input label="Username" onChange={(e: any) => setUsername(e.target.value)} value={username} id="name" /> )}
@@ -57,7 +60,7 @@ const Auth = () => {
                      <Input label="Password" onChange={(e: any) => setPassword(e.target.value)} value={password} id="password" type="password" minLength={8}/>
                   </div>
                   {/* Button */}
-                  <button onClick={variant === 'login' ? login : register} className="bg-primary-red py-3 text-white rounded-md w-full mt-10 hover:bg-primary-red-100 transition">
+                  <button onClick={variant === 'login' ? login : register} className="bg-primary-red py-3 text-white rounded-md w-full mt-10 hover:bg-primary-red-100 hover:text-black transition">
                      {variant === 'login' ? 'Login' : 'Sign up'}
                   </button>
                   {/* Switcher */}

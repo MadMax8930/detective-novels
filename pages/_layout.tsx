@@ -41,8 +41,8 @@ export default function RootLayout({ children, metadata }: RootLayoutProps){
       <meta property="og:image" content="https://your-website-url.com/placeholder-image.jpg" />
       <meta property="og:url" content="https://vladnovels.com/" />
 
-      <div className="relative pr-8">
-         <div className="h-screen bg-[url('/images/404.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">
+      <div className="relative">
+         <div className="h-screen bg-[url('/images/notfound.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">
             {children}
          </div>
       </div>
