@@ -3,6 +3,7 @@ import { useCallback, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/react'
 import { toast } from 'react-hot-toast'
+import { BsArrowLeftSquareFill } from 'react-icons/bs'
 import { Input } from '@/components'
 
 const Auth = () => {
@@ -43,7 +44,7 @@ const Auth = () => {
    const router = useRouter();
    const { query } = router;
    const handleGoBack = () => { router.back() };
-   
+
    useEffect(() => {
       if (query.variant) { setVariant(query.variant as string) }
    }, [query.variant]);
@@ -51,7 +52,18 @@ const Auth = () => {
    return (
       <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">
          <div className="bg-black w-full h-full lg:bg-opacity-50">
-            
+            {/* Top Navigation */}
+            <nav className="flex justify-between">
+               <div className="flex px-12 py-5 gap-2 cursor-pointer" onClick={handleGoBack}>
+                  <BsArrowLeftSquareFill size={28} className="text-white" />
+                  <span className="text-white text-xl font-semibold">Go back</span>
+               </div>
+               <div className="flex px-12 py-5 gap-2 cursor-pointer">
+                  <span className="text-white text-xl font-semibold">Discover</span>
+                  <img src="/images/logo.png" alt="Logo" className="h-7" />
+               </div>
+            </nav>
+            {/* Authentication Modal */}
             <div className="flex justify-center pt-16">
                <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
                   {/* Title */}
@@ -59,7 +71,6 @@ const Auth = () => {
                      <h2 className="text-white text-4xl mb-8 font-semibold">
                         {variant === 'login' ? 'Sign in' : 'Register'}
                      </h2>
-                     <img src="/images/logo.png" alt="Logo" className="h-9 cursor-pointer" onClick={handleGoBack} />
                   </div>
                   {/* Form */}
                   <div className="flex flex-col gap-4">
@@ -69,7 +80,7 @@ const Auth = () => {
                      <Input label="Password" onChange={(e: any) => setPassword(e.target.value)} value={password} id="password" type="password" minLength={8}/>
                   </div>
                   {/* Button */}
-                  <button onClick={variant === 'login' ? login : register} className="bg-primary-red py-3 text-white rounded-md w-full mt-10 hover:bg-primary-red-100 hover:text-black transition">
+                  <button onClick={variant === 'login' ? login : register} className="bg-primary-blue-100 text-black py-3 rounded-md w-full mt-10 hover:bg-primary-red hover:text-primary-red-100 transition">
                      {variant === 'login' ? 'Login' : 'Sign up'}
                   </button>
                   {/* Switcher */}

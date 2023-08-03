@@ -11,7 +11,7 @@ interface CustomButtonProps {
    action?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const CustomButton = ({ title, btnType, additionalStyles, textStyles, rightIcon, isDisabled, action }: CustomButtonProps) => {
+const Button = ({ title, btnType, additionalStyles, textStyles, rightIcon, isDisabled, action }: CustomButtonProps) => {
   return (
     <button 
       disabled={false}
@@ -31,4 +31,4 @@ const CustomButton = ({ title, btnType, additionalStyles, textStyles, rightIcon,
   )
 }
 
-export default CustomButton
+export default Button
