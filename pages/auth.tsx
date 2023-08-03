@@ -1,8 +1,9 @@
 import axios from 'axios'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/react'
 import { toast } from 'react-hot-toast'
-import Input from '@/components/Input'
+import { Input } from '@/components'
 
 const Auth = () => {
    const [email, setEmail] = useState('');
@@ -39,6 +40,14 @@ const Auth = () => {
       }
    }, [email, username, password, login]);
 
+   const router = useRouter();
+   const { query } = router;
+   const handleGoBack = () => { router.back() };
+   
+   useEffect(() => {
+      if (query.variant) { setVariant(query.variant as string) }
+   }, [query.variant]);
+
    return (
       <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">
          <div className="bg-black w-full h-full lg:bg-opacity-50">
@@ -50,7 +59,7 @@ const Auth = () => {
                      <h2 className="text-white text-4xl mb-8 font-semibold">
                         {variant === 'login' ? 'Sign in' : 'Register'}
                      </h2>
-                     <img src="/images/logo.png" alt="Logo" className="h-9" />
+                     <img src="/images/logo.png" alt="Logo" className="h-9 cursor-pointer" onClick={handleGoBack} />
                   </div>
                   {/* Form */}
                   <div className="flex flex-col gap-4">
