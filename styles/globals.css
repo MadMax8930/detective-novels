@@ -14,6 +14,18 @@ html {
    @apply h-full;
 }
 
+.footer__link {
+   @apply flex flex-col gap-6 text-base min-w-[170px];
+}
+ 
+.footer__links {
+   @apply flex-1 w-full flex md:justify-end flex-wrap max-md:mt-10 gap-20;
+}
+ 
+.footer__copyrights-link {
+   @apply flex-1 flex sm:justify-end justify-center max-sm:mt-4 gap-10;
+}
+
 .tooltip {
    position: absolute;
    top: 60px;
@@ -26,3 +38,4 @@ html {
    z-index: 1000;
    transform: translateX(-30%);
 }
+
