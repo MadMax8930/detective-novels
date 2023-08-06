@@ -39,3 +39,15 @@ html {
    transform: translateX(-30%);
 }
 
+.search-bar {
+   @apply flex items-center justify-start max-sm:flex-col sm:w-[500px] w-[280px] relative max-sm:gap-4 max-w-3xl;
+}
+ 
+.search-bar__item {
+   @apply flex-1 max-sm:w-full flex justify-start items-center relative;
+}
+ 
+.search-bar__input {
+   @apply w-full h-[48px] pl-8 p-4 bg-light-white rounded-full max-sm:rounded-full outline-none cursor-pointer text-sm;
+}
+

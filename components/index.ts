@@ -6,6 +6,7 @@ import SearchBar from './SearchBar'
 import InfoModal from './InfoModal'
 import NovelCard from './NovelCard'
 import NovelList from './NovelList'
+import Carousel from './Carousel'
 
 export { 
    Navbar,
@@ -16,4 +17,5 @@ export {
    InfoModal,
    NovelCard,
    NovelList,
+   Carousel
 }
