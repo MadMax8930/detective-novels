@@ -7,10 +7,17 @@ import { BsArrowLeftSquareFill } from 'react-icons/bs'
 import { Input } from '@/components'
 
 const Auth = () => {
+   const router = useRouter();
+   const { query } = router;
+   
    const [email, setEmail] = useState('');
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
    const [variant, setVariant] = useState('login');
+
+   useEffect(() => {
+      if (query.variant) { setVariant(query.variant as string) }
+   }, [query.variant]);
 
    const toggleVariant = useCallback(() => {
       setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login')
@@ -41,20 +48,12 @@ const Auth = () => {
       }
    }, [email, username, password, login]);
 
-   const router = useRouter();
-   const { query } = router;
-   const handleGoBack = () => { router.back() };
-
-   useEffect(() => {
-      if (query.variant) { setVariant(query.variant as string) }
-   }, [query.variant]);
-
    return (
       <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">
          <div className="bg-black w-full h-full lg:bg-opacity-50">
             {/* Top Navigation */}
-            <nav className="flex justify-between">
-               <div className="flex px-12 py-5 gap-2 cursor-pointer" onClick={handleGoBack}>
+            <nav className="flex justify-between px-24">
+               <div className="flex px-12 py-5 gap-2 cursor-pointer" onClick={() => router.back()}>
                   <BsArrowLeftSquareFill size={28} className="text-white" />
                   <span className="text-white text-xl font-semibold">Go back</span>
                </div>
