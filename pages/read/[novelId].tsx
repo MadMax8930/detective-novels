@@ -11,22 +11,22 @@ const Read = () => {
    const { data } = useNovel(novelId as string);
 
    return (
-      <div className="w-screen bg-[#121212]">
+      <div className="w-screen bg-[#161616]">
          {/* Top Navigation */}
-         <div className="fixed w-full px-24 z-10 flex flex-col justify-between gap-8 bg-black bg-opacity-70">
-            <nav className="flex flex-row justify-between">
-               <div className="flex flex-row justify-center px-12 py-5 gap-2 cursor-pointer" onClick={() => router.push('/')}>
+         <div className="fixed w-full px-24 z-10 flex flex-col justify-between gap-8 bg-black bg-opacity-80">
+            <nav className="flex flex-row justify-between pb-10">
+               <div className="flex flex-row justify-center px-12 pt-9 gap-2 cursor-pointer" onClick={() => router.push('/')}>
                   <BsArrowLeftSquareFill size={28} onClick={() => router.push('/')} className="text-white cursor-pointer" />
                   <span className="text-white text-xl font-semibold">Novel Preview:{" "}</span>          
                </div>
-               <div className="flex px-7 py-5 gap-2 cursor-pointer" onClick={() => router.push('/auth')}>
+               <div className="flex px-7 pt-9 gap-2 cursor-pointer" onClick={() => router.push('/auth')}>
                   <span className="text-white text-xl font-semibold">Read the rest</span>
                   <BsPersonSquare size={28} className="text-white" />
                </div>
             </nav>
          </div>
          {/* Preview */}
-         <div className="pt-24 px-36 text-justify">
+         <div className="pt-36 px-36 text-justify">
             <p className="text-green-400 text-1xl md:text-3xl font-bold">{data?.title}</p><br /> 
             <div className="text-white text-base font-serif">
                {data?.preview}...

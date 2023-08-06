@@ -1,6 +1,6 @@
 import React from 'react'
 import { isEmpty } from 'lodash'
-import NovelCard from '@/components/NovelCard'
+import { NovelCard } from '@/components'
 
 interface NovelListProps {
    header: string;

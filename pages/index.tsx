@@ -1,8 +1,6 @@
-import { Navbar, Footer } from '@/components'
+import { Navbar, Footer, NovelList, InfoModal } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
 import useInfoModal from '@/hooks/useInfoModal'
-import NovelList from '@/components/NovelList'
-import InfoModal from '@/components/InfoModal'
 
 export default function Home() {
    const { data: novels = [] } = useNovelList();

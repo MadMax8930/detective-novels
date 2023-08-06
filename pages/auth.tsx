@@ -52,12 +52,12 @@ const Auth = () => {
       <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">
          <div className="bg-black w-full h-full lg:bg-opacity-50">
             {/* Top Navigation */}
-            <nav className="flex justify-between px-24">
-               <div className="flex px-12 py-5 gap-2 cursor-pointer" onClick={() => router.back()}>
+            <nav className="flex justify-between px-24 pb-6">
+               <div className="flex px-12 pt-9 gap-2 cursor-pointer" onClick={() => router.back()}>
                   <BsArrowLeftSquareFill size={28} className="text-white" />
                   <span className="text-white text-xl font-semibold">Go back</span>
                </div>
-               <div className="flex px-12 py-5 gap-2 cursor-pointer">
+               <div className="flex px-12 pt-9 gap-2 cursor-pointer">
                   <span className="text-white text-xl font-semibold">Discover</span>
                   <img src="/images/logo.png" alt="Logo" className="h-7" />
                </div>
