@@ -4,7 +4,7 @@ import { HiSearchCircle } from 'react-icons/hi'
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
    <button type="submit" className={`-ml-10 z-10 ${otherClasses}`}>
-      <HiSearchCircle size={36} className="object-contain text-primary-red-100 hover:text-black-100" />
+      <HiSearchCircle size={36} className="object-contain text-black-100 opacity-80 hover:text-black" />
    </button>
 );
 
@@ -39,17 +39,19 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialValue = '' }) => {
    }
 
   return (
-    <form className="search-bar" onSubmit={submitSearchTerm}>
-      <div className="search-bar__item">
-         <input 
-            type="text" name="novel"
-            value={novelName} onChange={(e) => setNovelName(e.target.value)}
-            placeholder="Enter the Novel's name" className="search-bar__input"
-         />
-         <SearchButton otherClasses="sm:hidden" />
-      </div>
-      <SearchButton otherClasses="max-sm:hidden" />
-    </form>
+   <div className="flex flex-row justify-center items-start pt-10">
+      <form className="search-bar" onSubmit={submitSearchTerm}>
+         <div className="search-bar__item">
+            <input 
+               type="text" name="novel"
+               value={novelName} onChange={(e) => setNovelName(e.target.value)}
+               placeholder="Enter the Novel's name" className="search-bar__input"
+            />
+            <SearchButton otherClasses="sm:hidden" />
+         </div>
+         <SearchButton otherClasses="max-sm:hidden" />
+      </form>
+   </div>
   )
 }
 

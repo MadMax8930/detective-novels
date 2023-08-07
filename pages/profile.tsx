@@ -4,9 +4,8 @@ import { useRouter } from 'next/router'
 import { BsXSquareFill } from 'react-icons/bs'
 import { FaDonate } from 'react-icons/fa'
 import useCurrentUser from '@/hooks/useCurrentUser'
-import useNovel from '@/hooks/useNovel'
 import useNovelList from '@/hooks/useNovelList'
-import { Carousel, SearchBar } from '@/components'
+import { Carousel, Content, SearchBar, Donations, Footer } from '@/components'
 
 // Protecting routes by fetching session on client side
 export async function getServerSideProps(context: NextPageContext) {
@@ -21,12 +20,11 @@ const Profile = () => {
 
    const { data: user } = useCurrentUser();
    const { data: novels = [] } = useNovelList();
-   const { data: selectedNovel } = useNovel(novelId);
 
    return (
       <div className="w-screen min-h-full bg-white-main">
          {/* Top Navigation */}
-         <div className="fixed w-full px-24 pr-14 z-10 flex flex-col justify-between gap-8 bg-black bg-opacity-80">
+         <div className="fixed w-full px-24 pr-14 z-30 flex flex-col justify-between gap-8 bg-black bg-opacity-80">
             <nav className="flex flex-row justify-between pb-10 px-5">
                <div className="flex px-7 pt-9 gap-2 cursor-pointer" onClick={() => signOut()}>
                   <BsXSquareFill size={28} className="text-white" />
@@ -41,27 +39,15 @@ const Profile = () => {
             </nav>
        
          </div>
+         {/* Main Content */}
          <Carousel novels={novels} />
-         {/* Search Bar*/}   
-         <div className='flex flex-row justify-center pt-36'>
-            <SearchBar initialValue={novelId} />
+         <SearchBar initialValue={novelId} />
+         <Content />
+         {/* Bottom Content */}
+         <div className="container h-full mx-auto xl:px-30 max-w-6xl">
+            <Donations />  
+            <Footer bgLight={true} />
          </div>
-         {/* Content */}
-         <div className="py-16 px-36 text-justify">
-            {selectedNovel ? (
-               <>
-                  <p className="text-green-400 text-1xl md:text-3xl font-bold">{selectedNovel?.title}</p><br /> 
-                  <div className="text-black text-base font-serif">
-                     {selectedNovel?.content}
-                  </div>
-               </>
-            ) : selectedNovel !== novelId ? (
-               <p className="text-red-500 text-xl font-semibold">Novel not found</p>
-            ) : (
-               null
-            )}
-         </div>
-
       </div>
    )
 };
