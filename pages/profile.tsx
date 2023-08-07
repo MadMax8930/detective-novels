@@ -5,6 +5,7 @@ import { BsXSquareFill } from 'react-icons/bs'
 import { FaDonate } from 'react-icons/fa'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovel from '@/hooks/useNovel'
+import useNovelList from '@/hooks/useNovelList'
 import { Carousel, SearchBar } from '@/components'
 
 // Protecting routes by fetching session on client side
@@ -19,6 +20,7 @@ const Profile = () => {
    const novelId = router.query.novel as string;
 
    const { data: user } = useCurrentUser();
+   const { data: novels = [] } = useNovelList();
    const { data: selectedNovel } = useNovel(novelId);
 
    return (
@@ -39,7 +41,7 @@ const Profile = () => {
             </nav>
        
          </div>
-         <Carousel />
+         <Carousel novels={novels} />
          {/* Search Bar*/}   
          <div className='flex flex-row justify-center pt-36'>
             <SearchBar initialValue={novelId} />

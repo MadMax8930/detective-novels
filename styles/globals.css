@@ -51,3 +51,34 @@ html {
    @apply w-full h-[48px] pl-8 p-4 bg-light-white rounded-full max-sm:rounded-full outline-none cursor-pointer text-sm;
 }
 
+.carousel-container {
+   width: 100%;
+   overflow: hidden;
+   padding: 0 20px;
+}
+
+.carousel {
+   display: flex;
+   overflow-x: scroll;
+   scroll-behavior: smooth;
+   margin: -8px;
+}
+ 
+.carousel__nav-item {
+   margin: 8px;
+   cursor: pointer;
+   transition: transform 0.3s ease;
+}
+ 
+.carousel__nav-item img {
+   width: 200px;
+   height: 300px;
+   object-fit: cover;
+   border-radius: 8px;
+   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+ 
+.carousel__nav-item.active {
+   transform: scale(1.1);
+}
+ 
