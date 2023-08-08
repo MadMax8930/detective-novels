@@ -142,7 +142,55 @@ html {
    right: 20px;
 }
 
-/* Donations */
+/* Content Pagination */
+
+.pagination-container {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-top: 1rem;
+}
+ 
+.pagination-item {
+   width: 30px;
+   height: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border: 1px solid #ccc;
+   border-radius: 50%;
+   margin: 0 0.5rem;
+   cursor: pointer;
+   font-size: 14px;
+   transition: background-color 0.3s ease;
+}
+ 
+.pagination-item.active {
+   background-color: #bf0101;
+   color: white;
+   border: none;
+}
+ 
+.pagination-arrow {
+   width: 30px;
+   height: 30px;
+   font-size: 20px;
+   margin: 0 0.5rem;
+   cursor: pointer;
+   transition: color 0.3s ease;
+}
+ 
+.pagination-arrow.disabled {
+   color: #ccc;
+   cursor: not-allowed;
+}
+ 
+.pagination-arrow:hover:not(.disabled) {
+   color: #890101;
+}
+ 
+
+/* Donation Buttons */
 
 .donations-container {
    display: flex;
