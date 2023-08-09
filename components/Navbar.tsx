@@ -5,7 +5,7 @@ import { Button } from '@/components'
 const Navbar = () => {
   return (
     <header className="w-full absolute z-1000 right-0 bg-black bg-opacity-80 py-0.5">
-      <nav className="max-w-[1150px] mx-auto flex justify-between items-center sm:px-16 px-6 py-6">
+      <nav className="max-w-[1275px] mx-auto flex justify-between items-center sm:px-16 px-6 py-6">
          {/* Left Side */}
          <div className="flex flex-wrap justify-between items-center text-primary-blue-100 font-bold text-[22px] gap-3">
             <Link href={"/profile"} className="flex justify-center items-center">

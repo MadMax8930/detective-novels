@@ -39,7 +39,7 @@ const Read = () => {
          </div>
          {/* Footer */}
          <div className="flex items-center justify-center">
-            <div className="container h-full mx-auto xl:px-30 max-w-6xl pt-6">
+            <div className="container h-full mx-auto xl:px-30 max-w-7xl pt-6">
                <Footer bgLight={false} />
             </div>
          </div>

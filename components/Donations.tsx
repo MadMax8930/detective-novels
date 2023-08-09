@@ -11,8 +11,8 @@ const Donations: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <SiBuymeacoffee size={64} />
-          <p>Buy me a coffee</p>
+          <SiBuymeacoffee size={18} />
+          <span className="donation-text">Buy me a coffee</span>
         </a>
       </div>
       <div className="donation-item paypal">
@@ -21,8 +21,8 @@ const Donations: React.FC = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaPaypal size={64} />
-          <p>Support my work with PayPal</p>
+          <FaPaypal size={18} />
+          <span className="donation-text">Support my work</span>
         </a>
       </div>
     </div>

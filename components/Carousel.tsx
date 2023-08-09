@@ -43,10 +43,10 @@ const Carousel: React.FC<{ novels: Array<any> }> = ({ novels }) => {
          </div>
          <div className="carousel-controls">
          <button className="carousel-btn" onClick={handlePrevClick}>
-            <TiArrowLeftThick size={26} />
+            <TiArrowLeftThick size={30} />
          </button>
          <button className="carousel-btn" onClick={handleNextClick}>
-            <TiArrowRightThick size={26} />
+            <TiArrowRightThick size={30} />
          </button>
          </div>
       </div>

@@ -8,7 +8,7 @@ export default function Home() {
 
    return (
       <div className='flex items-center justify-center bg-white-main'>
-         <div className='container h-full mx-auto xl:px-30 max-w-6xl'>
+         <div className='container h-full mx-auto xl:px-30 max-w-7xl'>
             <InfoModal visible={isOpen} onClose={closeModal} />
             <Navbar />
             <div className='h-[150px]'></div>

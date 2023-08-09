@@ -1,7 +1,7 @@
 import { NextPageContext } from 'next'
 import { getSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { BsXSquareFill } from 'react-icons/bs'
+import { BiLogOut } from 'react-icons/bi'
 import { FaDonate } from 'react-icons/fa'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovelList from '@/hooks/useNovelList'
@@ -27,14 +27,14 @@ const Profile = () => {
          <div className="fixed w-full px-24 pr-14 z-30 flex flex-col justify-between gap-8 bg-black bg-opacity-80">
             <nav className="flex flex-row justify-between pb-10 px-5">
                <div className="flex px-7 pt-9 gap-2 cursor-pointer" onClick={() => signOut()}>
-                  <BsXSquareFill size={28} className="text-white" />
+                  <BiLogOut size={28} className="text-white" />
                   <span className="text-white text-xl font-semibold">Logout as {" "}
-                     <strong className="text-gray-400">{user?.username}</strong>
+                     <strong className="text-gray-400 capitalize">{user?.username}</strong>
                   </span>
                </div>
-               <div className="flex flex-row justify-center px-12 pt-9 gap-2 cursor-pointer" onClick={() => router.push('/')}>
-                  <span className="text-white text-xl font-semibold">Donations are appreciated</span>          
-                  <FaDonate size={28} onClick={() => router.push('/')} className="text-white cursor-pointer" />
+               <div className="flex flex-row justify-center px-12 mt-9 gap-2">
+                  <Donations />       
+                  <FaDonate size={28} className="text-white" />
                </div>
             </nav>
        
@@ -43,9 +43,8 @@ const Profile = () => {
          <Carousel novels={novels} />
          <SearchBar initialValue={novelId} />
          <Content linesPerPage={15} />
-         {/* Bottom Content */}
-         <div className="container h-full mx-auto xl:px-30 max-w-6xl">
-            <Donations />  
+         {/* Footer */}
+         <div className="container h-full mx-auto xl:px-30 max-w-7xl"> 
             <Footer bgLight={true} />
          </div>
       </div>

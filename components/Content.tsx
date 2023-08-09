@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import useNovel from '@/hooks/useNovel'
 import { Pagination } from '@/components'
+import { FcBookmark } from 'react-icons/fc'
+import { FaFeatherAlt } from 'react-icons/fa'
+import { formatDate } from '@/lib/date'
 
 interface ContentProps {
    linesPerPage: number;
@@ -33,12 +36,20 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
    }, [totalPages, currentPage]);
  
    return (
-      <div className="pt-10 pb-16 px-36 text-justify">
+      <div className="pb-6 pt-12 px-36 text-justify">
          {selectedNovel ? (
             <>
                <div className="flex flex-row justify-between items-center">
-                  <p className="text-black-100 text-1xl md:text-3xl font-bold uppercase">{selectedNovel?.title}</p><br /> 
-                  <p className="text-gray-400">{selectedNovel?.createdAt}</p>
+                  <p className="flex flex-row items-center text-black-100 text-1xl md:text-4xl font-bold uppercase">
+                     <FcBookmark />{selectedNovel?.title}
+                  </p><br />
+                  <div className="flex flex-col leading-tight">
+                     <div className="flex flex-row gap-2 items-center justify-end">
+                        <FaFeatherAlt color={'#c3aeca'} />
+                        <p className="text-gray-400 text-md italic">by {selectedNovel?.author}</p>
+                     </div>
+                     <p className="text-gray-500 text-sm">{formatDate(selectedNovel?.createdAt)}</p>
+                  </div>
                </div>
                <div className="text-black text-base font-serif pt-4">
                   {visibleLines?.join(' ')}

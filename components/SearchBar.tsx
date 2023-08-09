@@ -39,7 +39,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialValue = '' }) => {
    }
 
   return (
-   <div className="flex flex-row justify-center items-start pt-10">
+   <div className="flex flex-row justify-center items-start pt-6">
       <form className="search-bar" onSubmit={submitSearchTerm}>
          <div className="search-bar__item">
             <input 
