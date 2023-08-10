@@ -18,6 +18,7 @@
     "axios": "^1.4.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
+    "jsonwebtoken": "^9.0.1",
     "next": "13.4.12",
     "next-auth": "^4.22.3",
     "postcss": "8.4.27",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/jsonwebtoken": "^9.0.2",
     "@types/lodash": "^4.14.196",
     "@types/react-lines-ellipsis": "^0.15.1",
     "bcrypt": "^5.1.0",

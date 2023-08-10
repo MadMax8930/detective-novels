@@ -19,15 +19,17 @@ model User {
    updatedAt DateTime @updatedAt
 
    donations Donation[]
+
+   adminId String? @map("_admin") @db.ObjectId
+   admin Admin? @relation(fields: [adminId], references: [id])
 }
 
 model Admin {
    id String @id @default(auto()) @map("_id") @db.ObjectId
-   username String
-   password String
+   adminName String
    createdAt DateTime @default(now())
 
-   novels Novel[]
+   users User[]
 }
 
 model Novel {
@@ -43,9 +45,6 @@ model Novel {
    coverImage String?
 
    donations Donation[]
-
-   adminId String? @map("_admin") @db.ObjectId
-   admin Admin? @relation(fields: [adminId], references: [id], onDelete: Cascade)
 }
 
 model Donation {
