@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import prismadb from '@/lib/prismadb'
+import adminAuth from '@/lib/adminAuth'
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+async function handler(req: NextApiRequest, res: NextApiResponse) {
    if (req.method !== 'POST') { return res.status(405).end() }
 
    try {
@@ -16,3 +17,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(500).json({ error: 'An error occurred while creating the novel' });
    }
 }
+
+export default adminAuth(handler);
