@@ -4,9 +4,8 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { compare } from 'bcrypt'
 import prismadb from '@/lib/prismadb'
 import jwt from 'jsonwebtoken'
-import { setAuthToken} from '@/lib/authToken'
 
-// Middleware
+// Authentication middleware
 export const authOptions: AuthOptions = {
    providers: [
       Credentials({
@@ -14,7 +13,6 @@ export const authOptions: AuthOptions = {
          name: 'Credentials',
          credentials: { email: { label: 'Email', type: 'text' }, password: { label: 'Password', type: 'password' } },
          async authorize(credentials) {
-            console.log("Authorize function called");
             if(!credentials?.email || !credentials?.password) { throw new Error('Email and password required') }
 
             const user = await prismadb.user.findUnique({ where: { email: credentials.email } })
@@ -25,7 +23,6 @@ export const authOptions: AuthOptions = {
 
             const token = jwt.sign({ adminId: user.adminId }, `${process.env.ADMIN_JWT_SECRET}`, { expiresIn: '1d' });
             console.log("Generated Token:", token);
-            setAuthToken(token);
 
             const sessionUser = { ...user, token };
    
