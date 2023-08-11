@@ -6,11 +6,12 @@ interface InputProps {
    onChange: any;
    value: string;
    label: string;
+   name?: string;
    type?: string;
    minLength?: number;
 }
 
-const Input: React.FC<InputProps> = ({ id, onChange, value, label, type, minLength }) => {
+const Input: React.FC<InputProps> = ({ id, onChange, value, label, name, type, minLength }) => {
    const [visiblePassword, setVisiblePassword] = useState(false);
    const [showTooltip, setShowTooltip] = useState(false);
 
@@ -26,6 +27,7 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, type, minLeng
             onChange={onChange}
             type={inputType} // text or password
             value={value}
+            name={name}
             id={id}
             className="
                block

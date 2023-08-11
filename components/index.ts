@@ -10,6 +10,7 @@ import NovelCard from './NovelCard'
 import NovelList from './NovelList'
 import Carousel from './Carousel'
 import Donations from './Donations'
+import AdminForm from './AdminForm'
 
 export { 
    Navbar,
@@ -24,4 +25,5 @@ export {
    NovelList,
    Carousel,
    Donations,
+   AdminForm
 }
