@@ -3,6 +3,7 @@ import { GetServerSideProps } from 'next';
 import { Carousel, AdminForm } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
 import { getAdminServerSideProps } from '@/lib/adminServer'
+import { NovelDBProps } from '@/types'
 import Cookies from 'js-cookie'
 
 interface AdminProps {
@@ -12,12 +13,18 @@ interface AdminProps {
 export const Admin: React.FC<AdminProps> = ({ customToken }) => {
    const { data: novels = [] } = useNovelList();
    const [token, setToken] = useState(customToken);
+   const [adminSelectedNovelId, setAdminSelectedNovelId] = useState<string | undefined>();
 
    useEffect(() => {
       const retrievedToken = Cookies.get('next-auth.admin.token');
       console.log('Fetched Token:', retrievedToken);
       if (retrievedToken) { setToken(retrievedToken); }
-    }, []);
+   }, []);
+
+   const handleAdminSelectedNovelId = (novelId: string) => {
+      const selectedCarouselNovel = novels.find((novel: NovelDBProps) => novel.id === novelId);
+      if (selectedCarouselNovel) { setAdminSelectedNovelId(novelId); }
+   };
 
    return (
       <div className="w-screen min-h-full bg-white-main">
@@ -25,8 +32,8 @@ export const Admin: React.FC<AdminProps> = ({ customToken }) => {
             This is the admin page
          </div>
          <div className="flex flex-col gap-2 z-0">
-            <Carousel novels={novels} adminPage={true} />
-            <AdminForm token={token} />
+            <Carousel novels={novels} adminPage={true} handleAdminSelectedNovelId={handleAdminSelectedNovelId} />
+            <AdminForm token={token} adminSelectedNovelId={adminSelectedNovelId} />
          </div>
       </div>
    )

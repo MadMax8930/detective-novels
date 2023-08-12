@@ -10,10 +10,10 @@ export interface CustomButtonProps {
    action?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export interface AdminCrud {
-   useCreateNovel: (token: string) => (novelData: NovelProps) => Promise<any>;
-   useDeleteNovel: (token: string) => (novelId: string) => Promise<any>;
-   useUpdateNovel: (token: string) => (novelId: string, updatedData: NovelProps) => Promise<any>;
+export interface AdminCrudNovelProps {
+   useCreate: (token: string) => (novelData: NovelProps) => Promise<any>;
+   useDelete: (token: string) => (novelId: string) => Promise<any>;
+   useUpdate: (token: string) => (novelId: string, updatedData: NovelProps) => Promise<any>;
 };
 
 export interface PaginationProps {
@@ -44,9 +44,27 @@ export interface ModalStoreProps {
    closeModal: () => void;
 };
 
+export interface NovelDBProps {
+   id?: string;
+   title: string;
+   description: string;
+   author: string;
+   preview: string;
+   content: string;
+   genre: string;
+   coverImage: string;
+   adminId?: string;
+};
+
 export interface CarouselProps {
-   novels: Array<any>;
+   novels: Array<NovelDBProps>;
    adminPage: boolean;
+   handleAdminSelectedNovelId?: (novelId: string) => void;
+};
+
+export interface AdminFormProps {
+   token: string;
+   adminSelectedNovelId?: string | undefined;
 };
 
 export interface InputProps {

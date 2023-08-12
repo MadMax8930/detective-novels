@@ -3,14 +3,18 @@ import { useRouter } from 'next/router'
 import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti'
 import { CarouselProps } from '@/types'
 
-const Carousel: React.FC<CarouselProps> = ({ novels, adminPage }) => {
+const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelectedNovelId }) => {
   const router = useRouter();
-  const [selectedNovelId, setSelectedNovelId] = useState<string | null>(null);
+  const [selectedNovelId, setSelectedNovelId] = useState<string | null>();
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const handleNovelClickProfile = (novelId: string) => {
+  const handleNovelClick = (novelId: string) => {
     setSelectedNovelId(novelId);
-    router.push(`/profile?novel=${novelId}`);
+    if (adminPage && handleAdminSelectedNovelId) {
+      handleAdminSelectedNovelId(novelId);
+    } else {
+      router.push(`/profile?novel=${novelId}`);
+    }
   };
 
   const handlePrevClick = () => {
@@ -32,7 +36,7 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage }) => {
          {novels.map((novel) => (
             <div
                key={novel.id}
-               onClick={() => adminPage ? setSelectedNovelId(novel.id) : handleNovelClickProfile(novel.id)}
+               onClick={() => novel.id && handleNovelClick(novel.id)}
                className={`carousel__nav-item ${selectedNovelId === novel.id ? 'active' : ''}`}
             >
                <img
@@ -51,6 +55,11 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage }) => {
          </button>
          </div>
       </div>
+      {adminPage && selectedNovelId && (
+        <div className="text-center italic absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <p className="flex flex-col">Selected Novel ID:<span className="text-lg">{" "}{selectedNovelId}</span></p>
+        </div>
+      )}
    </div>
   );
 };
