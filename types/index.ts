@@ -44,6 +44,11 @@ export interface ModalStoreProps {
    closeModal: () => void;
 };
 
+export interface CarouselProps {
+   novels: Array<any>;
+   adminPage: boolean;
+};
+
 export interface InputProps {
    id: string;
    onChange: any;

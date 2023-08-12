@@ -40,7 +40,7 @@ const Profile = () => {
        
          </div>
          {/* Main Content */}
-         <Carousel novels={novels} />
+         <Carousel novels={novels} adminPage={false} />
          <SearchBar initialValue={novelId} />
          <Content linesPerPage={15} />
          {/* Footer */}
