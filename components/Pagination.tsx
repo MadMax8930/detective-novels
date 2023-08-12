@@ -1,11 +1,6 @@
 import React from 'react'
 import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
-
-interface PaginationProps {
-   totalPages: number;
-   currentPage: number;
-   onPageChange: (page: number) => void;
-}
+import { PaginationProps } from '@/types'
 
 const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, onPageChange }) => {
    const handlePageChange = (page: number) => { onPageChange(page) };

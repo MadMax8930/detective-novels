@@ -1,25 +1,10 @@
-import axios from 'axios';
-
-interface Novel {
-  title: string;
-  description: string;
-  author: string;
-  preview: string;
-  content: string;
-  genre: string;
-  coverImage: string;
-}
-
-interface AdminCrud {
-  useCreateNovel: (token: string) => (novelData: Novel) => Promise<any>;
-  useDeleteNovel: (token: string) => (novelId: string) => Promise<any>;
-  useUpdateNovel: (token: string) => (novelId: string, updatedData: Novel) => Promise<any>;
-}
+import axios from 'axios'
+import { AdminCrud, NovelProps } from '@/types'
 
 const useAdminCrud = (): AdminCrud => {
    // Create Novel as Administrator
    const useCreateNovel = (token: string) => {
-      const createNovel = async (novelData: Novel): Promise<any> => {
+      const createNovel = async (novelData: NovelProps): Promise<any> => {
          try {
             const response = await axios.post('/api/admin/create', novelData, {
                method: 'POST',
@@ -53,7 +38,7 @@ const useAdminCrud = (): AdminCrud => {
 
    // Update Novel as Administrator
    const useUpdateNovel = (token: string) => {
-      const updateNovel = async (novelId: string, updatedData: Novel): Promise<any> => {
+      const updateNovel = async (novelId: string, updatedData: NovelProps): Promise<any> => {
          try {
             const response = await axios.put(`/api/admin/update?novelId=${novelId}`, updatedData, {
                method: 'PUT',

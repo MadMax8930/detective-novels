@@ -1,13 +1,7 @@
 import { create } from 'zustand'
+import { ModalStoreProps } from '@/types'
 
-export interface ModalStoreInterface {
-   novelId?: string;
-   isOpen: boolean;
-   openModal: (novelId: string) => void;
-   closeModal: () => void;
-};
-
-const useInfoModal = create<ModalStoreInterface>((set) => ({
+const useInfoModal = create<ModalStoreProps>((set) => ({
    novelId: undefined,
    isOpen: false,
    openModal: (novelId: string) => set({ isOpen: true, novelId: novelId }),

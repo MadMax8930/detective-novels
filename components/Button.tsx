@@ -1,15 +1,5 @@
 import Image from 'next/image'
-import { MouseEventHandler } from 'react'
-
-interface CustomButtonProps {
-   title: string;
-   btnType?: "button" | "submit";
-   additionalStyles?: string;
-   textStyles?: string;
-   rightIcon?: string;
-   isDisabled?: boolean;
-   action?: MouseEventHandler<HTMLButtonElement>;
-}
+import { CustomButtonProps } from '@/types'
 
 const Button = ({ title, btnType, additionalStyles, textStyles, rightIcon, isDisabled, action }: CustomButtonProps) => {
   return (

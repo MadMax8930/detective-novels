@@ -2,11 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import useInfoModal from '@/hooks/useInfoModal'
 import useNovel from '@/hooks/useNovel'
-
-interface InfoModalProps {
-   visible?: boolean;
-   onClose: any;
-}
+import { InfoModalProps } from '@/types'
 
 const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
    const [isVisible, setIsVisible] = useState(!!visible);

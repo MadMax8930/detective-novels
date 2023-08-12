@@ -1,15 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
-
-interface InputProps {
-   id: string;
-   onChange: any;
-   value: string;
-   label: string;
-   name?: string;
-   type?: string;
-   minLength?: number;
-}
+import { InputProps } from '@/types'
 
 const Input: React.FC<InputProps> = ({ id, onChange, value, label, name, type, minLength }) => {
    const [visiblePassword, setVisiblePassword] = useState(false);
