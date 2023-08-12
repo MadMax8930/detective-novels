@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { GetServerSideProps } from 'next';
-import { getSession } from 'next-auth/react'
 import { Carousel, AdminForm } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
+import { getAdminServerSideProps } from '@/lib/adminServer'
 import Cookies from 'js-cookie'
 
 interface AdminProps {
@@ -29,37 +29,7 @@ export const Admin: React.FC<AdminProps> = ({ customToken }) => {
    )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-   const session = await getSession(context);
-
-      if (!session?.user?.email) {
-         return {
-            redirect: {
-               destination: '/',
-               permanent: false,
-            },
-         };
-      }
-      
-   const user: any = fetch('/api/current').then(res => res.json())
-
-      if (!user?.adminId) {
-         return {
-            redirect: {
-               destination: '/profile',
-               permanent: false,
-            },
-         };
-      }
-
-   const customToken = context.req.cookies['next-auth.admin-token'] || '';
-
-   return {
-      props: {
-         customToken,
-      },
-   };
-};
+export const getServerSideProps: GetServerSideProps = getAdminServerSideProps;
 
 export default Admin
 
