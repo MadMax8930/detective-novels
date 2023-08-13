@@ -9,9 +9,9 @@ import { defaultCoverImage } from '@/constants'
 
 const EMPTY_NOVEL: NovelProps = { title: '', description: '', author: '', preview: '', content: '', genre: '', coverImage: '' };
  
-const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId }) => {
+const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFetchedUpdatedList }) => {
    // Hooks
-   const { data: fetchedNovelData } = useNovel(adminSelectedNovelId);
+   const { data: fetchedNovelData, mutate: reFetchedNovelData } = useNovel(adminSelectedNovelId);
    const { useCreate, useDelete, useUpdate } = useAdminCrud();
    const createNovel = useCreate(token);
    const deleteNovel = useDelete(token);
@@ -42,22 +42,26 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId }) =>
            coverImage: novel.coverImage || defaultCoverImage,
          };
 
-         if (adminSelectedNovelId) {
+         if (!isCreating && adminSelectedNovelId) {
             novelData.id = adminSelectedNovelId;
             await updateNovel(adminSelectedNovelId, novelData);
             console.log('Novel updated successfully.');
             toast.success('Success! Your novel has been updated.');
-          } else {
+            reFetchedNovelData();
+            setIsCreating(false);
+         } else {
             await createNovel(novelData);
             console.log('Novel created successfully.');
             toast.success('Success! Your novel has been created.');
-          }
-
-         setNovel(EMPTY_NOVEL); // Reset the form
-       } catch (error) {
+            setIsCreating(true);
+            setNovel(EMPTY_NOVEL); // Reset the form
+         }
+      } catch (error) {
          console.error('Error. Novel operation did not complete:', error);
          toast.error('An error occurred.');
-       }
+      } finally {
+         if (reFetchedUpdatedList) { reFetchedUpdatedList() };
+      }
    };
 
    // Delete
@@ -67,16 +71,19 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId }) =>
             await deleteNovel(adminSelectedNovelId);
             console.log('Novel deleted successfully.');
             toast.success('Success! Your novel has been deleted.');
-            setNovel(EMPTY_NOVEL); // Reset the form
          } catch (error) {
             console.error('Error. Novel deletion did not complete:', error);
             toast.error('An error occurred while deleting the novel.');
+         } finally {
+            setIsCreating(true);
+            setNovel(EMPTY_NOVEL); // Reset the form
+            if (reFetchedUpdatedList) { reFetchedUpdatedList() };
          }
       }
       setShowDeleteConfirmation(false);
    };
 
-   const handleDeleteConfirmation = async () => { setShowDeleteConfirmation(true) };
+   const handleDeleteConfirmation = () => { setShowDeleteConfirmation(true) };
 
    // Switcher
    useEffect(() => {
@@ -130,12 +137,20 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId }) =>
                      {showDeleteConfirmation && (
                         <div className="mt-2">
                            <p>Are you sure you want to delete this novel?</p>
-                           <Button
-                              title="Confirm Delete"
-                              btnType="button"
-                              additionalStyles="bg-red-500 text-white rounded-full px-4 py-2 mt-2"
-                              action={handleDeleteNovel}
-                           />
+                           <div className="flex justify-center mt-2 space-x-2">
+                              <Button
+                                 title="Cancel"
+                                 btnType="button"
+                                 additionalStyles="bg-gray-300 text-white rounded-full px-4 py-2 mt-2"
+                                 action={() => setShowDeleteConfirmation(false)}
+                              />
+                              <Button
+                                 title="Confirm Delete"
+                                 btnType="button"
+                                 additionalStyles="bg-red-500 text-white rounded-full px-4 py-2 mt-2"
+                                 action={handleDeleteNovel}
+                              />
+                           </div>
                         </div>
                      )}
                   </>

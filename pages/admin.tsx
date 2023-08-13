@@ -11,9 +11,9 @@ interface AdminProps {
 }
 
 export const Admin: React.FC<AdminProps> = ({ customToken }) => {
-   const { data: novels = [] } = useNovelList();
+   const { data: novels = [], mutate: refetchNovels } = useNovelList();
    const [token, setToken] = useState(customToken);
-   const [adminSelectedNovelId, setAdminSelectedNovelId] = useState<string | undefined>();
+   const [adminSelectedNovelId, setAdminSelectedNovelId] = useState<string | undefined>(undefined);
 
    useEffect(() => {
       const retrievedToken = Cookies.get('next-auth.admin.token');
@@ -26,6 +26,8 @@ export const Admin: React.FC<AdminProps> = ({ customToken }) => {
       if (selectedCarouselNovel) { setAdminSelectedNovelId(novelId); }
    };
 
+   const reFetchedUpdatedList = async () => { await refetchNovels(); };
+
    return (
       <div className="w-screen min-h-full bg-white-main">
           <div className="bg-yellow-200 p-3 text-center text-lg fixed w-full top-0 z-30">
@@ -33,7 +35,7 @@ export const Admin: React.FC<AdminProps> = ({ customToken }) => {
          </div>
          <div className="flex flex-col gap-2 z-0">
             <Carousel novels={novels} adminPage={true} handleAdminSelectedNovelId={handleAdminSelectedNovelId} />
-            <AdminForm token={token} adminSelectedNovelId={adminSelectedNovelId} />
+            <AdminForm token={token} adminSelectedNovelId={adminSelectedNovelId} reFetchedUpdatedList={reFetchedUpdatedList} />
          </div>
       </div>
    )

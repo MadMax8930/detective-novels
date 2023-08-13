@@ -64,7 +64,8 @@ export interface CarouselProps {
 
 export interface AdminFormProps {
    token: string;
-   adminSelectedNovelId?: string | undefined;
+   adminSelectedNovelId?: string;
+   reFetchedUpdatedList?: () => void;
 };
 
 export interface InputProps {
