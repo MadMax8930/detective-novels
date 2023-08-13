@@ -57,7 +57,7 @@ const Auth = () => {
                   <BsArrowLeftSquareFill size={28} className="text-white" />
                   <span className="text-white text-xl font-semibold">Go back</span>
                </div>
-               <div className="flex px-12 pt-9 gap-2 cursor-pointer">
+               <div className="flex px-12 pt-9 gap-2 cursor-pointer" onClick={() => router.push('/discover')}>
                   <span className="text-white text-xl font-semibold">Discover</span>
                   <img src="/images/logo.png" alt="Logo" className="h-7" />
                </div>

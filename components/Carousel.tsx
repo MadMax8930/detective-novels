@@ -30,7 +30,7 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
   };
 
   return (
-   <div className={`px-12 pt-24 ${adminPage ? 'bg-white-main': 'bg-primary-red-100'}`}>
+   <div className={`px-12 pt-24 ${adminPage ? 'bg-zinc-200' : 'bg-white-main'}`}>
       <div className="carousel-container">
          <div className="carousel" ref={carouselRef}>
          {novels.map((novel) => (

@@ -5,7 +5,7 @@ import { BiLogOut } from 'react-icons/bi'
 import { FaDonate } from 'react-icons/fa'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovelList from '@/hooks/useNovelList'
-import { Carousel, Content, SearchBar, Donations, Footer } from '@/components'
+import { Loader, Carousel, Content, SearchBar, Donations, Footer } from '@/components'
 
 // Protecting routes by fetching session on client side
 export async function getServerSideProps(context: NextPageContext) {
@@ -19,11 +19,12 @@ const Profile = () => {
    const novelId = router.query.novel as string;
 
    const { data: user } = useCurrentUser();
-   const { data: novels = [] } = useNovelList();
+   const { data: novels = [], isLoading } = useNovelList();
 
    return (
       <div className="w-screen min-h-full bg-white-main">
          {/* Top Navigation */}
+         {(isLoading || !novels) ? <Loader/> : (<>
          <div className="fixed w-full px-24 pr-14 z-30 flex flex-col justify-between gap-8 bg-black bg-opacity-80">
             <nav className="flex flex-row justify-between pb-10 px-5">
                <div className="flex px-7 pt-9 gap-2 cursor-pointer" onClick={() => signOut()}>
@@ -46,7 +47,7 @@ const Profile = () => {
          {/* Footer */}
          <div className="container h-full mx-auto xl:px-30 max-w-7xl"> 
             <Footer bgLight={true} />
-         </div>
+         </div></>)}
       </div>
    )
 };

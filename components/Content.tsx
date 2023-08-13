@@ -5,6 +5,7 @@ import { Pagination } from '@/components'
 import { FcBookmark } from 'react-icons/fc'
 import { FaFeatherAlt } from 'react-icons/fa'
 import { formatDate } from '@/lib/date'
+import { Loader } from '@/components'
 
 interface ContentProps {
    linesPerPage: number;
@@ -13,8 +14,7 @@ interface ContentProps {
 const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
    const router = useRouter();
    const novelId = router.query.novel as string;
-
-   const { data: selectedNovel } = useNovel(novelId);
+   const { data: selectedNovel, isLoading } = useNovel(novelId);
 
    /* Pagination */
 
@@ -34,7 +34,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
          setCurrentPage(totalPages);
       }
    }, [totalPages, currentPage]);
- 
+
    return (
       <div className="pb-6 pt-12 px-36 text-justify">
          {selectedNovel ? (
@@ -60,7 +60,9 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                   onPageChange={handlePageChange}
                />
             </>
-         ) : selectedNovel !== novelId ? (
+         ) : (isLoading) ? (
+            <div className="relative bottom-96"><Loader/></div>
+         ) : (selectedNovel !== novelId) ? (
             <p className="text-red-500 text-xl font-semibold">Novel not found</p>
          ) : (
             null

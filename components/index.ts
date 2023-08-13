@@ -11,6 +11,7 @@ import NovelList from './NovelList'
 import Carousel from './Carousel'
 import Donations from './Donations'
 import AdminForm from './AdminForm'
+import Loader from './Loader'
 
 export { 
    Navbar,
@@ -25,5 +26,6 @@ export {
    NovelList,
    Carousel,
    Donations,
-   AdminForm
+   AdminForm,
+   Loader
 }

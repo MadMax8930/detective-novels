@@ -3,12 +3,12 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import useNovel from '@/hooks/useNovel'
 import { BsArrowLeftSquareFill, BsPersonSquare } from 'react-icons/bs'
-import { Footer } from '@/components'
+import { Loader, Footer } from '@/components'
 
 const Read = () => {
    const router = useRouter();
    const { novelId } = router.query;
-   const { data } = useNovel(novelId as string);
+   const { data, isLoading } = useNovel(novelId as string);
 
    return (
       <div className="w-screen bg-[#161616]">
@@ -26,6 +26,7 @@ const Read = () => {
             </nav>
          </div>
          {/* Preview */}
+         {(isLoading || !data) ? <Loader/> : (
          <div className="pt-36 px-36 text-justify">
             <p className="text-green-400 text-1xl md:text-3xl font-bold">{data?.title}</p><br /> 
             <div className="text-white text-base font-serif">
@@ -36,7 +37,7 @@ const Read = () => {
                <Link href={{ pathname: '/auth', query: { variant: 'register' } }}><span className="text-red-500">Create</span></Link> or {" "}
                <Link href={{ pathname: '/auth', query: { variant: 'login' } }}><span className="text-red-500">login</span></Link> to your account. <br/> It takes 10 seconds and it is 100% free!</p>
             </div>
-         </div>
+         </div>)}
          {/* Footer */}
          <div className="flex items-center justify-center">
             <div className="container h-full mx-auto xl:px-30 max-w-7xl pt-6">

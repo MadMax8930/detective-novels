@@ -7,7 +7,7 @@ const Donations: React.FC = () => {
     <div className="donations-container">
       <div className="donation-item buymeacoffee">
         <a
-          href="https://www.buymeacoffee.com/yourusername"
+          href={`https://www.buymeacoffee.com/${process.env.BUYMEACOFFEE_USERNAME}`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -17,7 +17,7 @@ const Donations: React.FC = () => {
       </div>
       <div className="donation-item paypal">
         <a
-          href="https://www.paypal.com/donate?business=yourpaypalbusinessid"
+          href={`https://www.paypal.com/donate?business=${process.env.PAYPAL_MERCHANT_ID}`}
           target="_blank"
           rel="noopener noreferrer"
         >

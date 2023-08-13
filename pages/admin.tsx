@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { GetServerSideProps } from 'next';
-import { Carousel, AdminForm } from '@/components'
+import { Loader, Carousel, AdminForm } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
 import { getAdminServerSideProps } from '@/lib/adminServer'
 import { NovelDBProps } from '@/types'
@@ -11,7 +11,7 @@ interface AdminProps {
 }
 
 export const Admin: React.FC<AdminProps> = ({ customToken }) => {
-   const { data: novels = [], mutate: refetchNovels } = useNovelList();
+   const { data: novels = [], mutate: refetchNovels, isLoading } = useNovelList();
    const [token, setToken] = useState(customToken);
    const [adminSelectedNovelId, setAdminSelectedNovelId] = useState<string | undefined>(undefined);
 
@@ -33,10 +33,11 @@ export const Admin: React.FC<AdminProps> = ({ customToken }) => {
           <div className="bg-yellow-200 p-3 text-center text-lg fixed w-full top-0 z-30">
             This is the admin page
          </div>
+         {(isLoading || !novels) ? <Loader/> : (
          <div className="flex flex-col gap-2 z-0">
             <Carousel novels={novels} adminPage={true} handleAdminSelectedNovelId={handleAdminSelectedNovelId} />
             <AdminForm token={token} adminSelectedNovelId={adminSelectedNovelId} reFetchedUpdatedList={reFetchedUpdatedList} />
-         </div>
+         </div>)}
       </div>
    )
 }
