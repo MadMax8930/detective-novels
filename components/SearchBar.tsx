@@ -1,6 +1,8 @@
-import React, { useState } from 'react'
-import { useRouter } from 'next/navigation'
+import React, { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { HiSearchCircle } from 'react-icons/hi'
+import { toast } from 'react-hot-toast'
+import useNovel from '@/hooks/useNovel'
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
    <button type="submit" className={`-ml-10 z-10 ${otherClasses}`}>
@@ -14,29 +16,38 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ initialValue = '' }) => {
    const router = useRouter();
-   const [novelName, setNovelName] = useState(initialValue);
-
+   const { novelId } = router.query;
+   const { data: novelData } = useNovel(novelId as string);
+   const [searchQuery, setSearchQuery] = useState(initialValue);
+   
    const submitSearchTerm = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      if (novelName === '') {
-         return alert('Please fill in the search bar');
-      }
-      updateSearchParams(novelName.toLowerCase());
+      if (searchQuery === '') return toast.error('Please fill in the search bar');
+      searchNovelByTitle(searchQuery);
    }
 
-   const updateSearchParams = (novelName: string) => {
-      const searchParams = new URLSearchParams(window.location.search);
+   const searchNovelByTitle = async (title: string) => {
+      try {
+         const response = await fetch(`/api/novelIdByTitle?query=${encodeURIComponent(title)}`);
+         const data = await response.json();
 
-      if (novelName) {
-         searchParams.set('novel', novelName)
-      } else {
-         searchParams.delete('novel')
+         if (data.id) {
+            router.push(`/profile?novel=${data.id}`);
+         } else {
+            toast.error('Novel not found. Enter the correct title');
+         }
+      } catch (error) {
+         console.log(error);
+         toast.error('An error occurred while searching for the novel');
       }
-
-      const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
-      router.push(newPathname);
    }
+
+   useEffect(() => {
+      if (novelData) {
+         setSearchQuery(novelData.title);
+      }
+   }, [novelData]);
 
   return (
    <div className="flex flex-row justify-center items-start pt-6">
@@ -44,7 +55,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialValue = '' }) => {
          <div className="search-bar__item">
             <input 
                type="text" name="novel"
-               value={novelName} onChange={(e) => setNovelName(e.target.value)}
+               value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
                placeholder="Enter the Novel's name" className="search-bar__input"
             />
             <SearchButton otherClasses="sm:hidden" />
