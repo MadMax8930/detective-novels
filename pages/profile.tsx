@@ -3,9 +3,11 @@ import { getSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { BiLogOut } from 'react-icons/bi'
 import { FaDonate } from 'react-icons/fa'
+import { Loader, Carousel, Content, ContentModal, SearchBar, Donations, Footer } from '@/components'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovelList from '@/hooks/useNovelList'
-import { Loader, Carousel, Content, SearchBar, Donations, Footer } from '@/components'
+import useNovel from '@/hooks/useNovel'
+import useInfoModal from '@/hooks/useInfoModal'
 
 // Protecting routes by fetching session on client side
 export async function getServerSideProps(context: NextPageContext) {
@@ -20,6 +22,8 @@ const Profile = () => {
 
    const { data: user } = useCurrentUser();
    const { data: novels = [], isLoading } = useNovelList();
+   const { data: novelData = [] } = useNovel(novelId);
+   const { isOpen, closeModal } = useInfoModal();
 
    return (
       <div className="w-screen min-h-full bg-white-main">
@@ -38,12 +42,14 @@ const Profile = () => {
                   <FaDonate size={28} className="text-white" />
                </div>
             </nav>
-       
          </div>
          {/* Main Content */}
-         <Carousel novels={novels} adminPage={false} />
-         <SearchBar initialValue={novelId} />
-         <Content linesPerPage={15} />
+         <div className="flex-grow overflow-hidden">
+            <Carousel novels={novels} adminPage={false} />
+            <SearchBar initialValue={novelData?.title} />
+            <Content linesPerPage={15} />
+            <ContentModal visible={isOpen} onClose={closeModal} />
+         </div>
          {/* Footer */}
          <div className="container h-full mx-auto xl:px-30 max-w-7xl"> 
             <Footer bgLight={true} />

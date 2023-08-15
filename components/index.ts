@@ -3,6 +3,7 @@ import Footer from './Footer'
 import Button from './Button'
 import Input from './Input'
 import Content from './Content'
+import ContentModal from './ContentModal'
 import Pagination from './Pagination'
 import SearchBar from './SearchBar'
 import InfoModal from './InfoModal'
@@ -19,6 +20,7 @@ export {
    Button,
    Input,
    Content,
+   ContentModal,
    Pagination,
    SearchBar,
    InfoModal,

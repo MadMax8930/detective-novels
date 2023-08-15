@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { HiSearchCircle } from 'react-icons/hi'
+import { HiSearchCircle, HiX } from 'react-icons/hi'
 import { toast } from 'react-hot-toast'
 import useNovel from '@/hooks/useNovel'
 
@@ -58,6 +58,15 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialValue = '' }) => {
                value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)}
                placeholder="Enter the Novel's name" className="search-bar__input"
             />
+            {searchQuery && (
+               <button
+                  type="button"
+                  className="search-bar__clear"
+                  onClick={() => setSearchQuery('')}
+               > 
+                  <HiX size={24} />
+               </button>
+            )}
             <SearchButton otherClasses="sm:hidden" />
          </div>
          <SearchButton otherClasses="max-sm:hidden" />

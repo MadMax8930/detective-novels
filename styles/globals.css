@@ -43,6 +43,18 @@ html {
    @apply w-full h-[48px] pl-8 p-4 bg-light-white rounded-full max-sm:rounded-full outline-none cursor-pointer text-sm border border-primary-red-100 focus:border-black-100;
 }
 
+.search-bar__clear {
+   @apply text-gray-300 opacity-80 hover:text-black-100 absolute top-1/2 transform -translate-y-1/2 right-2
+}
+
+.search-bar__item button {
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   right: 2.75rem;
+   cursor: pointer;
+}
+
 /* Carousel */
 
 .carousel-container {
