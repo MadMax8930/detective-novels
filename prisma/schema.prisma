@@ -26,7 +26,11 @@ model User {
 
 model Admin {
    id String @id @default(auto()) @map("_id") @db.ObjectId
-   adminName String
+   status String
+   authorName String
+   picture String
+   biography String
+   favoriteBooks String[]
    createdAt DateTime @default(now())
 
    users User[]
@@ -43,20 +47,15 @@ model Novel {
    updatedAt DateTime @updatedAt
    genre String?
    coverImage String?
-
-   donations Donation[]
 }
 
 model Donation {
    id String @id @default(auto()) @map("_id") @db.ObjectId
-   amount Int
-   name String?
-   email String?
+   amount Float
+   donator String?
+   message String?
    createdAt DateTime @default(now())
 
    userId String? @map("_user") @db.ObjectId
-   user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-   novelId String? @map("_novel") @db.ObjectId
-   novel Novel? @relation(fields: [novelId], references: [id], onDelete: Cascade)
+   user User? @relation(fields: [userId], references: [id])
 }
