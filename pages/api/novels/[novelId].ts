@@ -1,22 +1,23 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import prismadb from '@/lib/prismadb'
-// import serverAuth from '@/lib/serverAuth'
+import serverAuth from '@/lib/serverAuth'
 
 export default async function handler (req: NextApiRequest, res: NextApiResponse) {
    if (req.method !== 'GET') { res.status(405).end() }
 
    try {
-     //  await serverAuth(req, res);
      const { novelId } = req.query
-     if(typeof novelId !== 'string') { throw new Error('Invalid ID') }
-     if(!novelId) { throw new Error('Invalid ID') }
+     if(typeof novelId !== 'string' || !novelId) { throw new Error('Invalid ID') }
 
      const novel = await prismadb.novel.findUnique({ where: { id: novelId } })
      if(!novel) { throw new Error('Invalid ID') }
 
-     return res.status(200).json(novel);
+     const currentUser: Record<string, any> | null = await serverAuth(req, res).catch(() => null);
+
+     const filteredNovel = currentUser ? novel : { ...novel, content: undefined };
+     return res.status(200).json(filteredNovel);
    } catch (error) {
      console.log(error)
-     res.status(400).end();
+     return res.status(400).end();
    }
 }
