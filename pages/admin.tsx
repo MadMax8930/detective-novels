@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react'
 import { GetServerSideProps } from 'next';
 import { Loader, Carousel, AdminForm } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
-import { getAdminServerSideProps } from '@/lib/adminServer'
+import { getAdminServerSideProps } from '@/lib/adminProps'
 import { NovelDBProps } from '@/types'
 import Cookies from 'js-cookie'
 
 interface AdminProps {
-   customToken: string;
+   adminToken: string;
 }
 
-export const Admin: React.FC<AdminProps> = ({ customToken }) => {
+export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
    const { data: novels = [], mutate: refetchNovels, isLoading } = useNovelList();
-   const [token, setToken] = useState(customToken);
+   const [token, setToken] = useState(adminToken);
    const [adminSelectedNovelId, setAdminSelectedNovelId] = useState<string | undefined>(undefined);
 
    useEffect(() => {

@@ -77,3 +77,7 @@ export interface InputProps {
    type?: string;
    minLength?: number;
 };
+
+export type AdminJwtPayload = {
+   adminId: string;
+};

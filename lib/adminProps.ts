@@ -25,11 +25,11 @@ export const getAdminServerSideProps: GetServerSideProps = async (context) => {
          };
       }
 
-   const customToken = context.req.cookies['next-auth.admin-token'] || '';
+   const adminToken = context.req.cookies['next-auth.admin-token'] || null;
 
    return {
       props: {
-         customToken,
+         adminToken,
       },
    };
 };

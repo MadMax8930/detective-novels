@@ -5,7 +5,7 @@ import { compare } from 'bcrypt'
 import prismadb from '@/lib/prismadb'
 import jwt from 'jsonwebtoken'
 
-// Authentication middleware
+// User and Admin authentication
 export const authOptions: AuthOptions = {
    providers: [
       Credentials({
@@ -21,15 +21,19 @@ export const authOptions: AuthOptions = {
             const isCorrectPassword = await compare(credentials.password, user.hashedPassword)
             if(!isCorrectPassword) { throw new Error('Incorrect password') }
 
-            const token = jwt.sign({ adminId: user.adminId }, `${process.env.ADMIN_JWT_SECRET}`, { expiresIn: '1d' });
-            console.log("Generated Token:", token);
-
-            const sessionUser = { ...user, token };
+            // Generate token for users
+            const sessionUser = { id: user.id, username: user.username, email: user.email };
+            const userToken = jwt.sign(sessionUser, `${process.env.NEXTAUTH_JWT_SECRET}`, { expiresIn: '1d' });
+            console.log("Generated User Token:", userToken);
    
-            const sessionToken = jwt.sign(sessionUser, `${process.env.ADMIN_JWT_SECRET}`);
-            console.log("Session Token (HttpOnly cookie):", sessionToken);
+            // Generate token for admins
+            let adminToken = null;
+            if (user.adminId !== null) {
+               adminToken = jwt.sign({ adminId: user.adminId }, `${process.env.ADMIN_JWT_SECRET}`, { expiresIn: '1d' });
+               console.log("Generated Admin Token (nextauth):", adminToken);
+            };
 
-            return { ...sessionUser, sessionToken };
+            return { ...sessionUser, userToken, adminToken };
          }
       })
    ],

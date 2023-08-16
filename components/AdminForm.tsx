@@ -73,7 +73,7 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFe
             toast.success('Success! Your novel has been deleted.');
          } catch (error) {
             console.error('Error. Novel deletion did not complete:', error);
-            toast.error('An error occurred while deleting the novel.');
+            toast.error('An error occurred.');
          } finally {
             setIsCreating(true);
             setNovel(EMPTY_NOVEL); // Reset the form
