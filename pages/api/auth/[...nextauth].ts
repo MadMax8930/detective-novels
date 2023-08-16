@@ -24,6 +24,7 @@ export const authOptions: AuthOptions = {
             // Generate token for users
             const sessionUser = { id: user.id, username: user.username, email: user.email };
             const userToken = jwt.sign(sessionUser, `${process.env.NEXTAUTH_JWT_SECRET}`, { expiresIn: '1d' });
+            console.log("Generated User Token:", userToken);
    
             // Generate token for admins
             let adminToken = null;

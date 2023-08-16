@@ -7,8 +7,8 @@ import serverAuth from '@/lib/serverAuth'
 // Admin middleware: Ensures authentication and authorization for admin users
 const adminAuth = (handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => { 
    try {
-      const currentUser = await serverAuth(req, res);
-      if (!currentUser?.adminId) { return res.status(401).json({ error: 'Unauthorized access. User is not an admin.' }) }
+      const { adminId } = await serverAuth(req, res);
+      if (!adminId) { return res.status(401).json({ error: 'Unauthorized access. User is not an admin.' }) }
 
       const cookieToken = req.cookies['next-auth.admin-token'];
       if (!cookieToken) { return res.status(401).json({ error: 'Unauthorized access. No admin token found.' }) }

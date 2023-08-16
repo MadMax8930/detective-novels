@@ -17,7 +17,7 @@ export default async function handler (req: NextApiRequest, res: NextApiResponse
      const filteredNovel = currentUser ? novel : { ...novel, content: undefined };
      return res.status(200).json(filteredNovel);
    } catch (error) {
-     console.log(error)
+     console.error(error)
      return res.status(400).end();
    }
 }
