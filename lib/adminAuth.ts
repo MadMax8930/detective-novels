@@ -18,7 +18,7 @@ const adminAuth = (handler: NextApiHandler) => async (req: NextApiRequest, res: 
       const admin = await prismadb.user.findFirst({ where: { adminId: decodedToken.adminId } });
       if (!admin || admin.adminId === null) { return res.status(401).json({ error: 'Unauthorized access. Admin ID not found.' }) }
 
-      res.setHeader('Set-Cookie', `next-auth.admin-token=${cookieToken}; Path=/; HttpOnly; Secure; SameSite=None`);  // HttpOnly cookie
+      res.setHeader('Set-Cookie', `next-auth.admin-token=${cookieToken}; Path=/; HttpOnly; Secure; SameSite=None`);
 
       handler(req, res);  // User authorized to proceed to the API handler
    } catch (error) {
