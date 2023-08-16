@@ -11,7 +11,7 @@ const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
    const currentUser = await prismadb.user.findUnique({ where: { email: session.user.email } })
    if (!currentUser) { throw new Error('User not found.') }
 
-   return { currentUser };
+   return currentUser;
 }
 
 export default serverAuth;

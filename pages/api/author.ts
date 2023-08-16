@@ -14,7 +14,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             authorName: true,
             picture: true,
             biography: true,
-            favoriteBooks: true
+            favoriteBooks: true,
+            createdAt: true,
         } 
      });
      return res.status(200).json(authorData);

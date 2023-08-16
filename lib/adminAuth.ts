@@ -1,33 +1,30 @@
 import { NextApiRequest, NextApiResponse, NextApiHandler } from 'next'
+import { AdminJwtPayload } from '@/types'
 import jwt from 'jsonwebtoken'
 import prismadb from '@/lib/prismadb'
+import serverAuth from '@/lib/serverAuth'
 
-type AdminJwtPayload = {
-   adminId: string;
-};
-
-// Admin middleware
-const adminAuth = (handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => {
-   console.log("adminAuth middleware triggered on adminForm Submit");
-   
+// Admin middleware: Ensures authentication and authorization for admin users
+const adminAuth = (handler: NextApiHandler) => async (req: NextApiRequest, res: NextApiResponse) => { 
    try {
+      const currentUser = await serverAuth(req, res);
+      if (!currentUser?.adminId) { return res.status(401).json({ error: 'Unauthorized access. User is not an admin.' }) }
+
       const cookieToken = req.cookies['next-auth.admin-token'];
-      console.log("cookieToken from Authorization Header:", cookieToken); 
-      if (!cookieToken) { return res.status(401).json({ error: 'Unauthorized access. No Token' }) }
+      if (!cookieToken) { return res.status(401).json({ error: 'Unauthorized access. No admin token found.' }) }
 
-      // Verify the token and extract the payload
       const decodedToken = jwt.verify(cookieToken, `${process.env.ADMIN_JWT_SECRET}`) as AdminJwtPayload;
-      console.log("Decoded Token:", decodedToken); 
 
-      const admin = await prismadb.admin.findUnique({ where: { id: String(decodedToken.adminId) } });
-      if (!admin) { return res.status(401).json({ error: 'Unauthorized access. No adminId' }) }
+      const admin = await prismadb.user.findFirst({ where: { adminId: decodedToken.adminId } });
+      if (!admin || admin.adminId === null) { return res.status(401).json({ error: 'Unauthorized access. Admin ID not found.' }) }
 
-      // User authorized to proceed to the actual API handler
-      handler(req, res);
+      res.setHeader('Set-Cookie', `next-auth.admin-token=${cookieToken}; Path=/; HttpOnly; Secure; SameSite=None`);  // HttpOnly cookie
+
+      handler(req, res);  // User authorized to proceed to the API handler
    } catch (error) {
       console.error(error);
-      return res.status(500).json({ error: 'adminAuth server error has occurred' });
+      return res.status(500).json({ error: 'Auth server error has occurred.' });
    }
 };
 
-export default adminAuth
+export default adminAuth;
