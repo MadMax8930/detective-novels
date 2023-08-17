@@ -12,6 +12,7 @@ import NovelList from './NovelList'
 import Carousel from './Carousel'
 import Donations from './Donations'
 import AdminForm from './AdminForm'
+import UsersInfo from './UsersInfo'
 import Loader from './Loader'
 
 export { 
@@ -29,5 +30,6 @@ export {
    Carousel,
    Donations,
    AdminForm,
-   Loader
+   UsersInfo,
+   Loader,
 }

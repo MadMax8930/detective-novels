@@ -7,6 +7,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
    try {
       const { adminId } = req.query;
+      if(typeof adminId !== 'string' || !adminId) { throw new Error('Invalid ID') }
 
       const admin = await prismadb.admin.findUnique({ where: { id: String(adminId) } });
       if (!admin) { return res.status(404).json({ error: 'Admin not found' }); }

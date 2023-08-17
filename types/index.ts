@@ -78,6 +78,26 @@ export interface InputProps {
    minLength?: number;
 };
 
-export type AdminJwtPayload = {
+export interface AdminJwtPayload {
    adminId: string;
+};
+
+export interface UserInfoProps {
+   id: string;
+   username: string;
+   email: string;
+   createdAt: string;
+};
+
+export interface DonationInfoProps {
+   id: string;
+   amount: number;
+   donator: string;
+   message: string;
+   createdAt: string;
+   user: { 
+      id: string;
+      username: string;
+      email: string;
+    };
 };
