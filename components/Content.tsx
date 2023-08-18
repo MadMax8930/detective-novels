@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import useNovel from '@/hooks/useNovel'
+import useInfoModal from '@/hooks/useInfoModal'
 import { Pagination } from '@/components'
 import { FcBookmark } from 'react-icons/fc'
 import { FaFeatherAlt } from 'react-icons/fa'
+import { RiFullscreenLine } from 'react-icons/ri'
 import { formatDate } from '@/lib/date'
 import { Loader } from '@/components'
 
@@ -15,6 +17,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
    const router = useRouter();
    const novelId = router.query.novel as string;
    const { data: selectedNovel, isLoading } = useNovel(novelId);
+   const { openModal } = useInfoModal();
 
    /* Pagination */
 
@@ -51,9 +54,16 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                      <p className="text-gray-500 text-sm">{formatDate(selectedNovel?.createdAt)}</p>
                   </div>
                </div>
-               <div className="text-black text-base font-serif pt-4">
+               <div className="text-black text-base font-serif pt-4 leading-7">
                   {visibleLines?.join(' ')}
                </div>
+               {/* Full Screen */}
+               <div className="flex justify-end items-center gap-1.5 group/item w-40 text-gray-400 transition cursor-pointer ml-auto"
+                    onClick={() => openModal(selectedNovel?.id)}>
+                  <p className="text-lg uppercase group-hover/item:text-primary-red">Full screen</p>
+                  <RiFullscreenLine size={20} className="text-black-100 group-hover/item:text-primary-red"/>
+               </div>
+               {/* Pagination */}
                <Pagination
                   totalPages={totalPages}
                   currentPage={currentPage}    
