@@ -11,6 +11,7 @@ import NovelCard from './NovelCard'
 import NovelList from './NovelList'
 import Carousel from './Carousel'
 import Donations from './Donations'
+import DonateResponse from './DonateResponse'
 import AdminForm from './AdminForm'
 import UsersInfo from './UsersInfo'
 import Loader from './Loader'
@@ -29,6 +30,7 @@ export {
    NovelList,
    Carousel,
    Donations,
+   DonateResponse,
    AdminForm,
    UsersInfo,
    Loader,

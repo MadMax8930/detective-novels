@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
      const makeNewDonation = await prismadb.donation.create({
         data: { 
-            amount, 
+            amount: parseFloat(amount as string), 
             donator, 
             message,
             user: { 

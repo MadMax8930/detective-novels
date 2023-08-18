@@ -101,3 +101,8 @@ export interface DonationInfoProps {
       email: string;
     };
 };
+
+export interface DonateResponseProps {
+   status: string;
+   loading: boolean;
+};
