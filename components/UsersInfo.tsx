@@ -34,7 +34,7 @@ const UsersInfo = () => {
             <h2>Donations:</h2>
             <ul>
                {data.donations.map((donation: DonationInfoProps) => (
-                  <li key={donation.id}>{donation.donator} - {donation.message} - Created at: {new Date(donation.createdAt).toLocaleString()}</li>
+                  <li key={donation.id}>{donation.amount} - {donation.donator} - {donation.message} - Created at: {new Date(donation.createdAt).toLocaleString()}</li>
                ))}
             </ul>
          </div>

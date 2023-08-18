@@ -16,7 +16,7 @@ export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
    const [adminSelectedNovelId, setAdminSelectedNovelId] = useState<string | undefined>(undefined);
 
    useEffect(() => {
-      const retrievedToken = Cookies.get('next-auth.admin.token');
+      const retrievedToken = Cookies.get('next-auth.admin-token');
       if (retrievedToken) { setToken(retrievedToken); }
    }, []);
 

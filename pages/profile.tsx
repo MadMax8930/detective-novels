@@ -47,7 +47,7 @@ const Profile = () => {
          <div className="flex-grow overflow-hidden">
             <Carousel novels={novels} adminPage={false} />
             <SearchBar initialValue={novelData?.title} />
-            <Content linesPerPage={15} />
+            <Content linesPerPage={25} />
             <ContentModal visible={isOpen} onClose={closeModal} />
          </div>
          {/* Footer */}

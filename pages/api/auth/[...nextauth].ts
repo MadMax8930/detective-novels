@@ -23,12 +23,12 @@ export const authOptions: AuthOptions = {
 
             // Generate token for users
             const sessionUser = { id: user.id, username: user.username, email: user.email };
-            const userToken = jwt.sign(sessionUser, `${process.env.NEXTAUTH_JWT_SECRET}`, { expiresIn: '1d' });
-   
+            const userToken = jwt.sign(sessionUser, `${process.env.NEXTAUTH_JWT_SECRET}`, { expiresIn: '7d' });
+
             // Generate token for admins
             let adminToken = null;
             if (user.adminId !== null) {
-               adminToken = jwt.sign({ adminId: user.adminId }, `${process.env.ADMIN_JWT_SECRET}`, { expiresIn: '1d' });
+               adminToken = jwt.sign({ adminId: user.adminId }, `${process.env.ADMIN_JWT_SECRET}`, { expiresIn: '3d' });
             };
 
             return { ...sessionUser, userToken, adminToken };

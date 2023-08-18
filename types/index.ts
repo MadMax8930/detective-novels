@@ -16,12 +16,6 @@ export interface AdminCrudNovelProps {
    useUpdate: (token: string) => (novelId: string, updatedData: NovelProps) => Promise<any>;
 };
 
-export interface PaginationProps {
-   totalPages: number;
-   currentPage: number;
-   onPageChange: (page: number) => void;
-};
-
 export interface NovelProps {
    title: string;
    description: string;
@@ -32,9 +26,16 @@ export interface NovelProps {
    coverImage: string;
 };
 
+export interface PaginationProps {
+   totalPages: number;
+   currentPage: number;
+   onPageChange: (page: number) => void;
+};
+
 export interface InfoModalProps {
    visible?: boolean;
    onClose: any;
+   pagination?: PaginationProps;
 };
 
 export interface ModalStoreProps {

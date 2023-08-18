@@ -19,7 +19,7 @@ const DonateResponse: React.FC<DonateResponseProps>= ({ status, loading }) => {
                <div className="text-5xl text-red-500 mb-4"><FaHeart /></div>
                <h1 className="text-2xl md:text-3xl lg:text-4xl mb-6 font-semibold text-blue-800">{status}</h1>
                <p className="text-base md:text-lg lg:text-xl text-gray-700">
-                  Your support means the world! By contributing, you're helping me bring more captivating novels
+                  Your support means the world! By contributing, you are helping me bring more captivating novels
                   and stories to life.
                </p>
              </>
