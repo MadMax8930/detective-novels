@@ -32,10 +32,15 @@ export interface PaginationProps {
    onPageChange: (page: number) => void;
 };
 
+export interface ContentModalProps {
+   visible?: boolean;
+   onClose: any;
+   pagination: PaginationProps;
+};
+
 export interface InfoModalProps {
    visible?: boolean;
    onClose: any;
-   pagination?: PaginationProps;
 };
 
 export interface ModalStoreProps {

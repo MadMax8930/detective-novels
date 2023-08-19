@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsArrowLeft, BsArrowRight } from 'react-icons/bs'
+import { FiArrowLeftCircle, FiArrowRightCircle } from 'react-icons/fi'
 import { PaginationProps } from '@/types'
 
 const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, onPageChange }) => {
@@ -21,23 +21,23 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, onPage
       const startIdx = Math.max(currentPage - Math.floor(maxVisiblePages / 2), 1);
       const endIdx = Math.min(startIdx + maxVisiblePages - 1, totalPages);
     
-      if (startIdx > 1) { items.push(<div key="start-ellipsis">...</div>); }
+      if (startIdx > 1) { items.push(<div key="start-ellipsis" className="text-dots">...</div>); }
     
       for (let i = startIdx; i <= endIdx; i++) { items.push(renderPaginationItem(i)); }
     
-      if (endIdx < totalPages) { items.push(<div key="end-ellipsis">...</div>); }
+      if (endIdx < totalPages) { items.push(<div key="end-ellipsis" className="text-dots">...</div>); }
     
       return items;
    };
 
    return (
       <div className="pagination-container">
-         <BsArrowLeft
+         <FiArrowLeftCircle
             className={`pagination-arrow ${currentPage === 1 ? 'disabled' : ''}`}
             onClick={() => handlePageChange(currentPage - 1)}
          />
          {renderPaginationItems()}
-         <BsArrowRight
+         <FiArrowRightCircle
             className={`pagination-arrow ${currentPage === totalPages ? 'disabled' : ''}`}
             onClick={() => handlePageChange(currentPage + 1)}
          />

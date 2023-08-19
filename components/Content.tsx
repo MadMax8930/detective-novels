@@ -2,12 +2,11 @@ import React, { useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import useNovel from '@/hooks/useNovel'
 import useInfoModal from '@/hooks/useInfoModal'
-import { Pagination } from '@/components'
+import { ContentModal, Pagination, Loader } from '@/components'
 import { FcBookmark } from 'react-icons/fc'
 import { FaFeatherAlt } from 'react-icons/fa'
-import { RiFullscreenLine } from 'react-icons/ri'
+import { MdFitScreen } from 'react-icons/md'
 import { formatDate } from '@/lib/date'
-import { Loader } from '@/components'
 
 interface ContentProps {
    linesPerPage: number;
@@ -17,7 +16,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
    const router = useRouter();
    const novelId = router.query.novel as string;
    const { data: selectedNovel, isLoading } = useNovel(novelId);
-   const { openModal } = useInfoModal();
+   const { isOpen, openModal, closeModal } = useInfoModal();
 
    /* Pagination */
    const [currentPage, setCurrentPage] = useState(1);
@@ -38,6 +37,12 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
             targetLineElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
          }
       }
+   };
+
+   const paginationProps = {
+      totalPages,
+      currentPage,
+      onPageChange: handlePageChange,
    };
 
    return (
@@ -72,10 +77,11 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                </div>
                <div className="pt-2 my-4">
                   {/* Full Screen */}
+                  <ContentModal visible={isOpen} onClose={closeModal} pagination={paginationProps} />
                   <div className="flex justify-end items-center gap-1 group/item w-40 text-gray-400 transition cursor-pointer ml-auto"
                        onClick={() => openModal(selectedNovel?.id)}>
-                      <p className="text-lg uppercase group-hover/item:text-primary-red">Full screen</p>
-                      <RiFullscreenLine size={20} className="text-black-100 group-hover/item:text-primary-red"/>
+                      <p className="text-lg uppercase group-hover/item:text-black-100">Full screen</p>
+                      <MdFitScreen size={20} className="text-gray-400 group-hover/item:text-black-100"/>
                   </div>
                   {/* Pagination */}
                   <Pagination

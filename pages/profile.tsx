@@ -4,11 +4,10 @@ import { getSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { BiLogOut } from 'react-icons/bi'
 import { FaDonate } from 'react-icons/fa'
-import { Loader, Carousel, Content, ContentModal, SearchBar, Donations } from '@/components'
+import { Loader, Carousel, Content, SearchBar, Donations } from '@/components'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
-import useInfoModal from '@/hooks/useInfoModal'
 
 // Protecting routes by fetching session on client side
 export async function getServerSideProps(context: NextPageContext) {
@@ -20,11 +19,10 @@ export async function getServerSideProps(context: NextPageContext) {
 const Profile = () => {
    const router = useRouter();
    const novelId = router.query.novel as string;
-
+   
    const { data: user } = useCurrentUser();
    const { data: novels = [], isLoading } = useNovelList();
    const { data: novelData = [] } = useNovel(novelId);
-   const { isOpen, closeModal } = useInfoModal();
 
    const [linesPerPage, setLinesPerPage] = useState<number>(0);
    useEffect(() => {
@@ -60,7 +58,6 @@ const Profile = () => {
             <Carousel novels={novels} adminPage={false} />
             <SearchBar initialValue={novelData?.title} />
             <Content linesPerPage={linesPerPage} />
-            <ContentModal visible={isOpen} onClose={closeModal} />
          </div>
         </>)}
       </div>
