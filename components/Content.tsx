@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import useNovel from '@/hooks/useNovel'
 import useInfoModal from '@/hooks/useInfoModal'
@@ -20,55 +20,70 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
    const { openModal } = useInfoModal();
 
    /* Pagination */
-
    const [currentPage, setCurrentPage] = useState(1);
-   const handlePageChange = (page: number) => { setCurrentPage(page) };
-
+   const innerContainerRef = useRef<HTMLDivElement | null>(null);
    const lines = selectedNovel?.content.split('\n');
    const totalPages = Math.ceil(lines?.length / linesPerPage);
 
-   const startIdxLine = (currentPage - 1) * linesPerPage;
-   const endIdxLine = currentPage * linesPerPage;
+   const handlePageChange = (page: number) => {
+      setCurrentPage(page);
+      scrollToPage(page);
+   };
 
-   const visibleLines = lines?.slice(startIdxLine, endIdxLine);
-
-   useEffect(() => {
-      if (currentPage > totalPages) {
-         setCurrentPage(totalPages);
+   const scrollToPage = (page: number) => {
+      if (innerContainerRef.current) {
+         const targetLineIndex = (page - 1) * linesPerPage;
+         const targetLineElement = innerContainerRef.current.children[targetLineIndex] as HTMLElement;
+         if (targetLineElement) {
+            targetLineElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+         }
       }
-   }, [totalPages, currentPage]);
+   };
 
    return (
-      <div className="pb-6 pt-12 px-36 text-justify">
+      <div className="pb-6 pt-12 pl-36 pr-24 mr-4 text-justify relative">
          {selectedNovel ? (
             <>
-               <div className="flex flex-row justify-between items-center">
-                  <p className="flex flex-row items-center text-black-100 text-1xl md:text-4xl font-bold uppercase">
+               <div className="flex flex-col md:flex-row justify-between items-center pt-6 pb-2 my-4 pr-6">
+                   {/* Title & Info */}
+                  <p className="flex items-center text-black-100 text-2xl md:text-4xl font-bold uppercase">
                      <FcBookmark />{selectedNovel?.title}
-                  </p><br />
-                  <div className="flex flex-col leading-tight">
+                  </p>
+                  <div className="flex flex-col leading-tight pr-4">
                      <div className="flex flex-row gap-2 items-center justify-end">
-                        <FaFeatherAlt color={'#c3aeca'} />
+                        <FaFeatherAlt color={'#c3aeca'} size={15} />
                         <p className="text-gray-400 text-md italic">by {selectedNovel?.author}</p>
                      </div>
                      <p className="text-gray-500 text-sm">{formatDate(selectedNovel?.createdAt)}</p>
                   </div>
                </div>
-               <div className="text-black text-base font-serif pt-4 leading-7">
-                  {visibleLines?.join(' ')}
+               <div className="h-[610px] min-h-full overflow-y-scroll overflow-x-hidden">
+                  {/* Main content */}
+                  <div className="text-black text-base font-serif leading-7 mb-6 pr-4 pt-2"
+                     style={{ height: `${linesPerPage * 1.55}em`, scrollSnapType: 'y mandatory', scrollBehavior: 'smooth' }}>
+                        <div className="flex flex-col h-full" ref={innerContainerRef}>
+                           {lines && lines.map((line: string, index: number) => (
+                              <div key={index} id={`line-${index}`} className="flex-1 items-center mb-2">
+                                 {line}
+                              </div>
+                           ))}
+                        </div>
+                  </div>
                </div>
-               {/* Full Screen */}
-               <div className="flex justify-end items-center gap-1.5 group/item w-40 text-gray-400 transition cursor-pointer ml-auto"
-                    onClick={() => openModal(selectedNovel?.id)}>
-                  <p className="text-lg uppercase group-hover/item:text-primary-red">Full screen</p>
-                  <RiFullscreenLine size={20} className="text-black-100 group-hover/item:text-primary-red"/>
+               <div className="pt-2 my-4">
+                  {/* Full Screen */}
+                  <div className="flex justify-end items-center gap-1 group/item w-40 text-gray-400 transition cursor-pointer ml-auto"
+                       onClick={() => openModal(selectedNovel?.id)}>
+                      <p className="text-lg uppercase group-hover/item:text-primary-red">Full screen</p>
+                      <RiFullscreenLine size={20} className="text-black-100 group-hover/item:text-primary-red"/>
+                  </div>
+                  {/* Pagination */}
+                  <Pagination
+                     totalPages={totalPages}
+                     currentPage={currentPage}    
+                     onPageChange={handlePageChange}
+                  />
                </div>
-               {/* Pagination */}
-               <Pagination
-                  totalPages={totalPages}
-                  currentPage={currentPage}    
-                  onPageChange={handlePageChange}
-               />
             </>
          ) : (isLoading) ? (
             <div className="relative bottom-96"><Loader/></div>

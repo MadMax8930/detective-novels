@@ -1,9 +1,10 @@
+import React, { useState, useEffect } from 'react'
 import { NextPageContext } from 'next'
 import { getSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { BiLogOut } from 'react-icons/bi'
 import { FaDonate } from 'react-icons/fa'
-import { Loader, Carousel, Content, ContentModal, SearchBar, Donations, Footer } from '@/components'
+import { Loader, Carousel, Content, ContentModal, SearchBar, Donations } from '@/components'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
@@ -24,6 +25,13 @@ const Profile = () => {
    const { data: novels = [], isLoading } = useNovelList();
    const { data: novelData = [] } = useNovel(novelId);
    const { isOpen, closeModal } = useInfoModal();
+
+   const [linesPerPage, setLinesPerPage] = useState<number>(0);
+   useEffect(() => {
+      const novelContentLength = novelData?.content?.length || 0;
+      const calculatedLinesPerPage = Math.ceil(novelContentLength / window.innerHeight);
+      setLinesPerPage(calculatedLinesPerPage);
+   }, [novelData]);
 
    return (
       <div className="w-screen min-h-full bg-white-main">
@@ -47,13 +55,10 @@ const Profile = () => {
          <div className="flex-grow overflow-hidden">
             <Carousel novels={novels} adminPage={false} />
             <SearchBar initialValue={novelData?.title} />
-            <Content linesPerPage={25} />
+            <Content linesPerPage={linesPerPage} />
             <ContentModal visible={isOpen} onClose={closeModal} />
          </div>
-         {/* Footer */}
-         <div className="container h-full mx-auto xl:px-30 max-w-7xl"> 
-            <Footer bgLight={true} />
-         </div></>)}
+        </>)}
       </div>
    )
 };
