@@ -29,7 +29,11 @@ const Profile = () => {
    const [linesPerPage, setLinesPerPage] = useState<number>(0);
    useEffect(() => {
       const novelContentLength = novelData?.content?.length || 0;
-      const calculatedLinesPerPage = Math.ceil(novelContentLength / window.innerHeight);
+      const minLinesPerPage = 20;
+      const calculatedLinesPerPage = Math.max(
+         Math.ceil(novelContentLength / window.innerHeight * 0.035),
+         minLinesPerPage
+      );
       setLinesPerPage(calculatedLinesPerPage);
    }, [novelData]);
 

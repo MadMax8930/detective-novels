@@ -22,7 +22,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
    /* Pagination */
    const [currentPage, setCurrentPage] = useState(1);
    const innerContainerRef = useRef<HTMLDivElement | null>(null);
-   const lines = selectedNovel?.content.split('\n');
+   const lines = selectedNovel?.content.split(/\n|\r\n|\r/);
    const totalPages = Math.ceil(lines?.length / linesPerPage);
 
    const handlePageChange = (page: number) => {
@@ -41,10 +41,10 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
    };
 
    return (
-      <div className="pb-6 pt-12 pl-36 pr-24 mr-4 text-justify relative">
+      <div className="pb-8 pl-36 pr-24 mr-4 text-justify relative">
          {selectedNovel ? (
             <>
-               <div className="flex flex-col md:flex-row justify-between items-center pt-6 pb-2 my-4 pr-6">
+               <div className="flex flex-col md:flex-row justify-between items-center mb-2 pt-3 pb-4 my-4 pr-6">
                    {/* Title & Info */}
                   <p className="flex items-center text-black-100 text-2xl md:text-4xl font-bold uppercase">
                      <FcBookmark />{selectedNovel?.title}
@@ -57,7 +57,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                      <p className="text-gray-500 text-sm">{formatDate(selectedNovel?.createdAt)}</p>
                   </div>
                </div>
-               <div className="h-[610px] min-h-full overflow-y-scroll overflow-x-hidden">
+               <div className="h-[640px] min-h-full overflow-y-scroll overflow-x-hidden">
                   {/* Main content */}
                   <div className="text-black text-base font-serif leading-7 mb-6 pr-4 pt-2"
                      style={{ height: `${linesPerPage * 1.55}em`, scrollSnapType: 'y mandatory', scrollBehavior: 'smooth' }}>
