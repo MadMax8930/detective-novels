@@ -39,7 +39,11 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, onPage
          {renderPaginationItems()}
          <FiArrowRightCircle
             className={`pagination-arrow ${currentPage === totalPages ? 'disabled' : ''}`}
-            onClick={() => handlePageChange(currentPage + 1)}
+            onClick={() => { 
+               if (currentPage < totalPages) { 
+                  handlePageChange(currentPage + 1)
+               }
+            }}
          />
       </div>
    );

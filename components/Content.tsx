@@ -39,12 +39,6 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
       }
    };
 
-   const paginationProps = {
-      totalPages,
-      currentPage,
-      onPageChange: handlePageChange,
-   };
-
    return (
       <div className="pb-8 pl-36 pr-24 mr-4 text-justify relative">
          {selectedNovel ? (
@@ -77,18 +71,23 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                </div>
                <div className="pt-2 my-4">
                   {/* Full Screen */}
-                  <ContentModal visible={isOpen} onClose={closeModal} pagination={paginationProps} />
+                  <ContentModal 
+                       visible={isOpen} 
+                       onClose={closeModal} 
+                       pagination={{ totalPages, currentPage, onPageChange: handlePageChange }}
+                       linesPerPage={linesPerPage} />
                   <div className="flex justify-end items-center gap-1 group/item w-40 text-gray-400 transition cursor-pointer ml-auto"
                        onClick={() => openModal(selectedNovel?.id)}>
                       <p className="text-lg uppercase group-hover/item:text-black-100">Full screen</p>
                       <MdFitScreen size={20} className="text-gray-400 group-hover/item:text-black-100"/>
                   </div>
                   {/* Pagination */}
+                  {totalPages > 1 && (
                   <Pagination
                      totalPages={totalPages}
                      currentPage={currentPage}    
                      onPageChange={handlePageChange}
-                  />
+                  />)}
                </div>
             </>
          ) : (isLoading) ? (

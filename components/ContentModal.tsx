@@ -5,8 +5,9 @@ import useNovel from '@/hooks/useNovel'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Pagination } from '@/components'
 
-const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, pagination  }) => {
+const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, pagination, linesPerPage  }) => {
    const [isVisible, setIsVisible] = useState(!!visible);
+   const [currentPage, setCurrentPage] = useState(1);
 
    const { novelId } = useInfoModal();
    const { data = {} } = useNovel(novelId);
@@ -20,26 +21,40 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
       setTimeout(() => { onClose() }, 300);
    }, [onClose]);
 
+   const handlePageChange = (page: number) => {
+      setCurrentPage(page);
+   };
+
+   const paginationProps = {
+      totalPages: pagination.totalPages,
+      currentPage,
+      onPageChange: handlePageChange,
+   };
+
+   const startIndex = (currentPage - 1) * linesPerPage;
+   const endIndex = Math.min(startIndex + linesPerPage, data?.content?.length || 0);
+   const linesForCurrentPage = data?.content?.split(/\n|\r\n|\r/).slice(startIndex, endIndex);
+
    if (!visible) return null;
    
    return (
       <div className="z-50 transition duration-300 bg-black bg-opacity-80 flex justify-center items-center overflow-x-hidden overflow-auto fixed inset-0">
-         <div className="relative w-full mx-auto max-w-screen-lg rounded-md overflow-hidden">
-            <div className={`${isVisible ? 'scale-100' : 'scale-0'} transform duration-300 relative flex-auto bg-zinc-900 drop-shadow-md`}>
-               <div className="relative w-full h-full">
-                   <div className="cursor-pointer absolute top-3 right-3 h-10 w-10 rounded-full bg-black bg-opacity-70 flex items-center justify-center" 
+         <div className="relative w-full mx-auto max-w-screen-xl rounded-md overflow-hidden">
+            <div className={`${isVisible ? 'scale-100' : 'scale-0'} pl-4 pt-4 transform duration-300 relative flex-auto bg-zinc-900 drop-shadow-md`}>
+               <div className="relative w-full max-h-[80vh] mt-4 ml-2">
+                   <div className="cursor-pointer absolute top-3 right-20 h-10 w-10 rounded-full bg-black bg-opacity-70 flex items-center justify-center" 
                         onClick={handleClose}>
                         <AiOutlineClose className="text-white" size={20} />
                    </div>
-                   <div className="absolute bottom-[10%] left-10 text-white">
-                     <p className="text-white text-2xl md:text-3xl lg:text-5xl h-full font-bold mb-8">{data?.title}</p>
+                   <div className="absolute top-[20%] left-20 text-white mt-3">
+                     <p className="text-white text-xl md:text-2xl lg:text-4xl h-full font-bold mb-8">{data?.title}</p>
                    </div>
                </div>
-               <div className="px-10 md:px-20 py-12 md:py-24">
-                  <p className="text-white text-md text-justify overflow-auto overflow-x-hidden max-h-[60vh]">{data?.content}</p>
-                  {pagination && (
-                     <div className="flex justify-center mt-8">
-                        <Pagination {...pagination} />
+               <div className="px-10 md:px-20 py-10 md:py-20 flex flex-col h-[90vh]">
+                  <p className="text-white text-md text-justify overflow-y-scroll px-3 overflow-x-hidden flex-grow mb-8">{linesForCurrentPage?.join('\n')}</p>
+                  {pagination.totalPages > 1 && (
+                     <div className="flex justify-center">
+                        <Pagination {...paginationProps} />
                      </div>
                   )}
                </div>

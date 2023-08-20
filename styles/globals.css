@@ -164,13 +164,13 @@ html {
    display: flex;
    align-items: center;
    justify-content: center;
-   border: 1px solid #ccc;
+   border: 1px solid #b4aeae;
    border-radius: 50%;
    margin: 0 0.5rem;
    cursor: pointer;
    font-size: 14px;
    transition: background-color 0.3s ease;
-   color: #ccc;
+   color: #b1adad;
 }
  
 .pagination-item.active {
@@ -186,7 +186,7 @@ html {
    margin: 0 0.5rem;
    cursor: pointer;
    transition: color 0.3s ease;
-   color: rgb(120, 109, 109);
+   color: #918b8b;
 }
 
 .pagination-arrow.active {
@@ -198,7 +198,7 @@ html {
 }
  
 .pagination-arrow:hover:not(.disabled) {
-   color: #3c3636;
+   color: #484242;
 }
 
 .overflow-y-scroll::-webkit-scrollbar {
@@ -206,7 +206,7 @@ html {
 }
 
 .overflow-y-scroll::-webkit-scrollbar-thumb {
-   background-color: rgba(0, 0, 0, 0.3);
+   background-color: rgba(157, 146, 146, 0.3);
    border-radius: 0.5rem;
 }
 
