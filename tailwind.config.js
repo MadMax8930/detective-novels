@@ -18,6 +18,7 @@ module.exports = {
         'black-100': "#2B2C35",
         'dots': "#7e7676",
         'primary-blue': { DEFAULT: "#2B59FF", 100: "#F5F8FF" },
+        'primary-green': { DEFAULT: "#A7F3D0", 100: "#F0F9F0" },
         'light-white': { DEFAULT: "rgba(59,60,152,0.03)", 100: "rgba(59,60,152,0.02)" },
         grey: "#747A88",
       }

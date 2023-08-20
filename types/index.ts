@@ -113,3 +113,11 @@ export interface DonateResponseProps {
    status: string;
    loading: boolean;
 };
+
+export interface AuthorData {
+   biography: string;
+   authorName: string;
+   picture: string;
+   favoriteBooks: string[];
+   status: string;
+};

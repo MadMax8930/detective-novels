@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import { UserInfoProps, DonationInfoProps } from '@/types';
-import useAdminData from '@/hooks/useAdminData';
+import { UserInfoProps, DonationInfoProps } from '@/types'
+import useAdminData from '@/hooks/useAdminData'
 import { Loader } from '@/components'
-import getConfig from 'next/config';
+import getConfig from 'next/config'
 
 const { publicRuntimeConfig } = getConfig();
 const { AUTHORIZED_ADMIN_ID } = publicRuntimeConfig;
@@ -35,7 +35,7 @@ const UsersInfo = () => {
                </thead>
                <tbody>
                   {data.users.map((user: UserInfoProps) => (
-                     <tr key={user.id}>
+                     <tr key={user.id} className="bg-primary-blue-100">
                         <td className="table-cell">{user.username}</td>
                         <td className="table-cell">{user.email}</td>
                         <td className="table-cell">{new Date(user.createdAt).toLocaleString()}</td>
@@ -51,8 +51,8 @@ const UsersInfo = () => {
             <table className="table w-full">
                <thead>
                   <tr className="bg-green-200">
-                     <th className="p-2 w-[22.5%] text-start">Amount</th>
-                     <th className="p-2 w-[12.5%] text-start">Donator</th>
+                     <th className="p-2 w-[20%] text-start">Amount</th>
+                     <th className="p-2 w-[15%] text-start">Donator</th>
                      <th className="p-2 w-[17.5%] text-start">Logged in as</th>
                      <th className="p-2 w-[17.5%] text-start">Created At</th>
                      <th className="p-2 w-[30%] text-start">Message</th>
@@ -60,7 +60,7 @@ const UsersInfo = () => {
                </thead>
                <tbody>
                   {data.donations.map((donation: DonationInfoProps) => (
-                     <tr key={donation.id}>
+                     <tr key={donation.id} className="bg-primary-green-100">
                         <td className="amount-cell">{donation.amount}</td>
                         <td className="table-cell">{donation.donator || '<anonymous>'}</td>
                         <td className="table-cell">{donation.user.email}</td>
