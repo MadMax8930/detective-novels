@@ -269,6 +269,20 @@ html {
    background-color: #bf0101;
 }
 
+/* Users Info */
+
+.table-cell {
+   @apply border-[#a8a8ad] border-b p-1;
+}
+
+.amount-cell {
+   @apply border-[#a8a8ad] border-b p-1 text-blue-500 font-semibold;
+}
+
+.identifier-cell {
+   @apply border-[#a8a8ad] border-b p-1 text-blue-700 font-thin italic;
+}
+
 /* Footer */
 
 .footer__link {
