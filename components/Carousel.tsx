@@ -30,7 +30,7 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
   };
 
   return (
-   <div className={`px-12 pt-24 ${adminPage ? 'bg-zinc-200' : 'bg-white-main'}`}>
+   <div className={`px-12 pt-20 pb-2 ${adminPage ? 'bg-zinc-100' : 'bg-white-main'}`}>
       <div className="carousel-container">
          <div className="carousel" ref={carouselRef}>
          {novels.map((novel) => (
@@ -56,8 +56,8 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
          </div>
       </div>
       {adminPage && selectedNovelId && (
-        <div className="text-center italic absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-          <p className="flex flex-col">Selected Novel ID:<span className="text-lg">{" "}{selectedNovelId}</span></p>
+        <div className="text-center md:text-base text-xs italic absolute md:top-1/2 top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:pt-0 pt-2">
+          <p className="flex md:flex-row flex-col">NOVEL ID :<i className="text-primary-red ml-1">{selectedNovelId}</i></p>
         </div>
       )}
    </div>

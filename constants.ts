@@ -4,15 +4,21 @@ export const footerLinks = [
       links: [
          { title: "Events", url: "/" },
          { title: "Featured", url: "/" },
-         { title: "Partnership", url: "/" },
          { title: "Relations", url: "/" },
+      ],
+   },
+   {
+      title: "Company",
+      links: [
+         { title: "Events", url: "/" },
+         { title: "Blog", url: "/" },
+         { title: "Podcast", url: "/" },
       ],
    },
    {
       title: "Socials",
       links: [
-         { title: "Discord", url: "/" },
-         { title: "Instagram", url: "/" },
+         { title: "LinkedIn", url: "/" },
          { title: "Twitter", url: "/" },
          { title: "Facebook", url: "/" },
       ],

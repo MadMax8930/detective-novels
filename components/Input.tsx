@@ -27,7 +27,7 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, name, type, m
                pt-6
                pb-1
                w-full
-               text-md
+               text-base
                text-white
                bg-neutral-700
                appearance-none
@@ -64,7 +64,7 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, name, type, m
          <label 
             className="
                absolute
-               text-md
+               text-base
                text-zinc-400
                duration-150
                transform

@@ -51,7 +51,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                   <div className="flex flex-col leading-tight pr-4">
                      <div className="flex flex-row gap-2 items-center justify-end">
                         <FaFeatherAlt color={'#c3aeca'} size={15} />
-                        <p className="text-gray-400 text-md italic">by {selectedNovel?.author}</p>
+                        <p className="text-gray-400 text-base italic">by {selectedNovel?.author}</p>
                      </div>
                      <p className="text-gray-500 text-sm">{formatDate(selectedNovel?.createdAt)}</p>
                   </div>

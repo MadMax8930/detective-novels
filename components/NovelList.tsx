@@ -13,7 +13,7 @@ const NovelList: React.FC<NovelListProps> = ({ header, data }) => {
    return (
       <div className="min-h-full px-4 md:px-12 mt-4 space-y-8">
          <div className="pt-24 pb-4">
-            <p className="text-black text-md md:text-xl lg:text-2xl font-semibold my-2">{header}</p>
+            <p className="text-black text-base md:text-xl lg:text-2xl font-semibold my-2">{header}</p>
             <div className="grid grid-cols-5 gap-0.5">
                {data.map((novel) => (
                   <NovelCard key={novel.id} data={novel} />

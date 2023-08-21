@@ -40,7 +40,7 @@ const Profile = () => {
          {/* Top Navigation */}
          {(isLoading || !novels) ? <Loader/> : (<>
          <div className="fixed w-full px-24 pr-14 z-30 flex flex-col justify-between gap-8 bg-black bg-opacity-80">
-            <nav className="flex flex-row justify-between pb-10 px-5">
+            <nav className="flex flex-row justify-between pb-5 px-5">
                <div className="flex px-7 pt-9 gap-2 cursor-pointer" onClick={() => signOut()}>
                   <BiLogOut size={28} className="text-white" />
                   <span className="text-white text-xl font-semibold">Logout as {" "}

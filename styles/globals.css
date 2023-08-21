@@ -76,12 +76,12 @@ html {
  
 .carousel__nav-item {
    flex: 0 0 auto;
-   width: 200px;
-   height: 300px;
+   width: 12.5rem;
+   height: 18.75rem;
    scroll-snap-align: start;
    transition: transform 0.3s ease;
    cursor: pointer;
-   border-radius: 8px;
+   border-radius: 0.5rem;
    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
 }
  
@@ -89,7 +89,7 @@ html {
    width: 100%;
    height: 100%;
    object-fit: cover;
-   border-radius: 8px;
+   border-radius: 0.5rem;
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
  
@@ -115,7 +115,7 @@ html {
    background-color: transparent;
    border: none;
    cursor: pointer;
-   font-size: 24px;
+   font-size: 1.5rem;
 }
  
 .carousel-btn:focus {
@@ -123,14 +123,59 @@ html {
 }
 
 @media (max-width: 768px) {
+   .carousel-container {
+      width: 100%;
+      overflow: hidden;
+      padding: 0rem 2rem 2rem;
+      position: relative;
+      z-index: 20;
+   }
+   
    .carousel {
-      padding: 0 10px;
-      gap: 10px;
+      padding: 0;
+      gap: 0;
    }
 
    .carousel__nav-item {
-      width: 120px;
-      height: 200px;
+      min-width: 200px;
+      max-height: 310px;
+      width: 100%;
+      height: auto;
+      box-shadow: none;
+   }
+
+   .carousel__nav-item.active {
+      transform: scale(1) translateZ(0);
+      margin: 0rem 0.5rem;
+      border: 5px solid red;
+      border-radius: 0.75rem;
+      box-shadow: none;
+   }
+
+   .carousel__nav-item img.active {
+      box-shadow: none;
+   }
+
+   .carousel-controls {
+      display: flex;
+      justify-content: space-between;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-60%);
+      z-index: 20;
+   }
+
+   .carousel-btn {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 1.5rem;
+   }
+
+   .carousel-btn:focus {
+      outline: none;
    }
 }
 
@@ -142,12 +187,12 @@ html {
 
 .carousel-btn.left-btn {
    position: absolute;
-   left: 20px;
+   left: 1.25rem;
 }
 
 .carousel-btn.right-btn {
    position: absolute;
-   right: 20px;
+   right: 1.25rem;
 }
 
 /* Content Pagination */
@@ -159,8 +204,8 @@ html {
 }
  
 .pagination-item {
-   width: 30px;
-   height: 30px;
+   width: 1.875rem;
+   height: 1.875rem;
    display: flex;
    align-items: center;
    justify-content: center;
@@ -168,7 +213,7 @@ html {
    border-radius: 50%;
    margin: 0 0.5rem;
    cursor: pointer;
-   font-size: 14px;
+   font-size: 0.875rem;
    transition: background-color 0.3s ease;
    color: #b1adad;
 }
@@ -180,9 +225,9 @@ html {
 }
  
 .pagination-arrow {
-   width: 30px;
-   height: 30px;
-   font-size: 20px;
+   width: 1.875rem;
+   height: 1.875rem;
+   font-size: 1.25rem;
    margin: 0 0.5rem;
    cursor: pointer;
    transition: color 0.3s ease;
@@ -246,7 +291,7 @@ html {
 }
  
 .donation-text {
-   font-size: 13px;
+   font-size: 0.8125rem;
 }
  
 @media (max-width: 768px) {
@@ -272,29 +317,33 @@ html {
 /* Users Info */
 
 .table-cell {
-   @apply border-[#a8a8ad] border-b p-1;
+   @apply border-[#a8a8ad] border-b p-1 md:text-base text-xs overflow-x-auto whitespace-nowrap;
 }
 
 .amount-cell {
-   @apply border-[#a8a8ad] border-b p-1 text-blue-500 font-semibold;
+   @apply border-[#a8a8ad] border-b p-1 md:text-base text-xs text-blue-500 font-semibold;
 }
 
 .identifier-cell {
-   @apply border-[#a8a8ad] border-b p-1 text-blue-700 font-thin italic;
+   @apply border-[#a8a8ad] border-b p-1 md:text-base text-xs text-blue-700 font-thin italic;
 }
 
 /* Footer */
 
 .footer__link {
-   @apply flex flex-col gap-6 text-base min-w-[170px];
+   @apply flex flex-col gap-4 text-base min-w-[75px];
 }
  
 .footer__links {
-   @apply flex-1 w-full flex md:justify-end flex-wrap max-md:mt-10 gap-20;
+   @apply flex-1 w-full flex flex-wrap justify-center md:justify-end max-md:mt-10 md:gap-20 gap-10;
 }
  
 .footer__copyrights-link {
-   @apply flex-1 flex sm:justify-end justify-center max-sm:mt-4 gap-10;
+   @apply flex-1 flex sm:justify-end justify-center max-sm:mt-2 gap-16;
+}
+
+.footer__bottom-container {
+   @apply flex flex-col sm:flex-row justify-between items-center mt-4 sm:mt-6 border-t border-gray-300 text-base sm:px-6 px-3 py-4;
 }
 
  

@@ -29,7 +29,7 @@ export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
 
    return (
       <div className="w-screen min-h-full bg-white-main">
-          <div className="bg-yellow-200 p-3 text-center text-lg fixed w-full top-0 z-30">
+         <div className="bg-yellow-200 p-3 text-center text-lg fixed w-full top-0 z-30">
             This is the admin page
          </div>
          {(isLoading || !novels) ? <Loader/> : (

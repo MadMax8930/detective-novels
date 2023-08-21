@@ -51,7 +51,7 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
                    </div>
                </div>
                <div className="px-10 md:px-20 py-10 md:py-20 flex flex-col h-[90vh]">
-                  <p className="text-white text-md text-justify overflow-y-scroll px-3 overflow-x-hidden flex-grow mb-8">{linesForCurrentPage?.join('\n')}</p>
+                  <p className="text-white text-base text-justify overflow-y-scroll px-3 overflow-x-hidden flex-grow mb-8">{linesForCurrentPage?.join('\n')}</p>
                   {pagination.totalPages > 1 && (
                      <div className="flex justify-center">
                         <Pagination {...paginationProps} />

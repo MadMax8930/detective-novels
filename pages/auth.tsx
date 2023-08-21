@@ -56,10 +56,10 @@ const Auth = () => {
                <div className="flex md:px-12 px-4 pt-9 gap-2 cursor-pointer" onClick={() => router.back()}>
                   <BsArrowLeftSquareFill className="text-white md:hidden" size={23} />
                   <BsArrowLeftSquareFill className="text-white md:block hidden" size={28} />
-                  <span className="text-white md:text-lg text-md font-semibold">Go back</span>
+                  <span className="text-white md:text-lg text-base font-semibold">Go back</span>
                </div>
                <div className="flex md:px-12 px-4 pt-9 gap-2 cursor-pointer" onClick={() => router.push('/discover')}>
-                  <span className="text-white md:text-lg text-md font-semibold">Discover</span>
+                  <span className="text-white md:text-lg text-base font-semibold">Discover</span>
                   <img src="/images/logo.png" alt="Logo" className="md:h-7 h-6" />
                </div>
             </nav>
