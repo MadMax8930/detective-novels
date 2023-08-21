@@ -23,19 +23,19 @@ const Discover: React.FC = () => {
    }, []);
 
    return (
-      <div className="flex items-center justify-center min-h-screen bg-white-main">
+      <div className="bg-white-main min-h-screen flex justify-center items-center">
          {isLoading ? <Loader/> : (
             <>
-              <div className="flex w-full max-w-screen-2xl h-full bg-primary-blue-100 shadow-lg overflow-hidden">
-                 <div className="flex h-full">
-                     <div className="w-1/3 bg-black-100 p-8">
+              <div className="bg-primary-blue-100 w-full max-w-screen-2xl h-full shadow-lg overflow-hidden">
+                 <div className="flex flex-col md:flex-row">
+                     <div className="md:w-1/3 bg-black-100 p-8">
                         <img
                            src={authorData?.picture}
                            alt={authorData?.authorName}
                            className="w-full h-full object-cover rounded-lg shadow-md"
                         />
                      </div>
-                     <div className="w-2/3 p-8 overflow-y-auto">
+                     <div className="md:w-2/3 p-8 overflow-y-auto">
                         <div className="flex justify-between items-center mb-4">
                            <FiArrowLeft className="cursor-pointer" size={24} onClick={() => { router.push('/auth') }} />
                            <a href='https://www.linkedin.com/in/vladislav-surnin-89a51b5' target="_blank" rel="noopener noreferrer">
