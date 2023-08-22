@@ -4,7 +4,7 @@ import { SiBuymeacoffee } from 'react-icons/si'
 
 const Donations: React.FC = () => {
   return (
-    <div className="donations-container">
+    <div className="donations-container md:pb-4">
       <div className="donation-item buymeacoffee">
         <a
           href={`https://www.buymeacoffee.com/${process.env.NEXT_PUBLIC_BUYMEACOFFEE_USERNAME}`}

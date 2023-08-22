@@ -7,6 +7,7 @@ Node version 18.2.0
 - Auth page: Register and Login to your account. 
 - Profile page: Read the whole content as an authenticated user.
 - Admin page: Create, update and delete novels as an administrator.
+- Discover page: Visit author's biography.
 
 ### Run the dev server:
 
@@ -21,7 +22,7 @@ npm run dev
 [NextAuth.js documentation](https://next-auth.js.org/configuration/nextjs#getserversession) for more details
 
 ### CSS Management:
-[Tailwind documentation](https://tailwindcss.com/docs/guides/nextjs) for styling
+[Tailwind documentation](https://tailwindcss.com/docs/guides/nextjs) for styling and responsiveness
 
 ### ORM Architecture:
 [Prisma documentation](https://www.prisma.io/docs/getting-started) for data management
