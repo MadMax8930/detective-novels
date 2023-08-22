@@ -304,18 +304,16 @@ html {
 }
  
 .donation-text {
-   font-size: 0.8125rem;
+   font-size: 0.775rem;
 }
  
 @media (max-width: 768px) {
    .donations-container {
-     flex-direction: column;
-     gap: 10px;
-     align-items: flex-start;
+     gap: 0.25rem;
    }
  
    .donation-item {
-     padding: 4px;
+     padding: 0.25rem;
    }
 }
  

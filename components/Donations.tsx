@@ -12,7 +12,7 @@ const Donations: React.FC = () => {
           rel="noopener noreferrer"
         >
           <SiBuymeacoffee size={18} />
-          <span className="donation-text">Buy me a coffee</span>
+          <span className="donation-text hidden lg:inline">Buy me a coffee</span>
         </a>
       </div>
       <div className="donation-item paypal">
@@ -22,7 +22,7 @@ const Donations: React.FC = () => {
           rel="noopener noreferrer"
         >
           <FaPaypal size={18} />
-          <span className="donation-text">Support my work</span>
+          <span className="donation-text hidden md:inline">Support my work</span>
         </a>
       </div>
     </div>
