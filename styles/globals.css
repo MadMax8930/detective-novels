@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&display=swap');
+
 body {
    @apply bg-zinc-400 h-full overflow-x-hidden;
 }
@@ -12,6 +14,13 @@ body {
 
 html {
    @apply h-full;
+}
+
+/* Header */
+
+.title-header {
+   font-family: 'Unbounded', sans-serif;
+   font-weight: 600;
 }
 
 /* Tooltip */
@@ -36,7 +45,7 @@ html {
 }
  
 .search-bar__item {
-   @apply flex-1 max-sm:w-full flex justify-start items-center relative;
+   @apply flex flex-1 max-sm:w-full justify-start items-center relative;
 }
  
 .search-bar__input {
@@ -44,7 +53,11 @@ html {
 }
 
 .search-bar__clear {
-   @apply text-gray-300 opacity-80 hover:text-black-100 absolute top-1/2 transform -translate-y-1/2 right-2
+   @apply text-gray-300 opacity-80 hover:text-black-100 absolute top-1/2 transform -translate-y-1/2 right-2;
+}
+
+.search-bar__submit-mobile {
+   @apply absolute top-1/2 transform -translate-y-1/2 right-2;
 }
 
 .search-bar__item button {

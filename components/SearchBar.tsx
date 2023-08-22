@@ -67,8 +67,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialValue = '' }) => {
                   <HiX size={24} />
                </button>
             )}
-            <SearchButton otherClasses="sm:hidden" />
          </div>
+         <SearchButton otherClasses="sm:hidden search-bar__submit-mobile" />
          <SearchButton otherClasses="max-sm:hidden" />
       </form>
    </div>

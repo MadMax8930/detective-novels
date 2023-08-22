@@ -12,7 +12,7 @@ export default function Home() {
          <div className="container h-full mx-auto xl:px-30 max-w-7xl">
             <Navbar />
             <InfoModal visible={isOpen} onClose={closeModal} />
-            <NovelList header="Novels Trending Now" data={novels} />
+            <NovelList header="Романы сейчас в тренде" data={novels} />
             <Footer bgLight={true} />
          </div>}
       </div>
