@@ -3,6 +3,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import useInfoModal from '@/hooks/useInfoModal'
 import useNovel from '@/hooks/useNovel'
 import { InfoModalProps } from '@/types'
+import { formatDate } from '@/lib/date'
 
 const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
    const [isVisible, setIsVisible] = useState(!!visible);
@@ -23,23 +24,24 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
    
    return (
       <div className="z-50 transition duration-300 bg-black bg-opacity-80 flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0">
-         <div className="relative w-auto mx-auto max-w-3xl rounded-md overflow-hidden">
-            <div className={`${isVisible ? 'scale-100' : 'scale-0'} transform duration-300 relative flex-auto bg-zinc-900 drop-shadow-md mt-2`}>
-               <div className="relative h-96 min-w-[640px] w-full">
+         <div className="relative w-auto mx-4 md:mx-auto max-w-3xl rounded-md overflow-hidden">
+            <div className={`${isVisible ? 'scale-100' : 'scale-0'} min-h-[500px] md:min-w-[766px] min-w-[310px] transform duration-300 relative flex-auto bg-zinc-900 drop-shadow-md mt-2`}>
+               <div className="relative md:h-40 h-20 md:min-w-[640px] w-full">
                    <img src={data?.coverImage} alt="Thumbnail Cover" className="w-full brightness-[55%] object-cover h-full" />
                    <div className="cursor-pointer absolute top-3 right-3 h-10 w-10 rounded-full bg-black bg-opacity-70 flex items-center justify-center" 
                         onClick={handleClose}>
                         <AiOutlineClose className="text-white" size={20} />
                    </div>
-                   <div className="absolute top-[5%] left-10">
-                     <p className="text-green-400 font-semibold text-base capitalize">{data?.author}</p>
+                   <div className="absolute bottom-[5%] left-5 md:left-10 flex gap-1.5 md:text-sm text-[10px] text-gray-400">
+                     <p className="underline">Posted by:</p>
+                     <p className="capitalize">{data?.author} - {formatDate(data.createdAt).split('GMT')[0].trim()}</p>
                    </div>
-                   <div className="absolute bottom-[10%] left-10">
-                     <p className="text-white text-2xl md:text-3xl lg:text-5xl h-full font-bold mb-8">{data?.title}</p>
+                   <div className="absolute md:top-[20%] top-0 left-5 md:left-10">
+                     <p className="text-white text-xl md:text-3xl lg:text-5xl h-full font-bold md:mb-8 mt-4">{data?.title}</p>
                    </div>
                </div>
-               <div className="px-12 pt-6 pb-8">
-                  <p className="text-white text-base">{data?.description}</p>
+               <div className="px-6 md:px-12 pt-6 pb-8">
+                  <p className="text-white text-sm md:text-base">{data?.description}</p>
                </div>
             </div>
          </div>

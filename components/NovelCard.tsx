@@ -43,7 +43,7 @@ const NovelCard: React.FC<NovelCardProps> = ({ data }) => {
                      <div className="cursor-pointer rounded-full w-6 h-6 lg:w-8 lg:h-8 flex justify-center items-center bg-white hover:bg-neutral-300 transition"
                         onClick={() => router.push(`/read/${data?.id}`)}>
                         <PiBookBookmarkDuotone size={18} className="sm:hidden" />
-                        <PiBookBookmarkDuotone size={25} className="max-sm:hidden" />
+                        <PiBookBookmarkDuotone size={24} className="max-sm:hidden" />
                      </div>
                      <div className="cursor-pointer ml-auto group/item w-6 h-6 lg:w-8 lg:h-8 flex justify-center items-center rounded-full border-white border-2 hover:border-neutral-300 transition"
                         onClick={() => openModal(data?.id)}>
