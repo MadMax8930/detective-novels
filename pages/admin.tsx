@@ -42,7 +42,7 @@ export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
    )
 }
 
-export const getServerSideProps: GetServerSideProps = getAdminServerSideProps;
+// export const getServerSideProps: GetServerSideProps = getAdminServerSideProps;
 
 export default Admin
 
