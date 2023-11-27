@@ -9,7 +9,7 @@ export const getAdminServerSidePropsProd: GetServerSideProps = async (context) =
    if (!sessionToken) {
       return {
          redirect: {
-            destination: '/',
+            destination: '/profile',
             permanent: false,
          },
       };
@@ -53,7 +53,7 @@ export const getAdminServerSidePropsProd: GetServerSideProps = async (context) =
 // Helper function to decode the admin token
 const decodeAdminToken = (token: string) => {
    try {
-      const decodedToken = jwt.verify(token, `${process.env.ADMIN_JWT_SECRET}`) as AdminJwtPayload;
+      const decodedToken = jwt.verify(token, 'myadminjwtsecret') as AdminJwtPayload;
       return decodedToken;
    } catch (error) {
       console.error('Error decoding admin token:', error);
