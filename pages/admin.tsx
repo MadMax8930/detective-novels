@@ -3,7 +3,6 @@ import { GetServerSideProps } from 'next';
 import { Loader, Carousel, AdminForm, UsersInfo } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
 import { getAdminServerSideProps } from '@/lib/adminProps'
-import { getAdminServerSidePropsProd } from '@/lib/adminPropsProd'
 import { NovelDBProps } from '@/types'
 import Cookies from 'js-cookie'
 
@@ -43,8 +42,7 @@ export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
    )
 }
 
-// export const getServerSideProps: GetServerSideProps = getAdminServerSideProps;
-export const getServerSideProps: GetServerSideProps = getAdminServerSidePropsProd;
+export const getServerSideProps: GetServerSideProps = getAdminServerSideProps;
 
 export default Admin
 
