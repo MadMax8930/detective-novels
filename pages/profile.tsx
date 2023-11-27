@@ -50,7 +50,9 @@ const Profile = () => {
                <div className="flex items-center justify-center px-7 pt-5 md:pt-4 gap-1 md:gap-2 cursor-pointer" onClick={() => signOut()}>
                   <BiLogOut size={32} className="text-white sm:hidden" />
                   <BiLogOut size={30} className="text-white max-sm:hidden" />
-                  <span className="text-white text-base md:text-xl font-semibold">Logout {user?.username}</span>
+                  <span className="text-white text-base md:text-xl font-semibold">Logout 
+                     <span className="hidden lg:inline">{" "} as {" "}<strong className="text-gray-400 capitalize">{user?.username}</strong></span>
+                  </span>
                </div>
                <div className="flex flex-row justify-center px-0 lg:px-12 mt-4 md:mt-9 gap-1 md:gap-2">
                   <Donations />  
