@@ -4,6 +4,7 @@ import prismadb from '@/lib/prismadb';
 
 export const getAdminServerSideProps: GetServerSideProps = async (context) => {
    const session = await getSession(context);
+   console.log('admin Session:', session);
 
       if (!session?.user?.email) {
          return {

@@ -5,7 +5,8 @@ import prismadb from '@/lib/prismadb'
 
 // User middleware: Handles authentication and retrieves current user data
 const serverAuth = async (req: NextApiRequest, res: NextApiResponse) => {
-   const session = await getServerSession(req, res, authOptions)
+   const session = await getServerSession(req, res, authOptions);
+   console.log('Session:', session);
    if (!session?.user?.email) { throw new Error('User not authenticated.') }
 
    const currentUser = await prismadb.user.findUnique({ 
