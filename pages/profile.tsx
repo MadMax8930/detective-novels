@@ -13,16 +13,21 @@ import useNovel from '@/hooks/useNovel'
 export async function getServerSideProps(context: NextPageContext) {
    const session = await getSession(context)
    if (!session) { return { redirect: { destination: '/auth', permanent: false } } }
-   return { props: {} };
+   return { props: { session } };
 }
 
 const Profile = () => {
    const router = useRouter();
    const novelId = router.query.novel as string;
    
-   const { data: user } = useCurrentUser();
+   const { data: user, isLoading: loadingUser } = useCurrentUser();
    const { data: novels = [], isLoading } = useNovelList();
    const { data: novelData = [] } = useNovel(novelId);
+
+   useEffect(() => {
+      if (loadingUser) return;
+      if (!user) { router.push('/auth'); }
+   }, [loadingUser, user, router]);
 
    const [linesPerPage, setLinesPerPage] = useState<number>(0);
    useEffect(() => {
