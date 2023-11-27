@@ -10,7 +10,7 @@ const Discover: React.FC = () => {
    const [isLoading, setIsLoading] = useState(true);
 
    useEffect(() => {
-      fetch('http://localhost:3000/api/author')
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND}/api/author`)
          .then(response => response.json())
          .then(data => {
             setAuthorData(data);
