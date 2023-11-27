@@ -9,6 +9,14 @@ import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
 
+// Protecting routes by fetching session on client side
+// export async function getServerSideProps(context: NextPageContext) {
+//    const session = await getSession(context)
+//    if (!session?.user?.email) { return { redirect: { destination: '/auth', permanent: false } } }
+//    console.log('Profile Session:', session.user.email);
+//    return { props: { session } };
+// }
+
 const Profile = () => {
    const router = useRouter();
    const novelId = router.query.novel as string;
@@ -64,11 +72,3 @@ const Profile = () => {
 };
 
 export default Profile
-
-// Protecting routes by fetching session on client side
-export async function getServerSideProps(context: NextPageContext) {
-   const session = await getSession(context)
-   if (!session?.user?.email) { return { redirect: { destination: '/auth', permanent: false } } }
-   console.log('Profile Session:', session.user.email);
-   return { props: { session } };
-}
