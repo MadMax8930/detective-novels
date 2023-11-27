@@ -38,9 +38,20 @@ export const authOptions: AuthOptions = {
    pages: { signIn: '/auth' },
    debug: process.env.NODE_ENV === 'development',
    adapter: PrismaAdapter(prismadb),
-   session: { strategy: 'jwt' },
+   session: { strategy: 'jwt', maxAge: 7 * 24 * 60 * 60 },
    jwt: { secret: process.env.NEXTAUTH_JWT_SECRET },
    secret: process.env.NEXTAUTH_SECRET,
+   cookies: {
+      sessionToken: {
+        name: 'next-auth.session-token',
+        options: {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          path: '/',
+        },
+      },
+   }
 };
 
 export default NextAuth(authOptions);
