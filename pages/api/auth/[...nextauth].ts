@@ -38,7 +38,7 @@ export const authOptions: AuthOptions = {
    pages: { signIn: '/auth' },
    debug: process.env.NODE_ENV === 'development',
    adapter: PrismaAdapter(prismadb),
-   session: { strategy: 'jwt', maxAge: 7 * 24 * 60 * 60 },
+   session: { strategy: 'jwt', maxAge: 7 * 24 * 60 * 60, updateAge: 24 * 60 },
    jwt: { secret: process.env.NEXTAUTH_JWT_SECRET },
    secret: process.env.NEXTAUTH_SECRET,
    cookies: {
