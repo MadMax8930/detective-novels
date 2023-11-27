@@ -10,11 +10,7 @@ import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
 
 // Protecting routes by fetching session on client side
-export async function getServerSideProps(context: NextPageContext) {
-   const session = await getSession(context)
-   if (!session) { return { redirect: { destination: '/auth', permanent: false } } }
-   return { props: { session } };
-}
+
 
 const Profile = () => {
    const router = useRouter();
