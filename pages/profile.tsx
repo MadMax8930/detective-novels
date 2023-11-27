@@ -9,34 +9,11 @@ import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
 
+// Protecting routes by fetching session on client side
 export async function getServerSideProps(context: NextPageContext) {
-   try {
-      const session = await getSession(context);
-      console.log('Session:', session);
-
-      if (!session) {
-         console.log('Redirecting to /auth');
-         return {
-            redirect: {
-               destination: '/auth',
-               permanent: false,
-            },
-         };
-      }
-
-      return {
-         props: {},
-      };
-   } catch (error) {
-      console.error('Error in getServerSideProps:', error);
-
-      return {
-         redirect: {
-            destination: '/error', // Redirect to an error page or handle it as appropriate
-            permanent: false,
-         },
-      };
-   }
+   const session = await getSession(context)
+   if (!session) { return { redirect: { destination: '/auth', permanent: false } } }
+   return { props: {} };
 }
 
 const Profile = () => {
