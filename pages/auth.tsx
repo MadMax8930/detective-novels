@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/react'
 import { toast } from 'react-hot-toast'
 import { BsArrowLeftSquareFill } from 'react-icons/bs'
-import { Input } from '@/components'
+import { Input, Loader } from '@/components'
 
 const Auth = () => {
    const router = useRouter();
@@ -14,6 +14,7 @@ const Auth = () => {
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
    const [variant, setVariant] = useState('login');
+   const [loading, setLoading] = useState(false);
 
    useEffect(() => {
       if (query.variant) { setVariant(query.variant as string) }
@@ -25,6 +26,7 @@ const Auth = () => {
 
    const login = useCallback(async() => {
       try {
+        setLoading(true);
         await signIn('credentials', {
          email, password, callbackUrl: '/profile'
         });
@@ -32,11 +34,14 @@ const Auth = () => {
       } catch (error) {
         console.log(error);
         toast.error("Something went wrong.");
+      } finally {
+        setLoading(false);
       }
    }, [email, password]);
 
    const register = useCallback(async() => {
       try {
+        setLoading(true);
         await axios.post('/api/register', {
          email, username, password
         });
@@ -45,8 +50,12 @@ const Auth = () => {
       } catch (error) {
         console.log(error);
         toast.error("Something went wrong.");
+      } finally {
+        setLoading(false);
       }
    }, [email, username, password, login]);
+
+   if (loading) { return <div className='bg-black'><Loader /></div>; }
 
    return (
       <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">
