@@ -16,6 +16,8 @@ import AdminForm from './AdminForm'
 import UsersInfo from './UsersInfo'
 import Loader from './Loader'
 
+import UsersTab from './UsersTab'
+
 export { 
    Navbar,
    Footer,
@@ -34,4 +36,5 @@ export {
    AdminForm,
    UsersInfo,
    Loader,
+   UsersTab,
 }

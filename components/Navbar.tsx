@@ -9,8 +9,8 @@ const Navbar = () => {
          {/* Left Side */}
          <div className="flex flew-wrap justify-between items-center text-primary-blue-100 font-bold text-lg sm:text-xl gap-3 mb-3 sm:mb-0">
             <Link href={"/profile"} className="flex justify-center items-center">
-               <Image src="/images/logo.png" alt="logo" width={44} height={20} className="object-contain md:block hidden" />
-               <Image src="/images/logo.png" alt="logo" width={36} height={18} className="object-contain md:hidden block" />
+               <Image src="/images/logo.png" alt="logo" width={44} height={20} className="object-contain md:block hidden w-auto h-auto" />
+               <Image src="/images/logo.png" alt="logo" width={36} height={18} className="object-contain md:hidden block w-auto h-auto" />
             </Link>
             <h1 className="border-b-2 border-t-2 text-2xl font-bold md:block hidden">Vlad Novels</h1>
          </div>
