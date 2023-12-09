@@ -1,15 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@500&family=Bungee+Spice&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600&display=swap');
 
 body {
-   @apply bg-zinc-400 h-full overflow-x-hidden;
-}
-
-#__next {
-   @apply h-full;
+   @apply h-full overflow-x-hidden;
 }
 
 html {
@@ -337,18 +336,34 @@ html {
    background-color: #bf0101;
 }
 
-/* Users Info */
+/* Admin */
+
+.admin-header {
+   @apply bg-admin-btn text-white-main font-semibold uppercase p-2 text-center text-base border-b border-slate-400 fixed w-full top-0 z-30;
+}
+
+.table-header {
+   @apply text-left;
+   font-family: 'Unbounded', sans-serif;
+}
+
+.table-content {
+   @apply text-left bg-transparent text-slate-300;
+   font-family: 'Big Shoulders Text', sans-serif;
+   font-weight: 500;
+}
 
 .table-cell {
-   @apply border-[#a8a8ad] border-b p-1 md:text-base text-xs overflow-x-auto whitespace-nowrap;
+   @apply md:text-base text-xs border-gray-600 border-b p-3 md:p-4 overflow-x-auto;
 }
 
-.amount-cell {
-   @apply border-[#a8a8ad] border-b p-1 md:text-base text-xs text-blue-500 font-semibold;
+.table-cell-amount {
+   @apply md:text-base text-xs font-semibold;
+   font-family: 'Bungee Spice', sans-serif;
 }
 
-.identifier-cell {
-   @apply border-[#a8a8ad] border-b p-1 md:text-base text-xs text-blue-700 font-thin italic;
+.table-cell-identifier {
+   @apply md:text-base text-xs text-slate-500 font-semibold uppercase;
 }
 
 /* Footer */

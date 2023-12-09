@@ -29,9 +29,7 @@ export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
 
    return (
       <div className="w-screen min-h-full bg-white-main">
-         <div className="bg-admin-btn text-white-main font-semibold uppercase p-2 text-center text-base border-b border-white-main fixed w-full top-0 z-30">
-            <span>Administrator</span>
-         </div>
+         <div className="admin-header"><span className='ml-6'>Administrator</span></div>
          <AdminInfo />
          {(isLoading || !novels) ? <Loader/> : (
          <div className="flex flex-col gap-2 z-0">

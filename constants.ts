@@ -26,3 +26,5 @@ export const footerLinks = [
 ];
 
 export const defaultCoverImage = 'https://edit.org/images/cat/book-covers-big-2019101610.jpg';
+
+export const ITEMS_PER_PAGE = 4;

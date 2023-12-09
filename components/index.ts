@@ -12,11 +12,11 @@ import NovelList from './NovelList'
 import Carousel from './Carousel'
 import Donations from './Donations'
 import DonateResponse from './DonateResponse'
+import { Loader, AdminLoader, AdminError } from './Utilities'
 import AdminForm from './AdminForm'
 import AdminInfo from './AdminInfo'
 import AdminPagination from './AdminPagination'
 import AdminSearch from './AdminSearch'
-import Loader from './Loader'
 
 export { 
    Navbar,
@@ -33,9 +33,11 @@ export {
    Carousel,
    Donations,
    DonateResponse,
+   Loader, 
    AdminForm,
    AdminInfo,
    AdminPagination,
    AdminSearch,
-   Loader,
+   AdminLoader, 
+   AdminError,
 }
