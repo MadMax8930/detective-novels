@@ -20,6 +20,10 @@ module.exports = {
         'primary-blue': { DEFAULT: "#2B59FF", 100: "#F5F8FF" },
         'primary-green': { DEFAULT: "#A7F3D0", 100: "#F0F9F0" },
         'light-white': { DEFAULT: "rgba(59,60,152,0.03)", 100: "rgba(59,60,152,0.02)" },
+        'admin-outer': "#151c2c",
+        'admin-inner': "#182236",
+        'admin-third': "#2e374a",
+        'admin-btn': "#5d57c9",
         grey: "#747A88",
       }
     },

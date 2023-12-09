@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { GetServerSideProps } from 'next';
-import { Loader, Carousel, AdminForm, UsersInfo } from '@/components'
+import { Loader, Carousel, AdminForm, AdminInfo } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
 import { getAdminServerSideProps } from '@/lib/adminProps'
 import { NovelDBProps } from '@/types'
@@ -29,15 +29,15 @@ export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
 
    return (
       <div className="w-screen min-h-full bg-white-main">
-         <div className="bg-yellow-200 p-3 text-center text-lg fixed w-full top-0 z-30">
-            This is the admin page
+         <div className="bg-admin-btn text-white-main font-semibold uppercase p-2 text-center text-base border-b border-white-main fixed w-full top-0 z-30">
+            <span>Administrator</span>
          </div>
+         <AdminInfo />
          {(isLoading || !novels) ? <Loader/> : (
          <div className="flex flex-col gap-2 z-0">
             <Carousel novels={novels} adminPage={true} handleAdminSelectedNovelId={handleAdminSelectedNovelId} />
             <AdminForm token={token} adminSelectedNovelId={adminSelectedNovelId} reFetchedUpdatedList={reFetchedUpdatedList} />
          </div>)}
-         <UsersInfo />
       </div>
    )
 }
