@@ -1,21 +1,17 @@
 import React from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { ITEMS_PER_PAGE } from '@/constants'
+import { useAdminNavigation } from '@/hooks/useAdminNavigation'
 
 const AdminPagination = ({ totalItems, pageQuery } : { totalItems: number, pageQuery: string }) => {
-   const { replace } = useRouter();
-   const pathname = usePathname();
-   const searchParams = useSearchParams();
+   const { navigateToUrl } = useAdminNavigation();
 
    const hasPrev = ITEMS_PER_PAGE * (parseInt(pageQuery)-1) > 0;
    const hasNext = ITEMS_PER_PAGE * (parseInt(pageQuery)-1) + ITEMS_PER_PAGE < totalItems;
    
    const handleChangePage = (type: string) => {
-      const params = new URLSearchParams(searchParams.toString());
       type == "prev" 
-         ? params.set("portion", (parseInt(pageQuery) - 1).toString()) 
-         : params.set("portion", (parseInt(pageQuery) + 1).toString());
-      replace(`${pathname}?${params}`);
+         ? navigateToUrl((parseInt(pageQuery) - 1).toString()) 
+         : navigateToUrl((parseInt(pageQuery) + 1).toString());
    };
   
   return (

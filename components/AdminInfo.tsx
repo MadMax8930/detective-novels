@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { UserInfoProps, DonationInfoProps } from '@/types'
-import { useSearchParams, useRouter, usePathname } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
+import { useAdminNavigation } from '@/hooks/useAdminNavigation'
 import { Button, AdminSearch, AdminPagination, AdminLoader, AdminError } from '@/components'
-import { ITEMS_PER_PAGE } from '@/constants';
+import { ITEMS_PER_PAGE } from '@/constants'
 import useAdminData from '@/hooks/useAdminData'
 import getConfig from 'next/config'
 
@@ -10,10 +11,9 @@ const { publicRuntimeConfig } = getConfig();
 const { AUTHORIZED_ADMIN_ID } = publicRuntimeConfig;
 
 const AdminInfo = () => {
-   const { replace } = useRouter();
-   const pathname = usePathname();
-   const searchParams = useSearchParams();
+   const { navigateToUrl } = useAdminNavigation();
 
+   const searchParams = useSearchParams();
    const userQuery = searchParams.get("query") || ''
    const pageQuery = searchParams.get("portion") || "1";   
    
@@ -28,22 +28,15 @@ const AdminInfo = () => {
       if (data) { mutate(); }
 
       const isValidPositiveInteger = /^[1-9]\d*$/.test(pageQuery);
-      const params = new URLSearchParams(searchParams.toString());
-
+   
       if (isValidPositiveInteger) {
          const currentPage = parseInt(pageQuery);
          const maxValidPage = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
-
-         if (currentPage > maxValidPage) {
-            params.set("portion", maxValidPage.toString());
-            replace(`${pathname}?${params}`);
-         }
-
+         if (currentPage > maxValidPage) { navigateToUrl(maxValidPage.toString()); }
       } else {
-         params.set("portion", "1");
-         replace(`${pathname}?${params}`);
+         navigateToUrl('1');
       }
-   }, [data, mutate, setBtnUserType, pageQuery, searchParams, replace, pathname, totalItems]);
+   }, [data, mutate, setBtnUserType, pageQuery, navigateToUrl, totalItems]);
 
    
    return (

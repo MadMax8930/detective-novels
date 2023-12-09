@@ -1,25 +1,14 @@
-import React from 'react';
-import { MdSearch } from 'react-icons/md';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useDebouncedCallback } from 'use-debounce';
+import React from 'react'
+import { MdSearch } from 'react-icons/md'
+import { useDebouncedCallback } from 'use-debounce'
+import { useAdminNavigation } from '@/hooks/useAdminNavigation'
 
 const AdminSearch = ({ placeholder } : { placeholder: string }) => {
-   const { replace } = useRouter();
-   const pathname = usePathname();
-   const searchParams = useSearchParams();
+   const { navigateToUrl } = useAdminNavigation();
 
    const handleSearch = useDebouncedCallback((e) => {
-      const params = new URLSearchParams(searchParams);
-      params.set("p", 1); // page query
-
       const searchValue = e.target.value.trim();
-      if (searchValue) {
-         searchValue.length > 2 && params.set("q", searchValue); // search query
-      } else {
-         params.delete("q");
-      }
-
-      replace(`${pathname}?${params}`);
+      navigateToUrl('1', searchValue.length > 2 ? searchValue : '');
    }, 500);
 
   return (
