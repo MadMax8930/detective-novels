@@ -1,84 +1,108 @@
 import React, { useState, useEffect } from 'react'
 import { UserInfoProps, DonationInfoProps } from '@/types'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
+import { Button, AdminSearch, AdminPagination, AdminLoader, AdminError } from '@/components'
+import { ITEMS_PER_PAGE } from '@/constants';
 import useAdminData from '@/hooks/useAdminData'
-import { Loader, Button, AdminSearch, AdminPagination } from '@/components'
 import getConfig from 'next/config'
 
 const { publicRuntimeConfig } = getConfig();
 const { AUTHORIZED_ADMIN_ID } = publicRuntimeConfig;
 
 const AdminInfo = () => {
-   const { data, isLoading, error, mutate } = useAdminData(AUTHORIZED_ADMIN_ID);
-   const [donoBtn, setDonoBtn] = useState(true);
+   const { replace } = useRouter();
+   const pathname = usePathname();
+   const searchParams = useSearchParams();
+
+   const userQuery = searchParams.get("query") || ''
+   const pageQuery = searchParams.get("portion") || "1";   
+   
+   const { data, isLoading, error, mutate } = useAdminData({
+      adminId: AUTHORIZED_ADMIN_ID, query: userQuery, portion: pageQuery
+   });
+
+   const [btnUserType, setBtnUserType] = useState(true);
+   const totalItems = btnUserType ? data?.usersCount : data?.donationsCount;
 
    useEffect(() => {
-      if (data) { mutate();}
-   }, [data, mutate]);
+      if (data) { mutate(); }
+
+      const isValidPositiveInteger = /^[1-9]\d*$/.test(pageQuery);
+      const params = new URLSearchParams(searchParams.toString());
+
+      if (isValidPositiveInteger) {
+         const currentPage = parseInt(pageQuery);
+         const maxValidPage = Math.max(1, Math.ceil(totalItems / ITEMS_PER_PAGE));
+
+         if (currentPage > maxValidPage) {
+            params.set("portion", maxValidPage.toString());
+            replace(`${pathname}?${params}`);
+         }
+
+      } else {
+         params.set("portion", "1");
+         replace(`${pathname}?${params}`);
+      }
+   }, [data, mutate, setBtnUserType, pageQuery, searchParams, replace, pathname, totalItems]);
+
    
-   if (isLoading) { return <Loader /> }
-   if (error) { return <p className="text-center pb-4">Error loading admin data.</p> }
-
-   // const searchQuery = searchParams?.q || "";
-   // const pageQuery = searchParams?.p || 1;
-   // const { count, users } = await fetchUsers(searchQuery, pageQuery);
-
    return (
       <div className="flex flex-col items-center gap-4 my-4 py-4 px-4 sm:px-12 md:px-24 lg:px-36 mt-10 bg-admin-outer">
-
-         <div className="w-full mb-12 overflow-x-auto bg-admin-inner rounded-xl p-8 border border-admin-third">
+         <div className="w-full my-4 overflow-x-auto bg-admin-inner rounded-xl p-8 border border-admin-third">
+         {isLoading ? <AdminLoader /> : error ? <AdminError /> : <>
             <div className="flex items-center justify-between">
-               <AdminSearch placeholder={donoBtn ? "Search for a user..." : "Search for a dono..."}/>
+               <AdminSearch placeholder={btnUserType ? "Search for a user..." : "Search for a dono..."}/>
                <Button
-                  title={donoBtn ? 'Donations' : 'Users'}
+                  title={btnUserType ? 'Donations' : 'Users'}
                   btnType="button"
                   additionalStyles="bg-admin-btn text-white-main font-semibold p-2.5 outline-none rounded-md"
-                  action={() => setDonoBtn(!donoBtn)}
+                  action={() => setBtnUserType(!btnUserType)}
                />  
             </div>
-            <table className="table w-full mt-5">
+            <table className="w-full mt-5 border-collapse">
                <thead className="text-white-main">
-                  {donoBtn
+                  {btnUserType
                   ?
-                  <tr>
-                     <th className="p-2 w-[35%] text-start">Username</th>
-                     <th className="p-2 w-[17.5%] text-start">Email</th>
-                     <th className="p-2 w-[17.5%] text-start">Created At</th>
-                     <th className="p-2 w-[30%] text-start">User Identifier</th>
+                  <tr className="table-header">
+                     <th className="table-cell">Username</th>
+                     <th className="table-cell">Email</th>
+                     <th className="table-cell">Created At</th>
+                     <th className="table-cell">User Identifier</th>
                   </tr>
                   :
-                  <tr className="bg-admin-btn text-white-main uppercase">
-                     <th className="p-2 w-[20%] text-start">Amount</th>
-                     <th className="p-2 w-[15%] text-start">Donator</th>
-                     <th className="p-2 w-[17.5%] text-start">Logged in as</th>
-                     <th className="p-2 w-[17.5%] text-start">Created At</th>
-                     <th className="p-2 w-[30%] text-start">Message</th>
+                  <tr className="table-header">
+                     <th className="table-cell">Amount</th>
+                     <th className="table-cell">Donator</th>
+                     <th className="table-cell">Email</th>
+                     <th className="table-cell">Created At</th>
+                     <th className="table-cell">Message</th>
                   </tr>}
                </thead>
 
-               <tbody className='m-4'>
-                  {donoBtn 
+               <tbody>
+                  {btnUserType 
                   ? <>
-                  {data.users.map((user: UserInfoProps) => (
-                     <tr key={user.id} className="bg-transparent text-white-main">
+                  {data?.users.map((user: UserInfoProps) => (
+                     <tr key={user.id} className="table-content">
                         <td className="table-cell">{user.username}</td>
                         <td className="table-cell">{user.email}</td>
                         <td className="table-cell">{new Date(user.createdAt).toLocaleString()}</td>
-                        <td className="identifier-cell">{user.id}</td>
+                        <td className="table-cell table-cell-identifier">{user.id}</td>
                      </tr>
-                  ))} </>
+                  ))}</>
                   : <>
-                  {data.donations.map((donation: DonationInfoProps) => (
-                     <tr key={donation.id} className="bg-transparent">
-                        <td className="amount-cell">{donation.amount}</td>
+                  {data?.donations.map((donation: DonationInfoProps) => (
+                     <tr key={donation.id} className="table-content">
+                        <td className="table-cell table-cell-amount">{donation.amount}</td>
                         <td className="table-cell">{donation.donator || '<anonymous>'}</td>
                         <td className="table-cell">{donation.user.email}</td>
                         <td className="table-cell">{new Date(donation.createdAt).toLocaleString()}</td>
                         <td className="table-cell">{donation.message || '<no message>'}</td>
                      </tr>
-                  ))} </>}
+                  ))}</>}
                </tbody>
             </table>
-            <AdminPagination totalItems={donoBtn ? data.users.length : data.donations.length} />
+            <AdminPagination totalItems={totalItems} pageQuery={pageQuery} /></>}
          </div>
       </div>
    );
