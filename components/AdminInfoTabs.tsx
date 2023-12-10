@@ -41,7 +41,7 @@ const AdminInfoTabs = () => {
 
    
    return (
-      <div className="flex flex-col items-center gap-4 my-4 py-4 px-4 sm:px-12 md:px-24 lg:px-36 mt-10 bg-admin-outer h-full">
+      <div className="flex flex-col items-center gap-4 py-4 px-4 sm:px-12 md:px-24 lg:px-36 mt-10 bg-admin-outer h-full">
          {isLoading ? <AdminLoader /> : error ? <AdminError /> : <>
          <div className="w-full my-4 overflow-x-auto bg-admin-inner rounded-xl p-8 border border-admin-third">
             <div className="flex items-center justify-between">

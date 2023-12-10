@@ -48,11 +48,11 @@ html {
 }
  
 .search-bar__input {
-   @apply w-full md:h-[48px] h-[40px] pl-8 p-4 bg-light-white rounded-full max-sm:rounded-full outline-none cursor-pointer md:text-sm text-xs border border-primary-red-100 focus:border-black-100;
+   @apply w-full md:h-[48px] h-[40px] pl-8 p-4 bg-white-light rounded-full max-sm:rounded-full outline-none cursor-pointer md:text-sm text-xs border border-primary-red-100 focus:border-primary-black;
 }
 
 .search-bar__clear {
-   @apply text-gray-300 opacity-80 hover:text-black-100 absolute top-1/2 transform -translate-y-1/2 right-2;
+   @apply text-gray-300 opacity-80 hover:text-primary-black absolute top-1/2 transform -translate-y-1/2 right-2;
 }
 
 .search-bar__submit-mobile {
@@ -120,7 +120,7 @@ html {
    left: 3%;
    right: 3%;
    transform: translateY(-50%);
-   z-index: 20;
+   z-index: -1;
 }
  
 .carousel-btn {

@@ -28,7 +28,7 @@ const Discover: React.FC = () => {
             <>
               <div className="bg-primary-blue-100 w-full max-w-screen-2xl h-full shadow-lg overflow-hidden">
                  <div className="flex flex-col md:flex-row">
-                     <div className="md:w-1/3 bg-black-100 p-8">
+                     <div className="md:w-1/3 bg-primary-black p-8">
                         <img
                            src={authorData?.picture}
                            alt={authorData?.authorName}

@@ -20,7 +20,7 @@ const Navbar = () => {
                <Button 
                   title="Sign In" 
                   btnType="button" 
-                  additionalStyles="bg-primary-blue-100 text-black-100 font-medium rounded-full md:text-lg text-sm min-w-[70px] md:min-w-[100px] py-2 md:py-2.5" 
+                  additionalStyles="bg-primary-blue-100 text-primary-black font-medium rounded-full md:text-lg text-sm min-w-[70px] md:min-w-[100px] py-2 md:py-2.5" 
                />
             </Link>
             <Link href={{ pathname: '/auth', query: { variant: 'register' } }}>

@@ -21,11 +21,11 @@ const Pagination: React.FC<PaginationProps> = ({ totalPages, currentPage, onPage
       const startIdx = Math.max(currentPage - Math.floor(maxVisiblePages / 2), 1);
       const endIdx = Math.min(startIdx + maxVisiblePages - 1, totalPages);
     
-      if (startIdx > 1) { items.push(<div key="start-ellipsis" className="text-dots">...</div>); }
+      if (startIdx > 1) { items.push(<div key="start-ellipsis" className="text-brown-dots">...</div>); }
     
       for (let i = startIdx; i <= endIdx; i++) { items.push(renderPaginationItem(i)); }
     
-      if (endIdx < totalPages) { items.push(<div key="end-ellipsis" className="text-dots">...</div>); }
+      if (endIdx < totalPages) { items.push(<div key="end-ellipsis" className="text-brown-dots">...</div>); }
     
       return items;
    };

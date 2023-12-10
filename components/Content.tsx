@@ -45,7 +45,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
             <>
                <div className="flex flex-col md:flex-row justify-between md:items-center mb-2 pt-3 md:pb-4 pb-2 my-4 pr-6">
                    {/* Title & Info */}
-                  <p className="flex items-center text-black-100 text-xl md:text-2xl lg:text-4xl font-bold uppercase md:mb-0 mb-2">
+                  <p className="flex items-center text-primary-black text-xl md:text-2xl lg:text-4xl font-bold uppercase md:mb-0 mb-2">
                      <FcBookmark />{selectedNovel?.title}
                   </p>
                   <div className="flex flex-col items-end gap-1 leading-tight md:pr-4 pr-2">
@@ -79,9 +79,9 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                        linesPerPage={linesPerPage} />
                   <div className="flex justify-end items-center gap-1 group/item md:w-40 w-24 text-gray-400 transition cursor-pointer ml-auto"
                        onClick={() => openModal(selectedNovel?.id)}>
-                      <p className="md:text-lg text-[10px] uppercase group-hover/item:text-black-100">Full screen</p>
-                      <MdFitScreen size={20} className="text-gray-400 group-hover/item:text-black-100 max-sm:hidden"/>
-                      <MdFitScreen size={15} className="text-gray-400 group-hover/item:text-black-100 sm:hidden"/>
+                      <p className="md:text-lg text-[10px] uppercase group-hover/item:text-primary-black">Full screen</p>
+                      <MdFitScreen size={20} className="text-gray-400 group-hover/item:text-primary-black max-sm:hidden"/>
+                      <MdFitScreen size={15} className="text-gray-400 group-hover/item:text-primary-black sm:hidden"/>
                   </div>
                   {/* Pagination */}
                   {totalPages > 1 && (

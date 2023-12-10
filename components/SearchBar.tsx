@@ -6,7 +6,7 @@ import useNovel from '@/hooks/useNovel'
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
    <button type="submit" className={`-ml-10 z-10 ${otherClasses}`}>
-      <HiSearchCircle size={36} className="object-contain text-black-100 opacity-80 hover:text-black" />
+      <HiSearchCircle size={36} className="object-contain text-primary-black opacity-80 hover:text-black" />
    </button>
 );
 
