@@ -84,9 +84,9 @@ const Auth = () => {
                   {/* Form */}
                   <div className="flex flex-col gap-3">
                      {variant === 'register' && (
-                     <Input label="Username" onChange={(e: any) => setUsername(e.target.value)} value={username} id="name" /> )}
-                     <Input label="Email" onChange={(e: any) => setEmail(e.target.value)} value={email} id="email" type="email" />
-                     <Input label="Password" onChange={(e: any) => setPassword(e.target.value)} value={password} id="password" type="password" minLength={8}/>
+                     <Input label="Username" onChange={(e: any) => setUsername(e.target.value)} value={username} id="name" adminPage={false} /> )}
+                     <Input label="Email" onChange={(e: any) => setEmail(e.target.value)} value={email} id="email" type="email" adminPage={false} />
+                     <Input label="Password" onChange={(e: any) => setPassword(e.target.value)} value={password} id="password" type="password" minLength={8} adminPage={false} />
                   </div>
                   {/* Button */}
                   <button onClick={variant === 'login' ? login : register} className="bg-primary-blue-100 text-black py-3 rounded-md w-full md:mt-5 mt-4  hover:bg-primary-red hover:text-primary-red-100 transition">

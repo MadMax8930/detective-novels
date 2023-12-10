@@ -83,6 +83,7 @@ export interface InputProps {
    name?: string;
    type?: string;
    minLength?: number;
+   adminPage: boolean;
 };
 
 export interface AdminJwtPayload {

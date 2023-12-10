@@ -98,27 +98,27 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFe
    }, [fetchedNovelData, isCreating]);
 
    return (
-      <div className="md:px-36 sm:px-6 px-4 pt-4 bg-admin-outer rounded">
+      <div className="md:px-36 sm:px-6 px-4 pt-6 bg-admin-outer rounded">
          <form onSubmit={submitForm}>
             <div className="flex md:flex-row flex-col justify-between md:items-start items-center gap-2 mb-4">
-               <h1 className="pt-2 text-xl font-semibold border-primary-red border-b-4">{isCreating ? 'Create form' : 'Update form'}</h1>
+               <h1 className="admin-form-state">{isCreating ? 'Creating New Novel' : 'Updating Existing Novel'}</h1>
                <Button
                   title={isCreating ? 'Switch to Update' : 'Switch to Create'}
                   btnType="button"
-                  additionalStyles="p-2 mb-2 bg-gray-300 text-gray-700 rounded-md"
+                  additionalStyles="bg-admin-btn text-white-main font-semibold p-2.5 outline-none rounded-md"
                   action={() => setIsCreating(!isCreating)}
                />
             </div>
             <div className="grid md:grid-cols-2 grid-cols-1 md:gap-1.5 gap-3">
-               <Input id="title" name="title" label="Title" value={novel.title} onChange={handleInputChange} />
-               <Input id="author" name="author" label="Author" value={novel.author} onChange={handleInputChange} />
-               <Input id="genre" name="genre" label="Genre" value={novel.genre} onChange={handleInputChange} />
-               <Input id="coverImage" name="coverImage" label="Thumbnail" value={novel.coverImage} onChange={handleInputChange} />
+               <Input id="title" name="title" label="Title" value={novel.title} onChange={handleInputChange} adminPage={true} />
+               <Input id="author" name="author" label="Author" value={novel.author} onChange={handleInputChange} adminPage={true} />
+               <Input id="genre" name="genre" label="Genre" value={novel.genre} onChange={handleInputChange} adminPage={true} />
+               <Input id="coverImage" name="coverImage" label="Thumbnail" value={novel.coverImage} onChange={handleInputChange} adminPage={true} />
             </div>
             <div className="mt-1.5 pb-2">
-               <textarea id="description" name="description" placeholder="Description" rows={2} value={novel.description} onChange={handleInputChange} className="w-full px-6 pt-6 pb-1 rounded-md bg-neutral-700 text-white" />      
-               <textarea id="preview" name="preview" placeholder="Preview" rows={5} value={novel.preview} onChange={handleInputChange} className="w-full px-6 pt-6 pb-1 rounded-md bg-neutral-700 text-white" />
-               <textarea id="content" name="content" placeholder="Content" rows={10} value={novel.content} onChange={handleInputChange} className="w-full px-6 pt-6 pb-1 rounded-md bg-neutral-700 text-white" />
+               <textarea id="description" name="description" placeholder="Description" rows={2} value={novel.description} onChange={handleInputChange} className="admin-textarea" />      
+               <textarea id="preview" name="preview" placeholder="Preview" rows={5} value={novel.preview} onChange={handleInputChange} className="admin-textarea" />
+               <textarea id="content" name="content" placeholder="Content" rows={10} value={novel.content} onChange={handleInputChange} className="admin-textarea" />
             </div>
             <div className="flex justify-center gap-3 md:text-lg text-base mt-1 pb-8">
                {/* Create/Update/Delete buttons */}

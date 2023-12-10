@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai'
 import { InputProps } from '@/types'
 
-const Input: React.FC<InputProps> = ({ id, onChange, value, label, name, type, minLength }) => {
+const Input: React.FC<InputProps> = ({ id, onChange, value, label, name, type, minLength, adminPage }) => {
    const [visiblePassword, setVisiblePassword] = useState(false);
    const [showTooltip, setShowTooltip] = useState(false);
 
@@ -20,7 +20,7 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, name, type, m
             value={value}
             name={name}
             id={id}
-            className="
+            className={`
                block
                rounded-md
                px-6
@@ -29,12 +29,12 @@ const Input: React.FC<InputProps> = ({ id, onChange, value, label, name, type, m
                w-full
                text-base
                text-white
-               bg-neutral-700
+               ${adminPage ? 'bg-admin-third' : 'bg-neutral-700'}
                appearance-none
                focus:outline-none
                focus:ring-0
                peer
-            "
+            `}
             placeholder=" "
             minLength={minLength}
             onFocus={() => setShowTooltip(true)}

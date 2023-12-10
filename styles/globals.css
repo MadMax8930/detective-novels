@@ -383,6 +383,15 @@ html {
    @apply md:text-base text-xs font-bold border-gray-600 border-b p-3 md:p-4 flex items-center;
 }
 
+.admin-form-state {
+   @apply pt-1 text-2xl text-white-main font-semibold border-admin-btn border-y-4 uppercase;
+   font-family: 'Big Shoulders Text', sans-serif;
+}
+
+.admin-textarea {
+   @apply w-full px-6 pt-6 pb-1 rounded-md bg-admin-third text-white outline-none;
+}
+
 .chart-container {
    @apply bg-admin-outer h-[540px] flex flex-col items-center p-6 pr-16 pb-8;
 }
