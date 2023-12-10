@@ -9,7 +9,7 @@ const AdminSearch = ({ placeholder } : { placeholder: string }) => {
    const handleSearch = useDebouncedCallback((e) => {
       const searchValue = e.target.value.trim();
       navigateToUrl('1', searchValue.length > 2 ? searchValue : '');
-   }, 500);
+   }, 750);
 
   return (
     <div className="flex items-center bg-admin-third gap-2.5 p-2.5 rounded-xl w-max">

@@ -121,3 +121,9 @@ export interface AuthorData {
    favoriteBooks: string[];
    status: string;
 };
+
+export interface AdminDataParams {
+   adminId?: string;
+   query?: string;
+   portion?: string;
+};

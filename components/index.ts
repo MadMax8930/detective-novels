@@ -14,7 +14,7 @@ import Donations from './Donations'
 import DonateResponse from './DonateResponse'
 import { Loader, AdminLoader, AdminError } from './Utilities'
 import AdminForm from './AdminForm'
-import AdminInfo from './AdminInfo'
+import AdminInfoTabs from './AdminInfoTabs'
 import AdminPagination from './AdminPagination'
 import AdminSearch from './AdminSearch'
 
@@ -35,7 +35,7 @@ export {
    DonateResponse,
    Loader, 
    AdminForm,
-   AdminInfo,
+   AdminInfoTabs,
    AdminPagination,
    AdminSearch,
    AdminLoader, 
