@@ -98,7 +98,7 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFe
    }, [fetchedNovelData, isCreating]);
 
    return (
-      <div className="md:px-36 sm:px-6 px-4 pt-4 bg-white-main rounded">
+      <div className="md:px-36 sm:px-6 px-4 pt-4 bg-admin-outer rounded">
          <form onSubmit={submitForm}>
             <div className="flex md:flex-row flex-col justify-between md:items-start items-center gap-2 mb-4">
                <h1 className="pt-2 text-xl font-semibold border-primary-red border-b-4">{isCreating ? 'Create form' : 'Update form'}</h1>

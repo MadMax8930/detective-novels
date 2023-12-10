@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { GetServerSideProps } from 'next';
-import { Carousel, AdminForm, AdminInfoTabs, AdminLoader } from '@/components'
+import { Carousel, AdminForm, AdminInfoTabs, AdminSender, AdminChart, AdminLoader } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
 import { getAdminServerSideProps } from '@/lib/adminProps'
 import { NovelDBProps } from '@/types'
@@ -40,6 +40,8 @@ export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
                token={token} 
                adminSelectedNovelId={adminSelectedNovelId} 
                reFetchedUpdatedList={reFetchedUpdatedList} /></> : <AdminLoader/>}
+         <AdminSender />
+         <AdminChart />
       </div>
    )
 }

@@ -383,6 +383,14 @@ html {
    @apply md:text-base text-xs font-bold border-gray-600 border-b p-3 md:p-4 flex items-center;
 }
 
+.chart-container {
+   @apply bg-admin-outer h-[540px] flex flex-col items-center p-6 pr-16 pb-8;
+}
+
+.chart-title {
+   @apply text-chart-title mb-5 font-extralight text-left pl-8;
+}
+
 /* Footer */
 
 .footer__link {

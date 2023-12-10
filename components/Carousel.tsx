@@ -30,10 +30,10 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
   };
 
   return (
-   <div className={`px-12 pt-20 pb-2 ${adminPage ? 'bg-admin-carousel pt-6' : 'bg-white-main'}`}>
+   <div className={`px-12 pt-20 pb-2 ${adminPage ? 'bg-admin-inner pt-6' : 'bg-white-main'}`}>
       <div className="carousel-container">
          {adminPage && selectedNovelId && (
-            <div className="carousel-novel-id text-center md:text-base text-xs text-white-main">
+            <div className="carousel-novel-id text-center md:text-sm text-xs text-white-main">
                <span className="flex gap-1 uppercase">NOVEL ID : {selectedNovelId}</span>
             </div>
          )}

@@ -23,7 +23,7 @@ module.exports = {
         'admin-inner': "#182236",
         'admin-third': "#2e374a",
         'admin-btn': "#5d57c9",
-        'admin-carousel': "#1c253a",
+        'chart-title': "#b7bac1",
         'brown-dots': "#7e7676",
         grey: "#747A88",
       }

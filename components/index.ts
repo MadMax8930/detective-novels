@@ -13,10 +13,12 @@ import Carousel from './Carousel'
 import Donations from './Donations'
 import DonateResponse from './DonateResponse'
 import { Loader, AdminLoader, AdminError } from './Utilities'
+import AdminChart from './AdminChart'
 import AdminForm from './AdminForm'
 import AdminInfoTabs from './AdminInfoTabs'
 import AdminPagination from './AdminPagination'
 import AdminSearch from './AdminSearch'
+import AdminSender from './AdminSender'
 
 export { 
    Navbar,
@@ -33,11 +35,13 @@ export {
    Carousel,
    Donations,
    DonateResponse,
-   Loader, 
+   Loader,
+   AdminChart,
    AdminForm,
    AdminInfoTabs,
    AdminPagination,
    AdminSearch,
+   AdminSender,
    AdminLoader, 
    AdminError,
 }
