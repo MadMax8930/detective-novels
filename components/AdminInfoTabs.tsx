@@ -41,15 +41,15 @@ const AdminInfoTabs = () => {
 
    
    return (
-      <div className="flex flex-col items-center gap-4 py-4 px-4 sm:px-12 md:px-24 lg:px-36 mt-10 bg-admin-outer h-full">
+      <div className="admin-table-container">
          {isLoading ? <AdminLoader /> : error ? <AdminError /> : <>
-         <div className="w-full my-4 overflow-x-auto bg-admin-inner rounded-xl p-8 border border-admin-third">
+         <div className="admin-card">
             <div className="flex items-center justify-between">
                <AdminSearch placeholder={btnUserType ? "Search for a user..." : "Search for a dono..."}/>
                <Button
                   title={btnUserType ? 'Donations' : 'Users'}
                   btnType="button"
-                  additionalStyles="bg-admin-btn text-white-main font-semibold p-2.5 outline-none rounded-md"
+                  additionalStyles="admin-button"
                   action={() => setBtnUserType(!btnUserType)}
                />  
             </div>
@@ -96,8 +96,8 @@ const AdminInfoTabs = () => {
                      <tr className="table-content">
                         <td className="table-cell-err" colSpan={1}>
                           {error ? "An error occurred." : "None found."}
-                          <button className="ml-2 text-lg text-yellow-200 cursor-pointer"
-                              onClick={() => { navigateToUrl('1'); }}><MdRefresh />
+                          <button className="table-refresh-icon" onClick={() => { navigateToUrl('1'); }}>
+                              <MdRefresh />
                           </button>
                         </td>
                      </tr>

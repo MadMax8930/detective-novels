@@ -12,10 +12,8 @@ const AdminSearch = ({ placeholder } : { placeholder: string }) => {
    }, 750);
 
   return (
-    <div className="flex items-center bg-admin-third gap-2.5 p-2.5 rounded-xl w-max">
-      <MdSearch />
-      <input type="text" placeholder={placeholder} 
-         className="bg-transparent text-white-main border-none outline-none" onChange={handleSearch} />
+    <div className="admin-search-container">
+      <MdSearch /><input type="text" placeholder={placeholder} onChange={handleSearch} className="admin-search-input" />
     </div>
   )
 }

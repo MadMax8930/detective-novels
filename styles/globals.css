@@ -355,6 +355,42 @@ html {
    @apply bg-admin-btn text-white-main font-semibold uppercase p-2 text-center text-base border-b border-slate-400 fixed w-full top-0 z-30;
 }
 
+.admin-table-container {
+   @apply flex flex-col items-center gap-4 py-4 px-4 sm:px-12 md:px-24 lg:px-36 mt-10 bg-admin-outer h-full;
+}
+
+.admin-form-container {
+   @apply sm:px-12 px-4 py-4 md:px-24 lg:px-36 bg-admin-outer h-full;
+}
+
+.admin-card {
+   @apply w-full my-4 overflow-x-auto bg-admin-inner rounded-xl p-8 border border-admin-third;
+}
+
+.admin-button {
+   @apply bg-admin-btn text-white-main font-semibold p-2.5 outline-none rounded-md;
+}
+
+.admin-button-update {
+   @apply bg-white-main text-primary-black font-semibold p-2.5 outline-none rounded-md;
+}
+
+.admin-button-create {
+   @apply bg-primary-blue text-white-main font-semibold p-2.5 outline-none rounded-md;
+}
+
+.admin-button-delete {
+   @apply bg-primary-red text-white-main font-semibold p-2.5 outline-none rounded-md;
+}
+
+.admin-search-container {
+   @apply flex items-center bg-admin-third gap-2.5 p-2.5 rounded-xl w-max;
+}
+
+.admin-search-input {
+   @apply bg-transparent text-white-main border-none outline-none;
+}
+
 .table-header {
    @apply text-left;
    font-family: 'Unbounded', sans-serif;
@@ -383,6 +419,14 @@ html {
    @apply md:text-base text-xs font-bold border-gray-600 border-b p-3 md:p-4 flex items-center;
 }
 
+.table-refresh-icon {
+   @apply ml-2 text-lg text-yellow-200 cursor-pointer;
+}
+
+.admin-form-header {
+   @apply flex md:flex-row flex-col justify-between md:items-start items-center gap-2 mb-6;
+}
+
 .admin-form-state {
    @apply pt-1 text-2xl text-white-main font-semibold border-admin-btn border-y-4 uppercase;
    font-family: 'Big Shoulders Text', sans-serif;
@@ -393,11 +437,11 @@ html {
 }
 
 .chart-container {
-   @apply bg-admin-outer h-[540px] flex flex-col items-center p-6 pr-16 pb-8;
+   @apply bg-admin-outer h-[540px] flex flex-col items-center p-6 pr-16 pb-8 w-full;
 }
 
 .chart-title {
-   @apply text-chart-title mb-5 font-extralight text-left pl-8;
+   @apply text-chart-title mb-5 font-extralight text-left pl-12;
 }
 
 /* Footer */

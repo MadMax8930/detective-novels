@@ -92,72 +92,47 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFe
    useEffect(() => {
       if (isCreating) {
         setNovel(EMPTY_NOVEL);
+        setShowDeleteConfirmation(false);
       } else if (fetchedNovelData) {
         setNovel(fetchedNovelData);
       }
    }, [fetchedNovelData, isCreating]);
 
    return (
-      <div className="md:px-36 sm:px-6 px-4 pt-6 bg-admin-outer rounded">
+      <div className="admin-form-container">
          <form onSubmit={submitForm}>
-            <div className="flex md:flex-row flex-col justify-between md:items-start items-center gap-2 mb-4">
-               <h1 className="admin-form-state">{isCreating ? 'Creating New Novel' : 'Updating Existing Novel'}</h1>
-               <Button
-                  title={isCreating ? 'Switch to Update' : 'Switch to Create'}
-                  btnType="button"
-                  additionalStyles="bg-admin-btn text-white-main font-semibold p-2.5 outline-none rounded-md"
-                  action={() => setIsCreating(!isCreating)}
-               />
-            </div>
-            <div className="grid md:grid-cols-2 grid-cols-1 md:gap-1.5 gap-3">
-               <Input id="title" name="title" label="Title" value={novel.title} onChange={handleInputChange} adminPage={true} />
-               <Input id="author" name="author" label="Author" value={novel.author} onChange={handleInputChange} adminPage={true} />
-               <Input id="genre" name="genre" label="Genre" value={novel.genre} onChange={handleInputChange} adminPage={true} />
-               <Input id="coverImage" name="coverImage" label="Thumbnail" value={novel.coverImage} onChange={handleInputChange} adminPage={true} />
-            </div>
-            <div className="mt-1.5 pb-2">
-               <textarea id="description" name="description" placeholder="Description" rows={2} value={novel.description} onChange={handleInputChange} className="admin-textarea" />      
-               <textarea id="preview" name="preview" placeholder="Preview" rows={5} value={novel.preview} onChange={handleInputChange} className="admin-textarea" />
-               <textarea id="content" name="content" placeholder="Content" rows={10} value={novel.content} onChange={handleInputChange} className="admin-textarea" />
-            </div>
-            <div className="flex justify-center gap-3 md:text-lg text-base mt-1 pb-8">
-               {/* Create/Update/Delete buttons */}
-               <Button
-                  title={isCreating ? 'Create Novel' : 'Update Novel'}
-                  btnType="submit"
-                  additionalStyles="bg-blue-500 text-white rounded-full md:min-w-[150px] min-w-[100px] p-4"
-                  action={submitForm}
-               />
-               {!isCreating && adminSelectedNovelId && (
-               <Button
-                  title="Delete Novel"
-                  btnType="button"
-                  additionalStyles="bg-red-500 text-white rounded-full md:min-w-[150px] min-w-[100px] p-4"
-                  action={handleDeleteConfirmation}
-               />
-               )}
-            </div>
-            <div className="flex justify-center">
-               {/* Delete confirmation prompt */}
-               {showDeleteConfirmation && (
-                  <div className="mt-1">
-                     <p>Are you sure you want to delete this novel?</p>
-                     <div className="flex justify-center mt-2 space-x-2">
-                        <Button
-                           title="Cancel"
-                           btnType="button"
-                           additionalStyles="bg-gray-300 text-white rounded-full px-4 py-2 mt-2"
-                           action={() => setShowDeleteConfirmation(false)}
-                        />
-                        <Button
-                           title="Confirm"
-                           btnType="button"
-                           additionalStyles="bg-red-500 text-white rounded-full px-4 py-2 mt-2"
-                           action={handleDeleteNovel}
-                        />
+            <div className="admin-card">      
+               <div className="admin-form-header">
+                  <h1 className="admin-form-state">{isCreating ? 'Creating New Novel' : 'Updating Existing Novel'}</h1>
+                  <Button title={isCreating ? 'Switch to Update' : 'Switch to Create'} btnType="button" action={() => setIsCreating(!isCreating)} additionalStyles="admin-button" />
+               </div>
+               <div className="grid md:grid-cols-2 grid-cols-1 md:gap-1.5 gap-3">
+                  <Input id="title" name="title" label="Title" value={novel.title} onChange={handleInputChange} adminPage={true} />
+                  <Input id="author" name="author" label="Author" value={novel.author} onChange={handleInputChange} adminPage={true} />
+                  <Input id="genre" name="genre" label="Genre" value={novel.genre} onChange={handleInputChange} adminPage={true} />
+                  <Input id="coverImage" name="coverImage" label="Thumbnail" value={novel.coverImage} onChange={handleInputChange} adminPage={true} />
+               </div>
+               <div className="mt-1.5 pb-2">
+                  <textarea id="description" name="description" placeholder="Description" rows={2} value={novel.description} onChange={handleInputChange} className="admin-textarea" />      
+                  <textarea id="preview" name="preview" placeholder="Preview" rows={5} value={novel.preview} onChange={handleInputChange} className="admin-textarea" />
+                  <textarea id="content" name="content" placeholder="Content" rows={15} value={novel.content} onChange={handleInputChange} className="admin-textarea" />
+               </div>
+               <div className="flex justify-between gap-3 md:text-lg text-base mt-2 pb-4">
+                  <Button title={isCreating ? 'Create Novel' : 'Update Novel'} btnType="submit" action={submitForm} additionalStyles={isCreating ? 'admin-button-create w-full' : 'admin-button-update w-1/2'} />
+                  {!isCreating && adminSelectedNovelId && (
+                  <Button title="Delete Novel" btnType="button" action={handleDeleteConfirmation} additionalStyles="admin-button-delete w-1/2" />)}
+               </div>
+               <div className="flex justify-center">
+                  {showDeleteConfirmation && (
+                     <div className="flex flex-col gap-2">
+                        <p className="text-white-main">Are you sure you want to delete this novel?</p>
+                        <div className="flex justify-center space-x-2">
+                           <Button title="Cancel" btnType="button" action={() => setShowDeleteConfirmation(false)} additionalStyles="admin-button-update" />
+                           <Button title="Confirm" btnType="button" action={handleDeleteNovel} additionalStyles="admin-button-delete" />
+                        </div>
                      </div>
-                  </div>
-               )} 
+                  )} 
+               </div>     
             </div>
          </form>
       </div>
