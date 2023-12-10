@@ -11,7 +11,7 @@ const Loader = () => {
 
 const AdminLoader = () => {
    return (
-      <div className="flex justify-center items-center h-full my-40">
+      <div className="min-h-[460px] flex flex-grow justify-center items-center">
          <ClipLoader color="white" size={100} />
       </div>
   )
@@ -19,7 +19,9 @@ const AdminLoader = () => {
 
 const AdminError = () => {
    return (
-      <p className="text-center text-white">Error loading admin data.</p>
+      <div className="min-h-[20px]">
+         <p className="text-center text-white">Error loading admin data.</p>
+      </div>
   )
 }
 

@@ -366,6 +366,10 @@ html {
    @apply md:text-base text-xs text-slate-500 font-semibold uppercase;
 }
 
+.table-cell-err {
+   @apply md:text-base text-xs font-bold border-gray-600 border-b p-3 md:p-4 flex items-center;
+}
+
 /* Footer */
 
 .footer__link {
