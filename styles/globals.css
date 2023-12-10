@@ -69,6 +69,11 @@ html {
 
 /* Carousel */
 
+.carousel-novel-id {
+   font-family: 'Unbounded', sans-serif;
+   padding-bottom: 0.5rem;
+}
+
 .carousel-container {
    width: 100%;
    overflow: hidden;
@@ -105,7 +110,7 @@ html {
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
  
-.carousel__nav-item.active {
+.carousel__nav-item.active, .carousel__nav-item.active-admin {
    transform: scale(1.125) translateZ(0);
    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
    margin: 1rem;
@@ -159,12 +164,20 @@ html {
    .carousel__nav-item.active {
       transform: scale(1) translateZ(0);
       margin: 0rem 0.5rem;
-      border: 5px solid red;
+      border: 4px solid #444136;
       border-radius: 0.75rem;
       box-shadow: none;
    }
 
-   .carousel__nav-item img.active {
+   .carousel__nav-item.active-admin {
+      transform: scale(1) translateZ(0);
+      margin: 0rem 0.5rem;
+      border: 4px solid #5d57c9;
+      border-radius: 0.75rem;
+      box-shadow: none;
+   }
+
+   .carousel__nav-item img.active, .carousel__nav-item img.active-admin {
       box-shadow: none;
    }
 

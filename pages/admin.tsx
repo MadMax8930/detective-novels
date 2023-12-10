@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { GetServerSideProps } from 'next';
-import { Loader, Carousel, AdminForm, AdminInfoTabs } from '@/components'
+import { Carousel, AdminForm, AdminInfoTabs, AdminLoader } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
 import { getAdminServerSideProps } from '@/lib/adminProps'
 import { NovelDBProps } from '@/types'
@@ -28,14 +28,18 @@ export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
    const reFetchedUpdatedList = async () => { await refetchNovels(); };
 
    return (
-      <div className="w-screen min-h-full bg-white-main">
+      <div className="w-screen min-h-full">
          <div className="admin-header"><span className='ml-6'>Administrator</span></div>
          <AdminInfoTabs />
-         {(isLoading || !novels) ? <Loader/> : (
-         <div className="flex flex-col gap-2 z-0">
-            <Carousel novels={novels} adminPage={true} handleAdminSelectedNovelId={handleAdminSelectedNovelId} />
-            <AdminForm token={token} adminSelectedNovelId={adminSelectedNovelId} reFetchedUpdatedList={reFetchedUpdatedList} />
-         </div>)}
+         {!isLoading ? <> 
+         <Carousel 
+               novels={novels} 
+               adminPage={true} 
+               handleAdminSelectedNovelId={handleAdminSelectedNovelId} />
+         <AdminForm 
+               token={token} 
+               adminSelectedNovelId={adminSelectedNovelId} 
+               reFetchedUpdatedList={reFetchedUpdatedList} /></> : <AdminLoader/>}
       </div>
    )
 }

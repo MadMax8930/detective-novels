@@ -30,36 +30,26 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
   };
 
   return (
-   <div className={`px-12 pt-20 pb-2 ${adminPage ? 'bg-zinc-100' : 'bg-white-main'}`}>
+   <div className={`px-12 pt-20 pb-2 ${adminPage ? 'bg-admin-carousel pt-6' : 'bg-white-main'}`}>
       <div className="carousel-container">
+         {adminPage && selectedNovelId && (
+            <div className="carousel-novel-id text-center md:text-base text-xs text-white-main">
+               <span className="flex gap-1 uppercase">NOVEL ID : {selectedNovelId}</span>
+            </div>
+         )}
          <div className="carousel" ref={carouselRef}>
          {novels.map((novel) => (
-            <div
-               key={novel.id}
-               onClick={() => novel.id && handleNovelClick(novel.id)}
-               className={`carousel__nav-item ${selectedNovelId === novel.id ? 'active' : ''}`}
-            >
-               <img
-               src={novel.coverImage}
-               alt={`Cover of ${novel.title}`}
-               />
+            <div key={novel.id} onClick={() => novel.id && handleNovelClick(novel.id)}
+               className={`carousel__nav-item ${(selectedNovelId === novel.id && !adminPage) ? 'active' : (selectedNovelId === novel.id && adminPage) ? 'active-admin' : ''}`}>
+               <img src={novel.coverImage} alt={`Cover of ${novel.title}`} />
             </div>
          ))}
          </div>
-         <div className="carousel-controls">
-         <button className="carousel-btn" onClick={handlePrevClick}>
-            <TiArrowLeftThick size={30} />
-         </button>
-         <button className="carousel-btn" onClick={handleNextClick}>
-            <TiArrowRightThick size={30} />
-         </button>
+         <div className={`carousel-controls ${adminPage && 'text-white-main'}`}>
+            <button className="carousel-btn" onClick={handlePrevClick}><TiArrowLeftThick size={30} /></button>
+            <button className="carousel-btn" onClick={handleNextClick}><TiArrowRightThick size={30} /></button>
          </div>
       </div>
-      {adminPage && selectedNovelId && (
-        <div className="text-center md:text-base text-xs italic absolute md:top-1/2 top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:pt-0 pt-2">
-          <p className="flex md:flex-row flex-col">NOVEL ID :<i className="text-primary-red ml-1">{selectedNovelId}</i></p>
-        </div>
-      )}
    </div>
   );
 };
