@@ -8,11 +8,13 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
    try {
       const { adminId, query, portion } = req.query;
-      if(typeof adminId !== 'string' || !adminId) { throw new Error('Invalid ID') }
+      if (typeof adminId !== 'string' || !adminId) { throw new Error('Invalid ID') }
 
       const admin = await prismadb.admin.findUnique({ where: { id: String(adminId) } });
       if (!admin) { return res.status(404).json({ error: 'Admin not found' }); }
-    
+
+      const skip = portion ? (parseInt(portion as string) - 1) * ITEMS_PER_PAGE : 0;
+
       const users = await prismadb.user.findMany({
          where: {
             admin: null,
@@ -28,7 +30,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             createdAt: true,
          },
          take: ITEMS_PER_PAGE,
-         skip: (parseInt(portion as string) - 1) * ITEMS_PER_PAGE,
+         skip,
       });
   
       const donations = await prismadb.donation.findMany({
@@ -53,7 +55,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
             },
          },
          take: ITEMS_PER_PAGE,
-         skip: (parseInt(portion as string) - 1) * ITEMS_PER_PAGE,
+         skip,
       });
 
       const usersCount = await prismadb.user.count();
