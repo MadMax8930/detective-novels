@@ -7,17 +7,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
    if (req.method !== 'GET') { return res.status(405).end() }
 
    try {
-   //   const { adminId } = req.query
-   //   if (typeof adminId !== 'string' || !adminId) { throw new Error('Invalid ID') }
-
-   //   const admin = await prismadb.admin.findUnique({ where: { id: String(adminId) } })
-   //   if (!admin) { return res.status(404).json({ error: 'Admin not found' }) }
-
      const dailyResults = [];
      const currentDate = new Date();
 
-     // Loop through each day of the week
-     for (let i = 0; i < 7; i++) {
+     for (let i = 0; i < 7; i++) {  // Loop through each day of the week
         const startOfDayDate = startOfDay(currentDate);
         const endOfDayDate = endOfDay(currentDate);
 
@@ -53,8 +46,8 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
           },
         });
 
-        const commentsCount = usersWithComments.reduce((count, user: any) => count + (user.comments?.length), 0);
-        const favoritesCount = usersWithFavorites.reduce((count, user: any) => count + (user.favoritesArray?.length), 0);
+        const commentsCount = usersWithComments.reduce((count, user: any) => count + user.comments?.length, 0);
+        const favoritesCount = usersWithFavorites.reduce((count, user: any) => count + user.favoritesArray?.length, 0);
 
         dailyResults.push({
            day: format(startOfDayDate, 'EEE'),
@@ -62,12 +55,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
            favorite: favoritesCount,
         });
 
-        // Move to the previous day
-        currentDate.setDate(currentDate.getDate() - 1);
+        currentDate.setDate(currentDate.getDate() - 1);  // Move to the previous day
      }
  
      const reversedResults = dailyResults.reverse();
-     //   console.log('Results:', reversedResults);
      return res.status(200).json(reversedResults);
    } catch (error) {
      console.error(error)
@@ -75,4 +66,4 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
    }
 }
 
-export default handler
+export default adminAuth(handler);
