@@ -3,7 +3,7 @@ import { AiOutlineClose } from 'react-icons/ai'
 import useInfoModal from '@/hooks/useInfoModal'
 import useNovel from '@/hooks/useNovel'
 import { InfoModalProps } from '@/types'
-import { formatDate } from '@/lib/date'
+import { format } from '@/lib/dateFormat'
 
 const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
    const [isVisible, setIsVisible] = useState(!!visible);
@@ -34,7 +34,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
                    </div>
                    <div className="absolute bottom-[5%] left-5 md:left-10 flex gap-1.5 md:text-sm text-[10px] text-gray-400">
                      <p className="underline">Posted by:</p>
-                     <p className="capitalize">{data?.author} - {formatDate(data.createdAt).split('GMT')[0].trim()}</p>
+                     <p className="capitalize">{data?.author} - {format(data.createdAt).split('GMT')[0].trim()}</p>
                    </div>
                    <div className="absolute md:top-[20%] top-0 left-5 md:left-10">
                      <p className="text-white text-xl md:text-3xl lg:text-5xl h-full font-bold md:mb-8 mt-4">{data?.title}</p>

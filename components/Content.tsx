@@ -6,7 +6,7 @@ import { ContentModal, Pagination, Loader } from '@/components'
 import { FcBookmark } from 'react-icons/fc'
 import { FaFeatherAlt } from 'react-icons/fa'
 import { MdFitScreen } from 'react-icons/md'
-import { formatDate } from '@/lib/date'
+import { format } from '@/lib/dateFormat'
 
 interface ContentProps {
    linesPerPage: number;
@@ -54,7 +54,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                         <FaFeatherAlt color={'#c3aeca'} size={12} className="sm:hidden" />
                         <p className="text-gray-400 md:text-base text-[10px] italic">by {selectedNovel?.author}</p>
                      </div>
-                     <p className="text-gray-500 md:text-sm text-[10px]">{formatDate(selectedNovel?.createdAt)}</p>
+                     <p className="text-gray-500 md:text-sm text-[10px]">{format(selectedNovel?.createdAt)}</p>
                   </div>
                </div>
                <div className="md:h-[640px] h-[450px] min-h-full overflow-y-scroll overflow-x-hidden">
