@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
+// Dev middleware: Custom header
 export type AuthorizeDevMiddleware = (
   req: NextApiRequest & { userType: 'developer' | 'regular' },
   res: NextApiResponse
 ) => void;
 
-const authorizeDev: AuthorizeDevMiddleware = (req, res) => {
+const devAuth: AuthorizeDevMiddleware = (req, res) => {
    const apiKey = req.headers['dev-api-key'];
 
    if (apiKey === process.env.AUTHORIZED_DEV) {
@@ -16,4 +17,4 @@ const authorizeDev: AuthorizeDevMiddleware = (req, res) => {
    }
 };
 
-export default authorizeDev
+export default devAuth;

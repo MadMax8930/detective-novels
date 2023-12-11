@@ -25,7 +25,7 @@ const adminAuth = (handler: NextApiHandler) => async (req: NextApiRequest, res: 
       handler(req, res);  // User authorized to proceed to the API handler
    } catch (error) {
       console.error(error);
-      return res.status(500).json({ error: 'Auth server error has occurred.' });
+      return res.status(500).json({ error: 'Authentication server error has occurred.' });
    }
 };
 
