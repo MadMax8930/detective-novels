@@ -15,25 +15,18 @@ model User {
    username String
    email String @unique
    hashedPassword String
+   receiveNewsletters Boolean @default(false)
    createdAt DateTime @default(now())
    updatedAt DateTime @updatedAt
 
-   donations Donation[]
-
+   // Relationships
    adminId String? @map("_admin") @db.ObjectId
-   admin Admin? @relation(fields: [adminId], references: [id])
-}
-
-model Admin {
-   id String @id @default(auto()) @map("_id") @db.ObjectId
-   status String
-   authorName String
-   picture String
-   biography String
-   favoriteBooks String[]
-   createdAt DateTime @default(now())
-
-   users User[]
+   admin Admin? @relation("AdminUsers", fields: [adminId], references: [id])
+   comments Comment[] @relation("UserComments")
+   donations Donation[] @relation("UserDonations")
+   newsletters Newsletter[] @relation("UserNewsletters")
+   favNovelIds String[] @db.ObjectId
+   favoritesArray Novel[] @relation("Favorites", fields: [favNovelIds], references: [id])
 }
 
 model Novel {
@@ -47,6 +40,52 @@ model Novel {
    updatedAt DateTime @updatedAt
    genre String?
    coverImage String?
+
+   // Relationships
+   comments Comment[] @relation("NovelComments")
+   favUserIds String[] @db.ObjectId
+   favoritedByArray User[] @relation("Favorites", fields: [favUserIds], references: [id])
+}
+
+model Comment {
+   id String   @id @default(auto()) @map("_id") @db.ObjectId
+   content String
+   createdAt DateTime @default(now())
+
+   // Relationships
+   userId String? @map("_user") @db.ObjectId
+   user User? @relation("UserComments", fields: [userId], references: [id])
+   novelId String? @map("_novel") @db.ObjectId
+   novel Novel? @relation("NovelComments", fields: [novelId], references: [id])
+   parentCommentId String? @map("_parentComment") @db.ObjectId
+   parentComment Comment? @relation("Replies", fields: [parentCommentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+   replies Comment[] @relation("Replies")
+}
+
+model Admin {
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   status String
+   authorName String
+   picture String
+   biography String
+   favoriteBooks String[]
+   createdAt DateTime @default(now())
+
+   // Relationships
+   users User[] @relation("AdminUsers")
+   newslettersSent Newsletter[] @relation("AdminNewsletters")
+}
+
+model Newsletter {
+   id String @id @default(auto()) @map("_id") @db.ObjectId
+   content String
+   createdAt DateTime @default(now())
+
+   // Relationships
+   adminId String? @map("_admin") @db.ObjectId
+   admin Admin? @relation("AdminNewsletters", fields: [adminId], references: [id])
+   userId String? @map("_user") @db.ObjectId
+   user User? @relation("UserNewsletters", fields: [userId], references: [id])
 }
 
 model Donation {
@@ -56,6 +95,7 @@ model Donation {
    message String?
    createdAt DateTime @default(now())
 
+   // Relationships
    userId String? @map("_user") @db.ObjectId
-   user User? @relation(fields: [userId], references: [id])
+   user User? @relation("UserDonations", fields: [userId], references: [id])
 }
