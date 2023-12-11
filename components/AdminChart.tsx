@@ -1,51 +1,7 @@
 import React from 'react'
-import useAdminReports from '@/hooks/useAdminReports';
+import useAdminReports from '@/hooks/useAdminReports'
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts'
-
-const hardCodedData = [
-   {
-      day: "Sun",
-      // visit: 2,
-      comment: 9,
-      favorite: 0,
-   },
-   {
-      day: "Mon",
-      // visit: 5,
-      comment: 2,
-      favorite: 1,
-   },
-   {
-      day: "Tue",
-      // visit: 7,
-      comment: 3,
-      favorite: 2,
-   },
-   {
-      day: "Wed",
-      visit: 22,
-      comment: 7,
-      favorite: 3,
-   },
-   {
-      day: "Thu",
-      // visit: 12,
-      comment: 5,
-      favorite: 1,
-   },
-   {
-      day: "Fri",
-      // visit: 10,
-      comment: 10,
-      favorite: 2,
-   },
-   {
-      day: "Sat",
-      // visit: 30,
-      comment: 20,
-      favorite: 4,
-   },
-]
+import { hardcodedChartData } from '@/constants'
 
 const Chart = () => {
    const { data: weeklyData, error, mutate, isLoading } = useAdminReports();
@@ -54,7 +10,7 @@ const Chart = () => {
     <div className="chart-container">
       <h2 className="chart-title">Weekly Recap</h2>
       <ResponsiveContainer width="92%" height="90%">
-        <LineChart width={500} height={300} data={weeklyData || hardCodedData} margin={{ top: 5, right: 25, left: 15, bottom: 15 }}>
+        <LineChart width={500} height={300} data={weeklyData || hardcodedChartData} margin={{ top: 5, right: 25, left: 15, bottom: 15 }}>
           <CartesianGrid strokeDasharray="5 10" opacity={0.25} />
           <XAxis dataKey="day" />
           <YAxis />
