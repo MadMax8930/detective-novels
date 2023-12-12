@@ -3,6 +3,12 @@ import { getSessionUser } from '@/lib/sessionAuth';
 import { SessionUserProps } from '@/types';
 import prismadb from '@/lib/prismadb';
 
+import getConfig from 'next/config'
+
+const { publicRuntimeConfig } = getConfig();
+const { AUTHORIZED_ADMIN_ID } = publicRuntimeConfig;
+
+
 export const getAdminServerSideProps: GetServerSideProps = async (context) => {
    const sessionUser: SessionUserProps | null = await getSessionUser(context.req);
 
@@ -15,7 +21,7 @@ export const getAdminServerSideProps: GetServerSideProps = async (context) => {
    //    };
    // }
 
-   const user = await prismadb.user.findUnique({ where: { email: sessionUser?.email } });
+   const user = await prismadb.user.findUnique({ where: { email: sessionUser?.email, adminId: AUTHORIZED_ADMIN_ID } });
 
    if (!user?.adminId) {
       return {
