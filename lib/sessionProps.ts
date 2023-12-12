@@ -19,29 +19,18 @@ export const getSessionUser = async (req: NextApiRequest): Promise<SessionUserPr
 };
 
 export const getUserSessionServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-   try {
    const session: SessionUserProps | null = await getSessionUser(context.req as NextApiRequest);
  
-   if (!session?.email) {
-     return {
-       redirect: {
-         destination: '/auth',
-         permanent: false,
-       },
-     };
-   }
+   // if (!session?.email) {
+   //   return {
+   //     redirect: {
+   //       destination: '/auth',
+   //       permanent: false,
+   //     },
+   //   };
+   // }
  
    return {
      props: { session },
    };
-   } catch(err){
-      console.error('Error in getUserSessionServerSideProps:', err);
-      return {
-         redirect: {
-            destination: '/a',
-            permanent: false,
-         },
-      };
-
-   }
 };
