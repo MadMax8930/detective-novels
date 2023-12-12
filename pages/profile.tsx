@@ -15,7 +15,7 @@ import useNovel from '@/hooks/useNovel'
 export async function getServerSideProps(context: NextPageContext) {
    const session: SessionUserProps | null = await getSessionUser(context.req)
    // TODO
-   // if (!session?.email) { return { redirect: { destination: '/auth', permanent: false } } }
+   if (!session?.email) { return { redirect: { destination: '/auth', permanent: false } } }
    return { props: { session } };
 };
 
