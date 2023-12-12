@@ -46,24 +46,10 @@ export const authOptions: AuthOptions = {
         name: 'next-auth.session-token',
         options: {
           httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
+          secure: false,
           sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
           path: '/',
           domain: process.env.NODE_ENV === 'production' ? '.vladnovels.vercel.app' : '.localhost',
-        },
-      },
-      csrfToken: {
-         name: 'next-auth.csrf-token',
-         options: {
-          httpOnly: true,
-          secure: false
-        },
-      },
-      callbackUrl: {
-         name: 'next-auth.callback-url',
-         options: {
-          httpOnly: true,
-          secure: false,
         },
       },
    }
