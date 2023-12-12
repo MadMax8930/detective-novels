@@ -14,7 +14,7 @@ import useNovel from '@/hooks/useNovel'
 export const getServerSideProps = getUserSessionServerSideProps;
 
 const Profile: React.FC< { session: SessionUserProps }> = ({ session }) => {
-   
+
    console.log('Session profile:', session);
 
    const router = useRouter();
@@ -24,10 +24,10 @@ const Profile: React.FC< { session: SessionUserProps }> = ({ session }) => {
    const { data: novels = [], isLoading } = useNovelList();
    const { data: novelData = [] } = useNovel(novelId);
 
-   // useEffect(() => {
-   //    if (loadingUser) return;
-   //    if (!user) { router.push('/auth'); }
-   // }, [loadingUser, user, router]);
+   useEffect(() => {
+      if (loadingUser) return;
+      if (!user) { router.push('/auth'); }
+   }, [loadingUser, user, router]);
 
    const [linesPerPage, setLinesPerPage] = useState<number>(0);
    useEffect(() => {

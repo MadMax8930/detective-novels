@@ -6,8 +6,6 @@ import prismadb from '@/lib/prismadb';
 export const getSessionUser = async (req: NextApiRequest, res: NextApiResponse): Promise<SessionUserProps | null> => {
    const session = await getSession({ req });
 
-   console.log('sess', session);
-
    if (!session?.user?.email) { 
       // Check content type and handle accordingly
       const contentType = res.getHeader('content-type') as string;
@@ -33,14 +31,14 @@ export const getSessionUser = async (req: NextApiRequest, res: NextApiResponse):
 export const getUserSessionServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
    const session: SessionUserProps | null = await getSessionUser(context.req as NextApiRequest, context.res as NextApiResponse);
  
-   // if (!session?.email) {
-   //   return {
-   //     redirect: {
-   //       destination: '/auth',
-   //       permanent: false,
-   //     },
-   //   };
-   // }
+   if (!session?.email) {
+     return {
+       redirect: {
+         destination: '/auth',
+         permanent: false,
+       },
+     };
+   }
  
    return {
      props: { session },
