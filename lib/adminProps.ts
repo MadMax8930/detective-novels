@@ -1,42 +1,40 @@
-import { GetServerSideProps } from 'next';
-import { getSessionUser } from '@/lib/sessionAuth';
-import { SessionUserProps } from '@/types';
-import prismadb from '@/lib/prismadb';
+// import { GetServerSideProps, NextPageContext } from 'next';
+// import { getSessionUser } from '@/lib/sessionAuth';
+// import { SessionUserProps } from '@/types';
+// import prismadb from '@/lib/prismadb';
 
-import getConfig from 'next/config'
+// export const getAdminServerSideProps: GetServerSideProps = async (context: NextPageContext) => {
+//    const session: SessionUserProps | null = await getSessionUser(context.req);
 
-const { publicRuntimeConfig } = getConfig();
-const { AUTHORIZED_ADMIN_ID } = publicRuntimeConfig;
+//    // TODO
+   
+//    if (!session || !session.email) {
+//       return {
+//          redirect: {
+//             destination: '/',
+//             permanent: false,
+//          },
+//       };
+//    }
 
+//    // TODO
 
-export const getAdminServerSideProps: GetServerSideProps = async (context) => {
-   const sessionUser: SessionUserProps | null = await getSessionUser(context.req);
+//    const user = await prismadb.user.findUnique({ where: { email: session.email } });
 
-   // if (!sessionUser || !sessionUser.email) {
-   //    return {
-   //       redirect: {
-   //          destination: '/',
-   //          permanent: false,
-   //       },
-   //    };
-   // }
+//    if (!user?.adminId) {
+//       return {
+//          redirect: {
+//             destination: '/profile',
+//             permanent: false,
+//          },
+//       };
+//    }
 
-   const user = await prismadb.user.findUnique({ where: { email: sessionUser?.email, adminId: AUTHORIZED_ADMIN_ID } });
+//    const adminToken = context.req.cookies['next-auth.admin-token'] || null;
 
-   if (!user?.adminId) {
-      return {
-         redirect: {
-            destination: '/profile',
-            permanent: false,
-         },
-      };
-   }
-
-   const adminToken = context.req.cookies['next-auth.admin-token'] || null;
-
-   return {
-      props: {
-         adminToken,
-      },
-   };
-};
+//    return {
+//       props: {
+//          adminToken,
+//       },
+//    };
+// };

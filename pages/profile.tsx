@@ -14,6 +14,7 @@ import useNovel from '@/hooks/useNovel'
 // Protecting routes by fetching session on client side
 export async function getServerSideProps(context: NextPageContext) {
    const session: SessionUserProps | null = await getSessionUser(context.req)
+   // TODO
    // if (!session?.email) { return { redirect: { destination: '/auth', permanent: false } } }
    return { props: { session } };
 };

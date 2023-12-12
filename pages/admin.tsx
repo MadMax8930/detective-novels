@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, NextPageContext } from 'next';
 import { Carousel, AdminForm, AdminInfoTabs, AdminSender, AdminChart, AdminLoader } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
-import { getAdminServerSideProps } from '@/lib/adminProps'
+// import { getAdminServerSideProps } from '@/lib/adminProps'
 import { NovelDBProps } from '@/types'
 import Cookies from 'js-cookie'
+import { getSessionUser } from '@/lib/sessionAuth';
+import { SessionUserProps } from '@/types';
+import prismadb from '@/lib/prismadb';
 
 interface AdminProps {
    adminToken: string;
@@ -46,7 +49,41 @@ export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
    )
 }
 
-export const getServerSideProps: GetServerSideProps = getAdminServerSideProps;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+   const session: SessionUserProps | null = await getSessionUser(context.req);
+
+   // TODO
+   
+   if (!session || !session.email) {
+      return {
+         redirect: {
+            destination: '/',
+            permanent: false,
+         },
+      };
+   }
+
+   // TODO
+
+   const user = await prismadb.user.findUnique({ where: { email: session.email } });
+
+   if (!user?.adminId) {
+      return {
+         redirect: {
+            destination: '/profile',
+            permanent: false,
+         },
+      };
+   }
+
+   const adminToken = context.req.cookies['next-auth.admin-token'];
+
+   return {
+      props: {
+         adminToken,
+      },
+   };
+};
 
 export default Admin
 
