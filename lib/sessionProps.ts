@@ -14,7 +14,7 @@ export const getSessionUser = async (req: NextApiRequest): Promise<SessionUserPr
    });
 
    return user
-     ? { id: user.id, username: user.username, email: user.email, adminId: user.adminId }
+     ? { ...user, email: session.user.email }
      : null;
 };
 
