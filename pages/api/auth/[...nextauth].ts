@@ -13,7 +13,6 @@ export const authOptions: AuthOptions = {
          name: 'Credentials',
          credentials: { email: { label: 'Email', type: 'text' }, password: { label: 'Password', type: 'password' } },
          async authorize(credentials) {
-            console.log('Received credentials:', credentials);
             if(!credentials?.email || !credentials?.password) { throw new Error('Email and password required') }
 
             const user = await prismadb.user.findUnique({ where: { email: credentials.email } })
@@ -32,7 +31,7 @@ export const authOptions: AuthOptions = {
                adminToken = jwt.sign({ adminId: user.adminId }, `${process.env.ADMIN_JWT_SECRET}`, { expiresIn: '3d' });
             };
 
-            console.log('Generated tokens:', { userToken, adminToken, sessionUser });
+            // console.log('Generated tokens:', { userToken, adminToken, sessionUser });
             return { ...sessionUser, userToken, adminToken };
          }
       })

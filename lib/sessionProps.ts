@@ -6,7 +6,7 @@ import prismadb from '@/lib/prismadb';
 export const getSessionUser = async (req: NextApiRequest, res: NextApiResponse): Promise<SessionUserProps | null> => {
    const session = await getSession({ req });
 
-   console.log('No session', session);
+   console.log('sess', session);
 
    if (!session?.user?.email) { 
       // Check content type and handle accordingly
