@@ -1,21 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import { NextPageContext } from 'next'
-import { getSession, signOut } from 'next-auth/react'
+import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { BiLogOut } from 'react-icons/bi'
 import { FaDonate } from 'react-icons/fa'
 import { Loader, Carousel, Content, SearchBar, Donations } from '@/components'
+import { getSessionUser } from '@/lib/sessionAuth';
+import { SessionUserProps } from '@/types'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
 
 // Protecting routes by fetching session on client side
-// export async function getServerSideProps(context: NextPageContext) {
-//    const session = await getSession(context)
-//    if (!session?.user?.email) { return { redirect: { destination: '/auth', permanent: false } } }
-//    console.log('Profile Session:', session.user.email, session);
-//    return { props: { session } };
-// }
+export async function getServerSideProps(context: NextPageContext) {
+   const session: SessionUserProps | null = await getSessionUser(context.req)
+   if (!session?.email) { return { redirect: { destination: '/auth', permanent: false } } }
+   return { props: { session } };
+};
 
 const Profile = () => {
    const router = useRouter();
