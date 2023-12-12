@@ -1,40 +1,40 @@
-// import { GetServerSideProps, NextPageContext } from 'next';
-// import { getSessionUser } from '@/lib/sessionAuth';
-// import { SessionUserProps } from '@/types';
-// import prismadb from '@/lib/prismadb';
+import { GetServerSideProps, NextPageContext } from 'next';
+import { getSessionUser } from '@/lib/sessionAuth';
+import { SessionUserProps } from '@/types';
+import prismadb from '@/lib/prismadb';
 
-// export const getAdminServerSideProps: GetServerSideProps = async (context: NextPageContext) => {
-//    const session: SessionUserProps | null = await getSessionUser(context.req);
+export const getAdminServerSideProps: GetServerSideProps = async (context) => {
+   const session: SessionUserProps | null = await getSessionUser(context.req);
 
-//    // TODO
+   // TODO
    
-//    if (!session || !session.email) {
-//       return {
-//          redirect: {
-//             destination: '/',
-//             permanent: false,
-//          },
-//       };
-//    }
+   if (!session || !session.email) {
+      return {
+         redirect: {
+            destination: '/',
+            permanent: false,
+         },
+      };
+   }
 
-//    // TODO
+   // TODO
 
-//    const user = await prismadb.user.findUnique({ where: { email: session.email } });
+   const user = await prismadb.user.findUnique({ where: { email: session.email } });
 
-//    if (!user?.adminId) {
-//       return {
-//          redirect: {
-//             destination: '/profile',
-//             permanent: false,
-//          },
-//       };
-//    }
+   if (!user?.adminId) {
+      return {
+         redirect: {
+            destination: '/profile',
+            permanent: false,
+         },
+      };
+   }
 
-//    const adminToken = context.req.cookies['next-auth.admin-token'] || null;
+   const adminToken = context.req.cookies['next-auth.admin-token'] || null;
 
-//    return {
-//       props: {
-//          adminToken,
-//       },
-//    };
-// };
+   return {
+      props: {
+         adminToken,
+      },
+   };
+};

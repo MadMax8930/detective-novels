@@ -49,7 +49,7 @@ export const Admin: React.FC<AdminProps> = ({ adminToken }) => {
    )
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export async function getServerSideProps(context: NextPageContext) {
    const session: SessionUserProps | null = await getSessionUser(context.req);
 
    // TODO
@@ -76,7 +76,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
       };
    }
 
-   const adminToken = context.req.cookies['next-auth.admin-token'];
+   const req = context.req as any;
+   const adminToken = req.cookies['next-auth.admin-token'];
 
    return {
       props: {
