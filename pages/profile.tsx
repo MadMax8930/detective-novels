@@ -14,7 +14,9 @@ import useNovel from '@/hooks/useNovel'
 export const getServerSideProps = getUserSessionServerSideProps;
 
 const Profile: React.FC< { session: SessionUserProps }> = ({ session }) => {
-   console.log('Session 3:', session);
+   
+   console.log('Session profile:', session);
+
    const router = useRouter();
    const novelId = router.query.novel as string;
    
@@ -39,7 +41,6 @@ const Profile: React.FC< { session: SessionUserProps }> = ({ session }) => {
    }, [novelData]);
 
    if (!session) return <Loader />
-   console.log("session", session);
 
    return (
       <div className="w-screen min-h-full bg-white-main">

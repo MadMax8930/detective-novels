@@ -23,7 +23,7 @@ export const authOptions: AuthOptions = {
             if(!isCorrectPassword) { throw new Error('Incorrect password') }
 
             // Generate token for users
-            const sessionUser = { id: user.id, username: user.username, email: user.email };
+            const sessionUser = { id: user.id, username: user.username, email: user.email, adminId: user.adminId };
             const userToken = jwt.sign(sessionUser, `${process.env.NEXTAUTH_JWT_SECRET}`, { expiresIn: '7d' });
 
             // Generate token for admins
@@ -32,7 +32,7 @@ export const authOptions: AuthOptions = {
                adminToken = jwt.sign({ adminId: user.adminId }, `${process.env.ADMIN_JWT_SECRET}`, { expiresIn: '3d' });
             };
 
-            console.log('Generated tokens:', { userToken, adminToken });
+            console.log('Generated tokens:', { userToken, adminToken, sessionUser });
             return { ...sessionUser, userToken, adminToken };
          }
       })
