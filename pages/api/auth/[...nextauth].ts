@@ -46,8 +46,8 @@ export const authOptions: AuthOptions = {
         name: 'next-auth.session-token',
         options: {
           httpOnly: true,
-          secure: false,
-          sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: process.env.NODE_ENV === 'production' ? 'lax' : 'lax',
           path: '/',
           domain: process.env.NODE_ENV === 'production' ? '.vladnovels.vercel.app' : '.localhost',
         },
