@@ -14,11 +14,12 @@ export const getSessionUser = async (req: NextApiRequest): Promise<SessionUserPr
    });
 
    return user
-     ? { ...user, email: session.user.email }
+     ? { id: user.id, username: user.username, email: user.email, adminId: user.adminId }
      : null;
 };
 
 export const getUserSessionServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
+   try {
    const session: SessionUserProps | null = await getSessionUser(context.req as NextApiRequest);
  
    if (!session?.email) {
@@ -33,4 +34,14 @@ export const getUserSessionServerSideProps: GetServerSideProps = async (context:
    return {
      props: { session },
    };
+   } catch(err){
+      console.error('Error in getUserSessionServerSideProps:', err);
+      return {
+         redirect: {
+            destination: '/a',
+            permanent: false,
+         },
+      };
+
+   }
 };
