@@ -49,7 +49,7 @@ export const authOptions: AuthOptions = {
           secure: process.env.NODE_ENV === 'production',
           sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
           path: '/',
-          domain: process.env.NODE_ENV === 'production' ? '.localhost' : '.localhost',
+          domain: process.env.NODE_ENV === 'production' ? '.vladnovels.vercel.app' : '.localhost',
         },
       },
    }
