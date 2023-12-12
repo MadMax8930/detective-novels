@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from 'react'
-import { NextPageContext } from 'next'
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import { BiLogOut } from 'react-icons/bi'
 import { FaDonate } from 'react-icons/fa'
 import { Loader, Carousel, Content, SearchBar, Donations } from '@/components'
-import { getSessionUser } from '@/lib/sessionAuth';
+import { getUserSessionServerSideProps } from '@/lib/sessionProps';
 import { SessionUserProps } from '@/types'
 import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
 
-// Protecting routes by fetching session on client side
-export async function getServerSideProps(context: NextPageContext) {
-   const session: SessionUserProps | null = await getSessionUser(context.req)
-   // TODO
-   if (!session?.email) { return { redirect: { destination: '/auth', permanent: false } } }
-   return { props: { session } };
-};
+// Protecting routes by fetching user session on client side
+export const getServerSideProps = getUserSessionServerSideProps;
 
-const Profile = () => {
+const Profile: React.FC< { session: SessionUserProps }> = ({ session }) => {
    const router = useRouter();
    const novelId = router.query.novel as string;
    
@@ -42,6 +36,9 @@ const Profile = () => {
       );
       setLinesPerPage(calculatedLinesPerPage);
    }, [novelData]);
+
+   if (!session) return <Loader />
+   console.log("session", session);
 
    return (
       <div className="w-screen min-h-full bg-white-main">

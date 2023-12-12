@@ -135,3 +135,7 @@ export interface SessionUserProps {
    email: string;
    adminId: string | null;
 };
+
+export interface AdminTokenProps {
+   adminToken: string;
+}
