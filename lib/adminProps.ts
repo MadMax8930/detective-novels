@@ -6,16 +6,16 @@ import prismadb from '@/lib/prismadb';
 export const getAdminServerSideProps: GetServerSideProps = async (context) => {
    const sessionUser: SessionUserProps | null = await getSessionUser(context.req);
 
-   if (!sessionUser || !sessionUser.email) {
-      return {
-         redirect: {
-            destination: '/',
-            permanent: false,
-         },
-      };
-   }
+   // if (!sessionUser || !sessionUser.email) {
+   //    return {
+   //       redirect: {
+   //          destination: '/',
+   //          permanent: false,
+   //       },
+   //    };
+   // }
 
-   const user = await prismadb.user.findUnique({ where: { email: sessionUser.email } });
+   const user = await prismadb.user.findUnique({ where: { email: sessionUser?.email } });
 
    if (!user?.adminId) {
       return {
