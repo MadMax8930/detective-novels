@@ -5,13 +5,16 @@ import prismadb from '@/lib/prismadb';
 
 export const getSessionUser = async (req: NextApiRequest): Promise<SessionUserProps | null> => {
    const session = await getSession({ req });
+   console.log('No email in session');
 
-   if (!session?.user?.email) { return null }
+   if (!session?.user?.email) {  console.log('No email in session'); return null }
 
    const user = await prismadb.user.findUnique({
      where: { email: session.user?.email },
      select: { id: true, username: true, email: true, adminId: true },
    });
+
+   console.log('User:', user);
 
    return user
      ? { id: user.id, username: user.username, email: user.email, adminId: user.adminId }
@@ -21,6 +24,7 @@ export const getSessionUser = async (req: NextApiRequest): Promise<SessionUserPr
 export const getUserSessionServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
    const session: SessionUserProps | null = await getSessionUser(context.req as NextApiRequest);
  
+   console.log('Session 2:', session);
    // if (!session?.email) {
    //   return {
    //     redirect: {

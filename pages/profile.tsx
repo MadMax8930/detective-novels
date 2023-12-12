@@ -14,6 +14,7 @@ import useNovel from '@/hooks/useNovel'
 export const getServerSideProps = getUserSessionServerSideProps;
 
 const Profile: React.FC< { session: SessionUserProps }> = ({ session }) => {
+   console.log('Session 3:', session);
    const router = useRouter();
    const novelId = router.query.novel as string;
    

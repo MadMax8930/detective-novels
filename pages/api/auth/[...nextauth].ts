@@ -37,7 +37,7 @@ export const authOptions: AuthOptions = {
          }
       })
    ],
-   pages: { signIn: '/auth' },
+   pages: { signIn: '/auth', signOut: '/' },
    debug: process.env.NODE_ENV === 'development',
    adapter: PrismaAdapter(prismadb),
    session: { strategy: 'jwt', maxAge: 7 * 24 * 60 * 60, updateAge: 24 * 60 },
