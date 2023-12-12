@@ -7,7 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
    try {
      const { id } = req.body;
 
-     const authorData = await prismadb.admin.findFirst({ 
+     const author = await prismadb.admin.findFirst({ 
         where: { id: id },
         select: {
             status: true,
@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             createdAt: true,
         } 
      });
-     return res.status(200).json(authorData);
+     return res.status(200).json(author);
    } catch (error) {
      console.error(error)
      return res.status(400).end();

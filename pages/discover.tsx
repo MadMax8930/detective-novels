@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { AuthorData } from '@/types'
+import { AuthorDataProps } from '@/types'
 import { FiArrowLeft, FiLinkedin } from 'react-icons/fi'
 import { Loader } from '@/components'
 
 const Discover: React.FC = () => {
    const router = useRouter();
-   const [authorData, setAuthorData] = useState<AuthorData | null>(null);
+   const [authorData, setAuthorData] = useState<AuthorDataProps | null>(null);
    const [isLoading, setIsLoading] = useState(true);
 
    useEffect(() => {

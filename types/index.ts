@@ -115,7 +115,7 @@ export interface DonateResponseProps {
    loading: boolean;
 };
 
-export interface AuthorData {
+export interface AuthorDataProps {
    biography: string;
    authorName: string;
    picture: string;
@@ -127,4 +127,11 @@ export interface AdminDataParams {
    adminId?: string;
    query?: string;
    portion?: string;
+};
+
+export interface SessionUserProps {
+   id: string;
+   username: string;
+   email: string;
+   adminId: string | null;
 };
