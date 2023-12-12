@@ -5,8 +5,8 @@ import prismadb from '@/lib/prismadb';
 
 export const getSessionUser = async (req: NextApiRequest): Promise<SessionUserProps | null> => {
    const session = await getSession({ req });
-   
-   console.log('No email in session');
+
+   console.log('No session');
 
    if (!session?.user?.email) { return null }
 
@@ -25,14 +25,14 @@ export const getSessionUser = async (req: NextApiRequest): Promise<SessionUserPr
 export const getUserSessionServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
    const session: SessionUserProps | null = await getSessionUser(context.req as NextApiRequest);
  
-   if (!session?.email) {
-     return {
-       redirect: {
-         destination: '/auth',
-         permanent: false,
-       },
-     };
-   }
+   // if (!session?.email) {
+   //   return {
+   //     redirect: {
+   //       destination: '/auth',
+   //       permanent: false,
+   //     },
+   //   };
+   // }
  
    return {
      props: { session },

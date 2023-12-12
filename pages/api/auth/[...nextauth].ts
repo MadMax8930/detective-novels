@@ -23,7 +23,7 @@ export const authOptions: AuthOptions = {
             if(!isCorrectPassword) { throw new Error('Incorrect password') }
 
             // Generate token for users
-            const sessionUser = { id: user.id, username: user.username, email: user.email, adminId: user.adminId };
+            const sessionUser = { id: user.id, username: user.username, email: user.email };
             const userToken = jwt.sign(sessionUser, `${process.env.NEXTAUTH_JWT_SECRET}`, { expiresIn: '7d' });
 
             // Generate token for admins
