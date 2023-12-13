@@ -1,6 +1,7 @@
 import type { ReactElement, ReactNode } from 'react'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
+import { ProfileProps } from '@/types'
 import { Toaster } from 'react-hot-toast'
 import { SessionProvider } from 'next-auth/react'
 import RootLayout from '@/pages/_layout'
@@ -15,7 +16,7 @@ export const metadata = {
 }
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode
+  getLayout?: (page: ReactElement, props: ProfileProps) => ReactNode
 }
  
 export default function App({ Component, pageProps }: AppProps & { Component: NextPageWithLayout} ) {
@@ -27,6 +28,6 @@ export default function App({ Component, pageProps }: AppProps & { Component: Ne
        <RootLayout metadata={metadata}>
           <Component {...pageProps} />
        </RootLayout>
-    </SessionProvider>
+    </SessionProvider>, pageProps
   )
 }

@@ -1,4 +1,5 @@
 import { MouseEventHandler } from 'react'
+import type { AppProps } from 'next/app'
 
 export interface CustomButtonProps {
    title: string;
@@ -136,11 +137,15 @@ export interface SessionUserProps {
    adminId: string | null;
 };
 
+export interface ProfileProps extends AppProps {
+   session: SessionUserProps;
+};
+
 export interface AdminTokenProps {
    adminToken: string;
-}
+};
 
 export interface NavbarProps {
    isUser?: boolean;
    isAdmin?: boolean;
-}
+};
