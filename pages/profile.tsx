@@ -4,9 +4,8 @@ import { useRouter } from 'next/router'
 import { BiLogOut } from 'react-icons/bi'
 import { FaDonate } from 'react-icons/fa'
 import { Loader, Carousel, Content, SearchBar, Donations } from '@/components'
-import { getUserSessionServerSideProps } from '@/lib/sessionProps';
+import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import { SessionUserProps } from '@/types'
-import useCurrentUser from '@/hooks/useCurrentUser'
 import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
 
@@ -14,20 +13,11 @@ import useNovel from '@/hooks/useNovel'
 export const getServerSideProps = getUserSessionServerSideProps;
 
 const Profile: React.FC< { session: SessionUserProps }> = ({ session }) => {
-
-   console.log('Session profile:', session);
-
    const router = useRouter();
    const novelId = router.query.novel as string;
-   
-   const { data: user, isLoading: loadingUser } = useCurrentUser();
+
    const { data: novels = [], isLoading } = useNovelList();
    const { data: novelData = [] } = useNovel(novelId);
-
-   useEffect(() => {
-      if (loadingUser) return;
-      if (!user) { router.push('/auth'); }
-   }, [loadingUser, user, router]);
 
    const [linesPerPage, setLinesPerPage] = useState<number>(0);
    useEffect(() => {
@@ -40,8 +30,6 @@ const Profile: React.FC< { session: SessionUserProps }> = ({ session }) => {
       setLinesPerPage(calculatedLinesPerPage);
    }, [novelData]);
 
-   if (!session) return <Loader />
-
    return (
       <div className="w-screen min-h-full bg-white-main">
          {/* Top Navigation */}
@@ -52,7 +40,7 @@ const Profile: React.FC< { session: SessionUserProps }> = ({ session }) => {
                   <BiLogOut size={32} className="text-white sm:hidden" />
                   <BiLogOut size={30} className="text-white max-sm:hidden" />
                   <span className="text-white text-base md:text-xl font-semibold">Logout 
-                     <span className="hidden lg:inline">{" "} as {" "}<strong className="text-gray-400 capitalize">{user?.username}</strong></span>
+                     <span className="hidden lg:inline">{" "} as {" "}<strong className="text-gray-400 capitalize">{session.username}</strong></span>
                   </span>
                </div>
                <div className="flex flex-row justify-center px-0 lg:px-12 mt-4 md:mt-9 gap-1 md:gap-2">
