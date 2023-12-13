@@ -9,10 +9,18 @@ import { SessionUserProps } from '@/types'
 import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
 
+import type { ReactElement } from 'react'
+import type { NextPageWithLayout } from '@/pages/_app'
+import { metadata } from '@/pages/_app'
+import ProfileLayout from './_layout'
+import { metadataProfile } from './_layout'
+import RootLayout from '../_layout'
+import { ProfileProps } from '@/types'
+ 
 // Protecting routes by fetching user session on client side
 export const getServerSideProps = getUserSessionServerSideProps;
 
-const Profile: React.FC<{ session: SessionUserProps }> = ({ session }) => {
+const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
    const router = useRouter();
    const novelId = router.query.novel as string;
 
@@ -34,7 +42,7 @@ const Profile: React.FC<{ session: SessionUserProps }> = ({ session }) => {
       <div className="w-screen min-h-full bg-white-main">
          {/* Top Navigation */}
          {(isLoading || !novels) ? <Loader /> : (<>
-         <div className="fixed w-full px-4 md:px-24 md:pr-14 pr-12 z-30 flex flex-col justify-between gap-4 md:gap-8 bg-black bg-opacity-80">
+         {/* <div className="fixed w-full px-4 md:px-24 md:pr-14 pr-12 z-30 flex flex-col justify-between gap-4 md:gap-8 bg-black bg-opacity-80">
             <nav className="flex flex-row justify-between pb-4 md:pb-1 px-2 md:px-5">
                <div className="flex items-center justify-center px-7 pt-5 md:pt-4 gap-1 md:gap-2 cursor-pointer" onClick={() => signOut()}>
                   <BiLogOut size={32} className="text-white sm:hidden" />
@@ -48,7 +56,7 @@ const Profile: React.FC<{ session: SessionUserProps }> = ({ session }) => {
                   <FaDonate size={28} className="text-white hidden lg:inline" />
                </div>
             </nav>
-         </div>
+         </div> */}
          {/* Main Content */}
          <div className="flex-grow overflow-hidden">
             <Carousel novels={novels} adminPage={false} />
@@ -59,5 +67,14 @@ const Profile: React.FC<{ session: SessionUserProps }> = ({ session }) => {
       </div>
    )
 };
+
+Profile.getLayout = function getLayout(page: ReactElement, props: ProfileProps) {
+   const { session } = props;
+   return (
+      <RootLayout metadata={metadata}>
+         <ProfileLayout layoutMetadata={metadataProfile || metadata} session={props.session}>{page}</ProfileLayout>
+      </RootLayout>
+   )
+}
 
 export default Profile
