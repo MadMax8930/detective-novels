@@ -4,6 +4,9 @@ const nextConfig = {
    publicRuntimeConfig: {
       AUTHORIZED_ADMIN_ID: process.env.AUTHORIZED_ADMIN_ID,
    },
+   images: {
+      domains: ["upload.wikimedia.org"]
+   },
 }
 
 module.exports = nextConfig
