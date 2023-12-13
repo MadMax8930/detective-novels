@@ -7,7 +7,7 @@ export default function Home() {
    const { isOpen, closeModal } = useInfoModal();
 
    return (
-      <div className="w-screen min-h-full flex items-center justify-center bg-white-main">
+      <div className="w-screen min-h-full flex items-center justify-center bg-slate-200">
          {(isLoading || !novels) ? <Loader/> :
          <div className="container h-full mx-auto xl:px-30 max-w-7xl">
             <Navbar />

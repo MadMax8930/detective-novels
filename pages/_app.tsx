@@ -8,8 +8,8 @@ export const metadata = {
    title: 'Vlad Novels',
    description: 'Detective Novels',
    keywords: 'Detective Novels Thrillers Romans',
-   applicationName: 'Vladislav',
-   themeColor: "#E14773",
+   applicationName: 'Vladislav Surnin',
+   themeColor: "#2d2e30",
 }
 
 export default function App({ Component, pageProps }: AppProps) {

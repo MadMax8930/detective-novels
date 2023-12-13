@@ -9,7 +9,7 @@ export type AuthorizeDevMiddleware = (
 const devAuth: AuthorizeDevMiddleware = (req, res) => {
    const apiKey = req.headers['dev-api-key'];
 
-   if (apiKey === process.env.AUTHORIZED_DEV) {
+   if (apiKey === process.env.AUTHORIZED_DEV_HEADER) {
      req.userType = 'developer';
    } else {
      req.userType = 'regular';

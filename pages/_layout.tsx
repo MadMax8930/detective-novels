@@ -16,9 +16,7 @@ export default function RootLayout({ children, metadata }: RootLayoutProps){
 
    const router = useRouter();
    useEffect(() => {
-     if (router.pathname === '/_layout') {
-       router.replace('/');
-     }
+     if (router.pathname === '/_layout') { router.replace('/') }
    }, [router]);
 
   return (
