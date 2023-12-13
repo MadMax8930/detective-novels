@@ -1,7 +1,9 @@
+import type { ReactElement, ReactNode } from 'react'
+import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import { Toaster } from 'react-hot-toast'
 import { SessionProvider } from 'next-auth/react'
-import Layout from '@/pages/_layout'
+import RootLayout from '@/pages/_layout'
 import '@/styles/globals.css'
 
 export const metadata = {
@@ -12,15 +14,19 @@ export const metadata = {
    themeColor: "#2d2e30",
 }
 
-export default function App({ Component, pageProps }: AppProps) {
-
-  return (
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+ 
+export default function App({ Component, pageProps }: AppProps & { Component: NextPageWithLayout} ) {
+   const getLayout = Component.getLayout ?? ((page) => page)
+ 
+  return getLayout(
     <SessionProvider session={pageProps.session}>
        <Toaster />
-       <Layout metadata={metadata}>
+       <RootLayout metadata={metadata}>
           <Component {...pageProps} />
-       </Layout>
+       </RootLayout>
     </SessionProvider>
   )
 }
-
