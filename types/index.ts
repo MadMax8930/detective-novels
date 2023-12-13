@@ -139,3 +139,9 @@ export interface SessionUserProps {
 export interface AdminTokenProps {
    adminToken: string;
 }
+
+export interface NavbarProps {
+   isUser?: boolean;
+   isAdmin?: boolean;
+   isVisitor?: boolean;
+}

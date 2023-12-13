@@ -12,7 +12,7 @@ import useNovel from '@/hooks/useNovel'
 // Protecting routes by fetching user session on client side
 export const getServerSideProps = getUserSessionServerSideProps;
 
-const Profile: React.FC< { session: SessionUserProps }> = ({ session }) => {
+const Profile: React.FC<{ session: SessionUserProps }> = ({ session }) => {
    const router = useRouter();
    const novelId = router.query.novel as string;
 

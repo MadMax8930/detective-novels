@@ -371,15 +371,15 @@ html {
    @apply bg-admin-btn text-white-main font-semibold p-2.5 outline-none rounded-md;
 }
 
-.admin-button-update {
+.admin-button-update, .button-login, .button-logout {
    @apply bg-white-main text-primary-black font-semibold p-2.5 outline-none rounded-md;
 }
 
-.admin-button-create {
+.admin-button-create, .button-profile {
    @apply bg-primary-blue text-white-main font-semibold p-2.5 outline-none rounded-md;
 }
 
-.admin-button-delete {
+.admin-button-delete, .button-register {
    @apply bg-primary-red text-white-main font-semibold p-2.5 outline-none rounded-md;
 }
 
