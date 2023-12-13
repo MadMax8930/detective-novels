@@ -6,11 +6,11 @@ import { Navbar } from '@/components'
 type ProfileLayoutProps = {
    children: React.ReactNode;
    layoutMetadata: {
-      title: string;
-      description: string;
-      keywords: string;
-      applicationName: string;
-      themeColor: string;
+      title?: string;
+      description?: string;
+      keywords?: string;
+      applicationName?: string;
+      themeColor?: string;
    };
    session: SessionUserProps;
 };
@@ -28,11 +28,11 @@ export default function ProfileLayout ({ children, layoutMetadata, session }: Pr
   return (
     <>
       <Head>
-         <meta name="title" content={layoutMetadata.title} />
-         <meta name="description" content={layoutMetadata.description} />
-         <meta name="keywords" content={layoutMetadata.keywords} />
-         <meta name="author" content={layoutMetadata.applicationName} />
-         <meta name="theme-color" content={layoutMetadata.themeColor} />
+         <meta name="title" content={layoutMetadata?.title} />
+         <meta name="description" content={layoutMetadata?.description} />
+         <meta name="keywords" content={layoutMetadata?.keywords} />
+         <meta name="author" content={layoutMetadata?.applicationName} />
+         <meta name="theme-color" content={layoutMetadata?.themeColor} />
       </Head>
       <Navbar isUser={!!session?.email} isAdmin={!!session?.adminId} />
       {children}
