@@ -33,7 +33,7 @@ const Discover: React.FC<{ authorData: AuthorDataProps }> = ({ authorData }) => 
          <div className="bg-slate-100 w-full max-w-screen-2xl h-full shadow-lg overflow-hidden">
             <div className="flex flex-col md:flex-row">
                <div className="md:w-1/3 bg-primary-black relative">
-                  <Image src={authorData.picture} alt={authorData?.authorName} layout="fill" objectFit="cover" objectPosition="center" className="w-full h-full rounded-lg shadow-md p-8" />
+                  <Image src={authorData.picture} alt={authorData?.authorName} fill={true} className="w-full h-full rounded-lg shadow-md object-cover p-8" />
                </div>
                <div className="md:w-2/3 p-8 overflow-y-auto">
                   <div className="flex justify-between items-center mb-4">
