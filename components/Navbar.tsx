@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { signOut } from 'next-auth/react'
 import { Button } from '@/components'
+import { NavbarProps } from '@/types'
 
-const Navbar = () => {
+const Navbar: React.FC<NavbarProps>  = ({ isUser, isAdmin }) => {
   return (
     <header className="w-full fixed top-0 z-20 right-0 bg-black bg-opacity-80">
       <nav className="max-w-[1275px] mx-auto flex flex-row justify-between items-center sm:px-16 px-6 pt-4 md:pb-4 pb-2">
@@ -15,21 +17,45 @@ const Navbar = () => {
             <h1 className="border-b-2 border-t-2 text-2xl font-bold md:block hidden">Vlad Novels</h1>
          </div>
          {/* Right Side */}
-         <div className="flex gap-2 md:mb-1 mb-3">
+         <div className="flex gap-2 md:mb-1 mb-3">   
+            {isAdmin &&
+            <Link href={{ pathname: '/admin' }}>
+               <Button
+                  title={'Admin'}
+                  btnType="button"
+                  additionalStyles="admin-button"
+               />
+            </Link>}
+            {isUser ? <>
+            <Link href={{ pathname: '/profile/blog' }}>
+               <Button
+                  title={'Profile'}
+                  btnType="button"
+                  additionalStyles="button-profile"
+               />
+            </Link>
+            <Link href={{ pathname: '/auth' }}>
+               <Button 
+                  title="Sign out" 
+                  btnType="button" 
+                  additionalStyles="button-logout"
+                  action={() => signOut()}
+               />
+            </Link></> : <>
             <Link href={{ pathname: '/auth', query: { variant: 'login' } }}>
                <Button 
                   title="Sign In" 
                   btnType="button" 
-                  additionalStyles="bg-primary-blue-100 text-primary-black font-medium rounded-full md:text-lg text-sm min-w-[70px] md:min-w-[100px] py-2 md:py-2.5" 
+                  additionalStyles="button-login" 
                />
             </Link>
             <Link href={{ pathname: '/auth', query: { variant: 'register' } }}>
                <Button 
                   title="Sign Up" 
                   btnType="button" 
-                  additionalStyles="bg-primary-red text-primary-red-100 font-medium rounded-full md:text-lg text-sm min-w-[75px] md:min-w-[100px] py-2 md:py-2.5" 
+                  additionalStyles="button-register" 
                />
-            </Link>
+            </Link></>}
          </div>
       </nav>
     </header>

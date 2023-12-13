@@ -143,5 +143,4 @@ export interface AdminTokenProps {
 export interface NavbarProps {
    isUser?: boolean;
    isAdmin?: boolean;
-   isVisitor?: boolean;
 }
