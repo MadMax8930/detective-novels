@@ -10,8 +10,8 @@ import InfoModal from './InfoModal'
 import NovelCard from './NovelCard'
 import NovelList from './NovelList'
 import Carousel from './Carousel'
-import Donations from './Donations'
 import DonateResponse from './DonateResponse'
+import DonateContainer from './DonateContainer'
 import { Loader, AdminLoader, AdminError } from './Utilities'
 import AdminChart from './AdminChart'
 import AdminForm from './AdminForm'
@@ -33,8 +33,8 @@ export {
    NovelCard,
    NovelList,
    Carousel,
-   Donations,
    DonateResponse,
+   DonateContainer,
    Loader,
    AdminChart,
    AdminForm,

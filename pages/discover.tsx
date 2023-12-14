@@ -29,8 +29,8 @@ const Discover: React.FC<{ authorData: AuthorDataProps }> = ({ authorData }) => 
    }
 
    return (
-      <div className="bg-slate-200 min-h-screen flex justify-center items-center">
-         <div className="bg-slate-100 w-full max-w-screen-2xl h-full shadow-lg overflow-hidden">
+      <div className="bg-primary-light min-h-screen flex justify-center items-center">
+         <div className="bg-primary-lighter w-full max-w-screen-2xl h-full shadow-lg overflow-hidden">
             <div className="flex flex-col md:flex-row">
                <div className="md:w-1/3 bg-primary-black relative">
                   <Image src={authorData.picture} alt={authorData?.authorName} fill={true} className="w-full h-full rounded-lg shadow-md object-cover p-8" />
@@ -44,7 +44,7 @@ const Discover: React.FC<{ authorData: AuthorDataProps }> = ({ authorData }) => 
                   </div>
                   <h2 className="text-3xl font-semibold mb-4">{authorData.authorName}</h2>
                   <p className="text-base text-gray-700 mb-4">{authorData.biography}</p>
-                  <div className="p-4 bg-slate-100 rounded-lg mt-4">
+                  <div className="bg-primary-lighter rounded-lg p-4 mt-4">
                      <p className="text-sm text-gray-600 mb-2">Favorite Books:</p>
                      <ul className="list-disc pl-6">
                         {authorData.favoriteBooks.map((book, index) => (

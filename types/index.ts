@@ -1,4 +1,4 @@
-import { MouseEventHandler } from 'react'
+import { ReactElement, MouseEventHandler } from 'react'
 import type { AppProps } from 'next/app'
 
 export interface CustomButtonProps {
@@ -6,7 +6,7 @@ export interface CustomButtonProps {
    btnType?: "button" | "submit";
    additionalStyles?: string;
    textStyles?: string;
-   rightIcon?: string;
+   reactIcon?: ReactElement;
    isDisabled?: boolean;
    action?: MouseEventHandler<HTMLButtonElement>;
 };

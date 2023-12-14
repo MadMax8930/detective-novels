@@ -30,7 +30,7 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
   };
 
   return (
-   <div className={`px-12 pt-20 pb-2 ${adminPage ? 'bg-admin-inner pt-6' : 'bg-white-main'}`}>
+   <div className={`px-12 pt-6 pb-2 ${adminPage ? 'bg-admin-inner' : 'bg-primary-light'}`}>
       <div className="carousel-container">
          {adminPage && selectedNovelId && (
             <div className="carousel-novel-id text-center md:text-sm text-xs text-white-main">
