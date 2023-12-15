@@ -1,7 +1,9 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { Button, Input } from '@/components'
 import { BsSendCheckFill, BsSendSlash } from 'react-icons/bs'
-import { NewsletterProps } from '@/types'
+import { NewsletterProps, NewsletterDBProps } from '@/types'
+import { toast } from 'react-hot-toast'
 
 const EMPTY_NEWSLETTER: NewsletterProps = { title: '', content: '', createdAt: '' };
 
@@ -9,6 +11,7 @@ const AdminSender = () => {
    // States
    const [newsletter, setNewsletter] = useState<NewsletterProps>(EMPTY_NEWSLETTER);
    const [showSendConfirmation, setShowSendConfirmation] = useState(false);
+   const [isSending, setIsSending] = useState(false);
 
    // Inputs/TextAreas
    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -16,10 +19,34 @@ const AdminSender = () => {
       setNewsletter((prevData: NewsletterProps) => ({ ...prevData, [name]: value }) );
    };
 
-   const submitForm = async (e: React.FormEvent) => {}
-   const handleSendNewsletter = async () => {}
+   const submitForm = async (e: React.FormEvent) => {
+      e.preventDefault();
+      setShowSendConfirmation(true);
+   };
 
-   const handleSendConfirmation = () => { setShowSendConfirmation(true) };
+   const handleSendNewsletter = async () => {
+      setIsSending(true);
+
+      const newsletterData: NewsletterDBProps = {
+         title: newsletter.title,
+         content: newsletter.content,
+      };
+
+      try {
+         await axios.post(`/api/newsletter/send`, newsletterData);
+   
+         console.log('Newsletter sent successfully.');
+         toast.success('Success! Your newsletter has been sent.');
+         setNewsletter(EMPTY_NEWSLETTER);
+         setShowSendConfirmation(false);
+       } catch (error) {
+         console.error('Error. Sending newsletter has failed:', error);
+         toast.error('An error occurred.');
+       } finally {
+         setIsSending(false);
+       }
+   };
+
 
   return (
     <div className="admin-form-container">
@@ -27,13 +54,13 @@ const AdminSender = () => {
          <div className="admin-card">
             <div className="admin-form-header">
                <h1 className="admin-form-state">Newsletter Section</h1>
-               <span className="">Last sent: 023834884</span>
+               <span className="">Last sent: {newsletter.createdAt?.toString() || '*****'}</span>
             </div>
             <div className="flex flex-col gap-1.5 my-6">
                <Input id="title" name="title" label="Newsletter title" value={newsletter.title} onChange={handleInputChange} adminPage={true} />  
                <textarea id="content" name="content" placeholder="Newsletter message" rows={10} value={newsletter.content} onChange={handleInputChange} className="admin-textarea" />        
             </div>
-            <Button title="Send Newsletter" btnType="submit" action={handleSendConfirmation} additionalStyles='admin-button-create w-full' />
+            <Button title="Send Newsletter" btnType="submit" action={() => setShowSendConfirmation(true)} isDisabled={isSending} additionalStyles='admin-button-create w-full' />
             <div className="flex justify-center pt-4">
                {showSendConfirmation && (
                   <div className="flex flex-col gap-2">

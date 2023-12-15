@@ -168,3 +168,10 @@ export interface NoItemProps {
 export interface TogglerProps {
    isSubscribed: boolean;
 }
+
+export interface NewsletterDBProps {
+   id?: string;
+   title: string;
+   content: string;
+   createdAt?: string;
+};

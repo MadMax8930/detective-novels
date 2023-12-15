@@ -443,19 +443,19 @@ html {
 /* Newsletter */
 
 .toggler-container {
-   @apply flex justify-center p-6 bg-primary-lighter w-1/6 rounded-xl;
+   @apply flex justify-center p-6 bg-primary-lighter w-auto rounded-xl;
 }
 
 .toggler {
-   @apply w-16 h-6 border-[1px] rounded-full bg-primary-black flex items-center justify-between p-2.5 relative cursor-pointer;
+   @apply md:w-16 w-14 h-6 border-[1px] rounded-full bg-primary-black flex items-center justify-between p-2.5 relative cursor-pointer;
 }
  
 .toggle-choice {
-   @apply text-xs text-gray-300;
+   @apply md:text-xs sm:text-[0.7rem] sm:leading-3 text-[0.6em] text-gray-300;
 }
  
 .toggle-ball {
-   @apply w-2.5 h-2.5 lg:w-5 lg:h-5 rounded-full absolute;
+   @apply w-4 h-4 rounded-full absolute;
 }
 
 /* Footer */

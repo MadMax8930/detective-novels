@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         where: { id: currentUser.id },
         data: { receiveNewsletters: !currentUser.receiveNewsletters },
         select: { id: true, receiveNewsletters: true },
-    });
+     });
 
      return res.status(200).json(updatedUser);
    } catch (error) {
