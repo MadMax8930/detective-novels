@@ -1,5 +1,5 @@
 import React from 'react'
-import { Toggler } from '@/components'
+import { Loader, Toggler } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import useCurrentUser from '@/hooks/useCurrentUser'
 
@@ -14,12 +14,13 @@ import ProfileLayout, { metadataProfile } from '../_layout'
 export const getServerSideProps = getUserSessionServerSideProps;
 
 const Blog: NextPageWithLayout<ProfileProps> = ({ session }) => {
-   const { data: user, mutate: mutateUser } = useCurrentUser();
+   const { data: user, isLoading: loadUser } = useCurrentUser();
+   if (loadUser) { return <Loader/> } 
 
   return (
     <div className='pt-32 text-center'>
       Profile Blog Page {session.username}
-      <Toggler permission={user?.receiveNewsletters} mutateUser={mutateUser} />
+      <Toggler isSubscribed={user?.receiveNewsletters} />
     </div>
   )
 }

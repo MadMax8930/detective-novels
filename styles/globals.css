@@ -442,8 +442,12 @@ html {
 
 /* Newsletter */
 
+.toggler-container {
+   @apply flex justify-center p-6 bg-primary-lighter w-1/6 rounded-xl;
+}
+
 .toggler {
-   @apply w-14 h-5 border-2 rounded-full bg-gray-800 flex items-center justify-between p-2 relative cursor-pointer;
+   @apply w-16 h-6 border-[1px] rounded-full bg-primary-black flex items-center justify-between p-2.5 relative cursor-pointer;
 }
  
 .toggle-choice {
@@ -451,7 +455,7 @@ html {
 }
  
 .toggle-ball {
-   @apply w-2 h-2 lg:w-4 lg:h-4 rounded-full absolute;
+   @apply w-2.5 h-2.5 lg:w-5 lg:h-5 rounded-full absolute;
 }
 
 /* Footer */

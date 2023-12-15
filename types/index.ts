@@ -164,3 +164,7 @@ export interface NoItemProps {
    imageSrc: string;
    imageAlt: string;
 };
+
+export interface TogglerProps {
+   isSubscribed: boolean;
+}
