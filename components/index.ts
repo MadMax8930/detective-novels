@@ -14,6 +14,7 @@ import DonateResponse from './DonateResponse'
 import DonateContainer from './DonateContainer'
 import { Loader, AdminLoader, AdminError } from './Utilities'
 import NoItem from './NoItem'
+import Toggler from './Toggler'
 import AdminChart from './AdminChart'
 import AdminForm from './AdminForm'
 import AdminInfoTabs from './AdminInfoTabs'
@@ -38,6 +39,7 @@ export {
    DonateContainer,
    Loader,
    NoItem,
+   Toggler,
    AdminChart,
    AdminForm,
    AdminInfoTabs,

@@ -440,6 +440,20 @@ html {
    @apply flex flex-col items-center text-base;
 }
 
+/* Newsletter */
+
+.toggler {
+   @apply w-14 h-5 border-2 rounded-full bg-gray-800 flex items-center justify-between p-2 relative cursor-pointer;
+}
+ 
+.toggle-choice {
+   @apply text-xs text-gray-300;
+}
+ 
+.toggle-ball {
+   @apply w-2 h-2 lg:w-4 lg:h-4 rounded-full absolute;
+}
+
 /* Footer */
 
 .footer__link {
