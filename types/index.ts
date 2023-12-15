@@ -27,6 +27,12 @@ export interface NovelProps {
    coverImage: string;
 };
 
+export interface NewsletterProps {
+   title: string;
+   content: string;
+   createdAt: string;
+};
+
 export interface PaginationProps {
    totalPages: number;
    currentPage: number;

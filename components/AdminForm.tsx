@@ -118,9 +118,9 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFe
                   <textarea id="content" name="content" placeholder="Content" rows={15} value={novel.content} onChange={handleInputChange} className="admin-textarea" />
                </div>
                <div className="flex justify-between gap-3 md:text-lg text-base mt-2 pb-4">
-                  <Button title={isCreating ? 'Create Novel' : 'Update Novel'} btnType="submit" action={submitForm} additionalStyles={isCreating ? 'admin-button-create w-full' : 'admin-button-update w-1/2'} />
+                  <Button title={isCreating ? 'Create Novel' : 'Update Novel'} btnType="submit" action={submitForm} additionalStyles={isCreating ? 'admin-button-create w-full' : 'admin-button-update w-full'} />
                   {!isCreating && adminSelectedNovelId && (
-                  <Button title="Delete Novel" btnType="button" action={handleDeleteConfirmation} additionalStyles="admin-button-delete w-1/2" />)}
+                  <Button title="Delete Novel" btnType="button" action={handleDeleteConfirmation} additionalStyles="admin-button-delete w-full" />)}
                </div>
                <div className="flex justify-center">
                   {showDeleteConfirmation && (
