@@ -149,3 +149,12 @@ export interface NavbarProps {
    isUser?: boolean;
    isAdmin?: boolean;
 };
+
+export interface NoItemProps {
+   variation: 'na' | 'nb' | 'nc';
+   linkHref: string;
+   title: string;
+   description: string;
+   imageSrc: string;
+   imageAlt: string;
+};

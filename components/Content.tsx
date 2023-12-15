@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import useNovel from '@/hooks/useNovel'
 import useInfoModal from '@/hooks/useInfoModal'
-import { ContentModal, Pagination, Loader } from '@/components'
+import { ContentModal, Pagination, Loader, NoItem } from '@/components'
 import { FcBookmark } from 'react-icons/fc'
 import { FaFeatherAlt } from 'react-icons/fa'
 import { MdFitScreen } from 'react-icons/md'
@@ -96,6 +96,8 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
             <div className="relative bottom-96"><Loader/></div>
          ) : (selectedNovel !== novelId) ? (
             <p className="text-red-500 md:text-xl text-sm font-semibold">Novel not found</p>
+         ) : (!selectedNovel) ? (
+            <NoItem variation={'nc'} linkHref="/" title="No selected novel" description="Click on any novel to select and read it." imageSrc="/images/book.png" imageAlt="No Content Yet" />
          ) : (
             null
          )}

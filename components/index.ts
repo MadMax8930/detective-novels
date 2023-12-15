@@ -13,6 +13,7 @@ import Carousel from './Carousel'
 import DonateResponse from './DonateResponse'
 import DonateContainer from './DonateContainer'
 import { Loader, AdminLoader, AdminError } from './Utilities'
+import NoItem from './NoItem'
 import AdminChart from './AdminChart'
 import AdminForm from './AdminForm'
 import AdminInfoTabs from './AdminInfoTabs'
@@ -36,6 +37,7 @@ export {
    DonateResponse,
    DonateContainer,
    Loader,
+   NoItem,
    AdminChart,
    AdminForm,
    AdminInfoTabs,

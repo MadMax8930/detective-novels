@@ -9,6 +9,7 @@
 
 body {
    @apply h-full overflow-x-hidden;
+   background-color: rgb(226 232 240);
 }
 
 html {
@@ -414,6 +415,29 @@ html {
 
 .chart-title {
    @apply text-chart-title mb-5 font-extralight text-left pl-12;
+}
+
+/* No Item */
+
+.ncContainer {
+   @apply flex flex-col items-center justify-center text-center py-24 px-6 cursor-pointer;
+}
+ 
+.ncTitle {
+   @apply mb-1.5 text-xl font-semibold;
+   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+ 
+.ncDescription {
+   @apply text-sm mb-6;
+}
+ 
+.ncImage {
+   @apply w-full max-w-[200px] h-auto text-center cursor-pointer;
+}
+
+.ncLink {
+   @apply flex flex-col items-center text-base;
 }
 
 /* Footer */

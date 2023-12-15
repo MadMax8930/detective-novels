@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { footerLinks } from '@/constants'
+import { FOOTER_LINKS } from '@/constants'
 
 const Footer = ({ bgLight }: { bgLight: boolean }) => (
    <footer className={`flex flex-col ${bgLight ? "text-gray-600" : "text-gray-300"} mt-5 border-t border-gray-400`}>
@@ -14,7 +14,7 @@ const Footer = ({ bgLight }: { bgLight: boolean }) => (
             </div>
          </div>
          <div className="footer__links">
-            {footerLinks.map((item) => (
+            {FOOTER_LINKS.map((item) => (
                <div key={item.title} className="footer__link">
                   <h3 className="font-bold text-base sm:text-lg md:text-xl">{item.title}</h3>
                   <div className="flex flex-col gap-2 md:gap-4">

@@ -1,4 +1,4 @@
-export const footerLinks = [
+export const FOOTER_LINKS = [
    {
       title: "About",
       links: [
@@ -25,14 +25,15 @@ export const footerLinks = [
    },
 ];
 
-export const defaultCoverImage = 'https://edit.org/images/cat/book-covers-big-2019101610.jpg';
+export const DEFAULT_COVER = 'https://edit.org/images/cat/book-covers-big-2019101610.jpg';
+export const LINKEDIN = 'https://www.linkedin.com/in/vladislav-surnin-89a51b5';
 
 export const COFFEE_URL = `https://www.buymeacoffee.com/${process.env.NEXT_PUBLIC_BUYMEACOFFEE_USERNAME}`;
 export const PAYPAL_URL = `https://www.paypal.com/donate?business=${process.env.NEXT_PUBLIC_PAYPAL_MERCHANT_ID}`;
 
 export const ITEMS_PER_PAGE = 4;
 
-export const hardcodedChartData = [
+export const HARDCODED_CHART_DATA = [
    {
       day: "Sun",
       visit: 2,

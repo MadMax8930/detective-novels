@@ -16,13 +16,12 @@ type ProfileLayoutProps = {
 };
 
 export const metadataProfile = {
-   title: 'testing the title seo',
-   description: 'testing the desc seo',
-   keywords: 'testing the keywords seo',
-   applicationName: 'testing the author seo',
+   title: 'profile profile profile',
+   description: 'profile profile profile',
+   keywords: 'profile profile profile',
+   applicationName: 'profile profile profile',
    themeColor: "#2d2e30",
 }
-
 
 export default function ProfileLayout ({ children, layoutMetadata, session }: ProfileLayoutProps) {
   return (

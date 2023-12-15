@@ -5,7 +5,7 @@ import useNovel from '@/hooks/useNovel'
 import { Input, Button } from '@/components'
 import { toast } from 'react-hot-toast'
 import { AdminFormProps } from '@/types'
-import { defaultCoverImage } from '@/constants'
+import { DEFAULT_COVER } from '@/constants'
 
 const EMPTY_NOVEL: NovelProps = { title: '', description: '', author: '', preview: '', content: '', genre: '', coverImage: '' };
  
@@ -39,7 +39,7 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFe
            preview: novel.preview,
            content: novel.content,
            genre: novel.genre,
-           coverImage: novel.coverImage || defaultCoverImage,
+           coverImage: novel.coverImage || DEFAULT_COVER,
          };
 
          if (!isCreating && adminSelectedNovelId) {

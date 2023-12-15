@@ -1,10 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { signOut } from 'next-auth/react'
 import { Button } from '@/components'
 import { NavbarProps } from '@/types'
 
 const Navbar: React.FC<NavbarProps>  = ({ isUser, isAdmin }) => {
+   const router = useRouter();
+   const targetPath = router.pathname === '/profile' ? '/profile/blog' : '/profile';
+   const targetTitle = router.pathname === '/profile' ? 'Lounge' : 'Profile';
   return (
     <header className="w-full fixed top-0 z-30 right-0 bg-black bg-opacity-90">
       <nav className="max-w-[1275px] mx-auto flex flex-row justify-between items-center sm:px-16 px-6 pt-4 md:pb-4 pb-2">
@@ -27,9 +31,9 @@ const Navbar: React.FC<NavbarProps>  = ({ isUser, isAdmin }) => {
                />
             </Link>}
             {isUser ? <>
-            <Link href={{ pathname: '/profile/blog' }}>
+            <Link href={{ pathname: targetPath }}>
                <Button
-                  title={'Profile'}
+                  title={targetTitle}
                   btnType="button"
                   additionalStyles="button-profile"
                />
