@@ -22,9 +22,9 @@ model User {
    // Relationships
    adminId String? @map("_admin") @db.ObjectId
    admin Admin? @relation("AdminUsers", fields: [adminId], references: [id])
-   comments Comment[] @relation("UserComments")
    donations Donation[] @relation("UserDonations")
-   favoritesArray Favorite[] @relation("UserFavorites")
+   comments Comment[] @relation("UserComments")
+   favoriteIdsArray Favorite[] @relation("UserFavorites")
 }
 
 model Novel {
@@ -41,7 +41,7 @@ model Novel {
 
    // Relationships
    comments Comment[] @relation("NovelComments")
-   favoritedByArray Favorite[] @relation("NovelFavorites")
+   favoriteIdsArray Favorite[] @relation("NovelFavorites")
 }
 
 model Favorite {
@@ -66,7 +66,7 @@ model Comment {
    novelId String? @map("_novel") @db.ObjectId
    novel Novel? @relation("NovelComments", fields: [novelId], references: [id])
    parentCommentId String? @map("_parentComment") @db.ObjectId
-   parentComment Comment? @relation("Replies", fields: [parentCommentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+   parentCommentObj Comment? @relation("Replies", fields: [parentCommentId], references: [id], onDelete: NoAction, onUpdate: NoAction)
    replies Comment[] @relation("Replies")
 }
 
