@@ -81,7 +81,7 @@ model Admin {
 
    // Relationships
    users User[] @relation("AdminUsers")
-   sentNewsletters Newsletter[] @relation("AdminNewsletters")
+   newsletters Newsletter[] @relation("AdminNewsletters")
 }
 
 model Newsletter {

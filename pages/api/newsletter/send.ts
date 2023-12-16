@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import serverAuth from '@/lib/serverAuth'
 import prismadb from '@/lib/prismadb'
+import serverAuth from '@/lib/serverAuth'
+import { NextApiRequest, NextApiResponse } from 'next'
 import nodemailer from 'nodemailer'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -23,39 +23,62 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }, 
         },
      });
-    
-     // Update Admin Record (push id to sentNewsletters array)
-     const updatedAdminData = await prismadb.admin.update({
+
+     console.log("id", newNewsletter.id)
+
+     // Fetch Admin Record
+     const adminRecord = await prismadb.admin.findUnique({
         where: { id: currentUser.adminId },
         include: {
-          sentNewsletters: {
+          newsletters: true,
+        },
+     });
+   
+     console.log('adminRecord:', adminRecord);
+
+     ///////////
+
+     if (!adminRecord!.newsletters) {
+      // If newsletters array is not present, initialize it as an empty array
+       adminRecord!.newsletters = [];
+     }
+    
+     // Update Admin Record
+     const updatedAdminData = await prismadb.admin.update({
+        where: { id: currentUser.adminId },
+        data: {
+          newsletters: {
+            connect: { id: newNewsletter.id },
+          },
+        },
+        include: {
+          newsletters: {
             select: {
                id: true,
             },
           },
         },
-        data: {
-          sentNewsletters: {
-            connect: { id: newNewsletter.id },
-          },
-        },
-     });
+      });
 
-     console.log('Updated Admin Data:', updatedAdminData);
-     
-     const formattedData = {
-        ...updatedAdminData,
-        sentNewsletters: updatedAdminData?.sentNewsletters.map((newsletter) => newsletter.id),
-     };
+      console.log('updatedAdminData:', updatedAdminData);
+ 
+      const formattedData = {
+        ...adminRecord,
+        newsletters: updatedAdminData?.newsletters.map((newsletter) => newsletter.id) || [],
+      };
 
-     // Fetch users with receiveNewsletters set to true
-     const newsletterUsers = await prismadb.user.findMany({
-        where: { receiveNewsletters: true },
-        select: { email: true },
-     });
+     console.log('Formatted Admin Data:', formattedData);
+
+     ////////////
+
+   //   // Fetch users with receiveNewsletters set to true
+   //   const newsletterUsers = await prismadb.user.findMany({
+   //      where: { receiveNewsletters: true },
+   //      select: { email: true },
+   //   });
      
-     const recipientEmails = newsletterUsers.map((user) => user.email);
-     await sendEmail(recipientEmails, title, content );
+   //   const recipientEmails = newsletterUsers.map((user) => user.email);
+   //   await sendEmail(recipientEmails, title, content );
 
      return res.status(200).json(formattedData);
    } catch (error) {
