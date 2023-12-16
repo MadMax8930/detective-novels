@@ -24,25 +24,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
      });
 
-     console.log("id", newNewsletter.id)
-
-     // Fetch Admin Record
-     const adminRecord = await prismadb.admin.findUnique({
-        where: { id: currentUser.adminId },
-        include: {
-          newsletters: true,
-        },
-     });
-   
-     console.log('adminRecord:', adminRecord);
-
-     ///////////
-
-     if (!adminRecord!.newsletters) {
-      // If newsletters array is not present, initialize it as an empty array
-       adminRecord!.newsletters = [];
-     }
-    
      // Update Admin Record
      const updatedAdminData = await prismadb.admin.update({
         where: { id: currentUser.adminId },
@@ -58,27 +39,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             },
           },
         },
-      });
-
-      console.log('updatedAdminData:', updatedAdminData);
+     });
  
-      const formattedData = {
-        ...adminRecord,
+     const formattedData = {
+        ...updatedAdminData,
         newsletters: updatedAdminData?.newsletters.map((newsletter) => newsletter.id) || [],
-      };
+     };
 
-     console.log('Formatted Admin Data:', formattedData);
+     // console.log('Formatted Admin Data:', formattedData);
 
-     ////////////
-
-   //   // Fetch users with receiveNewsletters set to true
-   //   const newsletterUsers = await prismadb.user.findMany({
-   //      where: { receiveNewsletters: true },
-   //      select: { email: true },
-   //   });
+     // Fetch users with receiveNewsletters set to true
+     const newsletterUsers = await prismadb.user.findMany({
+        where: { receiveNewsletters: true },
+        select: { email: true },
+     });
      
-   //   const recipientEmails = newsletterUsers.map((user) => user.email);
-   //   await sendEmail(recipientEmails, title, content );
+     const recipientEmails = newsletterUsers.map((user) => user.email);
+     await sendEmail(recipientEmails, title, content );
 
      return res.status(200).json(formattedData);
    } catch (error) {

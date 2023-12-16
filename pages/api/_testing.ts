@@ -5,28 +5,120 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
    if (req.method !== 'GET') { return res.status(405).end() }
 
    try {
-      const userData = await prismadb.user.findMany({
-         include: {
+
+      /* USER */
+
+      const userDataNaked = await prismadb.user.findMany();
+
+      const userDataIdObj = await prismadb.user.findMany({
+         select: {
+           donations: {
+             select: {
+               id: true,
+             },
+           },
+           comments: {
+             select: {
+               id: true,
+             },
+           },
+           favoriteIdsArray: {
+             select: {
+               id: true,
+             },
+           },
+         },
+      });
+
+      const userDataFullObj = await prismadb.user.findMany({
+         select: {
+            id: true,
             donations: true,
             comments: true,
-            favoritesArray: true,
+            favoriteIdsArray: true,
          },
       });
 
-      const novelData = await prismadb.novel.findMany({
-         include: {
+      const userDataWithArray = userDataFullObj.map(({ comments, donations, favoriteIdsArray, ...rest }) => ({
+         ...rest,
+         donations: donations.map((donate) => donate.id),
+         comments: comments.map((comment) => comment.id),
+         favoriteIdsArray: favoriteIdsArray.map((favorite) => favorite.id),
+      }));
+
+      /* NOVEL */
+
+      const novelDataNaked = await prismadb.novel.findMany();
+
+      const novelDataIdObj = await prismadb.novel.findMany({
+         select: {
+           comments: {
+             select: {
+               id: true,
+             },
+           },
+           favoriteIdsArray: {
+             select: {
+               id: true,
+             },
+           },
+         },
+      });
+
+      const novelDataFullObj = await prismadb.novel.findMany({
+         select: {
+            id: true,
             comments: true,
-            favoritedByArray: true,
+            favoriteIdsArray: true,
          },
       });
 
-      const commentData = await prismadb.comment.findMany({
+      const novelDataWithArray = novelDataFullObj.map(({ comments, favoriteIdsArray, ...rest }) => ({
+         ...rest,
+         comments: comments.map((comment) => comment.id),
+         favoriteIdsArray: favoriteIdsArray.map((favorite) => favorite.id),
+      }));
+
+      /* FAVORITE */
+
+      const favData = await prismadb.favorite.findMany();
+
+      /* COMMENT */
+
+      const commentDataNaked = await prismadb.comment.findMany();
+
+      const commentDataIdObj = await prismadb.comment.findMany({
          include: {
-            replies: true, 
+           replies: {
+             select: {
+               id: true,
+             },
+           },
+           parentCommentObj: {
+             select: {
+               id: true,
+             },
+           },
          },
       });
 
-      const adminData = await prismadb.admin.findMany({
+      const commentDataFullObj = await prismadb.comment.findMany({
+         include: {
+            replies: true,
+            parentCommentObj: true
+         },
+      });
+
+      const commentDataWithArray = commentDataFullObj.map(({ replies, ...rest }) => ({
+         ...rest,
+         replies: replies.map((reply) => reply.id),
+      }));
+
+      /* ADMIN */
+
+      const adminDataNaked = await prismadb.admin.findMany();
+
+      const adminDataIdObj = await prismadb.admin.findMany({
          include: {
            users: {
              select: {
@@ -40,33 +132,37 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
            },
          },
       });
+
+      const adminDataFullObj = await prismadb.admin.findMany({
+         include: {
+           users: true,
+           newsletters: true
+         },
+      });
        
-      const updatedAdminData = adminData.map(({ users, newsletters, ...rest }) => ({
+      const adminDataWithArray = adminDataFullObj.map(({ users, newsletters, ...rest }) => ({
          ...rest,
          users: users.map((user) => user.id),
          newsletters: newsletters.map((newsletter) => newsletter.id),
       }));
 
-      const favData = await prismadb.favorite.findMany();
-      const newsletterData = await prismadb.newsletter.findMany();
-      const donationData = await prismadb.donation.findMany();
+      /* NEWSLETTER */
 
+      const newsletterData = await prismadb.newsletter.findMany();
+
+      /* DONATION */
+
+      const donationData = await prismadb.donation.findMany();   
+      
       // console.log("user model", userData);
       // console.log("novel model", novelData);
+      // console.log("fav model", favData);
       // console.log("comment model", commentData);
       // console.log("admin model", adminData);
-      // console.log("fav model", favData);
       // console.log("newsletter model", newsletterData);
       // console.log("donation model", donationData);
 
-      const adminTest = await prismadb.admin.findMany({
-         select: {
-           users: true,
-           newsletters: true
-         },
-      });
-
-      const TESTING = adminTest
+      const TESTING = commentDataWithArray
 
       return res.status(200).json(TESTING);
    } catch (error) {

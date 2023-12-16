@@ -32,10 +32,10 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
         const usersWithFavorites = await prismadb.user.findMany({
           include: {
-            favoritesArray: true,
+            favoriteIdsArray: true,
           },
           where: {
-            favoritesArray: {
+            favoriteIdsArray: {
               some: {
                 createdAt: {
                   gte: startOfDayDate,
@@ -47,7 +47,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         });
 
         const commentsCount = usersWithComments.reduce((count, user: any) => count + user.comments?.length, 0);
-        const favoritesCount = usersWithFavorites.reduce((count, user: any) => count + user.favoritesArray?.length, 0);
+        const favoritesCount = usersWithFavorites.reduce((count, user: any) => count + user.favoriteIdsArray?.length, 0);
 
         dailyResults.push({
            day: format(startOfDayDate, 'EEE'),
