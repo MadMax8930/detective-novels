@@ -81,6 +81,7 @@ model Admin {
 
    // Relationships
    users User[] @relation("AdminUsers")
+   sentNewsletters Newsletter[] @relation("AdminNewsletters")
 }
 
 model Newsletter {
@@ -88,6 +89,10 @@ model Newsletter {
    title String
    content String
    createdAt DateTime @default(now())
+
+   // Relationships
+   adminId String? @map("_admin") @db.ObjectId
+   admin Admin? @relation("AdminNewsletters", fields: [adminId], references: [id])
 }
 
 model Donation {
