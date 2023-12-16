@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import serverAuth from '@/lib/serverAuth'
-import prisma from '@/lib/prismadb'
+import prismadb from '@/lib/prismadb'
 import nodemailer from 'nodemailer'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -13,10 +13,43 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
      const { title, content } = req.body;
      if (!title || !content) { return res.status(400).json({ error: 'Title & content are required' }) }
 
-     await prisma.newsletter.create({ data: { title, content } });
+     // Create Newsletter Record
+     const newNewsletter = await prismadb.newsletter.create({
+        data: { 
+          title, 
+          content,
+          admin: {
+            connect: { id: currentUser.adminId },
+          }, 
+        },
+     });
+    
+     // Update Admin Record (push id to sentNewsletters array)
+     const updatedAdminData = await prismadb.admin.update({
+        where: { id: currentUser.adminId },
+        include: {
+          sentNewsletters: {
+            select: {
+               id: true,
+            },
+          },
+        },
+        data: {
+          sentNewsletters: {
+            connect: { id: newNewsletter.id },
+          },
+        },
+     });
+
+     console.log('Updated Admin Data:', updatedAdminData);
+     
+     const formattedData = {
+        ...updatedAdminData,
+        sentNewsletters: updatedAdminData?.sentNewsletters.map((newsletter) => newsletter.id),
+     };
 
      // Fetch users with receiveNewsletters set to true
-     const newsletterUsers = await prisma.user.findMany({
+     const newsletterUsers = await prismadb.user.findMany({
         where: { receiveNewsletters: true },
         select: { email: true },
      });
@@ -24,7 +57,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
      const recipientEmails = newsletterUsers.map((user) => user.email);
      await sendEmail(recipientEmails, title, content );
 
-     return res.status(200).json({ success: true });
+     return res.status(200).json(formattedData);
    } catch (error) {
      console.error(error);
      return res.status(500).json({ error: 'Internal Server Error' });

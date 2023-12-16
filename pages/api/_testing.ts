@@ -10,7 +10,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
          include: {
             donations: true,
             comments: true,
-            newsletters: true,
             favoritesArray: true,
          },
       });
@@ -30,10 +29,26 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       const adminData = await prismadb.admin.findMany({
          include: {
-            users: true,
-            newslettersSent: true,
+           users: {
+             select: {
+               id: true,
+             },
+           },
+           sentNewsletters: {
+             select: {
+               id: true,
+             },
+           },
          },
       });
+       
+      const updatedAdminData = adminData.map(({ users, sentNewsletters, ...rest }) => ({
+         ...rest,
+         users: users.map((user) => user.id),
+         sentNewsletters: sentNewsletters.map((newsletter) => newsletter.id),
+      }));
+
+       
 
       const favData = await prismadb.favorite.findMany();
       const newsletterData = await prismadb.newsletter.findMany();
@@ -47,7 +62,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       // console.log("newsletter model", newsletterData);
       // console.log("donation model", donationData);
 
-      const TESTING = novelData
+      const TESTING = updatedAdminData
 
       return res.status(200).json(TESTING);
    } catch (error) {

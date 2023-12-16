@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import serverAuth from '@/lib/serverAuth'
-import prisma from '@/lib/prismadb'
+import prismadb from '@/lib/prismadb'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
    if (req.method !== 'PATCH') { return res.status(405).end() }
@@ -8,7 +8,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
    try {
      const { currentUser } = await serverAuth(req, res);
 
-     const updatedUser = await prisma.user.update({
+     const updatedUser = await prismadb.user.update({
         where: { id: currentUser.id },
         data: { receiveNewsletters: !currentUser.receiveNewsletters },
         select: { id: true, receiveNewsletters: true },
