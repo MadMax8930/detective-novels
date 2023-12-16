@@ -36,8 +36,8 @@ const AdminSender = () => {
          await axios.post(`/api/newsletter/send`, newsletterData);
    
          console.log('Newsletter sent successfully.');
-         toast.success('Success! Your newsletter has been sent.');
-         setNewsletter(EMPTY_NEWSLETTER);
+         toast.success('Success! Newsletter has been sent.');
+         setNewsletter({...EMPTY_NEWSLETTER, createdAt: new Date().toISOString()});
          setShowSendConfirmation(false);
        } catch (error) {
          console.error('Error. Sending newsletter has failed:', error);
@@ -54,7 +54,7 @@ const AdminSender = () => {
          <div className="admin-card">
             <div className="admin-form-header">
                <h1 className="admin-form-state">Newsletter Section</h1>
-               <span className="">Last sent: {newsletter.createdAt?.toString() || '*****'}</span>
+               <span className="text-white">Last sent: {newsletter.createdAt || 'N/A'}</span>
             </div>
             <div className="flex flex-col gap-1.5 my-6">
                <Input id="title" name="title" label="Newsletter title" value={newsletter.title} onChange={handleInputChange} adminPage={true} />  

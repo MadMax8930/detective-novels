@@ -24,7 +24,6 @@ model User {
    admin Admin? @relation("AdminUsers", fields: [adminId], references: [id])
    comments Comment[] @relation("UserComments")
    donations Donation[] @relation("UserDonations")
-   newsletters Newsletter[] @relation("UserNewsletters")
    favoritesArray Favorite[] @relation("UserFavorites")
 }
 
@@ -82,7 +81,6 @@ model Admin {
 
    // Relationships
    users User[] @relation("AdminUsers")
-   newslettersSent Newsletter[] @relation("AdminNewsletters")
 }
 
 model Newsletter {
@@ -90,12 +88,6 @@ model Newsletter {
    title String
    content String
    createdAt DateTime @default(now())
-
-   // Relationships
-   adminId String? @map("_admin") @db.ObjectId
-   admin Admin? @relation("AdminNewsletters", fields: [adminId], references: [id])
-   userId String? @map("_user") @db.ObjectId
-   user User? @relation("UserNewsletters", fields: [userId], references: [id])
 }
 
 model Donation {
