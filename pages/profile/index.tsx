@@ -33,7 +33,7 @@ const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
    }, [novelData]);
 
    return (
-      <div className="w-screen min-h-full">
+      <div className="w-screen min-h-full bg-primary-lighter">
          {(isLoading || !novels) ? <LoaderLight /> : (<>
          <div className="flex-grow overflow-hidden">
             <DonateContainer session={session} />

@@ -48,9 +48,8 @@ body {
 }
 
 .user-container {
-   @apply text-base md:text-lg font-semibold uppercase;
+   @apply text-base md:text-lg lg:text-xl font-semibold uppercase;
    font-family: 'Big Shoulders Text', sans-serif;
-   font-weight: 700;
 }
 
 /* Buttons */
@@ -427,20 +426,20 @@ body {
 /* No Item */
 
 .ncContainer {
-   @apply flex flex-col items-center justify-center text-center py-24 px-6 cursor-pointer;
+   @apply flex flex-col items-center justify-center text-center py-24 px-6 pr-16 cursor-pointer;
+   font-family: 'Big Shoulders Text', sans-serif;
 }
  
 .ncTitle {
-   @apply mb-1.5 text-xl font-semibold;
-   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+   @apply text-base md:text-lg lg:text-xl font-semibold uppercase;
 }
  
 .ncDescription {
-   @apply text-sm mb-6;
+   @apply text-base lg:text-lg mb-6 text-grey mt-1;
 }
  
 .ncImage {
-   @apply w-full max-w-[200px] h-auto text-center cursor-pointer;
+   @apply w-full max-w-[200px] h-auto text-center opacity-80 cursor-pointer;
 }
 
 .ncLink {

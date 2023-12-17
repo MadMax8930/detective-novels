@@ -8,7 +8,7 @@ import { COFFEE_URL, PAYPAL_URL } from '@/constants'
 
 const DonationContainer: React.FC<{ session: SessionUserProps }> = ({ session }) => {
   return (
-    <div className="flex flex-col gap-2 pt-24 text-center">
+    <div className="flex flex-col gap-2 pt-24 text-center bg-primary-light">
       <strong className="user-container">Welcome {session.username}</strong> 
       <div className="donations-container">
          <Link href={COFFEE_URL} passHref target="_blank" rel="noopener noreferrer">

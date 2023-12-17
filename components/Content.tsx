@@ -40,7 +40,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
    };
 
    return (
-      <div className="pb-8 pl-10 md:pl-36 md:pr-24 pr-4 md:mr-4 text-justify relative">
+      <div className="pb-8 pl-10 md:pl-36 md:pr-24 pr-4 md:mr-4 text-justify relative w-full h-auto">
          {selectedNovel ? (
             <>
                <div className="flex flex-col md:flex-row justify-between md:items-center mb-2 pt-3 md:pb-4 pb-2 my-4 pr-6">
@@ -95,9 +95,9 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
          ) : (isLoading) ? (
             <LoaderLine />
          ) : (selectedNovel !== novelId) ? (
-            <p className="text-red-500 md:text-xl text-sm font-semibold">Novel not found</p>
+            <p className="text-red-500 md:text-xl text-sm font-semibold p-4">Novel not found</p>
          ) : (!selectedNovel) ? (
-            <NoItem variation={'nc'} linkHref="/" title="No selected novel" description="Click on any novel to select and read it." imageSrc="/images/book.png" imageAlt="No Content Yet" />
+            <NoItem variation={'nc'} linkHref="/" title="No Selected Novel" description="Click on any novel to select and read it." imageSrc="/images/book.png" imageAlt="No Content Yet" />
          ) : (
             null
          )}
