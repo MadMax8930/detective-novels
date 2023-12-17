@@ -36,7 +36,7 @@ export const authOptions: AuthOptions = {
               return { ...sessionUser, userToken, adminToken };
             } catch (error) {
               console.error('Authentication error:', error);
-              return null;
+              throw new Error('Failed authentication process');
             }
          }
       })

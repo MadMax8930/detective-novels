@@ -1,3 +1,4 @@
+import React from 'react'
 import axios from 'axios'
 import withLoading from '@/pages/_hoc'
 import { useCallback, useState, useEffect } from 'react'
@@ -10,12 +11,18 @@ import { Input, LoaderDark } from '@/components'
 const Auth = () => {
    const router = useRouter();
    const { query } = router;
-   
+
    const [email, setEmail] = useState('');
    const [username, setUsername] = useState('');
    const [password, setPassword] = useState('');
    const [variant, setVariant] = useState('login');
    const [loading, setLoading] = useState(false);
+   const [shakeForm, setShakeForm] = useState(false);
+
+   const triggerShakeForm = () => {
+      setShakeForm(true);
+      setTimeout(() => { setShakeForm(false) }, 1000);
+   };
 
    useEffect(() => {
       if (query.variant) { setVariant(query.variant as string) }
@@ -45,35 +52,43 @@ const Auth = () => {
    }, [email, password, username, variant]);
 
    const login = useCallback(async() => {
-      if (!validateInputs()) { return; }
+      if (!validateInputs()) {
+         triggerShakeForm();
+         return; 
+      }
 
       try {
         setLoading(true);
         await signIn('credentials', {
-         email, password, callbackUrl: '/profile'
+           email, password, callbackUrl: '/profile'
         });
-        toast.success('Logged in successfully');
+        toast.success('Logged in successfully.');
       } catch (error) {
-        console.log(error);
-        toast.error("Something went wrong.");
+        console.error(error);
+        toast.error('Something went wrong.');
+        triggerShakeForm();
       } finally {
         setLoading(false);
       }
    }, [email, password, validateInputs]);
 
    const register = useCallback(async() => {
-      if (!validateInputs()) { return; }
+      if (!validateInputs()) { 
+         triggerShakeForm();
+         return; 
+      }
 
       try {
         setLoading(true);
         await axios.post('/api/register', {
          email, username, password
         });
-        toast.success("Account created.");
+        toast.success('Account created.');
         login();
       } catch (error) {
-        console.log(error);
-        toast.error("Something went wrong.");
+        console.error(error);
+        toast.error('Something went wrong.');
+        triggerShakeForm();
       } finally {
         setLoading(false);
       }
@@ -97,7 +112,7 @@ const Auth = () => {
                </div>
             </nav>
             {/* Authentication Modal */}
-            <div className="flex justify-center md:pt-24 pt-10">
+            <div className={`flex justify-center md:pt-24 pt-10 ${shakeForm && 'shake-form'}`}>
                <div className="bg-black bg-opacity-70 md:px-16 md:py-16 px-10 py-6 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
                   {/* Title */}
                   <div className="pb-3">
@@ -106,7 +121,7 @@ const Auth = () => {
                      </h2>
                   </div>
                   {/* Form */}
-                  <div className="flex flex-col gap-3 mb-2">
+                  <div className={`flex flex-col gap-3 mb-2 ${shakeForm && 'shake-form'}`}>
                      {variant === 'register' && (
                      <Input label="Username" onChange={(e: any) => setUsername(e.target.value)} value={username} id="name" adminPage={false} /> )}
                      <Input label="Email" onChange={(e: any) => setEmail(e.target.value)} value={email} id="email" type="email" adminPage={false} />
