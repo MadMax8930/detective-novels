@@ -6,8 +6,8 @@ const LoaderLight = () => {
    return (
       <div className="flex justify-center items-center h-full min-h-screen">
          <ClockLoader color="red" size={22} />
-         <div className='opacity-20'>
-            <Image src="/images/nature.gif" alt="Gif" fill={true} className='object-cover' />
+         <div className='opacity-20 absolute inset-0'>
+            <Image src="/images/nature.gif" alt="Gif" fill={true} className='object-cover' priority={true} />
          </div>
       </div>
    )
@@ -17,8 +17,8 @@ const LoaderDark = () => {
    return (
       <div className="flex justify-center items-center h-full min-h-screen bg-black">
          <ClockLoader color="red" size={22} />
-         <div className='opacity-10'>
-            <Image src="/images/nature.gif" alt="Gif" fill={true} className='object-cover' />
+         <div className='opacity-10 absolute inset-0'>
+            <Image src="/images/nature.gif" alt="Gif" fill={true} className='object-cover' priority={true} />
          </div>
       </div>
    )

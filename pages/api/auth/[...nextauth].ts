@@ -13,26 +13,31 @@ export const authOptions: AuthOptions = {
          name: 'Credentials',
          credentials: { email: { label: 'Email', type: 'text' }, password: { label: 'Password', type: 'password' } },
          async authorize(credentials) {
-            if(!credentials?.email || !credentials?.password) { throw new Error('Email and password required') }
+            try {
+              if(!credentials?.email || !credentials?.password) { throw new Error('Email and password required') }
 
-            const user = await prismadb.user.findUnique({ where: { email: credentials.email } })
-            if(!user || !user.hashedPassword) { throw new Error('Email does not exist') }
+              const user = await prismadb.user.findUnique({ where: { email: credentials.email } })
+              if(!user || !user.hashedPassword) { throw new Error('Email does not exist') }
 
-            const isCorrectPassword = await compare(credentials.password, user.hashedPassword)
-            if(!isCorrectPassword) { throw new Error('Incorrect password') }
+              const isCorrectPassword = await compare(credentials.password, user.hashedPassword)
+              if(!isCorrectPassword) { throw new Error('Incorrect password') }
 
-            // Generate token for users
-            const sessionUser = { id: user.id, username: user.username, email: user.email, adminId: user.adminId };
-            const userToken = jwt.sign(sessionUser, `${process.env.NEXTAUTH_JWT_SECRET}`, { expiresIn: '7d' });
+              // Generate token for users
+              const sessionUser = { id: user.id, username: user.username, email: user.email, adminId: user.adminId };
+              const userToken = jwt.sign(sessionUser, `${process.env.NEXTAUTH_JWT_SECRET}`, { expiresIn: '7d' });
 
-            // Generate token for admins
-            let adminToken = null;
-            if (user.adminId !== null) {
-               adminToken = jwt.sign({ adminId: user.adminId }, `${process.env.ADMIN_JWT_SECRET}`, { expiresIn: '3d' });
-            };
+              // Generate token for admins
+              let adminToken = null;
+              if (user.adminId !== null) {
+                 adminToken = jwt.sign({ adminId: user.adminId }, `${process.env.ADMIN_JWT_SECRET}`, { expiresIn: '3d' });
+              };
 
-            // console.log('Generated tokens:', { userToken, adminToken, sessionUser });
-            return { ...sessionUser, userToken, adminToken };
+              // console.log('Generated tokens:', { userToken, adminToken, sessionUser });
+              return { ...sessionUser, userToken, adminToken };
+            } catch (error) {
+              console.error('Authentication error:', error);
+              return null;
+            }
          }
       })
    ],

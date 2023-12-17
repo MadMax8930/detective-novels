@@ -38,7 +38,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ initialValue = '' }) => {
             toast.error('Novel not found. Enter the correct title');
          }
       } catch (error) {
-         console.log(error);
+         console.error(error);
          toast.error('An error occurred while searching for the novel');
       }
    }
