@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/react'
 import { toast } from 'react-hot-toast'
 import { BsArrowLeftSquareFill } from 'react-icons/bs'
-import { Input, Loader } from '@/components'
+import { Input, LoaderDark } from '@/components'
 
 const Auth = () => {
    const router = useRouter();
@@ -55,7 +55,7 @@ const Auth = () => {
       }
    }, [email, username, password, login]);
 
-   if (loading) { return <div className='bg-black'><Loader /></div>; }
+   if (loading) { return <LoaderDark /> }
 
    return (
       <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">

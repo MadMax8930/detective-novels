@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import useNovel from '@/hooks/useNovel'
 import { BsArrowLeftSquareFill, BsPersonSquare } from 'react-icons/bs'
-import { Loader, Footer } from '@/components'
+import { LoaderDark, Footer } from '@/components'
 
 const Read = () => {
    const router = useRouter();
@@ -30,7 +30,7 @@ const Read = () => {
             </nav>
          </div>
          {/* Preview */}
-         {(isLoading || !data) ? <Loader/> : (
+         {(isLoading || !data) ? <LoaderDark /> : (
          <div className="md:pt-32 pt-20 px-6 md:px-36 text-justify">
             <p className="text-green-400 text-2xl md:text-3xl font-bold">{data?.title}</p><br /> 
             <div className="text-white text-xs md:text-base font-serif">

@@ -1,4 +1,4 @@
-import { Loader, Navbar, Footer, NovelList, InfoModal } from '@/components'
+import { LoaderLight, Navbar, Footer, NovelList, InfoModal } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
 import useInfoModal from '@/hooks/useInfoModal'
 
@@ -8,7 +8,7 @@ export default function Home() {
 
    return (
       <div className="w-screen min-h-full flex items-center justify-center">
-         {(isLoading || !novels) ? <Loader/> :
+         {(isLoading || !novels) ? <LoaderLight /> :
          <div className="container h-full mx-auto xl:px-30 max-w-7xl">
             <Navbar />
             <InfoModal visible={isOpen} onClose={closeModal} />

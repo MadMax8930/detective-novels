@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Carousel, AdminForm, AdminInfoTabs, AdminSender, AdminChart, AdminLoader } from '@/components'
+import { LoaderRound, Carousel, AdminForm, AdminInfoTabs, AdminSender, AdminChart } from '@/components'
 import { getAdminTokenServerSideProps } from '@/lib/tokenAdminProps'
 import { NovelDBProps, AdminTokenProps } from '@/types'
 import useNovelList from '@/hooks/useNovelList'
@@ -26,7 +26,7 @@ export const Admin: React.FC<AdminTokenProps> = ({ adminToken }) => {
    const reFetchedUpdatedList = async () => { await refetchNovels(); };
 
    return (
-      <div className="w-screen min-h-full">
+      <div className="w-screen min-h-full bg-admin-outer">
          <div className="admin-header"><span className='ml-6'>Administrator</span></div>
          <AdminInfoTabs />
          {!isLoading ? <> 
@@ -37,7 +37,7 @@ export const Admin: React.FC<AdminTokenProps> = ({ adminToken }) => {
          <AdminForm 
                token={token} 
                adminSelectedNovelId={adminSelectedNovelId} 
-               reFetchedUpdatedList={reFetchedUpdatedList} /></> : <AdminLoader/>}
+               reFetchedUpdatedList={reFetchedUpdatedList} /></> : <LoaderRound />}
          <AdminSender />
          <AdminChart />
       </div>

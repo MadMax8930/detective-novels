@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { UserInfoProps, DonationInfoProps } from '@/types'
 import { useSearchParams } from 'next/navigation'
 import { useAdminNavigation } from '@/hooks/useAdminNavigation'
-import { Button, AdminSearch, AdminPagination, AdminLoader, AdminError } from '@/components'
+import { Button, AdminSearch, AdminPagination, LoaderAdmin, ErrorAdmin } from '@/components'
 import { ITEMS_PER_PAGE } from '@/constants'
 import { MdRefresh } from 'react-icons/md'
 import useAdminData from '@/hooks/useAdminData'
@@ -42,7 +42,7 @@ const AdminInfoTabs = () => {
    
    return (
       <div className="admin-table-container">
-         {isLoading ? <AdminLoader /> : error ? <AdminError /> : <>
+         {isLoading ? <LoaderAdmin /> : error ? <ErrorAdmin /> : <>
          <div className="admin-card">
             <div className="flex items-center justify-between">
                <AdminSearch placeholder={btnUserType ? "Search for a user..." : "Search for a dono..."}/>

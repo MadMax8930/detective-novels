@@ -6,7 +6,7 @@ import { GetServerSideProps } from 'next'
 import { AuthorDataProps } from '@/types'
 import { FiArrowLeft, FiLinkedin } from 'react-icons/fi'
 import { LINKEDIN } from '@/constants'
-import { Loader } from '@/components'
+import { LoaderDark } from '@/components'
 
 export const getServerSideProps: GetServerSideProps = async () => {
    try {
@@ -27,7 +27,7 @@ const Discover: React.FC<{ authorData: AuthorDataProps }> = ({ authorData }) => 
    const router = useRouter();
    if (!authorData) { 
       router.push('/auth');
-      return <Loader />;
+      return <LoaderDark />;
    }
 
    return (

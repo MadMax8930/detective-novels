@@ -12,7 +12,6 @@ import NovelList from './NovelList'
 import Carousel from './Carousel'
 import DonateResponse from './DonateResponse'
 import DonateContainer from './DonateContainer'
-import { Loader, AdminLoader, AdminError } from './Utilities'
 import NoItem from './NoItem'
 import Toggler from './Toggler'
 import AdminChart from './AdminChart'
@@ -21,6 +20,7 @@ import AdminInfoTabs from './AdminInfoTabs'
 import AdminPagination from './AdminPagination'
 import AdminSearch from './AdminSearch'
 import AdminSender from './AdminSender'
+import { LoaderLight, LoaderDark, LoaderLine, LoaderRound, LoaderAdmin, ErrorAdmin } from './Utilities'
 
 export { 
    Navbar,
@@ -37,7 +37,6 @@ export {
    Carousel,
    DonateResponse,
    DonateContainer,
-   Loader,
    NoItem,
    Toggler,
    AdminChart,
@@ -46,6 +45,10 @@ export {
    AdminPagination,
    AdminSearch,
    AdminSender,
-   AdminLoader, 
-   AdminError,
+   LoaderLight,
+   LoaderDark,
+   LoaderLine,
+   LoaderRound,
+   LoaderAdmin,
+   ErrorAdmin,
 }
