@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Carousel, Content, SearchBar, DonateContainer, LoaderDark } from '@/components'
+import { Carousel, Content, SearchBar, DonateContainer, LoaderLight } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
@@ -34,7 +34,7 @@ const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
 
    return (
       <div className="w-screen min-h-full">
-         {(isLoading || !novels) ? <LoaderDark /> : (<>
+         {(isLoading || !novels) ? <LoaderLight /> : (<>
          <div className="flex-grow overflow-hidden">
             <DonateContainer session={session} />
             <Carousel novels={novels} adminPage={false} />

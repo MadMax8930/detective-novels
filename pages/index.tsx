@@ -1,8 +1,10 @@
+import React from 'react'
+import { withLoading } from '@/pages/_hoc'
 import { LoaderLight, Navbar, Footer, NovelList, InfoModal } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
 import useInfoModal from '@/hooks/useInfoModal'
 
-export default function Home() {
+const Home = () => {
    const { data: novels = [], isLoading } = useNovelList();
    const { isOpen, closeModal } = useInfoModal();
 
@@ -18,3 +20,5 @@ export default function Home() {
       </div>
    )
 }
+
+export default withLoading(Home)

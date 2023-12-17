@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import { SessionUserProps } from '@/types'
+import { withLoading } from '@/pages/_hoc'
 import { Navbar } from '@/components'
 
 type ProfileLayoutProps = {
@@ -23,7 +24,7 @@ export const metadataProfile = {
    themeColor: "#2d2e30",
 }
 
-export default function ProfileLayout ({ children, layoutMetadata, session }: ProfileLayoutProps) {
+const ProfileLayout = ({ children, layoutMetadata, session }: ProfileLayoutProps) => {
   return (
     <>
       <Head>
@@ -38,3 +39,5 @@ export default function ProfileLayout ({ children, layoutMetadata, session }: Pr
    </>
   )
 }
+
+export default withLoading(ProfileLayout)

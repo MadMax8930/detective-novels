@@ -19,6 +19,7 @@ module.exports = {
         'primary-green': { DEFAULT: "#A7F3D0", 100: "#F0F9F0" },
         'primary-light': { DEFAULT: "rgb(226 232 240)"},
         'primary-lighter': { DEFAULT: "rgb(241 245 249)"},
+        'primary-dark': "#0b0704",
         'admin-outer': "#151c2c",
         'admin-inner': "#182236",
         'admin-third': "#2e374a",

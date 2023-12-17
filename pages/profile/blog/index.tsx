@@ -1,5 +1,5 @@
 import React from 'react'
-import { Toggler, LoaderDark } from '@/components'
+import { Toggler, LoaderLight } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import useCurrentUser from '@/hooks/useCurrentUser'
 
@@ -15,7 +15,7 @@ export const getServerSideProps = getUserSessionServerSideProps;
 
 const Blog: NextPageWithLayout<ProfileProps> = ({ session }) => {
    const { data: user, isLoading: loadUser } = useCurrentUser();
-   if (loadUser) { return <LoaderDark /> } 
+   if (loadUser) { return <LoaderLight /> } 
 
   return (
     <div className='pt-32 text-center'>

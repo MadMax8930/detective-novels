@@ -7,13 +7,13 @@
 @tailwind utilities;
 
 
-body {
-   @apply h-full overflow-x-hidden;
-   background-color: rgb(226 232 240);
+html {
+   @apply h-full bg-primary-dark;
 }
 
-html {
-   @apply h-full;
+
+body {
+   @apply h-full overflow-x-hidden bg-primary-light;
 }
 
 /* Header */
@@ -336,6 +336,13 @@ html {
 
 .overflow-y-scroll::-webkit-scrollbar-track {
    background-color: transparent;
+}
+
+/* Novel */
+
+.preview-info {
+   @apply h-[50px] text-center pt-12 pb-16 font-semibold;
+   font-family: 'Big Shoulders Text', sans-serif;
 }
 
 /* Admin */

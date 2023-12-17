@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { withLoading } from '@/pages/_hoc'
 import { useCallback, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/react'
@@ -59,7 +60,7 @@ const Auth = () => {
 
    return (
       <div className="relative h-full w-full bg-[url('/images/hero.jpg')] bg-no-repeat bg-fixed bg-center bg-cover">
-         <div className="bg-black w-full h-full lg:bg-opacity-50">
+         <div className="bg-primary-dark w-full h-full lg:bg-opacity-60">
             {/* Top Navigation */}
             <nav className="flex justify-between px-6 lg:px-24 pb-6">
                <div className="flex md:px-12 px-4 pt-9 gap-2 cursor-pointer" onClick={() => router.back()}>
@@ -107,4 +108,4 @@ const Auth = () => {
    );
 };
 
-export default Auth
+export default withLoading(Auth)
