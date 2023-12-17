@@ -1,5 +1,5 @@
 import React from 'react'
-import { withLoading } from '@/pages/_hoc'
+import withLoading from '@/pages/_hoc'
 import { LoaderLight, Navbar, Footer, NovelList, InfoModal } from '@/components'
 import useNovelList from '@/hooks/useNovelList'
 import useInfoModal from '@/hooks/useInfoModal'

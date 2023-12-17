@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { withLoading } from '@/pages/_hoc'
+import withLoading from '@/pages/_hoc'
 import { useCallback, useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { signIn } from 'next-auth/react'

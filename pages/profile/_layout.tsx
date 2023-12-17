@@ -1,8 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
 import { SessionUserProps } from '@/types'
-import { withLoading } from '@/pages/_hoc'
 import { Navbar } from '@/components'
+import withLoading from '@/pages/_hoc'
 
 type ProfileLayoutProps = {
    children: React.ReactNode;
