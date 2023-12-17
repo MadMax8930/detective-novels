@@ -1,8 +1,9 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Input } from '@/components'
 import { BsSendCheckFill, BsSendSlash } from 'react-icons/bs'
 import { NewsletterProps, NewsletterDBProps } from '@/types'
+import { format } from '@/lib/dateFormat'
 import { toast } from 'react-hot-toast'
 
 const EMPTY_NEWSLETTER: NewsletterProps = { title: '', content: '', createdAt: '' };
@@ -12,6 +13,21 @@ const AdminSender = () => {
    const [newsletter, setNewsletter] = useState<NewsletterProps>(EMPTY_NEWSLETTER);
    const [showSendConfirmation, setShowSendConfirmation] = useState(false);
    const [isSending, setIsSending] = useState(false);
+
+   // On mount
+   useEffect(() => {
+      const fetchLatestNewsletter = async () => {
+        try {
+          const response = await axios.get('/api/newsletter/latest');
+          const latestNewsletter = response.data;
+          setNewsletter({ ...EMPTY_NEWSLETTER, createdAt: format(latestNewsletter.createdAt, 'en-EN') });
+        } catch (error) {
+          console.error('Error fetching latest newsletter:', error);
+        }
+      };
+  
+      fetchLatestNewsletter();
+   }, []);
 
    // Inputs/TextAreas
    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -37,7 +53,7 @@ const AdminSender = () => {
    
          console.log('Newsletter sent successfully.');
          toast.success('Success! Newsletter has been sent.');
-         setNewsletter({...EMPTY_NEWSLETTER, createdAt: new Date().toISOString()});
+         setNewsletter({ ...EMPTY_NEWSLETTER, createdAt: format(new Date().toISOString(), 'en-EN') });
          setShowSendConfirmation(false);
        } catch (error) {
          console.error('Error. Sending newsletter has failed:', error);
@@ -47,14 +63,13 @@ const AdminSender = () => {
        }
    };
 
-
   return (
     <div className="admin-form-container">
       <form onSubmit={submitForm}>
          <div className="admin-card">
             <div className="admin-form-header">
                <h1 className="admin-form-state">Newsletter Section</h1>
-               <span className="text-white">Last sent: {newsletter.createdAt || 'N/A'}</span>
+               <span className="admin-form-state">Last sent:&nbsp;{newsletter.createdAt || 'N/A'}</span>
             </div>
             <div className="flex flex-col gap-1.5 my-6">
                <Input id="title" name="title" label="Newsletter title" value={newsletter.title} onChange={handleInputChange} adminPage={true} />  

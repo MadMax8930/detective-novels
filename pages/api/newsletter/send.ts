@@ -54,8 +54,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         select: { email: true },
      });
      
-     const recipientEmails = newsletterUsers.map((user) => user.email);
-     await sendEmail(recipientEmails, title, content );
+     for (const user of newsletterUsers) {
+       const recipientEmail = user.email;
+       await sendEmail(recipientEmail, title, content);
+     };
 
      return res.status(200).json(formattedData);
    } catch (error) {
@@ -65,7 +67,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 // Authenticate Gmail SMTP server using an app-specific password
-async function sendEmail(recipients: string[], title: string, content: string) {
+async function sendEmail(recipient: string, title: string, content: string) {
    try {
      const transporter = nodemailer.createTransport({
          service: 'gmail',
@@ -77,15 +79,13 @@ async function sendEmail(recipients: string[], title: string, content: string) {
 
      const mailOptions = {
          from: `VladNovels <${process.env.SMTP_USER}>`,
-         to: recipients.join(', '),
+         to: recipient,
          subject: `Newsletter - ${title}`,
          text: content,
      };
 
      await transporter.sendMail(mailOptions);
-     recipients.forEach((person) => {
-        console.log(`Email sent to user ${person} - (${title}): ${content}`);
-     });
+     // console.log(`Email sent to user ${recipient} - (${title}): ${content}`);
    } catch (error) {
      console.error('Error sending newsletter:', error);
      throw error;

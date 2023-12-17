@@ -33,8 +33,8 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
                         <AiOutlineClose className="text-white" size={20} />
                    </div>
                    <div className="absolute bottom-[5%] left-5 md:left-10 flex gap-1.5 md:text-sm text-[10px] text-gray-400">
-                     <p className="underline">Posted by:</p>
-                     <p className="capitalize">{data?.author} - {format(data.createdAt).split('GMT')[0].trim()}</p>
+                     <p className="font-semibold">Posted by:</p>
+                     <p className="capitalize">{data?.author} - {format(data.createdAt)}</p>
                    </div>
                    <div className="absolute md:top-[20%] top-0 left-5 md:left-10">
                      <p className="text-white text-xl md:text-3xl lg:text-5xl h-full font-bold md:mb-8 mt-4">{data?.title}</p>
