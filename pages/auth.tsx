@@ -83,7 +83,7 @@ const Auth = () => {
                      </h2>
                   </div>
                   {/* Form */}
-                  <div className="flex flex-col gap-3">
+                  <div className="flex flex-col gap-3 mb-2">
                      {variant === 'register' && (
                      <Input label="Username" onChange={(e: any) => setUsername(e.target.value)} value={username} id="name" adminPage={false} /> )}
                      <Input label="Email" onChange={(e: any) => setEmail(e.target.value)} value={email} id="email" type="email" adminPage={false} />

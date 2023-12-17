@@ -27,8 +27,15 @@ module.exports = {
         'white-main': "#fdfafa",
         'chart-title': "#b7bac1",
         'brown-dots': "#7e7676",
-        grey: "#747A88",
-      }
+        'tooltip-container': "rgba(0, 0, 11, 0.5)",
+        'tooltip-text': "#808080",
+         grey: "#747A88",
+      },
+      fontFamily: {
+        'unbounded': ['Unbounded', 'sans-serif'],
+        'shoulders': ['Big Shoulders Text', 'sans-serif'],
+        'bungee': ['Bungee Spice', 'sans-serif'],
+      },
     },
   },
   plugins: [],

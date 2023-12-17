@@ -19,37 +19,23 @@ body {
 /* Header */
 
 .title-header {
-   font-family: 'Unbounded', sans-serif;
-   font-weight: 600;
+   @apply font-unbounded font-semibold;
 }
 
 /* Tooltip */
 
 .tooltip {
-   position: absolute;
-   top: 60px;
-   left: 55px;
-   background-color: rgba(0, 0, 11, 0.5);
-   color: gray;
-   padding: 4px 8px;
-   font-size: 10px;
-   white-space: nowrap;
-   z-index: 10;
-   transform: translateX(-30%);
+   @apply absolute top-[55px] left-[55px] z-10 bg-tooltip-container text-tooltip-text py-0.5 px-1 text-[10px] whitespace-nowrap translate-x-[-30%];
 }
 
 /* Donation */
 
 .donations-container {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   gap: 0.5rem;
+   @apply flex justify-center items-center gap-2;
 }
 
 .user-container {
-   @apply text-base md:text-lg lg:text-xl font-semibold uppercase;
-   font-family: 'Big Shoulders Text', sans-serif;
+   @apply text-base md:text-lg lg:text-xl font-shoulders font-semibold uppercase;
 }
 
 /* Buttons */
@@ -101,26 +87,17 @@ body {
 }
 
 .search-bar__item button {
-   position: absolute;
-   top: 50%;
-   transform: translateY(-50%);
-   right: 2.75rem;
-   cursor: pointer;
+   @apply absolute top-1/2 transform -translate-y-1/2 right-11 cursor-pointer;
 }
 
 /* Carousel */
 
 .carousel-novel-id {
-   font-family: 'Unbounded', sans-serif;
-   padding-bottom: 0.5rem;
+   @apply font-unbounded pb-2;
 }
 
 .carousel-container {
-   width: 100%;
-   overflow: hidden;
-   padding: 1rem 6rem;
-   position: relative;
-   z-index: 20;
+   @apply relative w-full py-4 px-24 z-20 overflow-hidden;
 }
 
 .carousel {
@@ -158,24 +135,13 @@ body {
 }
 
 .carousel-controls {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   position: absolute;
-   top: 50%;
-   left: 3%;
-   right: 3%;
-   transform: translateY(-50%);
-   z-index: -1;
+   @apply absolute flex items-center justify-between top-1/2 left-[3%] right-[3%] transform -translate-y-1/2 z-[-1];
 }
  
 .carousel-btn {
-   background-color: transparent;
-   border: none;
-   cursor: pointer;
-   font-size: 1.5rem;
+   @apply bg-transparent border-none text-[1.5rem] cursor-pointer;
 }
- 
+
 .carousel-btn:focus {
    outline: none;
 }
@@ -248,25 +214,21 @@ body {
 /* Carousel Arrows */
 
 .carousel-controls {
-   top: 50%;
+   @apply top-1/2;
 }
 
 .carousel-btn.left-btn {
-   position: absolute;
-   left: 1.25rem;
+   @apply absolute left-5;
 }
 
 .carousel-btn.right-btn {
-   position: absolute;
-   right: 1.25rem;
+   @apply absolute right-5;
 }
 
 /* Content Pagination */
 
 .pagination-container {
-   display: flex;
-   align-items: center;
-   justify-content: center;
+   @apply flex items-center justify-center;
 }
  
 .pagination-item {
@@ -285,9 +247,7 @@ body {
 }
  
 .pagination-item.active {
-   background-color: #3c3636;
-   color: white;
-   border: none;
+   @apply bg-[#3c3636] text-white border-none;
 }
 
 @media (max-width: 768px) {
@@ -303,21 +263,13 @@ body {
 }
 
 .pagination-arrow {
-   width: 1.875rem;
-   height: 1.875rem;
-   font-size: 1.25rem;
-   margin: 0 0.5rem;
-   cursor: pointer;
+   @apply w-[1.875rem] h-[1.875rem] text-[1.25rem] my-0 mx-2 cursor-pointer;
    transition: color 0.3s ease;
    color: #918b8b;
 }
 
-.pagination-arrow.active {
-   color: #ccc;
-}
-
-.pagination-arrow.disabled {
-   color: #ccc;
+.pagination-arrow.active, .pagination-arrow.disabled {
+   @apply text-[#ccc];
 }
  
 .pagination-arrow:hover:not(.disabled) {
@@ -340,8 +292,7 @@ body {
 /* Novel */
 
 .preview-info {
-   @apply h-[50px] text-center pt-12 pb-16 font-semibold;
-   font-family: 'Big Shoulders Text', sans-serif;
+   @apply h-[50px] text-center pt-12 pb-16 font-shoulders font-semibold;
 }
 
 /* Admin */
@@ -371,14 +322,11 @@ body {
 }
 
 .table-header {
-   @apply text-left;
-   font-family: 'Unbounded', sans-serif;
+   @apply text-left font-unbounded;
 }
 
 .table-content {
-   @apply text-left bg-transparent text-slate-300;
-   font-family: 'Big Shoulders Text', sans-serif;
-   font-weight: 500;
+   @apply text-left bg-transparent text-slate-300 font-medium;
 }
 
 .table-cell {
@@ -386,12 +334,11 @@ body {
 }
 
 .table-cell-amount {
-   @apply md:text-base text-xs font-semibold;
-   font-family: 'Bungee Spice', sans-serif;
+   @apply md:text-base text-xs font-bungee font-semibold;
 }
 
 .table-cell-identifier {
-   @apply md:text-base text-xs text-slate-500 font-semibold uppercase;
+   @apply md:text-base text-xs font-shoulders text-slate-500 font-semibold uppercase;
 }
 
 .table-cell-err {
@@ -407,8 +354,7 @@ body {
 }
 
 .admin-form-state {
-   @apply pt-1 text-2xl text-white-main font-semibold border-admin-btn border-y-4 uppercase;
-   font-family: 'Big Shoulders Text', sans-serif;
+   @apply pt-1 text-2xl text-white-main font-semibold border-admin-btn border-y-4 font-shoulders uppercase;
 }
 
 .admin-textarea {
@@ -426,8 +372,7 @@ body {
 /* No Item */
 
 .ncContainer {
-   @apply flex flex-col items-center justify-center text-center py-24 px-6 pr-16 cursor-pointer;
-   font-family: 'Big Shoulders Text', sans-serif;
+   @apply flex flex-col items-center justify-center text-center py-24 px-6 pr-16 font-shoulders cursor-pointer;
 }
  
 .ncTitle {
