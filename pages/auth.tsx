@@ -25,7 +25,28 @@ const Auth = () => {
       setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login')
    },[]);
 
+   const validateInputs = useCallback(() => {
+      if (variant === 'register' && !username) {
+         toast.error('Username is required');
+         return false;
+      }
+
+      if (!email || !password) {
+         toast.error('Email and password are required');
+         return false;
+      }
+
+      if (variant === 'register' && password.length < 8) {
+         toast.error('Password must be at least 8 characters');
+         return false;
+      }
+
+      return true;
+   }, [email, password, username, variant]);
+
    const login = useCallback(async() => {
+      if (!validateInputs()) { return; }
+
       try {
         setLoading(true);
         await signIn('credentials', {
@@ -38,9 +59,11 @@ const Auth = () => {
       } finally {
         setLoading(false);
       }
-   }, [email, password]);
+   }, [email, password, validateInputs]);
 
    const register = useCallback(async() => {
+      if (!validateInputs()) { return; }
+
       try {
         setLoading(true);
         await axios.post('/api/register', {
@@ -54,7 +77,7 @@ const Auth = () => {
       } finally {
         setLoading(false);
       }
-   }, [email, username, password, login]);
+   }, [email, username, password, login, validateInputs]);
 
    if (loading) { return <LoaderDark /> }
 
