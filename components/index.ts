@@ -22,7 +22,7 @@ import AdminSearch from './AdminSearch'
 import AdminSender from './AdminSender'
 import FavoriteHeart from './FavoriteHeart'
 import FavoriteLibrary from './FavoriteLibrary'
-import { LoaderLight, LoaderDark, LoaderLine, LoaderRound, LoaderAdmin, ErrorAdmin } from './Utilities'
+import { LoaderLight, LoaderDark, LoaderLine, LoaderRound, LoaderFav, LoaderAdmin, ErrorAdmin } from './Utilities'
 
 export { 
    Navbar,
@@ -53,6 +53,7 @@ export {
    LoaderDark,
    LoaderLine,
    LoaderRound,
+   LoaderFav,
    LoaderAdmin,
    ErrorAdmin,
 }

@@ -1,13 +1,12 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
-import { Button  } from '@/components'
+import { Button, LoaderFav  } from '@/components'
 import { TiHeart } from 'react-icons/ti'
 import { toast } from 'react-hot-toast'
 
 const FavoriteHeart = ({novelId}: { novelId: string | undefined}) => {
-   const [isFavorited, setIsFavorited] = useState<boolean>();
-   const [loadingPost, setLoadingPost] = useState(false);
-   const [loadingDelete, setLoadingDelete] = useState(false);
+   const [isFavorited, setIsFavorited] = useState<boolean | undefined>();
+   const [loading, setLoading] = useState(false);
 
    useEffect(() => {
       const fetchUserFavorites = async () => {
@@ -25,44 +24,44 @@ const FavoriteHeart = ({novelId}: { novelId: string | undefined}) => {
 
    const postFav = async () => {
       try {
-         setLoadingPost(true);
+         setLoading(true);
          await axios.post('/api/favorite', { novelId });
 
          console.log('Novel favorited successfully.');
-         toast.success('Novel favorited.');
+         toast.success('Novel favorited');
          setIsFavorited(true);
       } catch (error) {
          console.error('Favorite implementation has failed', error);
-         toast.error('An error occurred.');
+         toast.error('An error occurred');
       } finally {
-         setLoadingPost(false);
+         setLoading(false);
       }
    };
 
    const deleteFav = async () => {
       try {
-         setLoadingDelete(true);
+         setLoading(true);
          await axios.delete(`/api/favorite?novelId=${novelId}`);
 
          console.log('Novel un-favorited successfully.');
-         toast.success('Novel un-favorited.');
+         toast.success('Novel un-favorited');
          setIsFavorited(false);
       } catch (error) {
          console.error('Favorite removal has failed', error);
-         toast.error('An error occurred.');
+         toast.error('An error occurred');
       } finally {
-         setLoadingDelete(false);
+         setLoading(false);
       }
    };
 
+   if (isFavorited === undefined) { return <LoaderFav /> }
+
   return (
     <div className="absolute top-0 right-0">
-      {isFavorited
-         ?
-         <Button btnType="button" action={deleteFav} additionalStyles="button-unfav" reactIcon={<TiHeart size={25} />} isDisabled={loadingDelete} />
-         :
-         <Button btnType="button" action={postFav} additionalStyles="button-fav" reactIcon={<TiHeart size={25} />} isDisabled={loadingPost} />
-      }
+      <Button btnType="button" reactIcon={<TiHeart size={25} />}
+         action={isFavorited ? deleteFav : postFav} 
+         additionalStyles={isFavorited ? "button-unfav" : "button-fav"} 
+         isDisabled={loading} />
     </div>
   )
 }

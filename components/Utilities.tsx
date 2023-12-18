@@ -40,6 +40,14 @@ const LoaderRound = () => {
    )
 }
 
+const LoaderFav = () => {
+   return (
+      <div className="bg-transparent rounded-xl absolute top-0 right-0">
+         <MoonLoader color="black" size={20} />
+      </div>
+   )
+}
+
 const LoaderAdmin = () => {
    return (
       <div className="min-h-[460px] flex flex-grow justify-center items-center">
@@ -56,4 +64,4 @@ const ErrorAdmin = () => {
    )
 }
 
-export { LoaderLight, LoaderDark, LoaderLine, LoaderRound, LoaderAdmin, ErrorAdmin }
+export { LoaderLight, LoaderDark, LoaderLine, LoaderRound, LoaderFav, LoaderAdmin, ErrorAdmin }
