@@ -60,9 +60,10 @@ const Auth = () => {
       try {
         setLoading(true);
         await signIn('credentials', {
-           email, password, callbackUrl: '/profile'
+           email, password, callbackUrl: '/profile', redirect: true
         });
-        toast.success('Logged in successfully.');
+
+        // toast.success('Logged in successfully.');
       } catch (error) {
         console.error(error);
         toast.error('Something went wrong.');
