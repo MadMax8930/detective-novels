@@ -48,6 +48,14 @@ body {
    @apply bg-primary-black text-primary-light flex text-[15px];
 }
 
+.button-fav {
+   @apply bg-primary-black p-1 hover:opacity-90 hover:text-primary-red-100 text-primary-red border border-primary-dark;
+}
+
+.button-unfav {
+   @apply bg-primary-black p-1 hover:opacity-90 hover:text-primary-red-200 text-primary-light border border-primary-dark;
+}
+
 .admin-button {
    @apply bg-admin-btn text-white-main;
 }
@@ -110,6 +118,7 @@ body {
 }
  
 .carousel__nav-item {
+   position: relative;
    flex: 0 0 auto;
    width: 12.5rem;
    height: 18.75rem;

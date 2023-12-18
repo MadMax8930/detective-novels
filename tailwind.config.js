@@ -14,7 +14,7 @@ module.exports = {
       },
       colors: {
         'primary-black': "#2B2C35",
-        'primary-red': { DEFAULT: "#bf0101", 100: "#f9d6d6" },
+        'primary-red': { DEFAULT: "#bf0101", 100: "#f9d6d6", 200: "#ff4040" },
         'primary-blue': { DEFAULT: "#2B59FF", 100: "#F5F8FF" },
         'primary-green': { DEFAULT: "#A7F3D0", 100: "#F0F9F0" },
         'primary-light': { DEFAULT: "rgb(226 232 240)"},

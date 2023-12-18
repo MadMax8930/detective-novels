@@ -2,7 +2,7 @@ import { ReactElement, MouseEventHandler } from 'react'
 import type { AppProps } from 'next/app'
 
 export interface CustomButtonProps {
-   title: string;
+   title?: string;
    btnType?: "button" | "submit";
    additionalStyles?: string;
    textStyles?: string;

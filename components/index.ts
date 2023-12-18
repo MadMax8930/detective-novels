@@ -20,6 +20,8 @@ import AdminInfoTabs from './AdminInfoTabs'
 import AdminPagination from './AdminPagination'
 import AdminSearch from './AdminSearch'
 import AdminSender from './AdminSender'
+import FavoriteHeart from './FavoriteHeart'
+import FavoriteLibrary from './FavoriteLibrary'
 import { LoaderLight, LoaderDark, LoaderLine, LoaderRound, LoaderAdmin, ErrorAdmin } from './Utilities'
 
 export { 
@@ -45,6 +47,8 @@ export {
    AdminPagination,
    AdminSearch,
    AdminSender,
+   FavoriteHeart,
+   FavoriteLibrary,
    LoaderLight,
    LoaderDark,
    LoaderLine,
