@@ -49,11 +49,11 @@ body {
 }
 
 .button-fav {
-   @apply bg-primary-black p-1 hover:opacity-90 hover:text-primary-red-100 text-primary-red border border-primary-dark;
+   @apply bg-primary-black p-1 hover:opacity-90 hover:text-primary-red-200 text-primary-light border border-primary-dark;
 }
 
 .button-unfav {
-   @apply bg-primary-black p-1 hover:opacity-90 hover:text-primary-red-200 text-primary-light border border-primary-dark;
+   @apply bg-primary-black p-1 hover:opacity-90 hover:text-primary-red-100 text-primary-red border border-primary-dark;
 }
 
 .admin-button {
