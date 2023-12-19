@@ -57,11 +57,11 @@ body {
 }
 
 .button-read {
-   @apply bg-primary-green-200 text-white-main flex;
+   @apply bg-primary-green-200 text-white-main flex cursor-pointer;
 }
 
 .button-blog {
-   @apply bg-primary-red-200 text-white-main flex;
+   @apply bg-primary-red-200 text-white-main flex cursor-pointer;
 }
 
 .admin-button {

@@ -54,11 +54,11 @@ const FavoriteLibrary = () => {
                 <div className={`fav-info fav-btns ${openCard !== book.id && 'hidden'}`}>
                    <Link href={{ pathname: `/profile/lounge/${book.id}` }}>
                       <Button title="Read" additionalStyles="button-read" textStyles='text-sm' 
-                      btnType="button" reactIcon={<BiFolderOpen size={21} />} isDisabled={!loading} />
+                      btnType="button" reactIcon={<BiFolderOpen size={21} />} isDisabled={loading} />
                    </Link>
                    <Link href={{ pathname: `/profile/blog/${book.id}` }}>
                       <Button title="Blog" additionalStyles="button-blog" textStyles='text-sm'
-                      btnType="button" reactIcon={<BiCommentDetail size={21} />} isDisabled={!loading} />
+                      btnType="button" reactIcon={<BiCommentDetail size={21} />} isDisabled={loading} />
                    </Link>
                 </div>
              </div>
