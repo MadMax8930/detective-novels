@@ -56,6 +56,14 @@ body {
    @apply bg-primary-black p-1 hover:opacity-90 hover:text-primary-red-100 text-primary-red border border-primary-dark;
 }
 
+.button-read {
+   @apply bg-primary-green-200 text-white-main flex;
+}
+
+.button-blog {
+   @apply bg-primary-red-200 text-white-main flex;
+}
+
 .admin-button {
    @apply bg-admin-btn text-white-main;
 }
@@ -403,7 +411,7 @@ body {
 /* Newsletter */
 
 .toggler-container {
-   @apply flex justify-center p-6 bg-primary-lighter w-auto rounded-xl;
+   @apply flex justify-center p-6 bg-primary-lighter w-1/5 rounded-xl;
 }
 
 .toggler {
@@ -460,7 +468,87 @@ body {
    }
 }
 
+/* Favorite */
+
+.fav-list {
+   @apply overflow-hidden;
+}
+
+.fav-card {
+   @apply flex flex-row items-center rounded-[3px] min-w-[600px] h-[90px] mb-2.5 bg-pages-container-300 border border-pages-container-200 overflow-hidden transition-all duration-100 cursor-pointer;
+   perspective:600px;
+   box-shadow:0px 2px 10px rgba(0,0,0,.2);
+}
+
+.fav-info {
+   @apply h-32 overflow-hidden w-[200px] text-[12px] text-[#777] font-normal;
+}
+
+.fav-card.open {
+   @apply p-6 h-auto;
+}
  
- 
- 
+.fav-info.open .fav-info {
+   @apply mt-2.5 h-full overflow-visible;
+}
+
+.fav-info.open .fav-img {
+   transform:rotateY( 50deg );
+   box-shadow:-10px 10px 10px 2px rgba(0,0,0,.2), -2px 0px 0px 0px #888;
+   transition:all 0.5s;
+   transition-delay:0.05s; 
+}
+
+.fav-info.open .fav-content {
+   transform:translate(0,-10px);
+}
+
+.fav-info.open .fav-pages {
+   padding:15px 20px;
+   border-radius:4px;
+   align-self:flex-start;
+}
+
+.fav-card.open .fav-btns {
+   @apply flex justify-evenly h-10 transition-all duration-500;
+}
+
+.fav-img {
+   @apply w-[120px] overflow-hidden transition-all duration-500;
+   box-shadow:0px 2px 10px rgba(0,0,0,0.3);
+}
+
+.fav-list .fav-card.open .fav-img {
+   -webkit-transform: rotate3d(0,1,0,50deg);
+   -moz-transform: rotate3d(0,1,0,50deg);
+   transform: rotate3d(0,1,0,50deg);
+}
+
+.fav-content {
+   @apply flex flex-col min-w-[200px] px-[30px] font-bold font-shoulders transition-all duration-200;
+}
+
+.fav-title {
+   @apply text-white-main text-[1em] tracking-[1px] ;
+}
+
+.fav-genre {
+   @apply text-[12px] text-pages-container-200 font-normal mb-2;
+}
+
+.fav-group {
+   @apply flex flex-col gap-3 ml-auto;
+}
+
+.fav-list .fav-card .fav-pages {
+   @apply bg-pages-container text-pages-container-100 font-unbounded p-8 transition-all duration-100;
+}
+
+.fav-curr-page {
+   @apply mr-2.5 font-bold;
+}
+
+.fav-max-page {
+   @apply ml-2.5 opacity-50;
+}
  

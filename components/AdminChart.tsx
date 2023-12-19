@@ -3,7 +3,7 @@ import useAdminReports from '@/hooks/useAdminReports'
 import { LineChart, Line, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer, CartesianGrid } from 'recharts'
 import { HARDCODED_CHART_DATA } from '@/constants'
 
-const Chart = () => {
+const AdminChart = () => {
    const { data: weeklyData } = useAdminReports();
 
   return (
@@ -25,4 +25,4 @@ const Chart = () => {
   )
 }
 
-export default Chart
+export default AdminChart

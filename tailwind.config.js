@@ -16,7 +16,7 @@ module.exports = {
         'primary-black': "#2B2C35",
         'primary-red': { DEFAULT: "#bf0101", 100: "#f9d6d6", 200: "#ff4040" },
         'primary-blue': { DEFAULT: "#2B59FF", 100: "#F5F8FF" },
-        'primary-green': { DEFAULT: "#A7F3D0", 100: "#F0F9F0" },
+        'primary-green': { DEFAULT: "#A7F3D0", 100: "#F0F9F0", 200: "#1ea94b" },
         'primary-light': { DEFAULT: "rgb(226 232 240)"},
         'primary-lighter': { DEFAULT: "rgb(241 245 249)"},
         'primary-dark': "#0b0704",
@@ -29,6 +29,7 @@ module.exports = {
         'brown-dots': "#7e7676",
         'tooltip-container': "rgba(0, 0, 11, 0.5)",
         'tooltip-text': "#808080",
+        'pages-container': { DEFAULT: "#1c1c36", 100: "#ccc", 200: "#888", 300: "#212140" },
          grey: "#747A88",
       },
       fontFamily: {

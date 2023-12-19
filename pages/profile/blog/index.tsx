@@ -1,5 +1,5 @@
 import React from 'react'
-import { Toggler, LoaderLight } from '@/components'
+import { Toggler, LoaderLight, FavoriteLibrary } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import useCurrentUser from '@/hooks/useCurrentUser'
 
@@ -18,9 +18,12 @@ const Blog: NextPageWithLayout<ProfileProps> = ({ session }) => {
    if (loadUser) { return <LoaderLight /> } 
 
   return (
-    <div className='pt-32 text-center'>
-      Profile Blog Page {session.username}
-      <Toggler isSubscribed={user?.receiveNewsletters} />
+    <div className='pt-32'>
+      <FavoriteLibrary />
+      <div className="p-4">
+        Connected as: {session.username}
+        <Toggler isSubscribed={user?.receiveNewsletters} />
+      </div>
     </div>
   )
 }

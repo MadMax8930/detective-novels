@@ -175,3 +175,16 @@ export interface NewsletterDBProps {
    content: string;
    createdAt?: string;
 };
+
+export interface FavBookProps {
+   id: string;
+   title: string;
+   description: string;
+   author: string;
+   preview: string;
+   content: string;
+   createdAt: string;
+   updatedAt: string;
+   genre: string;
+   coverImage: string;
+};
