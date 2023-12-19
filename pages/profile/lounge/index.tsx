@@ -13,14 +13,14 @@ import ProfileLayout, { metadataProfile } from '../_layout'
 // Protecting routes by fetching user session on client side
 export const getServerSideProps = getUserSessionServerSideProps;
 
-const Blog: NextPageWithLayout<ProfileProps> = ({ session }) => {
+const Lounge: NextPageWithLayout<ProfileProps> = ({ session }) => {
    const { data: user, isLoading: loadUser } = useCurrentUser();
    if (loadUser) { return <LoaderLight /> } 
 
   return (
     <div className='pt-32'>
       <FavoriteLibrary />
-      <div className="p-4">
+      <div className="p-4 absolute bottom-0 left-10 w-full">
         Connected as: {session.username}
         <Toggler isSubscribed={user?.receiveNewsletters} />
       </div>
@@ -28,7 +28,7 @@ const Blog: NextPageWithLayout<ProfileProps> = ({ session }) => {
   )
 }
 
-Blog.getLayout = function getLayout(page: ReactElement, props: ProfileProps) {
+Lounge.getLayout = function getLayout(page: ReactElement, props: ProfileProps) {
    return (
       <RootLayout metadata={metadata}>
          <ProfileLayout layoutMetadata={metadataProfile || metadata} session={props.session}>{page}</ProfileLayout>
@@ -36,4 +36,4 @@ Blog.getLayout = function getLayout(page: ReactElement, props: ProfileProps) {
    )
 }
 
-export default Blog
+export default Lounge

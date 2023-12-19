@@ -7,7 +7,7 @@ import { NavbarProps } from '@/types'
 
 const Navbar: React.FC<NavbarProps>  = ({ isUser, isAdmin }) => {
    const router = useRouter();
-   const targetPath = router.pathname === '/profile' ? '/profile/blog' : '/profile';
+   const targetPath = router.pathname === '/profile' ? '/profile/lounge' : '/profile';
    const targetTitle = router.pathname === '/profile' ? 'Lounge' : 'Profile';
   return (
     <header className="w-full fixed top-0 z-30 right-0 bg-black bg-opacity-90">

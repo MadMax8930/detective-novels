@@ -470,8 +470,8 @@ body {
 
 /* Favorite */
 
-.fav-list {
-   @apply overflow-hidden;
+.fav-container {
+   @apply flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden;
 }
 
 .fav-card {
@@ -518,7 +518,7 @@ body {
    box-shadow:0px 2px 10px rgba(0,0,0,0.3);
 }
 
-.fav-list .fav-card.open .fav-img {
+.fav-card.open .fav-img {
    -webkit-transform: rotate3d(0,1,0,50deg);
    -moz-transform: rotate3d(0,1,0,50deg);
    transform: rotate3d(0,1,0,50deg);
@@ -540,7 +540,7 @@ body {
    @apply flex flex-col gap-3 ml-auto;
 }
 
-.fav-list .fav-card .fav-pages {
+.fav-pages {
    @apply bg-pages-container text-pages-container-100 font-unbounded p-8 transition-all duration-100;
 }
 
