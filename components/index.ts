@@ -13,6 +13,7 @@ import Carousel from './Carousel'
 import DonateResponse from './DonateResponse'
 import DonateContainer from './DonateContainer'
 import NoItem from './NoItem'
+import NotFound from './NotFound'
 import Toggler from './Toggler'
 import AdminChart from './AdminChart'
 import AdminForm from './AdminForm'
@@ -40,6 +41,7 @@ export {
    DonateResponse,
    DonateContainer,
    NoItem,
+   NotFound,
    Toggler,
    AdminChart,
    AdminForm,

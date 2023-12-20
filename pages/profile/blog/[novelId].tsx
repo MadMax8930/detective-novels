@@ -1,13 +1,15 @@
 import React from 'react'
-import useNovel from '@/hooks/useNovel'
 import { useRouter } from 'next/router'
+import { NotFound, LoaderLight } from '@/components'
+import useNovel from '@/hooks/useNovel'
 
 const BlogId = () => {
    const router = useRouter();
    const { novelId } = router.query;
    const { data, isLoading, error } = useNovel(novelId as string);
 
-   if (!novelId || error) { return null }
+   if (error) { return <NotFound/> }
+   if (isLoading) { return <LoaderLight /> } 
 
   return (
     <div className='pt-32 text-center'>BlogId Page: {novelId} / { data?.title}</div>

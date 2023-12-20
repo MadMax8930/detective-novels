@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { WORDS_PER_PAGE } from '@/constants'
+import { NotFound, LoaderLight } from '@/components'
 import useNovel from '@/hooks/useNovel'
 
 const LoungeId = () => {
@@ -21,12 +22,13 @@ const LoungeId = () => {
       }
    }, [currentPage, startIndex, novelId, data, router]);
 
-   if (!novelId || isLoading || error) { return null }
+   if (error) { return <NotFound/> }
+   if (isLoading) { return <LoaderLight /> } 
 
   return (
     <>
-      <div className='pt-32 text-center'>LoungeId Page: {novelId} / { data?.title}</div>
       <div>
+         {/* <div className='pt-32 text-center'>LoungeId Page: {novelId} / { data?.title}</div> */}
          {currentPageContent}
       </div>
     </>
