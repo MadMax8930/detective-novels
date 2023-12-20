@@ -176,6 +176,11 @@ export interface NewsletterDBProps {
    createdAt?: string;
 };
 
+export interface FavPageProps {
+   selectedPage?: number;
+   maxPage?: number;
+};
+
 export interface FavBookProps {
    id: string;
    title: string;

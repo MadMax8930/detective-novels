@@ -57,11 +57,11 @@ body {
 }
 
 .button-read {
-   @apply bg-primary-green-200 text-white-main flex cursor-pointer;
+   @apply bg-primary-green-200 text-white-main flex cursor-pointer pb-1.5;
 }
 
 .button-blog {
-   @apply bg-primary-red-200 text-white-main flex cursor-pointer;
+   @apply bg-primary-red-200 text-white-main flex cursor-pointer pb-1.5;
 }
 
 .admin-button {
@@ -537,18 +537,38 @@ body {
 }
 
 .fav-group {
-   @apply flex flex-col gap-3 ml-auto;
+   @apply flex flex-col gap-3 ml-auto py-2;
 }
 
 .fav-pages {
-   @apply bg-pages-container text-pages-container-100 font-unbounded p-8 transition-all duration-100;
+   @apply flex items-center gap-1 bg-pages-container text-pages-container-100 font-unbounded p-8 transition-all duration-100;
 }
 
 .fav-curr-page {
-   @apply mr-2.5 font-bold;
+   @apply mr-1.5 font-bold bg-transparent outline-none cursor-pointer;
 }
 
 .fav-max-page {
    @apply ml-2.5 opacity-50;
+}
+
+input[type="number"] {
+   text-align: right;
+   -webkit-appearance: textfield;
+   -moz-appearance: textfield;
+   appearance: textfield;
+}
+ 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+}
+
+.page-up {
+   @apply mb-[-4px];
+}
+
+.page-down {
+   @apply mt-[-4px];
 }
  
