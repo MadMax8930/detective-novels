@@ -6,11 +6,11 @@ import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io'
 import { Button, LoaderRound } from '@/components'
 import { FavPageProps, FavBookProps } from '@/types'
 
-const FavoriteLibrary: React.FC<FavPageProps> = ({ selectedPage, maxPage }) => {
+const FavoriteLibrary: React.FC<FavPageProps> = ({ currPage, maxPage }) => {
    const [shelf, setShelf] = useState<FavBookProps[]>([]);
    const [openCard, setOpenCard] = useState<string | null>(null);
-   const [selectedPageNumber, setSelectedPageNumber] = useState<number>(selectedPage || 1);
    const [loading, setLoading] = useState(true);
+   const [selectedPages, setSelectedPages] = useState<Record<string, number>>({});
 
    useEffect(() => {
       const fetchUserFavNovelList = async () => {
@@ -18,6 +18,19 @@ const FavoriteLibrary: React.FC<FavPageProps> = ({ selectedPage, maxPage }) => {
           const response = await axios.get('/api/favorite/novels');
           const userFavNovels = response.data;
           setShelf(userFavNovels);
+
+          const storedSelectedPages = JSON.parse(localStorage.getItem('selectedPages') || '{}');
+          const defaultPages = userFavNovels.reduce((pageMapping: Record<string, number>, book: FavBookProps) => {
+            pageMapping[book.id] = 1;
+            return pageMapping;
+          }, {});
+          const initialSelectedPages = {
+            ...defaultPages,
+            ...storedSelectedPages,
+            ...(typeof currPage === 'object' ? currPage : {}),
+          };
+          setSelectedPages(initialSelectedPages);
+          localStorage.setItem('selectedPages', JSON.stringify(initialSelectedPages));
         } catch (error) {
           console.error('Failed to fetch user favorites', error);
         } finally {
@@ -26,29 +39,45 @@ const FavoriteLibrary: React.FC<FavPageProps> = ({ selectedPage, maxPage }) => {
       };
   
       fetchUserFavNovelList();
-   }, []);
+   }, [currPage]);
 
-   const handleCardClick = (id: string, event: React.MouseEvent<HTMLDivElement>) => {
-      if (openCard !== null && openCard === id && !(event.target as HTMLElement).closest('.fav-group')) {
+   const handleCardClick = (id: string, e: React.MouseEvent<HTMLDivElement>) => {
+      if (openCard !== null && openCard === id && !(e.target as HTMLElement).closest('.fav-group')) {
         setOpenCard(null);
       } else {
         setOpenCard(id);
       }
    };
 
-   const handlePageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const page = parseInt(event.target.value, 10);
+   const handlePageChange = (bookId: string, e: React.ChangeEvent<HTMLInputElement>) => {
+      const page = parseInt(e.target.value, 10);
       if (!isNaN(page) && page >= 1 && (!maxPage || page <= maxPage)) {
-        setSelectedPageNumber(page);
+         setSelectedPages((prev) => {
+            const updatedPages = { ...prev, [bookId]: page };
+            localStorage.setItem('selectedPages', JSON.stringify(updatedPages));
+            return updatedPages;
+         });
       }
    };
 
-   const incrementPage = () => {
-      if (selectedPageNumber < (maxPage || Infinity)) { setSelectedPageNumber(selectedPageNumber + 1) }
+   const incrementPage = (bookId: string) => {
+      if (selectedPages[bookId] < (maxPage || Infinity)) { 
+         setSelectedPages((prev) => {
+            const updatedPages = { ...prev, [bookId]: prev[bookId] + 1 };
+            localStorage.setItem('selectedPages', JSON.stringify(updatedPages));
+            return updatedPages;
+         });
+      }
    };
   
-   const decrementPage = () => {
-      if (selectedPageNumber > 1) { setSelectedPageNumber(selectedPageNumber - 1) }
+   const decrementPage = (bookId: string) => {
+      if (selectedPages[bookId] > 1) { 
+         setSelectedPages((prev) => {
+            const updatedPages = { ...prev, [bookId]: prev[bookId] - 1 };
+            localStorage.setItem('selectedPages', JSON.stringify(updatedPages));
+            return updatedPages;
+         });
+      }
    };
 
    if (loading) { return <LoaderRound /> }
@@ -68,21 +97,18 @@ const FavoriteLibrary: React.FC<FavPageProps> = ({ selectedPage, maxPage }) => {
                 <div className='fav-pages'>
                   {openCard === book.id && (
                   <div className='flex flex-col'>
-                     <IoMdArrowDropup className='page-up' onClick={incrementPage} />
-                     <IoMdArrowDropdown className='page-down' onClick={decrementPage} />
+                     <IoMdArrowDropup className='page-up' onClick={() => incrementPage(book.id)} />
+                     <IoMdArrowDropdown className='page-down' onClick={() => decrementPage(book.id)} />
                   </div>)}
-                  <input type="number" name="pageSelector" value={selectedPageNumber}
-                     onChange={handlePageChange} min={1} max={maxPage}
-                     className='fav-curr-page'/>
-                   / 
+                  <input type="number" name={`pageSelector-${book.id}`} value={selectedPages[book.id] || 1}
+                     className='fav-curr-page' min={1} max={maxPage} onChange={(e) => handlePageChange(book.id, e)} /> 
+                  / 
                    <span className='fav-max-page'>{maxPage}</span>
                 </div>
                 <div className={`fav-info fav-btns ${openCard !== book.id && 'hidden'}`}>
-                   <Link href={{ pathname: `/profile/lounge/${book.id}`, query: { page: selectedPageNumber } }}>
+                   <Link href={{ pathname: `/profile/lounge/${book.id}`, query: { page: selectedPages[book.id] || 1 } }}>
                       <Button title="Read" additionalStyles="button-read" textStyles='text-sm' 
-                      btnType="button" reactIcon={<BiFolderOpen size={20} />} isDisabled={loading} 
-                     //  action={() => handleCardClick(book.id, selectedPage) } 
-                      />
+                      btnType="button" reactIcon={<BiFolderOpen size={20} />} isDisabled={loading} />
                    </Link>
                    <Link href={{ pathname: `/profile/blog/${book.id}` }}>
                       <Button title="Blog" additionalStyles="button-blog" textStyles='text-sm'

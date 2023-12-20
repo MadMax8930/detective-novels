@@ -177,7 +177,7 @@ export interface NewsletterDBProps {
 };
 
 export interface FavPageProps {
-   selectedPage?: number;
+   currPage?: number;
    maxPage?: number;
 };
 
