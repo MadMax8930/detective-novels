@@ -4,13 +4,16 @@ import React, { useState, useEffect } from 'react'
 import { BiFolderOpen, BiCommentDetail } from 'react-icons/bi'
 import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io'
 import { Button, LoaderRound } from '@/components'
-import { FavPageProps, FavBookProps } from '@/types'
+import { FavBookProps } from '@/types'
+import { useRouter } from 'next/router'
+import { WORDS_PER_PAGE } from '@/constants'
 
-const FavoriteLibrary: React.FC<FavPageProps> = ({ currPage, maxPage }) => {
+const FavoriteLibrary = () => {
+   const router = useRouter();
    const [shelf, setShelf] = useState<FavBookProps[]>([]);
    const [openCard, setOpenCard] = useState<string | null>(null);
+   const [bookData, setBookData] = useState<Record<string, { currPage: number; maxPage: number }>>({});
    const [loading, setLoading] = useState(true);
-   const [selectedPages, setSelectedPages] = useState<Record<string, number>>({});
 
    useEffect(() => {
       const fetchUserFavNovelList = async () => {
@@ -19,18 +22,21 @@ const FavoriteLibrary: React.FC<FavPageProps> = ({ currPage, maxPage }) => {
           const userFavNovels = response.data;
           setShelf(userFavNovels);
 
-          const storedSelectedPages = JSON.parse(localStorage.getItem('selectedPages') || '{}');
-          const defaultPages = userFavNovels.reduce((pageMapping: Record<string, number>, book: FavBookProps) => {
-            pageMapping[book.id] = 1;
-            return pageMapping;
-          }, {});
-          const initialSelectedPages = {
-            ...defaultPages,
-            ...storedSelectedPages,
-            ...(typeof currPage === 'object' ? currPage : {}),
+          const storedBookData = JSON.parse(localStorage.getItem('bookData') || '{}');
+          const defaultBookData = userFavNovels.reduce(
+            (bookMapping: Record<string, { currPage: number; maxPage: number }>, book: FavBookProps) => {
+               const maxPage = Math.ceil(book.content.length / WORDS_PER_PAGE);            
+               bookMapping[book.id] = { currPage: 1, maxPage };
+               return bookMapping;
+            }, {}
+         );
+          const initialBookData = {
+            ...defaultBookData,
+            ...storedBookData,
+            ...(typeof router.query.page === 'object' ? router.query.page : {}),
           };
-          setSelectedPages(initialSelectedPages);
-          localStorage.setItem('selectedPages', JSON.stringify(initialSelectedPages));
+          setBookData(initialBookData);
+          localStorage.setItem('bookData', JSON.stringify(initialBookData));
         } catch (error) {
           console.error('Failed to fetch user favorites', error);
         } finally {
@@ -39,7 +45,7 @@ const FavoriteLibrary: React.FC<FavPageProps> = ({ currPage, maxPage }) => {
       };
   
       fetchUserFavNovelList();
-   }, [currPage]);
+   }, [router.query.page]);
 
    const handleCardClick = (id: string, e: React.MouseEvent<HTMLDivElement>) => {
       if (openCard !== null && openCard === id && !(e.target as HTMLElement).closest('.fav-group')) {
@@ -51,31 +57,34 @@ const FavoriteLibrary: React.FC<FavPageProps> = ({ currPage, maxPage }) => {
 
    const handlePageChange = (bookId: string, e: React.ChangeEvent<HTMLInputElement>) => {
       const page = parseInt(e.target.value, 10);
+      const { maxPage } = bookData[bookId];
       if (!isNaN(page) && page >= 1 && (!maxPage || page <= maxPage)) {
-         setSelectedPages((prev) => {
-            const updatedPages = { ...prev, [bookId]: page };
-            localStorage.setItem('selectedPages', JSON.stringify(updatedPages));
-            return updatedPages;
+         setBookData((prev) => {
+            const updatedData = { ...prev, [bookId]: { ...prev[bookId], currPage: page } };
+            localStorage.setItem('bookData', JSON.stringify(updatedData));
+            return updatedData;
          });
       }
    };
 
    const incrementPage = (bookId: string) => {
-      if (selectedPages[bookId] < (maxPage || Infinity)) { 
-         setSelectedPages((prev) => {
-            const updatedPages = { ...prev, [bookId]: prev[bookId] + 1 };
-            localStorage.setItem('selectedPages', JSON.stringify(updatedPages));
-            return updatedPages;
+      const { currPage, maxPage } = bookData[bookId];
+      if (currPage < (maxPage || Infinity)) { 
+         setBookData((prev) => {
+            const updatedData = { ...prev, [bookId]: { ...prev[bookId], currPage: prev[bookId].currPage + 1 } };
+            localStorage.setItem('bookData', JSON.stringify(updatedData));
+            return updatedData;
          });
       }
    };
   
    const decrementPage = (bookId: string) => {
-      if (selectedPages[bookId] > 1) { 
-         setSelectedPages((prev) => {
-            const updatedPages = { ...prev, [bookId]: prev[bookId] - 1 };
-            localStorage.setItem('selectedPages', JSON.stringify(updatedPages));
-            return updatedPages;
+      const { currPage } = bookData[bookId];
+      if (currPage > 1) { 
+         setBookData((prev) => {
+            const updatedData = { ...prev, [bookId]: { ...prev[bookId], currPage: prev[bookId].currPage - 1 } };
+            localStorage.setItem('bookData', JSON.stringify(updatedData));
+            return updatedData;
          });
       }
    };
@@ -100,13 +109,13 @@ const FavoriteLibrary: React.FC<FavPageProps> = ({ currPage, maxPage }) => {
                      <IoMdArrowDropup className='page-up' onClick={() => incrementPage(book.id)} />
                      <IoMdArrowDropdown className='page-down' onClick={() => decrementPage(book.id)} />
                   </div>)}
-                  <input type="number" name={`pageSelector-${book.id}`} value={selectedPages[book.id] || 1}
-                     className='fav-curr-page' min={1} max={maxPage} onChange={(e) => handlePageChange(book.id, e)} /> 
+                  <input type="number" name={`pageSelector-${book.id}`} value={bookData[book.id].currPage || 1}
+                     className='fav-curr-page' min={1} max={bookData[book.id].maxPage} onChange={(e) => handlePageChange(book.id, e)} /> 
                   / 
-                   <span className='fav-max-page'>{maxPage}</span>
+                   <span className='fav-max-page'>{bookData[book.id].maxPage}</span>
                 </div>
                 <div className={`fav-info fav-btns ${openCard !== book.id && 'hidden'}`}>
-                   <Link href={{ pathname: `/profile/lounge/${book.id}`, query: { page: selectedPages[book.id] || 1 } }}>
+                   <Link href={{ pathname: `/profile/lounge/${book.id}`, query: { page:  bookData[book.id].currPage || 1 } }}>
                       <Button title="Read" additionalStyles="button-read" textStyles='text-sm' 
                       btnType="button" reactIcon={<BiFolderOpen size={20} />} isDisabled={loading} />
                    </Link>

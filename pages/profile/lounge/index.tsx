@@ -19,7 +19,7 @@ const Lounge: NextPageWithLayout<ProfileProps> = ({ session }) => {
 
   return (
     <div className='pt-32'>
-      <FavoriteLibrary currPage={14} maxPage={30} />
+      <FavoriteLibrary />
       <div className="p-4 absolute bottom-0 left-10 w-full">
         Connected as: {session.username}
         <Toggler isSubscribed={user?.receiveNewsletters} />

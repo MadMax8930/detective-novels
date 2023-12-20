@@ -33,6 +33,8 @@ export const PAYPAL_URL = `https://www.paypal.com/donate?business=${process.env.
 
 export const ITEMS_PER_PAGE = 4;
 
+export const WORDS_PER_PAGE = 3000;
+
 export const HARDCODED_CHART_DATA = [
    {
       day: "Sun",

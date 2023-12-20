@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
-import useNovel from '@/hooks/useNovel'
 import { useRouter } from 'next/router'
+import { WORDS_PER_PAGE } from '@/constants'
+import useNovel from '@/hooks/useNovel'
 
 const LoungeId = () => {
    const router = useRouter();
@@ -8,9 +9,8 @@ const LoungeId = () => {
    const { data, isLoading, error } = useNovel(novelId as string);
 
    const currentPage = parseInt(page as string, 10) || 1;
-   const itemsPerPage = 2000;
-   const startIndex = (currentPage - 1) * itemsPerPage;
-   const endIndex = startIndex + itemsPerPage;
+   const startIndex = (currentPage - 1) * WORDS_PER_PAGE;
+   const endIndex = startIndex + WORDS_PER_PAGE;
    
    const currentPageContent = data?.content?.slice(startIndex, endIndex);
 
@@ -21,7 +21,7 @@ const LoungeId = () => {
       }
    }, [currentPage, startIndex, novelId, data, router]);
 
-   if (!novelId || error) { return null }
+   if (!novelId || isLoading || error) { return null }
 
   return (
     <>
