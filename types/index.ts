@@ -6,7 +6,8 @@ export interface CustomButtonProps {
    btnType?: "button" | "submit";
    additionalStyles?: string;
    textStyles?: string;
-   reactIcon?: ReactElement;
+   leftIcon?: ReactElement;
+   rightIcon?: ReactElement;
    isDisabled?: boolean;
    action?: MouseEventHandler<HTMLButtonElement>;
 };

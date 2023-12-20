@@ -81,8 +81,8 @@ const AdminSender = () => {
                   <div className="flex flex-col gap-2">
                      <p className="text-white-main">Are you sure you want to send this newsletter to all the users?</p>
                      <div className="flex justify-center space-x-2">
-                        <Button title="No" btnType="button" action={() => setShowSendConfirmation(false)} additionalStyles="admin-button-update flex" reactIcon={<BsSendSlash size={19} />} />
-                        <Button title="Yes" btnType="button" action={handleSendNewsletter} additionalStyles="admin-button-create flex" reactIcon={<BsSendCheckFill size={19} />} />
+                        <Button title="No" btnType="button" action={() => setShowSendConfirmation(false)} additionalStyles="admin-button-update flex" leftIcon={<BsSendSlash size={19} />} />
+                        <Button title="Yes" btnType="button" action={handleSendNewsletter} additionalStyles="admin-button-create flex" leftIcon={<BsSendCheckFill size={19} />} />
                      </div>
                   </div>
                )}

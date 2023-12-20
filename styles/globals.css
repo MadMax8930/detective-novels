@@ -64,6 +64,10 @@ body {
    @apply bg-primary-red-200 text-white-main flex cursor-pointer pb-1.5;
 }
 
+.button-pagination {
+   @apply bg-gray-300 text-gray-700 font-extrabold hover:bg-primary-black hover:text-white-main font-shoulders uppercase flex items-center cursor-pointer px-4 py-2;
+}
+
 .admin-button {
    @apply bg-admin-btn text-white-main;
 }
@@ -583,4 +587,3 @@ input[type="number"]::-webkit-outer-spin-button {
 .page-down {
    @apply mt-[-4px];
 }
- 

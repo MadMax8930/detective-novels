@@ -118,11 +118,11 @@ const FavoriteLibrary = () => {
                 <div className={`fav-info fav-btns ${openCard !== book.id && 'hidden'}`}>
                    <Link href={{ pathname: `/profile/lounge/${book.id}`, query: { page:  bookData[book.id].currPage || 1 } }}>
                       <Button title="Read" additionalStyles="button-read" textStyles='text-sm' 
-                      btnType="button" reactIcon={<BiFolderOpen size={20} />} isDisabled={loading} />
+                      btnType="button" leftIcon={<BiFolderOpen size={20} />} isDisabled={loading} />
                    </Link>
                    <Link href={{ pathname: `/profile/blog/${book.id}` }}>
                       <Button title="Blog" additionalStyles="button-blog" textStyles='text-sm'
-                      btnType="button" reactIcon={<BiCommentDetail size={20} />} isDisabled={loading} />
+                      btnType="button" leftIcon={<BiCommentDetail size={20} />} isDisabled={loading} />
                    </Link>
                 </div>
              </div>

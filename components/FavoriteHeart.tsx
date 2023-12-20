@@ -58,7 +58,7 @@ const FavoriteHeart = ({novelId}: { novelId: string | undefined}) => {
 
   return (
     <div className="absolute top-0 right-0">
-      <Button btnType="button" reactIcon={<TiHeart size={25} />}
+      <Button btnType="button" leftIcon={<TiHeart size={25} />}
          action={isFavorited ? deleteFav : postFav} 
          additionalStyles={isFavorited ? "button-unfav" : "button-fav"} 
          isDisabled={loading} />
