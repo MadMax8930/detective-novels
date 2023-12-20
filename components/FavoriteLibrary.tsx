@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React, { useState, useEffect } from 'react'
 import { BiFolderOpen, BiCommentDetail } from 'react-icons/bi'
 import { IoMdArrowDropup, IoMdArrowDropdown } from 'react-icons/io'
-import { Button, LoaderRound } from '@/components'
+import { Button, LoaderRound, NoItem } from '@/components'
 import { FavBookProps } from '@/types'
 import { useRouter } from 'next/router'
 import { WORDS_PER_PAGE } from '@/constants'
@@ -89,6 +89,7 @@ const FavoriteLibrary = () => {
       }
    };
 
+   if (!shelf) { return <NoItem variation={'nf'} linkHref="/profile" title="No Favorite Novels" description="Heart any to add to your list and have an easier access." imageSrc="/images/heart.png" imageAlt="No Favorites Yet" /> }
    if (loading) { return <LoaderRound /> }
 
   return (

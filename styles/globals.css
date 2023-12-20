@@ -388,24 +388,36 @@ body {
 
 /* No Item */
 
-.ncContainer {
+.nsContainer {
    @apply flex flex-col items-center justify-center text-center py-24 px-6 pr-16 font-shoulders cursor-pointer;
 }
  
-.ncTitle {
+.nsTitle {
    @apply text-base md:text-lg lg:text-xl font-semibold uppercase;
 }
  
-.ncDescription {
+.nsDescription {
    @apply text-base lg:text-lg mb-6 text-grey mt-1;
 }
  
-.ncImage {
+.nsImage {
    @apply w-full max-w-[200px] h-auto text-center opacity-80 cursor-pointer;
 }
 
-.ncLink {
-   @apply flex flex-col items-center text-base;
+.nfContainer {
+   @apply flex flex-col items-center justify-center text-center py-48 px-6 font-shoulders cursor-pointer;
+}
+
+.nfTitle {
+   @apply text-lg md:text-xl lg:text-2xl font-semibold uppercase;
+}
+
+.nfDescription {
+   @apply text-lg lg:text-xl text-grey mt-1;
+}
+ 
+.nfImage {
+   @apply w-full max-w-[240px] h-auto text-center opacity-80 cursor-pointer rotate-6;
 }
 
 /* Newsletter */

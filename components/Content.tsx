@@ -97,7 +97,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
          ) : (selectedNovel !== novelId) ? (
             <p className="text-red-500 md:text-xl text-sm font-semibold p-4">Novel not found</p>
          ) : (!selectedNovel) ? (
-            <NoItem variation={'nc'} linkHref="/" title="No Selected Novel" description="Click on any novel to select and read it." imageSrc="/images/book.png" imageAlt="No Content Yet" />
+            <NoItem variation={'ns'} linkHref="/" title="No Selected Novel" description="Click on any novel to select and read it." imageSrc="/images/book.png" imageAlt="No Content Yet" />
          ) : (
             null
          )}
