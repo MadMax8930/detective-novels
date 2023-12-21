@@ -16,6 +16,7 @@ const LoungeId = () => {
    
    const contentArray = data?.content || [];
    const currentPageContent = contentArray.slice(startIndex, endIndex);
+   const paragraphs = typeof currentPageContent === 'string' ? currentPageContent.split('\n') : [currentPageContent];
 
    useEffect(() => {
       if (!isNaN(currentPage) && (currentPage < 1 || isNaN(startIndex) || startIndex >= data?.content.length)) {
@@ -34,8 +35,12 @@ const LoungeId = () => {
                <Button title="Lounge" btnType="button" action={() => router.push(`/profile/lounge`)} additionalStyles='button-lounge' leftIcon={<IoIosExit size={23} />} />
                <div className="novel-id-title">{data?.title || 'N/A'}</div>
             </div>
-            {currentPageContent.length > 0 ?
-               <div className="prose lg:prose-xl mt-2">{currentPageContent}</div> :
+            {paragraphs.length > 0 ?
+               <div className="prose lg:prose-xl mt-2">
+                  {paragraphs.map((paragraph, index) => (
+                     <p key={index}>{paragraph}</p>
+                  ))}
+               </div> :
                <div className="novel-id-no-container">
                   <p className="novel-id-no-content">No content available for the current page.</p>
                   <NoItem variation={'nn'} linkHref="/profile/lounge" title="No Novel Content" description="The selected novel has no content yet." imageSrc="/images/nonovel.png" imageAlt="No Novel Id" />
