@@ -158,7 +158,7 @@ export interface NavbarProps {
 };
 
 export interface NoItemProps {
-   variation: 'ns' | 'nf' | 'nc';
+   variation: 'ns' | 'nf' | 'nn';
    linkHref: string;
    title: string;
    description: string;

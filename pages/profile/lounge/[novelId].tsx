@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { IoMdArrowRoundBack, IoMdArrowRoundForward } from 'react-icons/io'
-import { NotFound, LoaderLight, Button } from '@/components'
+import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosExit } from 'react-icons/io'
+import { NotFound, LoaderLight, Button, NoItem } from '@/components'
 import { WORDS_PER_PAGE } from '@/constants'
 import useNovel from '@/hooks/useNovel'
 
@@ -24,25 +24,28 @@ const LoungeId = () => {
    }, [currentPage, startIndex, novelId, data, router]);
 
    if (error) { return <NotFound/> }
-   if (isLoading) { return <LoaderLight /> } 
-
+   if (isLoading) { return <LoaderLight /> }
+   
   return (
-    <div className="container mx-auto p-4">
-      {/* Content */}
-      <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg mb-8">
-        {currentPageContent.length > 0 ? (
-          <div className="prose lg:prose-xl">
-            {currentPageContent}
-          </div>
-        ) : (
-          <p className="text-center font-bold">No content available for the current page.</p>
-        )}
-      </div>
-      {/* Pagination */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 flex justify-evenly items-center bg-primary-lighter">   
-          <Button title="Previous Page" btnType="button" isDisabled={currentPage === 1} action={() => router.push(`/profile/lounge/${novelId}?page=${currentPage - 1}`)} additionalStyles="button-pagination" leftIcon={<IoMdArrowRoundBack size={22} />} />
-          <span className="text-gray-600">Page {currentPage} of {Math.ceil(data?.content.length / WORDS_PER_PAGE)}</span>
-          <Button title="Next Page" btnType="button" isDisabled={endIndex >= data?.content.length} action={() => router.push(`/profile/lounge/${novelId}?page=${currentPage + 1}`)} additionalStyles="button-pagination" rightIcon={<IoMdArrowRoundForward size={22} />} />
+    <div className="bg-primary-light">
+      <div className="novel-id-container">
+         <div className="novel-id-content">
+            <div className="novel-id-header">
+               <Button title="Lounge" btnType="button" action={() => router.push(`/profile/lounge`)} additionalStyles='button-lounge' leftIcon={<IoIosExit size={23} />} />
+               <div className="novel-id-title">{data.title || 'N/A'}</div>
+            </div>
+            {currentPageContent.length > 0 ?
+               <div className="prose lg:prose-xl mt-2">{currentPageContent}</div> :
+               <div className="novel-id-no-container">
+                  <p className="novel-id-no-content">No content available for the current page.</p>
+                  <NoItem variation={'nn'} linkHref="/profile/lounge" title="No Novel Content" description="The selected novel has no content yet." imageSrc="/images/nonovel.png" imageAlt="No Novel Id" />
+               </div>}
+         </div>
+         <div className="novel-id-pagination">   
+            <Button title="Previous Page" btnType="button" isDisabled={currentPage === 1} action={() => router.push(`/profile/lounge/${novelId}?page=${currentPage - 1}`)} additionalStyles="button-pagination" leftIcon={<IoMdArrowRoundBack size={23} />} />
+            <span className="text-gray-600">Page {currentPage} of {Math.ceil(data?.content.length / WORDS_PER_PAGE)}</span>
+            <Button title="Next Page" btnType="button" isDisabled={endIndex >= data?.content.length} action={() => router.push(`/profile/lounge/${novelId}?page=${currentPage + 1}`)} additionalStyles="button-pagination" rightIcon={<IoMdArrowRoundForward size={23} />} />
+         </div>
       </div>
     </div>
   )

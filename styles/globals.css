@@ -64,6 +64,10 @@ body {
    @apply bg-primary-red-200 text-white-main flex cursor-pointer pb-1.5;
 }
 
+.button-lounge {
+   @apply text-grey hover:text-primary-blue font-shoulders uppercase flex items-center cursor-pointer;
+}
+
 .button-pagination {
    @apply bg-gray-300 text-gray-700 font-extrabold hover:bg-primary-black hover:text-white-main font-shoulders uppercase flex items-center cursor-pointer px-4 py-2;
 }
@@ -424,6 +428,22 @@ body {
    @apply w-full max-w-[240px] h-auto text-center opacity-80 cursor-pointer rotate-6;
 }
 
+.nnContainer {
+   @apply flex flex-col items-center justify-center text-center py-24 px-6 font-shoulders cursor-pointer;
+}
+
+.nnTitle {
+   @apply text-lg md:text-xl lg:text-2xl font-semibold uppercase;
+}
+
+.nnDescription {
+   @apply text-lg lg:text-xl text-grey mt-1 mb-8;
+}
+ 
+.nnImage {
+   @apply w-full max-w-[160px] h-auto text-center opacity-80 cursor-pointer;
+}
+
 /* Newsletter */
 
 .toggler-container {
@@ -586,4 +606,34 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .page-down {
    @apply mt-[-4px];
+}
+
+/* NovelId */
+
+.novel-id-container {
+   @apply container mx-auto p-6;
+}
+
+.novel-id-content {
+   @apply max-w-3xl mx-auto pt-4 p-6 rounded-lg shadow-lg mb-10 bg-white relative;
+}
+
+.novel-id-header {
+   @apply flex items-center justify-between border-b-2;
+}
+
+.novel-id-title {
+   @apply text-primary-black font-shoulders uppercase font-extrabold pr-4;
+}
+
+.novel-id-pagination {
+   @apply fixed bottom-0 left-0 right-0 p-4 flex justify-evenly items-center bg-primary-lighter;
+}
+
+.novel-id-no-container {
+   @apply mx-auto bg-white h-full;
+}
+
+.novel-id-no-content {
+   @apply text-center font-bold p-8 shadow-lg;
 }
