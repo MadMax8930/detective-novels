@@ -41,7 +41,7 @@ const NovelCard: React.FC<NovelCardProps> = ({ data }) => {
                   <p className="text-white text-[10px] lg:text-sm">{data.genre}</p>
                   <div className="flex flex-row items-center gap-1">
                      <div className="cursor-pointer rounded-full w-6 h-6 lg:w-8 lg:h-8 flex justify-center items-center bg-white hover:bg-neutral-300 transition"
-                        onClick={() => router.push(`/read/${data?.id}`)}>
+                        onClick={() => router.push(`/preview/${data?.id}`)}>
                         <PiBookBookmarkDuotone size={18} className="sm:hidden" />
                         <PiBookBookmarkDuotone size={24} className="max-sm:hidden" />
                      </div>

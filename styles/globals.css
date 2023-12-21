@@ -16,10 +16,20 @@ body {
    @apply h-full overflow-x-hidden bg-primary-light;
 }
 
-/* Header */
+/* Home */
 
 .title-header {
    @apply font-unbounded font-semibold;
+}
+
+/* Home */
+
+.home-outer {
+   @apply w-screen min-h-full flex items-center justify-center bg-primary-light;
+}
+
+.home-inner {
+   @apply container h-full mx-auto max-w-7xl;
 }
 
 /* Tooltip */
@@ -62,6 +72,10 @@ body {
 
 .button-blog {
    @apply bg-primary-red-200 text-white-main flex cursor-pointer pb-1.5;
+}
+
+.button-home {
+   @apply text-white-main hover:text-red-500 font-shoulders uppercase flex items-center cursor-pointer;
 }
 
 .button-lounge {
@@ -318,12 +332,27 @@ body {
    background-color: transparent;
 }
 
-/* Novel */
+/* Preview */
 
-.preview-info {
-   @apply h-[50px] text-center pt-12 pb-16 font-shoulders font-semibold;
+.preview-nav {
+   @apply pt-16;
 }
 
+.preview-info {
+   @apply h-[50px] text-center pb-8 font-shoulders font-semibold;
+}
+
+.preview-paragraph {
+   @apply text-primary-lighter text-sm md:text-2xl uppercase;
+}
+
+.preview-ellipsis {
+   @apply text-[30px] text-brown-dots-100 font-bold;
+}
+
+.preview-footer {
+   @apply container h-full mx-auto max-w-7xl pt-6;
+}
 /* Admin */
 
 .admin-header {
@@ -446,6 +475,22 @@ body {
  
 .nnImage {
    @apply w-full max-w-[160px] h-auto text-center opacity-80 cursor-pointer;
+}
+
+.npContainer {
+   @apply flex flex-col items-center justify-center text-center py-16 px-6 font-shoulders cursor-pointer;
+}
+
+.npTitle {
+   @apply text-white-main text-lg md:text-xl lg:text-2xl font-semibold uppercase;
+}
+
+.npDescription {
+   @apply text-lg lg:text-xl text-chart-title mt-1 mb-8;
+}
+ 
+.npImage {
+   @apply w-full max-w-[150px] h-auto text-center opacity-80 cursor-pointer;
 }
 
 /* Newsletter */
@@ -614,7 +659,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* NovelId */
 
-.novel-id-container {
+.novel-id-container, .preview-id-container {
    @apply container mx-auto p-6;
 }
 
@@ -622,12 +667,20 @@ input[type="number"]::-webkit-outer-spin-button {
    @apply max-w-3xl mx-auto pt-4 p-6 rounded-lg shadow-lg mb-10 bg-white relative;
 }
 
-.novel-id-header {
+.preview-id-content {
+   @apply max-w-3xl mx-auto pt-4 p-6 rounded-lg shadow-lg mb-10 bg-primary-black-100 text-primary-light relative;
+}
+
+.novel-id-header, .preview-id-header {
    @apply flex items-center justify-between border-b-2;
 }
 
 .novel-id-title {
    @apply text-primary-black font-shoulders uppercase font-extrabold pr-4;
+}
+
+.preview-id-title {
+   @apply text-white-main font-shoulders uppercase font-extrabold pr-4;
 }
 
 .novel-id-pagination {
@@ -638,6 +691,14 @@ input[type="number"]::-webkit-outer-spin-button {
    @apply mx-auto bg-white h-full;
 }
 
+.preview-id-no-container {
+   @apply mx-auto bg-primary-black-100 h-full;
+}
+
 .novel-id-no-content {
    @apply text-center font-bold p-8 shadow-lg;
+}
+
+.preview-id-no-content {
+   @apply text-white-main text-center font-bold p-8 shadow-lg;
 }

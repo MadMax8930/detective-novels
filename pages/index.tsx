@@ -9,9 +9,9 @@ const Home = () => {
    const { isOpen, closeModal } = useInfoModal();
 
    return (
-      <div className="w-screen min-h-full flex items-center justify-center">
+      <div className="home-outer">
          {(isLoading || !novels) ? <LoaderLight /> :
-         <div className="container h-full mx-auto xl:px-30 max-w-7xl">
+         <div className="home-inner">
             <Navbar />
             <InfoModal visible={isOpen} onClose={closeModal} />
             <NovelList header="Романы сейчас в тренде" data={novels} />
