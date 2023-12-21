@@ -32,7 +32,7 @@ const LoungeId = () => {
          <div className="novel-id-content">
             <div className="novel-id-header">
                <Button title="Lounge" btnType="button" action={() => router.push(`/profile/lounge`)} additionalStyles='button-lounge' leftIcon={<IoIosExit size={23} />} />
-               <div className="novel-id-title">{data.title || 'N/A'}</div>
+               <div className="novel-id-title">{data?.title || 'N/A'}</div>
             </div>
             {currentPageContent.length > 0 ?
                <div className="prose lg:prose-xl mt-2">{currentPageContent}</div> :
