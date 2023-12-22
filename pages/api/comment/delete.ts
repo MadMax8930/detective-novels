@@ -22,13 +22,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(403).json({ error: 'Forbidden: You cannot delete this comment' });
      }
 
+     // Remove the parentCommentId ref
+     await prismadb.comment.updateMany({
+        where: { id: { in: comment.replies.map((reply: any) => reply.id) } },
+        data: { parentCommentId: null },
+     });
+
+     // Delete comments and replies
      await prismadb.comment.deleteMany({
-        where: { 
-          OR: [
-             { id: commentId, userId: currentUser.id }, 
-             { parentCommentId: commentId }
-          ], 
-        },
+        where: { id: { in: [commentId, ...comment.replies.map((reply: any) => reply.id)] } },
      });
 
      return res.status(204).end();

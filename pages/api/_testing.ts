@@ -162,7 +162,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       // console.log("newsletter model", newsletterData);
       // console.log("donation model", donationData);
 
-      const TESTING = commentDataWithArray
+      const TESTING = novelDataFullObj
 
       return res.status(200).json(TESTING);
    } catch (error) {

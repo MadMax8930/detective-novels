@@ -12,6 +12,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
      const comment = await prismadb.comment.findUnique({
         where: { id: commentId, userId: currentUser.id },
+        include: {
+           replies: true,
+        }
      });
 
      if (!comment) {
