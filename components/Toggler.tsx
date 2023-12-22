@@ -10,7 +10,7 @@ const Toggler: React.FC<TogglerProps> = ({ isSubscribed }) => {
       try {
         await axios.patch(`/api/newsletter`, null);
         setPermission((prev) => !prev);
-        toast.success('Newsletter preferences successfully registered');
+        toast.success('Newsletter preferences registered');
       } catch (error) {
         console.error('Error occurred updating user\'s newsletter preferences', error);
         toast.error('Error please try again later');

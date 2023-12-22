@@ -7,7 +7,7 @@ const Footer = ({ bgLight }: { bgLight: boolean }) => (
       {/* Logo & Links */}
       <div className="flex max-md:flex-col flex-wrap justify-between sm:px-16 px-6 pb-1 pt-6 md:pt-8">
          <div className="flex flex-col md:justify-start md:items-start items-center gap-1">
-            <Image src='/images/logo.png' alt='logo' width={100} height={20} className="object-contain w-auto h-auto" />
+            <Image src='/images/logo.png' alt='logo' width={100} height={20} className="object-contain w-auto h-auto" priority />
             <div className="flex flex-col md:items-start items-center">
                <p className={`text-base ${bgLight ? "text-gray-700" : "text-gray-200"}`}>Vlad Novels &copy;</p>
                <p className={`text-xl font-bold" ${bgLight ? "text-gray-800" : "text-gray-100"}`}>Vladislav Surnin</p>
