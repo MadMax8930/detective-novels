@@ -22,7 +22,7 @@ const Toggler: React.FC<TogglerProps> = ({ isSubscribed }) => {
    <div className="toggler-container">
       <div onClick={handleSwitcher} className={`toggler ${permission ? 'border-green-500' : 'border-red-700'}`}>
          <div className="toggle-choice">{permission ? "+ДА" : ""}</div>
-         <div className="toggle-choice">{!permission ? "HET" : ""}</div>
+         <div className="toggle-choice">{!permission ? "НЕТ" : ""}</div>
          <div className={`toggle-ball ${permission ? 'right-0.5 bg-green-500' : 'left-0.5 bg-red-700'}`}></div>
       </div>
     </div>

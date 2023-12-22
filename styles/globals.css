@@ -496,7 +496,7 @@ body {
 /* Newsletter */
 
 .toggler-container {
-   @apply flex justify-center p-6 bg-primary-lighter w-1/5 rounded-xl;
+   @apply flex justify-center;
 }
 
 .toggler {
@@ -556,11 +556,11 @@ body {
 /* Favorite */
 
 .fav-container {
-   @apply flex flex-col items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 overflow-hidden;
+   @apply flex flex-col items-center overflow-hidden;
 }
 
 .fav-card {
-   @apply flex flex-row items-center rounded-[3px] min-w-[600px] h-[90px] mb-2.5 bg-pages-container-300 border border-pages-container-200 overflow-hidden transition-all duration-100 cursor-pointer;
+   @apply flex flex-row items-center rounded-[3px] md:min-w-[600px] sm:min-w-[550px] min-w-[500px] h-[90px] mb-2.5 bg-pages-container-300 border border-pages-container-200 overflow-hidden transition-all duration-100 cursor-pointer;
    perspective:600px;
    box-shadow:0px 2px 10px rgba(0,0,0,.2);
 }
@@ -570,9 +570,9 @@ body {
 }
 
 .fav-card.open {
-   @apply p-6 h-auto;
+   @apply xl:p-8 md:p-6 p-4 h-auto;
 }
- 
+
 .fav-info.open .fav-info {
    @apply mt-2.5 h-full overflow-visible;
 }
@@ -599,11 +599,12 @@ body {
 }
 
 .fav-img {
-   @apply w-[120px] overflow-hidden transition-all duration-500;
+   @apply md:w-[120px] w-[100px] overflow-hidden transition-all duration-500;
    box-shadow:0px 2px 10px rgba(0,0,0,0.3);
 }
 
 .fav-card.open .fav-img {
+   @apply min-h-[150px];
    -webkit-transform: rotate3d(0,1,0,50deg);
    -moz-transform: rotate3d(0,1,0,50deg);
    transform: rotate3d(0,1,0,50deg);
@@ -622,7 +623,7 @@ body {
 }
 
 .fav-group {
-   @apply flex flex-col gap-3 ml-auto py-2;
+   @apply flex flex-col gap-3 md:ml-auto ml-3 py-2;
 }
 
 .fav-pages {
@@ -655,6 +656,20 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .page-down {
    @apply mt-[-4px];
+}
+
+/* Lounge */
+
+.newsletter-container {
+   @apply flex flex-col items-center justify-center w-full font-shoulders uppercase p-4;
+}
+
+.newsletter-main {
+   @apply flex items-center gap-2 p-3 text-base md:text-xl font-extrabold border-b-[1px] border-tooltip-container;
+}
+
+.newsletter-sub {
+   @apply text-tooltip-text text-xs md:text-sm font-extralight pt-3;
 }
 
 /* NovelId */

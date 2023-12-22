@@ -1,5 +1,5 @@
 import React from 'react'
-import { Toggler, LoaderLight, FavoriteLibrary } from '@/components'
+import { Toggler, LoaderLight, FavoriteLibrary, Footer } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import useCurrentUser from '@/hooks/useCurrentUser'
 
@@ -18,12 +18,22 @@ const Lounge: NextPageWithLayout<ProfileProps> = ({ session }) => {
    if (loadUser) { return <LoaderLight /> } 
 
   return (
-    <div className='pt-32'>
-      <FavoriteLibrary />
-      <div className='absolute bottom-0 left-10 w-full p-4'>
-        Connected as: {session.username}
-        <Toggler isSubscribed={user?.receiveNewsletters} />
+    <div className='flex flex-col gap-6 sm:px-12 px-4 py-4 md:px-24 lg:px-36 h-full pt-24'>
+
+      <div className="newsletter-container">
+         <p className="newsletter-main">
+            Would you like to receive newsletters ? 
+            <Toggler isSubscribed={user?.receiveNewsletters} />
+         </p>
+         <p className="newsletter-sub">
+            Sent by the author to&nbsp;{session.email}
+         </p>
       </div>
+
+      <div className="favorite-container">
+         <FavoriteLibrary />
+      </div>
+
     </div>
   )
 }
