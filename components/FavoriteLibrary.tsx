@@ -89,39 +89,39 @@ const FavoriteLibrary = () => {
       }
    };
 
-   if (!shelf) { return <NoItem variation={'nf'} linkHref="/profile" title="No Favorite Novels" description="Heart any to add to your list and have an easier access." imageSrc="/images/heart.png" imageAlt="No Favorites Yet" /> }
+   if (!shelf || shelf.length === 0) { return <NoItem variation={'nf'} linkHref="/profile" title="No Favorite Novels" description="Heart novels to add to your list and have an easier access." imageSrc="/images/heart.png" imageAlt="No Favorites Yet" /> }
    if (loading) { return <LoaderRound /> }
 
   return (
-    <div className='fav-container'>
+    <div className="fav-container">
        {shelf.map((book) => (
           <div key={book.id} className={`fav-card ${openCard === book.id && 'open'}`}
           onClick={(e) => handleCardClick(book.id, e)}>
-             <img src={book.coverImage} alt={`Cover of ${book.title}`} className='fav-img'/>   
-             <div className='fav-content'>
+             <img src={book.coverImage} alt={`Cover of ${book.title}`} className="fav-img" />   
+             <div className="fav-content">
                 <div className="fav-title">{book.title}</div>
                 <div className="fav-genre">{book.genre || book.author}</div>
                 <div className={`fav-info ${openCard !== book.id && 'hidden'}`}>{book.description}</div>
              </div>
-             <div className='fav-group'>
-                <div className='fav-pages'>
+             <div className="fav-group">
+                <div className="fav-pages">
                   {openCard === book.id && (
-                  <div className='flex flex-col'>
-                     <IoMdArrowDropup className='page-up' onClick={() => incrementPage(book.id)} />
-                     <IoMdArrowDropdown className='page-down' onClick={() => decrementPage(book.id)} />
+                  <div className="flex flex-col">
+                     <IoMdArrowDropup className="page-up" onClick={() => incrementPage(book.id)} />
+                     <IoMdArrowDropdown className="page-down" onClick={() => decrementPage(book.id)} />
                   </div>)}
                   <input type="number" name={`pageSelector-${book.id}`} value={bookData[book.id].currPage || 1}
-                     className='fav-curr-page' min={1} max={bookData[book.id].maxPage} onChange={(e) => handlePageChange(book.id, e)} /> 
+                     className="fav-curr-page" min={1} max={bookData[book.id].maxPage} onChange={(e) => handlePageChange(book.id, e)} /> 
                   / 
-                   <span className='fav-max-page'>{bookData[book.id].maxPage}</span>
+                   <span className="fav-max-page">{bookData[book.id].maxPage}</span>
                 </div>
                 <div className={`fav-info fav-btns ${openCard !== book.id && 'hidden'}`}>
                    <Link href={{ pathname: `/profile/lounge/${book.id}`, query: { page:  bookData[book.id].currPage || 1 } }}>
-                      <Button title="Read" additionalStyles="button-read" textStyles='text-sm' 
+                      <Button title="Read" additionalStyles="button-read" textStyles="text-sm"
                       btnType="button" leftIcon={<BiFolderOpen size={20} />} isDisabled={loading} />
                    </Link>
                    <Link href={{ pathname: `/profile/blog/${book.id}` }}>
-                      <Button title="Blog" additionalStyles="button-blog" textStyles='text-sm'
+                      <Button title="Blog" additionalStyles="button-blog" textStyles="text-sm"
                       btnType="button" leftIcon={<BiCommentDetail size={20} />} isDisabled={loading} />
                    </Link>
                 </div>

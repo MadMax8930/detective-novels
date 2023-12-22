@@ -18,8 +18,7 @@ const Lounge: NextPageWithLayout<ProfileProps> = ({ session }) => {
    if (loadUser) { return <LoaderLight /> } 
 
   return (
-    <div className='flex flex-col gap-6 sm:px-12 px-4 py-4 md:px-24 lg:px-36 h-full pt-24'>
-
+    <div className='flex flex-col gap-6 sm:px-12 px-4 py-4 md:px-24 lg:px-36 pt-24 bg-primary-light'>
       <div className="newsletter-container">
          <p className="newsletter-main">
             Would you like to receive newsletters ? 
@@ -29,11 +28,8 @@ const Lounge: NextPageWithLayout<ProfileProps> = ({ session }) => {
             Sent by the author to&nbsp;{session.email}
          </p>
       </div>
-
-      <div className="favorite-container">
-         <FavoriteLibrary />
-      </div>
-
+      <FavoriteLibrary /> 
+      <Footer bgLight={true} />
     </div>
   )
 }
