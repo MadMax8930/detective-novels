@@ -10,6 +10,9 @@ import InfoModal from './InfoModal'
 import NovelCard from './NovelCard'
 import NovelList from './NovelList'
 import Carousel from './Carousel'
+import CommentCard from './CommentCard'
+import CommentList from './CommentList'
+import CommentPrompt from './CommentPrompt'
 import DonateResponse from './DonateResponse'
 import DonateContainer from './DonateContainer'
 import NoItem from './NoItem'
@@ -38,6 +41,9 @@ export {
    NovelCard,
    NovelList,
    Carousel,
+   CommentCard,
+   CommentList,
+   CommentPrompt,
    DonateResponse,
    DonateContainer,
    NoItem,
