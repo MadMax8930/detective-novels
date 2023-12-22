@@ -9,9 +9,11 @@ import { LINKEDIN } from '@/constants'
 import { LoaderDark } from '@/components'
 import withLoading from '@/pages/_hoc'
 
+const authorEndpoint = `${process.env.NEXT_PUBLIC_BACKEND || 'http://localhost:3000'}/api/author`;
+
 export const getServerSideProps: GetServerSideProps = async () => {
    try {
-     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND || 'http://localhost:3000'}/api/author`);
+     const response = await fetch(authorEndpoint);
      const authorData = await response.json();
      return {
        props: { authorData },

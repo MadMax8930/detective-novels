@@ -28,11 +28,24 @@ const ProfileLayout = ({ children, layoutMetadata, session }: ProfileLayoutProps
   return (
     <>
       <Head>
+         <title>{layoutMetadata?.title}</title>
          <meta name="title" content={layoutMetadata?.title} />
          <meta name="description" content={layoutMetadata?.description} />
          <meta name="keywords" content={layoutMetadata?.keywords} />
          <meta name="author" content={layoutMetadata?.applicationName} />
          <meta name="theme-color" content={layoutMetadata?.themeColor} />
+         <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+         <meta httpEquiv="Content-Language" content="ru" />
+         <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
+         <meta name="robots" content="index, follow" />
+         <meta name="publisher" content="Vladislav Surnin" />
+
+         {/* Open Graph Tags */}
+         <meta property="og:title" content={layoutMetadata?.title} />
+         <meta property="og:description" content={layoutMetadata?.description} />
+         <meta property="og:type" content="website" />
+         <meta property="og:image" content="/images/logo.png" />
+         <meta property="og:url" content="https://vladsurnin.com/" />
       </Head>
       <Navbar isUser={!!session?.email} isAdmin={!!session?.adminId} />
       {children}
