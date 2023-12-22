@@ -89,9 +89,8 @@ const FavoriteLibrary = () => {
       }
    };
 
-   if (!shelf) { return <NoItem variation={'nf'} linkHref="/profile" title="No Favorite Novels" description="Heart novels to add to your list and have an easier access." imageSrc="/images/heart.png" imageAlt="No Favorites Yet" /> }
    if (loading) { return <LoaderRound /> }
-   if (shelf && shelf.length === 0) { return <NoItem variation={'nf'} linkHref="/profile" title="No Favorite Novels" description="Heart novels to add to your list and have an easier access." imageSrc="/images/heart.png" imageAlt="No Favorites Yet" /> }
+   if (!shelf || shelf.length === 0) { return <NoItem variation={'nf'} linkHref="/profile" title="No Favorite Novels" description="Heart novels to add to your list and have an easier access." imageSrc="/images/heart.png" imageAlt="No Favorites Yet" /> }
 
   return (
     <div className="fav-container">

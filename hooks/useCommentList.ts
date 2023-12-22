@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import fetcher from '@/lib/fetcher'
 
-const useNovelList = () => {
+const useCommentList = () => {
    const { data, error, isLoading, mutate } = useSWR('/api/comment/listAll', fetcher, {
       revalidateIfStale: false,
       revalidateOnFocus: false,
@@ -11,4 +11,4 @@ const useNovelList = () => {
    return { data, error, isLoading, mutate };
 };
 
-export default useNovelList;
+export default useCommentList;

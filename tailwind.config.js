@@ -30,6 +30,7 @@ module.exports = {
         'tooltip-container': "rgba(0, 0, 11, 0.5)",
         'tooltip-text': "#808080",
         'pages-container': { DEFAULT: "#1c1c36", 100: "#ccc", 200: "#888", 300: "#212140" },
+        'comm-prompt': { DEFAULT: "#ccccccef" },
          grey: "#747A88",
       },
       fontFamily: {
