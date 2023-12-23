@@ -11,7 +11,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
      const allUserComments = await prismadb.comment.findMany({
         where: { userId: currentUser.id },
         include: {
-           parentCommentObj: true,
+           user: {
+              select: {
+                 username: true,
+              }
+           },
+           parentCommentObj: {
+              include: {
+                 user: {
+                    select: {
+                       username: true,
+                    }
+                 }
+              }
+           },
            replies: true,
         }
      });

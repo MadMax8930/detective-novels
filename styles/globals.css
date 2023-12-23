@@ -78,6 +78,10 @@ body {
    @apply text-white-main hover:text-red-500 font-shoulders uppercase flex items-center cursor-pointer;
 }
 
+.button-comment {
+   @apply text-white-main rounded-lg border-none cursor-pointer p-1.5;
+}
+
 .button-lounge {
    @apply text-grey hover:text-primary-blue font-shoulders uppercase flex items-center cursor-pointer;
 }
@@ -493,6 +497,22 @@ body {
    @apply w-full max-w-[150px] h-auto text-center opacity-80 cursor-pointer;
 }
 
+.ncContainer {
+   @apply flex flex-col items-center justify-center text-center py-24 px-6 font-shoulders cursor-pointer;
+}
+
+.ncTitle {
+   @apply text-lg md:text-xl lg:text-2xl font-semibold uppercase;
+}
+
+.ncDescription {
+   @apply text-lg lg:text-xl text-grey mt-1 mb-8;
+}
+ 
+.ncImage {
+   @apply w-full max-w-[175px] h-auto text-center opacity-80 cursor-pointer;
+}
+
 /* Newsletter */
 
 .toggler-container {
@@ -717,3 +737,194 @@ input[type="number"]::-webkit-outer-spin-button {
 .preview-id-no-content {
    @apply text-white-main text-center font-bold p-8 shadow-lg;
 }
+
+/* Comment List */
+
+.comment-list-container {
+   @apply flex flex-col w-full;
+}
+
+/* Comment Card */
+
+.comment-card-container::before,
+.comment-card-container::after {
+  content: '';
+  display: block;
+  height: 0.75px;
+  background-color: #635f5f57;
+  position: absolute;
+  left: 1.5rem;
+  right: 1.5rem;
+}
+
+.comment-card-container::before {
+  top: 0;
+}
+
+.comment-card-container::after {
+  bottom: 0;
+}
+
+.comment-card-container {
+   @apply relative bg-tooltip-container-200 py-6 px-16;
+}
+
+.comment-card-profile {
+   @apply flex items-center justify-between text-base font-shoulders;
+}
+
+.comment-card-user {
+   @apply text-lg font-bold capitalize;
+}
+
+.comment-card-date {
+   @apply text-sm font-medium text-[#888];
+}
+
+.comment-card-content {
+   @apply text-justify md:text-sm text-xs mt-2 mb-6;
+}
+
+.comment-card-buttons {
+   @apply absolute right-10 bottom-0 flex items-center gap-2 py-2 px-4 rounded-lg bg-transparent;
+}
+
+.comment-card-reply {
+   @apply text-[#716e6e] bg-tooltip-container-100 rounded-lg mt-3 px-3 pt-1.5 pb-4;
+}
+
+.comment-card-replier {
+   @apply font-medium italic text-sm;
+}
+
+.comment-card-replier strong {
+   @apply capitalize; 
+}
+
+.comment-card-replied {
+   @apply italic text-xs pt-1;
+}
+
+/* Comment Prompt */
+
+.comment-info-container {
+   @apply absolute z-10 font-bold text-grey uppercase bg-[#16a34a];
+      right: 6%;
+      bottom: -30%;
+      padding: 0.175rem 0.35rem;
+}
+
+.comment-prompt-container {
+   @apply relative p-2 bg-comm-prompt
+}
+
+
+.comment-btn-two-container {
+
+ 
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      display: flex;
+      gap: 0.25rem;
+      padding: 0.75rem;
+}
+   
+.comment-btn-two-container button {
+      font-size: 0.85em;
+      padding: 0.5em;
+      border-radius: 6px;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+}
+
+
+.comment-novel-container {  
+      width: 38px;
+      margin-right: 0.5rem;
+}
+
+
+.postContainerInputWrapper {
+   width: 100%;
+   background-color: rgba(246, 240, 240, 0.841);
+}
+
+.comment-prompt-input {
+   color: #897e7e;
+   font-weight: 500;
+   width: 70%;
+   border: none;
+   outline: none;
+   padding: 0.5em;
+   border-radius: 4px;
+   box-sizing: border-box;
+   background-color: transparent;
+}
+
+.comment-prompt-input::placeholder {
+   font-size: 0.75em;
+   font-style: oblique;
+   color: #c1baba;
+   max-width: 95%;
+   text-overflow: ellipsis;
+   overflow: hidden;
+   white-space: nowrap;
+   text-transform: uppercase;
+}
+
+@media (min-width: 320px) and (max-width: 350px) {
+   .comment-prompt-input {
+      width: 50%;
+   }
+}
+
+@media (min-width: 350px) and (max-width: 380px) {
+   .comment-prompt-input {
+      width: 55%;
+   }
+}
+
+@media (min-width: 380px) and (max-width: 420px) {
+   .comment-prompt-input{
+      width: 60%;
+   }
+}
+
+@media (min-width: 420px) and (max-width: 460px) {
+   .comment-prompt-input {
+      width: 62.5%;
+   }
+}
+
+@media (min-width: 460px) and (max-width: 525px) {
+   .comment-prompt-input {
+      width: 65%;
+   }
+}
+
+@media (min-width: 660px) {
+   .comment-prompt-input::placeholder {
+      font-size: 1em;
+   }
+}
+
+.sticky {
+   position: sticky;
+   top: 4.4rem;
+   padding: 0.5em 1.5em 0em;
+   z-index: 10;
+}
+
+.sticky::before {
+   content: "";
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   /* background: linear-gradient(to bottom,#2d2b2a, transparent), url('/wall.png') no-repeat center center; */
+   background-size: cover;
+}
+

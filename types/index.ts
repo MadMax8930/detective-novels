@@ -9,6 +9,7 @@ export interface CustomButtonProps {
    leftIcon?: ReactElement;
    rightIcon?: ReactElement;
    isDisabled?: boolean;
+   tooltip?: string;
    action?: MouseEventHandler<HTMLButtonElement>;
 };
 
@@ -194,3 +195,48 @@ export interface FavBookProps {
    genre: string;
    coverImage: string;
 };
+
+export interface CommentProps {
+   id: string;
+   content: string;
+   createdAt: string;
+   userId: string;
+   user: { username: string };
+   novelId: string;
+   parentCommentId: string | null;
+   parentCommentObj?: CommentProps | null;
+   replies?: CommentProps[];
+};
+
+export type ButtonAction = 'edit' | 'reply' | null;
+
+export interface CommentListProps {
+   novelId: string;
+   comments: CommentProps[];
+   loading: boolean;
+   mutate: () => void;
+   onReply: (comment: CommentProps) => void;
+   onEdit: (comment: CommentProps) => void;
+   authUser: string;
+   buttonSelection: {
+     handleCommentClick: (commentId: string, action: ButtonAction) => void;
+     selectedCommentId: string | null;
+     btnAction: ButtonAction;
+   };
+};
+
+export interface CommentCardProps {
+   novelId: string;
+   comment: CommentProps;
+   commentId: string;
+   mutate: () => void;
+   onReply: (comment: CommentProps) => void;
+   onEdit: (comment: CommentProps) => void;
+   authUser: string;
+   buttonSelection: {
+     handleCommentClick: (commentId: string, action: ButtonAction) => void;
+     isSelected: boolean;
+     btnAction: ButtonAction;
+   };
+};
+ 

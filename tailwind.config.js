@@ -27,10 +27,12 @@ module.exports = {
         'white-main': "#fdfafa",
         'chart-title': "#b7bac1",
         'brown-dots': { DEFAULT: "#7e7676", 100: "#FF5733" },
-        'tooltip-container': "rgba(0, 0, 11, 0.5)",
+        'tooltip-container': { DEFAULT: "rgba(0, 0, 11, 0.5)", 100: "rgba(151, 146, 146, 0.101)", 200: "rgba(157, 163, 163, 0.16)" },
+
         'tooltip-text': "#808080",
         'pages-container': { DEFAULT: "#1c1c36", 100: "#ccc", 200: "#888", 300: "#212140" },
         'comm-prompt': { DEFAULT: "#ccccccef" },
+        'btn-comment': { DEFAULT: "#525257", 100: "#16a34a", 200: "#eab308", 300: "#ff4040" },
          grey: "#747A88",
       },
       fontFamily: {

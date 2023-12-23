@@ -1,13 +1,14 @@
 import Image from 'next/image'
 import { CustomButtonProps } from '@/types'
 
-const Button = ({ title, btnType, additionalStyles, textStyles, leftIcon, rightIcon, isDisabled, action }: CustomButtonProps) => {
+const Button = ({ title, btnType, additionalStyles, textStyles, leftIcon, rightIcon, isDisabled, tooltip, action }: CustomButtonProps) => {
   return (
     <button 
       disabled={isDisabled || false}
       type={btnType || "button"}
       className={`custom-btn ${additionalStyles}`}
       onClick={action}
+      title={tooltip}
     >
       {leftIcon && (
          <div className="relative w-6 h-6">
