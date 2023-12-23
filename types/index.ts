@@ -237,4 +237,24 @@ export interface CommentCardProps {
      btnAction: ButtonAction;
    };
 };
+
+export interface CommentPromptProps {
+   novel: NovelProps;
+   mutate: () => void;
+   replyingComment: CommentProps | null;
+   setReplyingComment: React.Dispatch<React.SetStateAction<CommentProps | null>>;
+   editingComment: CommentProps | null;
+   setEditingComment: React.Dispatch<React.SetStateAction<CommentProps | null>>;
+   cancelSend: () => void;
+   authUser: string;
+   messageBody: string;
+   setMessageBody: React.Dispatch<React.SetStateAction<string>>;
+   parentMessageId: string | null;
+   setParentMessageId: React.Dispatch<React.SetStateAction<string | null>>;
+   buttonSelection: {
+      handleCommentClick: (commentId: string | null, action: ButtonAction) => void;
+      selectedCommentId: string | null;
+      btnAction: ButtonAction;
+   };
+};
  

@@ -82,6 +82,22 @@ body {
    @apply text-white-main rounded-lg border-none cursor-pointer p-1.5;
 }
 
+.button-comment-reply {
+   @apply button-comment hover:bg-btn-comment-100;
+}
+
+.button-comment-edit {
+   @apply button-comment hover:bg-btn-comment-200;
+}
+
+.button-comment-delete {
+   @apply button-comment hover:bg-btn-comment-300;
+}
+
+.button-comment-post {
+   @apply button-comment hover:bg-btn-comment-400;
+}
+
 .button-lounge {
    @apply text-grey hover:text-primary-blue font-shoulders uppercase flex items-center cursor-pointer;
 }
@@ -785,7 +801,7 @@ input[type="number"]::-webkit-outer-spin-button {
    @apply text-justify md:text-sm text-xs mt-2 mb-6;
 }
 
-.comment-card-buttons {
+.comment-card-buttons, .comment-prompt-buttons {
    @apply absolute right-10 bottom-0 flex items-center gap-2 py-2 px-4 rounded-lg bg-transparent;
 }
 
@@ -816,27 +832,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .comment-prompt-container {
    @apply relative p-2 bg-comm-prompt
-}
-
-
-.comment-btn-two-container {
-
- 
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      display: flex;
-      gap: 0.25rem;
-      padding: 0.75rem;
-}
-   
-.comment-btn-two-container button {
-      font-size: 0.85em;
-      padding: 0.5em;
-      border-radius: 6px;
-      color: #fff;
-      border: none;
-      cursor: pointer;
 }
 
 

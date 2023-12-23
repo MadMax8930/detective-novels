@@ -32,7 +32,7 @@ module.exports = {
         'tooltip-text': "#808080",
         'pages-container': { DEFAULT: "#1c1c36", 100: "#ccc", 200: "#888", 300: "#212140" },
         'comm-prompt': { DEFAULT: "#ccccccef" },
-        'btn-comment': { DEFAULT: "#525257", 100: "#16a34a", 200: "#eab308", 300: "#ff4040" },
+        'btn-comment': { DEFAULT: "#525257", 100: "#16a34a", 200: "#eab308", 300: "#ff4040", 400: "#2b59ff" },
          grey: "#747A88",
       },
       fontFamily: {

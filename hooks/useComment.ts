@@ -1,18 +1,16 @@
 import fetcherBis from '@/lib/fetcherBis'
 
 interface newCommBodyProps {
-   novelId: string;
    content: string;
    parentCommentId?: string | null;
 }
 
 interface editCommBodyProps {
-   novelId: string;
    content: string;
    parentCommentId?: string | null;
 }
 
-const useComment = (novelId: string, commentId: string) => {
+const useComment = (commentId?: string) => {
 
   const addComment = async (newCommentData: newCommBodyProps) => {
     try {

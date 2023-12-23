@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@/components'
-import { BiEdit, BiReply, BiTrash } from 'react-icons/bi'
+import { BiSolidMessageDetail, BiSolidMessageEdit, BiSolidTrash } from 'react-icons/bi'
 import { format } from '@/lib/dateFormat'
 import { toast } from 'react-hot-toast'
 import { CommentCardProps } from '@/types'
@@ -47,11 +47,11 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment, commentId, mutate, o
       </div>
       {/* Controls */}
       <div className="comment-card-buttons">
-         <Button action={handleReply} rightIcon={<BiReply size={24} />} tooltip="Reply to comment" additionalStyles={`button-comment hover:bg-btn-comment-100 ${isSelected && btnAction === 'reply' ? 'bg-btn-comment-100' : 'bg-btn-comment'}`} />
+         <Button action={handleReply} rightIcon={<BiSolidMessageDetail size={24} />} tooltip="Reply to comment" additionalStyles={`button-comment-reply ${isSelected && btnAction === 'reply' ? 'bg-btn-comment-100' : 'bg-btn-comment'}`} />
          {comment.userId === authUser && (
-         <Button action={handleEdit} rightIcon={<BiEdit size={24} />} tooltip="Edit your comment" additionalStyles={`button-comment hover:bg-btn-comment-200 ${isSelected && btnAction === 'edit' ? 'bg-btn-comment-200' : 'bg-btn-comment'}`} />)}
+         <Button action={handleEdit} rightIcon={<BiSolidMessageEdit size={24} />} tooltip="Edit your comment" additionalStyles={`button-comment-edit ${isSelected && btnAction === 'edit' ? 'bg-btn-comment-200' : 'bg-btn-comment'}`} />)}
          {comment.userId === authUser && (
-         <Button action={handleDelete} rightIcon={<BiTrash size={24} />} tooltip="Delete your comment" additionalStyles='button-comment bg-btn-comment hover:bg-btn-comment-300' />)}
+         <Button action={handleDelete} rightIcon={<BiSolidTrash size={24} />} tooltip="Delete your comment" additionalStyles='button-comment-delete bg-btn-comment' />)}
       </div>
       {/* Parent */}
       {comment.parentCommentId && (<>
