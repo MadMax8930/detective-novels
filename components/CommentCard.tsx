@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from '@/components'
-import { BiSolidMessageDetail, BiSolidMessageEdit, BiSolidTrash } from 'react-icons/bi'
+import { BiSolidMessageDetail, BiSolidMessageEdit, BiSolidCommentX } from 'react-icons/bi'
 import { format } from '@/lib/dateFormat'
 import { toast } from 'react-hot-toast'
 import { CommentCardProps } from '@/types'
@@ -51,7 +51,7 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment, commentId, mutate, o
          {comment.userId === authUser && (
          <Button action={handleEdit} rightIcon={<BiSolidMessageEdit size={24} />} tooltip="Edit your comment" additionalStyles={`button-comment-edit ${isSelected && btnAction === 'edit' ? 'bg-btn-comment-200' : 'bg-btn-comment'}`} />)}
          {comment.userId === authUser && (
-         <Button action={handleDelete} rightIcon={<BiSolidTrash size={24} />} tooltip="Delete your comment" additionalStyles='button-comment-delete bg-btn-comment' />)}
+         <Button action={handleDelete} rightIcon={<BiSolidCommentX size={24} />} tooltip="Delete your comment" additionalStyles='button-comment-delete bg-btn-comment' />)}
       </div>
       {/* Parent */}
       {comment.parentCommentId && (<>

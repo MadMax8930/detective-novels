@@ -59,37 +59,31 @@ const CommentPrompt: React.FC<CommentPromptProps> = ({ novel, mutate, replyingCo
    };
 
   return (
-    <div className="sticky">
-      {(selectedCommentId && btnAction === 'reply') 
-         ? <p className="comment-info-container" style={{ backgroundColor: '#16a34a' }}>{btnAction} - {selectedCommentId}</p>
-         : (selectedCommentId && btnAction === 'edit') 
-         ? <p className="comment-info-container" style={{ backgroundColor: '#eab308' }}>{btnAction} - {selectedCommentId}</p> 
-         : null
-      }
-      <div className="comment-prompt-container">
-         <div className="w-full bg-[rgba(246, 240, 240, 0.841)]">
-            <input className="comment-prompt-input" placeholder={`💬  ${novel.title} ...`}
-               value={messageBody} onChange={(e) => setMessageBody(e.target.value)}/></div>
-         <div className="comment-prompt-buttons">
-            <img className="comment-novel-container" src={novel.coverImage} alt="Novel Id Image" />
-            {replyingComment && (
-               <>
-                 <Button action={handleSend} rightIcon={<BiSolidMessageDetail sizes={24} />} tooltip='Reply to comment' additionalStyles={`button-comment-reply ${selectedCommentId && btnAction === 'reply' ? 'bg-btn-comment-100' : 'bg-btn-comment'}`} />
-                 <Button action={cancelSend} rightIcon={<BiSolidCommentX sizes={24} />} tooltip="Cancel reply" additionalStyles={`button-comment-delete ${selectedCommentId && btnAction === 'reply' ? 'bg-btn-comment-300' : 'bg-btn-comment'}`} />
-               </>
-            )}
-            {editingComment && (
-               <>
-                 <Button action={handleSend} rightIcon={<BiSolidMessageEdit sizes={24} />} tooltip='Update your comment' additionalStyles={`button-comment-edit ${selectedCommentId && btnAction === 'edit' ? 'bg-btn-comment-200' : 'bg-btn-comment'}`} />
-                 <Button action={cancelSend} rightIcon={<BiSolidCommentX sizes={24} />} tooltip="Cancel edit" additionalStyles={`button-comment-delete ${selectedCommentId && btnAction === 'edit' ? 'bg-btn-comment-300' : 'bg-btn-comment'}`} />
-               </>
-            )}
-            {authUser && (
-               <>
-                 <Button action={handleSend} rightIcon={<BiSolidEnvelope sizes={24} />} tooltip='Post new comment' additionalStyles={`button-comment-post ${selectedCommentId ? 'bg-btn-comment' : 'bg-primary-blue'}`} />
-               </>
-            )}
-         </div>
+    <div className="comment-prompt-container">
+      {/* Input */}
+      <div className="comment-prompt-input">
+         <textarea id="comment" name="comment" className="comment-textarea" 
+            placeholder={`💬 - What do you think of ${novel.title} ...`} rows={8}
+            value={messageBody} onChange={(e) => setMessageBody(e.target.value)} />
+         {(selectedCommentId && btnAction === 'reply') 
+            ? <p className="comment-tab"><span style={{ backgroundColor: '#16a34a', padding: '0.25rem' }}>{btnAction} - {selectedCommentId}</span></p>
+            : (selectedCommentId && btnAction === 'edit') 
+            ? <p className="comment-tab"><span style={{ backgroundColor: '#eab308', padding: '0.25rem' }}>{btnAction} - {selectedCommentId}</span></p> 
+            : null}
+      </div>
+      {/* Controls */}
+      <div className="comment-prompt-buttons">
+         {replyingComment && (<>
+            <Button action={handleSend} rightIcon={<BiSolidMessageDetail size={24} />} tooltip='Reply to comment' additionalStyles={`button-comment-reply ${selectedCommentId && btnAction === 'reply' ? 'bg-btn-comment-100' : 'bg-btn-comment'}`} />
+            <Button action={cancelSend} rightIcon={<BiSolidCommentX size={24} />} tooltip="Cancel reply" additionalStyles={`button-comment-delete ${selectedCommentId && btnAction === 'reply' ? 'bg-btn-comment-300' : 'bg-btn-comment'}`} />
+         </>)}
+         {editingComment && (<>
+            <Button action={handleSend} rightIcon={<BiSolidMessageEdit size={24} />} tooltip='Update your comment' additionalStyles={`button-comment-edit ${selectedCommentId && btnAction === 'edit' ? 'bg-btn-comment-200' : 'bg-btn-comment'}`} />
+            <Button action={cancelSend} rightIcon={<BiSolidCommentX size={24} />} tooltip="Cancel edit" additionalStyles={`button-comment-delete ${selectedCommentId && btnAction === 'edit' ? 'bg-btn-comment-300' : 'bg-btn-comment'}`} />
+         </>)}
+         {authUser && (<>
+            <Button action={handleSend} rightIcon={<BiSolidEnvelope size={24} />} tooltip='Post new comment' additionalStyles={`button-comment-post ${selectedCommentId ? 'bg-btn-comment' : 'bg-primary-blue'}`} />
+         </>)}
       </div>
     </div>
   )
