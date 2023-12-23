@@ -211,7 +211,6 @@ export interface CommentProps {
 export type ButtonAction = 'edit' | 'reply' | null;
 
 export interface CommentListProps {
-   novelId: string;
    comments: CommentProps[];
    loading: boolean;
    mutate: () => void;
@@ -226,7 +225,6 @@ export interface CommentListProps {
 };
 
 export interface CommentCardProps {
-   novelId: string;
    comment: CommentProps;
    commentId: string;
    mutate: () => void;

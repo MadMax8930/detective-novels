@@ -10,9 +10,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
      const { novelId, content, parentCommentId } = req.body;
 
-     const parentCommentExists = await prismadb.comment.findUnique({
-        where: { id: parentCommentId },
-     });
+     const parentCommentExists = parentCommentId &&
+        (await prismadb.comment.findUnique({
+           where: { id: parentCommentId },
+        }));
 
      const newUserComment = await prismadb.comment.create({
         data: { 
