@@ -39,13 +39,13 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
             </div>
          )}
          <div className="carousel" ref={carouselRef}>
-         {novels.map((novel) => (
-            <div key={novel.id} onClick={() => novel.id && handleNovelClick(novel.id)}
-               className={`carousel__nav-item ${(selectedNovelId === novel.id && !adminPage) ? 'active' : (selectedNovelId === novel.id && adminPage) ? 'active-admin' : ''}`}>
-               <img src={novel.coverImage} alt={`Cover of ${novel.title}`} />   
-               <FavoriteHeart novelId={novel.id} />
-            </div>
-         ))}
+            {novels.map((novel) => (
+               <div key={novel.id} onClick={() => novel.id && handleNovelClick(novel.id)}
+                  className={`carousel__nav-item ${(selectedNovelId === novel.id && !adminPage) ? 'active' : (selectedNovelId === novel.id && adminPage) ? 'active-admin' : ''}`}>
+                  <img src={novel.coverImage} alt={`Cover of ${novel.title}`} />   
+                  <FavoriteHeart novelId={novel.id} />
+               </div>
+            ))}
          </div>
          <div className={`carousel-controls ${adminPage && 'text-white-main'}`}>
             <button className="carousel-btn" onClick={handlePrevClick}><TiArrowLeftThick size={30} /></button>

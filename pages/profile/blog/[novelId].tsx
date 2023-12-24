@@ -58,8 +58,11 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
    };
 
    useEffect(() => {
-      if (novels) { setCurrentNovelIndex(0) }
-   }, [novels]);
+      if (novels) { 
+         const index = novels.findIndex((item: CommentProps) => item.id === novelId);
+         setCurrentNovelIndex(index >= 0 ? index : 0);
+      }
+   }, [novels, novelId]);
 
    if (errorNovels) { return <NotFound/> }
    if (loadNovels) { return <LoaderLight /> } 

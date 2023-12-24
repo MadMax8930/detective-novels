@@ -1,12 +1,14 @@
+import Link from 'next/link'
 import React, { useState, useRef } from 'react'
 import { useRouter } from 'next/router'
-import useNovel from '@/hooks/useNovel'
-import useInfoModal from '@/hooks/useInfoModal'
 import { ContentModal, Pagination, NoItem, LoaderLine } from '@/components'
+import { AiOutlineRead, AiOutlineMessage } from 'react-icons/ai'
 import { FcBookmark } from 'react-icons/fc'
 import { FaFeatherAlt } from 'react-icons/fa'
 import { MdFitScreen } from 'react-icons/md'
 import { format } from '@/lib/dateFormat'
+import useInfoModal from '@/hooks/useInfoModal'
+import useNovel from '@/hooks/useNovel'
 
 interface ContentProps {
    linesPerPage: number;
@@ -46,7 +48,16 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                <div className="flex flex-col md:flex-row justify-between md:items-center mb-2 pt-3 md:pb-4 pb-2 my-4 pr-6">
                    {/* Title & Info */}
                   <p className="flex items-center text-primary-black text-xl md:text-2xl lg:text-4xl font-bold uppercase md:mb-0 mb-2">
-                     <FcBookmark />{selectedNovel?.title}
+                     <Link href={`/profile/lounge/${selectedNovel?.id}`} className="cursor-pointer">
+                        <FcBookmark />
+                     </Link>
+                     {selectedNovel?.title}
+                     {selectedNovel && (
+                        <div className="ml-3 flex items-center gap-1 bg-primary-light text-primary-dark py-1 px-2 rounded-lg">
+                           <Link href={`/profile/lounge/${selectedNovel?.id}`} className=" hover:text-primary-red-200"><AiOutlineRead size={30} /></Link>
+                           <Link href={`/profile/blog/${selectedNovel?.id}`} className=" hover:text-primary-red-200"><AiOutlineMessage size={24} /></Link>
+                        </div>
+                     )}
                   </p>
                   <div className="flex flex-col items-end gap-1 leading-tight md:pr-4 pr-2">
                      <div className="flex flex-row md:gap-2 gap-1 items-center justify-end">
