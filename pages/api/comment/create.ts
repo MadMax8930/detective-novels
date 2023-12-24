@@ -8,7 +8,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
    try {
      const { currentUser } = await serverAuth(req, res);
 
-     const { novelId, content, parentCommentId } = req.body;
+     const { content, parentCommentId } = req.body;
+     const novelId = req.query.novelId as string;
 
      const parentCommentExists = parentCommentId &&
         (await prismadb.comment.findUnique({
@@ -18,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
      const newUserComment = await prismadb.comment.create({
         data: { 
            userId: currentUser.id,
-           novelId,
+           novelId: novelId,
            content,
            parentCommentId: parentCommentExists ? parentCommentId : null,
         },

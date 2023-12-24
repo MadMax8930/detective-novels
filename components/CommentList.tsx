@@ -10,7 +10,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments, loading, mutate, on
   return (
     <div className="comment-list-container">
        {comments.map((comment) => (
-          <CommentCard key={comment.id} 
+          <CommentCard key={comment.id}
              comment={comment}
              mutate={mutate} 
              onReply={onReply}

@@ -239,6 +239,7 @@ export interface CommentCardProps {
 };
 
 export interface CommentPromptProps {
+   novelId: string;
    novel: NovelProps;
    mutate: () => void;
    replyingComment: CommentProps | null;
@@ -256,6 +257,11 @@ export interface CommentPromptProps {
       selectedCommentId: string | null;
       btnAction: ButtonAction;
    };
+};
+
+export interface CommBodyProps {
+   content: string;
+   parentCommentId?: string | null;
 };
 
 export interface BookAnimationProps {

@@ -8,7 +8,7 @@ import useComment from '@/hooks/useComment'
 
 const CommentCard: React.FC<CommentCardProps> = ({ comment, commentId, mutate, onReply, onEdit, authUser, buttonSelection }) => {
    const { handleCommentClick, isSelected, btnAction } = buttonSelection;
-   const { deleteComment } = useComment(commentId);
+   const { deleteComment } = useComment(undefined, commentId);
 
    const handleCommentDeletion = async () => {
       try {

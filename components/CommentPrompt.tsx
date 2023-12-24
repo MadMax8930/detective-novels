@@ -5,10 +5,11 @@ import { CommentPromptProps } from '@/types'
 import { toast } from 'react-hot-toast'
 import useComment from '@/hooks/useComment'
 
-const CommentPrompt: React.FC<CommentPromptProps> = ({ novel, mutate, replyingComment, setReplyingComment, editingComment, setEditingComment, cancelSend, authUser, messageBody, setMessageBody, parentMessageId, setParentMessageId, buttonSelection }) => {
+const CommentPrompt: React.FC<CommentPromptProps> = ({ novelId, novel, mutate, replyingComment, setReplyingComment, editingComment, setEditingComment, cancelSend, authUser, messageBody, setMessageBody, parentMessageId, setParentMessageId, buttonSelection }) => {
    const { btnAction, selectedCommentId, handleCommentClick } = buttonSelection;
-   const { addComment, editComment } = useComment(editingComment?.id);
-   const { addComment: replyComment } = useComment(replyingComment?.id);
+   const { addComment: addComment } = useComment(novelId, undefined);
+   const { addComment: replyComment } = useComment(novelId, replyingComment?.id);
+   const { editComment: editComment } = useComment(undefined, editingComment?.id);
    
    useEffect(() => {
      if (replyingComment) {   

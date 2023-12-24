@@ -12,9 +12,10 @@ export const getServerSideProps = getUserSessionServerSideProps;
 
 const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
    const router = useRouter();
+   const novelId = router.query.novelId as string;
    const [currentNovelIndex, setCurrentNovelIndex] = useState<number>(0);
    const { data: novels, isLoading: loadNovels, error: errorNovels } = useNovelList();
-   const { data: fetchedComments, isLoading: loadComments, mutate: mutateComments } = useCommentList();
+   const { data: fetchedComments, isLoading: loadComments, mutate: mutateComments } = useCommentList(novelId);
 
    const [messageBody, setMessageBody] = useState('');
    const [parentMessageId, setParentMessageId] = useState<string | null>(null);
@@ -72,7 +73,7 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
          onPrevClick={onPrevClick} 
          onNextClick={onNextClick} 
       />)}
-      <CommentList 
+      <CommentList
          comments={fetchedComments} 
          loading={loadComments} 
          mutate={mutateComments} 
@@ -85,7 +86,8 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
             btnAction,
          }} />
       {novels && novels.length > 0 && (
-      <CommentPrompt 
+      <CommentPrompt
+         novelId={novelId}
          novel={novels[currentNovelIndex]}
          mutate={mutateComments} 
          replyingComment={replyingComment}

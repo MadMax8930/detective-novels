@@ -1,20 +1,11 @@
 import fetcherBis from '@/lib/fetcherBis'
+import { CommBodyProps } from '@/types'
 
-interface newCommBodyProps {
-   content: string;
-   parentCommentId?: string | null;
-}
+const useComment = (novelId?: string, commentId?: string) => {
 
-interface editCommBodyProps {
-   content: string;
-   parentCommentId?: string | null;
-}
-
-const useComment = (commentId?: string) => {
-
-  const addComment = async (newCommentData: newCommBodyProps) => {
+  const addComment = async (newCommentData: CommBodyProps) => {
     try {
-      await fetcherBis(`/api/comment/create`, { method: 'POST', data: newCommentData });
+      await fetcherBis(`/api/comment/create?novelId=${novelId}`, { method: 'POST', data: newCommentData });
     } catch (error) {
       throw error;
     }
@@ -28,7 +19,7 @@ const useComment = (commentId?: string) => {
     }
   };
 
-  const editComment = async (editedCommentData: editCommBodyProps) => {
+  const editComment = async (editedCommentData: CommBodyProps) => {
     try {
       await fetcherBis(`/api/comment/update?commentId=${commentId}`, { method: 'PUT', data: editedCommentData });
     } catch (error) {

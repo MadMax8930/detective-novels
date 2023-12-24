@@ -7,9 +7,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
    try {
      const { currentUser } = await serverAuth(req, res);
+     if (!currentUser) { return res.status(401).json({ error: 'Unauthorized' }) };
 
-     const allUserComments = await prismadb.comment.findMany({
-        where: { userId: currentUser.id },
+     const novelId = req.query.novelId as string;
+  
+     const allNovelComments = await prismadb.comment.findMany({
+        where: { novelId: novelId },
         include: {
            user: {
               select: {
@@ -26,10 +29,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               }
            },
            replies: true,
-        }
+        },
+        orderBy: { createdAt: 'desc' },
      });
 
-     return res.status(200).json(allUserComments);
+     return res.status(200).json(allNovelComments);
    } catch (error) {
      console.error(error);
      return res.status(500).end();
