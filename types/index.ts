@@ -257,4 +257,9 @@ export interface CommentPromptProps {
       btnAction: ButtonAction;
    };
 };
- 
+
+export interface BookAnimationProps {
+   novel: NovelDBProps;
+   onPrevClick: () => void;
+   onNextClick: () => void;
+};

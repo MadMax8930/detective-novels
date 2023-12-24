@@ -1,20 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Navbar, NotFound, LoaderLight, CommentPrompt, CommentList, BookAnimation, Footer } from '@/components'
-import useNovel from '@/hooks/useNovel'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import type { NextPageWithLayout } from '@/pages/_app'
 import { ProfileProps, CommentProps, ButtonAction } from '@/types'
 import useCommentList from '@/hooks/useCommentList'
+import useNovelList from '@/hooks/useNovelList'
 
 // Protecting routes by fetching user session on client side
 export const getServerSideProps = getUserSessionServerSideProps;
 
 const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
    const router = useRouter();
-   const novelId = router.query.novelId as string;
-
-   const { data: fetchedNovel, isLoading: loadNovel, error: errorNovel } = useNovel(novelId);
+   const [currentNovelIndex, setCurrentNovelIndex] = useState<number>(0);
+   const { data: novels, isLoading: loadNovels, error: errorNovels } = useNovelList();
    const { data: fetchedComments, isLoading: loadComments, mutate: mutateComments } = useCommentList();
 
    const [messageBody, setMessageBody] = useState('');
@@ -40,14 +39,39 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
       setBtnAction(null);
       setMessageBody('');
    };
+   
+   const onNextClick = () => {
+      if (novels && novels.length > 0) {
+        const nextIndex = (currentNovelIndex + 1) % novels.length;
+        setCurrentNovelIndex(nextIndex);
+        router.push(`/profile/blog/${novels[nextIndex].id}`);
+      }
+   };
+  
+   const onPrevClick = () => {
+      if (novels && novels.length > 0) {
+        const prevIndex = (currentNovelIndex - 1 + novels.length) % novels.length;
+        setCurrentNovelIndex(prevIndex);
+        router.push(`/profile/blog/${novels[prevIndex].id}`);
+      }
+   };
 
-   if (errorNovel || !novelId) { return <NotFound/> }
-   if (loadNovel) { return <LoaderLight /> } 
+   useEffect(() => {
+      if (novels) { setCurrentNovelIndex(0) }
+   }, [novels]);
+
+   if (errorNovels) { return <NotFound/> }
+   if (loadNovels) { return <LoaderLight /> } 
 
   return (
     <div className='pt-20 bg-primary-lighter'>
       <Navbar isUser={!!session?.email} isAdmin={!!session?.adminId} />
-      <BookAnimation novel={fetchedNovel} />
+      {novels && novels.length > 0 && (
+      <BookAnimation 
+         novel={novels[currentNovelIndex]} 
+         onPrevClick={onPrevClick} 
+         onNextClick={onNextClick} 
+      />)}
       <CommentList 
          comments={fetchedComments} 
          loading={loadComments} 
@@ -60,8 +84,9 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
             selectedCommentId,
             btnAction,
          }} />
+      {novels && novels.length > 0 && (
       <CommentPrompt 
-         novel={fetchedNovel}
+         novel={novels[currentNovelIndex]}
          mutate={mutateComments} 
          replyingComment={replyingComment}
          setReplyingComment={setReplyingComment}
@@ -77,7 +102,7 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
             handleCommentClick,
             selectedCommentId,
             btnAction,
-         }} />
+         }} />)}
       <div className="preview-footer"><Footer bgLight={true} /></div>
     </div>
   )
