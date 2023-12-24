@@ -35,6 +35,8 @@ export const ITEMS_PER_PAGE = 4;
 
 export const WORDS_PER_PAGE = 2500;
 
+export const BOOK_MAX_CHARS = 220;
+
 export const HARDCODED_CHART_DATA = [
    {
       day: "Sun",
