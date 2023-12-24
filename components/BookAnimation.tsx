@@ -15,17 +15,19 @@ const BookAnimation = ({ novel }: { novel: NovelDBProps }) => {
    const truncatedText = truncate(novel.preview || novel.description, BOOK_MAX_CHARS);
 
   return (
-    <div className="book-card">
-      <div className="book-image-box">
-         <div className="book-inside"></div>
-         <img src={novel.coverImage || DEFAULT_COVER} alt="Book Cover" />
-      </div>
-      <div className="book-details-box">
-         <h1>{novel.title}</h1>
-         <p>{truncatedText}</p>
-         <p className="text-id">❞NovelId: {novel.id}❞</p>
-         <p className="text-right">{novel.genre}</p>
-         <p className="text-right">by {novel.author}</p>
+    <div className='book-container'>
+      <div className="book-card">
+         <div className="book-image-box">
+            <div className="book-inside"></div>
+            <img src={novel.coverImage || DEFAULT_COVER} alt="Book Cover" />
+         </div>
+         <div className="book-details-box">
+            <h1>{novel.title}</h1>
+            <p>{truncatedText}</p>
+            <p className="text-id">❞NovelId: {novel.id}❞</p>
+            <p className="text-right">{novel.genre}</p>
+            <p className="text-right">by {novel.author}</p>
+         </div>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { Navbar, NotFound, LoaderLight, CommentPrompt, CommentList, BookAnimation } from '@/components'
+import { Navbar, NotFound, LoaderLight, CommentPrompt, CommentList, BookAnimation, Footer } from '@/components'
 import useNovel from '@/hooks/useNovel'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import type { NextPageWithLayout } from '@/pages/_app'
@@ -45,7 +45,7 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
    if (loadNovel) { return <LoaderLight /> } 
 
   return (
-    <div className='pt-24'>
+    <div className='pt-20 bg-primary-lighter'>
       <Navbar isUser={!!session?.email} isAdmin={!!session?.adminId} />
       <BookAnimation novel={fetchedNovel} />
       <CommentList 
@@ -78,6 +78,7 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
             selectedCommentId,
             btnAction,
          }} />
+      <div className="preview-footer"><Footer bgLight={true} /></div>
     </div>
   )
 }
