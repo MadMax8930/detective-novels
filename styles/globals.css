@@ -98,6 +98,10 @@ body {
    @apply button-comment hover:bg-btn-comment-400;
 }
 
+.button-book-anim {
+   @apply bg-primary-black-100 text-primary-light hover:bg-primary-blue absolute left-10 top-10 ml-4 py-1 transform rotate-[-10deg];
+}
+
 .button-lounge {
    @apply text-grey hover:text-primary-blue font-shoulders uppercase flex items-center cursor-pointer;
 }
@@ -930,7 +934,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .book-details-box p:nth-last-child(2) {
-   @apply mt-2;
+   @apply mt-1;
 }
 
 .book-details-box .text-id {

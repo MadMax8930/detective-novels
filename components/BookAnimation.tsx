@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { Button } from '@/components'
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md'
 import { DEFAULT_COVER, BOOK_MAX_CHARS } from '@/constants'
@@ -28,8 +29,13 @@ const BookAnimation: React.FC<BookAnimationProps> = ({ novel, onPrevClick, onNex
                <h1>{novel.title}</h1>
                <p>{truncatedText}</p>
                <p className="text-id">❞NovelId: {novel.id}❞</p>
-               <p className="text-right">{novel.genre}</p>
-               <p className="text-right">by {novel.author}</p>
+               <div className="flex justify-between relative">
+                  <Link href={`/profile/lounge/${novel.id}`}><Button title="Read" additionalStyles="button-book-anim" /></Link>
+                  <div className="text-right">
+                     <p>{novel.genre}</p>
+                     <p>by {novel.author}</p>
+                  </div>
+               </div>
             </div>
          </div>
       </div>
