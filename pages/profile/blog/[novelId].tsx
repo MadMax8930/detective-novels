@@ -103,7 +103,7 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
             selectedCommentId,
             btnAction,
          }} />)}
-      <div className="preview-footer"><Footer bgLight={true} /></div>
+      <Footer bgLight={true} extraWrapper={true} />
     </div>
   )
 }

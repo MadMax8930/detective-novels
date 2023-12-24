@@ -263,3 +263,8 @@ export interface BookAnimationProps {
    onPrevClick: () => void;
    onNextClick: () => void;
 };
+
+export interface FooterProps {
+   bgLight: boolean;
+   extraWrapper?: boolean;
+}

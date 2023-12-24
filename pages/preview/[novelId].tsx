@@ -19,9 +19,7 @@ const PreviewId = () => {
 
   return (
     <div className="bg-primary-black">
-      {/* Navbar */}
-      <div className="preview-nav"><Navbar/></div>
-      {/* Preview */}
+      <Navbar/>
       <div className="preview-id-container">
          <div className="preview-id-content">
             <div className="preview-id-header">
@@ -46,8 +44,7 @@ const PreviewId = () => {
             <Link href={{ pathname: '/auth', query: { variant: 'login' } }}><span className="text-red-500">login</span></Link> to your account. <br/> It takes 10 seconds and it is 100% free.</p>
          </div>
       </div>
-      {/* Footer */}
-      <div className="preview-footer"><Footer bgLight={false} /></div>
+      <Footer bgLight={false} extraWrapper={true} />
     </div>
    )
 }

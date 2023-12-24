@@ -358,8 +358,32 @@ body {
 
 /* Preview */
 
-.preview-nav {
-   @apply pt-16;
+.preview-id-container {
+   @apply container mx-auto p-6 mt-16;
+}
+
+.preview-id-content {
+   @apply max-w-3xl mx-auto pt-4 p-6 rounded-lg shadow-lg mb-10 bg-primary-black-100 text-primary-light relative;
+}
+
+.preview-id-header {
+   @apply flex items-center justify-between border-b-2;
+}
+
+.preview-id-title {
+   @apply text-white-main font-shoulders uppercase font-extrabold pr-4;
+}
+
+.preview-ellipsis {
+   @apply text-[30px] text-brown-dots-100 font-bold;
+}
+
+.preview-id-no-container {
+   @apply mx-auto bg-primary-black-100 h-full;
+}
+
+.preview-id-no-content {
+   @apply text-white-main text-center font-bold p-8 shadow-lg;
 }
 
 .preview-info {
@@ -370,13 +394,6 @@ body {
    @apply text-primary-lighter text-sm md:text-2xl uppercase;
 }
 
-.preview-ellipsis {
-   @apply text-[30px] text-brown-dots-100 font-bold;
-}
-
-.preview-footer {
-   @apply container h-full mx-auto max-w-7xl pt-6;
-}
 /* Admin */
 
 .admin-header {
@@ -569,6 +586,10 @@ body {
    @apply flex flex-col sm:flex-row justify-between items-center mt-4 sm:mt-6 border-t border-gray-300 text-base sm:px-6 px-3 py-4;
 }
 
+.footer-extra {
+   @apply container h-full mx-auto max-w-7xl pt-6;
+}
+
 /* Auth */
 
 .shake-form {
@@ -714,7 +735,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* NovelId */
 
-.novel-id-container, .preview-id-container {
+.novel-id-container {
    @apply container mx-auto p-6;
 }
 
@@ -722,20 +743,12 @@ input[type="number"]::-webkit-outer-spin-button {
    @apply max-w-3xl mx-auto pt-4 p-6 rounded-lg shadow-lg mb-10 bg-white relative;
 }
 
-.preview-id-content {
-   @apply max-w-3xl mx-auto pt-4 p-6 rounded-lg shadow-lg mb-10 bg-primary-black-100 text-primary-light relative;
-}
-
-.novel-id-header, .preview-id-header {
+.novel-id-header {
    @apply flex items-center justify-between border-b-2;
 }
 
 .novel-id-title {
    @apply text-primary-black font-shoulders uppercase font-extrabold pr-4;
-}
-
-.preview-id-title {
-   @apply text-white-main font-shoulders uppercase font-extrabold pr-4;
 }
 
 .novel-id-pagination {
@@ -746,16 +759,8 @@ input[type="number"]::-webkit-outer-spin-button {
    @apply mx-auto bg-white h-full;
 }
 
-.preview-id-no-container {
-   @apply mx-auto bg-primary-black-100 h-full;
-}
-
 .novel-id-no-content {
    @apply text-center font-bold p-8 shadow-lg;
-}
-
-.preview-id-no-content {
-   @apply text-white-main text-center font-bold p-8 shadow-lg;
 }
 
 /* Comment List */
