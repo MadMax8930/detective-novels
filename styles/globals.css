@@ -852,3 +852,79 @@ input[type="number"]::-webkit-outer-spin-button {
    @apply absolute right-10 bottom-0 flex items-center gap-2 py-2 px-4 rounded-lg bg-comm-prompt;
 }
 
+/* Book Animation */
+
+.book-card {
+   @apply relative mx-auto w-[300px] h-[400px] text-[#013243] bg-[#e0e1dc];
+	transform-style: preserve-3d;
+	transform: translate(0%, 0%) perspective(2000px);
+	box-shadow: inset 300px 0 50px rgba(0,0,0,.5), 20px 0 60px rgba(0,0,0,.5);
+	transition: 1s;
+}
+
+.book-card:hover {
+	transform: translate(0%, 0%) perspective(2000px) rotate(15deg) scale(1.125);
+	box-shadow: inset 20px 0 50px rgba(0,0,0,.5), 0 10px 100px rgba(0,0,0,.5);
+}
+
+.book-card:before {
+	content:'';
+	position: absolute;
+	top: -5px;
+	left: 0;
+	width: 100%;
+	height: 5px;
+	background: #BAC1BA;
+	transform-origin: bottom;
+	transform: skewX(-45deg);
+}
+
+.book-card:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: -5px;
+	width: 5px;
+	height: 100%;
+	background: #92A29C;
+	transform-origin: left;
+	transform: skewY(-45deg);
+}
+
+.book-image-box {
+   @apply relative w-full h-full origin-left transition duration-700;
+}
+
+.book-inside {
+   @apply absolute w-full h-full bg-[#e0e1dc] opacity-0 transition duration-700;
+}
+
+.book-image-box img {
+   @apply min-w-[300px] max-w-[400px] h-full;
+}
+
+.book-card:hover .book-image-box {
+   transform: rotateY(-135deg);
+}
+
+.book-card:hover .book-inside {
+   opacity: 1;
+   transition: 0.6s;
+   box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
+}
+
+.book-details-box {
+   @apply absolute top-0 left-0 box-border pl-2.5 z-[-1] mt-12;
+}
+
+.book-details-box h1 {
+   @apply text-lg text-center text-[#C0392B] pr-8 pb-2 underline font-shoulders transform rotate-[-10deg];
+}
+
+.book-details-box p {
+   @apply text-xs leading-[25px] px-5 font-unbounded transform rotate-[-10deg];
+}
+
+.book-details-box p:nth-last-child(2) {
+   @apply mt-2;
+}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
-import { Navbar, NotFound, LoaderLight, CommentPrompt, CommentList } from '@/components'
+import { Navbar, NotFound, LoaderLight, CommentPrompt, CommentList, BookAnimation } from '@/components'
 import useNovel from '@/hooks/useNovel'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import type { NextPageWithLayout } from '@/pages/_app'
@@ -47,7 +47,7 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
   return (
     <div className='pt-24'>
       <Navbar isUser={!!session?.email} isAdmin={!!session?.adminId} />
-      <p className="text-center">BlogId Page: {novelId} / { fetchedNovel?.title} {session.email}</p>
+      <BookAnimation novel={fetchedNovel} />
       <CommentList 
          comments={fetchedComments} 
          loading={loadComments} 

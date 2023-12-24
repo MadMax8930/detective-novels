@@ -15,6 +15,7 @@ import CommentList from './CommentList'
 import CommentPrompt from './CommentPrompt'
 import DonateResponse from './DonateResponse'
 import DonateContainer from './DonateContainer'
+import BookAnimation from './BookAnimation'
 import NoItem from './NoItem'
 import NotFound from './NotFound'
 import Toggler from './Toggler'
@@ -46,6 +47,7 @@ export {
    CommentPrompt,
    DonateResponse,
    DonateContainer,
+   BookAnimation,
    NoItem,
    NotFound,
    Toggler,
