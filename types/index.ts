@@ -267,4 +267,4 @@ export interface BookAnimationProps {
 export interface FooterProps {
    bgLight: boolean;
    extraWrapper?: boolean;
-}
+};

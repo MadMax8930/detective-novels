@@ -771,7 +771,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* Comment Card */
 
-.comment-card-container::before,
 .comment-card-container::after {
   content: '';
   display: block;
@@ -782,16 +781,12 @@ input[type="number"]::-webkit-outer-spin-button {
   right: 2.5rem;
 }
 
-.comment-card-container::before {
-  top: 0;
-}
-
 .comment-card-container::after {
   bottom: 0;
 }
 
 .comment-card-container {
-   @apply relative pt-4 pb-12 px-16;
+   @apply relative pt-4 pb-12 lg:px-32 md:px-20 px-8;
 }
 
 .comment-card-profile {
@@ -811,11 +806,11 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .comment-card-buttons {
-   @apply absolute right-10 bottom-0 flex items-center gap-2 py-2 px-4 rounded-lg bg-transparent;
+   @apply absolute right-10 bottom-3 flex items-center gap-2 py-2 px-4 lg:mx-20 md:mx-12 mx-0 rounded-lg bg-transparent;
 }
 
 .comment-card-reply {
-   @apply text-[#716e6e] bg-tooltip-container-100 rounded-lg my-2 px-4 pt-2 pb-4;
+   @apply text-[#716e6e] bg-tooltip-container-100 rounded-lg mt-2 mb-4 px-4 pt-2 pb-4;
 }
 
 .comment-card-replier {
@@ -833,7 +828,7 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Comment Prompt */
 
 .comment-prompt-container {
-   @apply relative pt-4 pb-6 px-16;
+   @apply relative pt-4 pb-6 lg:px-32 md:px-20 px-8;
 }
 
 .comment-prompt-input {
@@ -846,6 +841,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .comment-textarea::placeholder {
    color: #ccccccef;
+   text-transform: uppercase;
    font-style: oblique;
    font-family: 'Gill Sans', sans-serif;
    text-overflow: ellipsis;
@@ -858,7 +854,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .comment-prompt-buttons {
-   @apply absolute right-10 bottom-0 flex items-center gap-2 py-2 px-4 rounded-lg bg-comm-prompt;
+   @apply absolute right-10 bottom-0 flex items-center gap-2 py-2 px-4 lg:mx-20 md:mx-12 mx-0 bg-comm-prompt rounded-lg;
 }
 
 /* Book Animation */
