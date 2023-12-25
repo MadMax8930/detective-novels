@@ -15,7 +15,7 @@ const BookAnimation: React.FC<BookAnimationProps> = ({ novel, onPrevClick, onNex
      }
    };
  
-   const truncatedText = truncate(novel.preview || novel.description, BOOK_MAX_CHARS);
+   const truncatedText = truncate(novel.description || novel.preview, BOOK_MAX_CHARS);
 
   return (
     <div className="relative">
