@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@/components'
-import { BiSolidMessageDetail, BiSolidMessageEdit, BiSolidCommentX } from 'react-icons/bi'
+import { BiSolidMessageDetail, BiSolidMessageEdit, BiSolidCommentX, BiSolidCheckSquare, BiSolidXSquare } from 'react-icons/bi'
 import { format } from '@/lib/dateFormat'
 import { toast } from 'react-hot-toast'
 import { CommentCardProps } from '@/types'
@@ -9,12 +9,14 @@ import useComment from '@/hooks/useComment'
 const CommentCard: React.FC<CommentCardProps> = ({ comment, commentId, mutate, onReply, onEdit, authUser, buttonSelection }) => {
    const { handleCommentClick, isSelected, btnAction } = buttonSelection;
    const { deleteComment } = useComment(undefined, commentId);
+   const [isConfirmationOpen, setConfirmationOpen] = useState(false);
 
    const handleCommentDeletion = async () => {
       try {
          await deleteComment();
          toast.success('Comment deleted successfully');
          mutate();
+         setConfirmationOpen(false);
       } catch (error) {
          console.error('Error deleting the comment:', error);
          toast.error(`Error: ${error}`) 
@@ -30,8 +32,16 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment, commentId, mutate, o
       onEdit(comment);
       handleCommentClick(comment.id, 'edit');
    };
-  
+
    const handleDelete = () => {
+      setConfirmationOpen(true);
+   };
+  
+    const cancelDeletion = () => {
+      setConfirmationOpen(false);
+   };
+  
+   const confirmDeletion = () => {
       handleCommentDeletion();
    };
 
@@ -47,11 +57,16 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment, commentId, mutate, o
       </div>
       {/* Controls */}
       <div className="comment-card-buttons">
-         <Button action={handleReply} rightIcon={<BiSolidMessageDetail size={24} />} tooltip="Reply to comment" additionalStyles={`button-comment-reply ${isSelected && btnAction === 'reply' ? 'bg-btn-comment-100' : 'bg-btn-comment'}`} />
-         {comment.userId === authUser && (
-         <Button action={handleEdit} rightIcon={<BiSolidMessageEdit size={24} />} tooltip="Edit your comment" additionalStyles={`button-comment-edit ${isSelected && btnAction === 'edit' ? 'bg-btn-comment-200' : 'bg-btn-comment'}`} />)}
-         {comment.userId === authUser && (
-         <Button action={handleDelete} rightIcon={<BiSolidCommentX size={24} />} tooltip="Delete your comment" additionalStyles='button-comment-delete bg-btn-comment' />)}
+         {isConfirmationOpen ? (<>
+            <Button action={confirmDeletion} rightIcon={<BiSolidCheckSquare size={24} />} tooltip="Confirm deletion" additionalStyles='button-comment-reply bg-btn-comment bg-green-600' />
+            <Button action={cancelDeletion} rightIcon={<BiSolidXSquare size={24} />} tooltip="Cancel deletion" additionalStyles='button-comment-delete bg-btn-comment bg-red-600' />
+         </>) : (<>
+            <Button action={handleReply} rightIcon={<BiSolidMessageDetail size={24} />} tooltip="Reply to comment" additionalStyles={`button-comment-reply ${isSelected && btnAction === 'reply' ? 'bg-btn-comment-100' : 'bg-btn-comment'}`} />
+            {comment.userId === authUser && (
+            <Button action={handleEdit} rightIcon={<BiSolidMessageEdit size={24} />} tooltip="Edit your comment" additionalStyles={`button-comment-edit ${isSelected && btnAction === 'edit' ? 'bg-btn-comment-200' : 'bg-btn-comment'}`} />)}
+            {comment.userId === authUser && (
+            <Button action={handleDelete} rightIcon={<BiSolidCommentX size={24} />} tooltip="Delete your comment" additionalStyles='button-comment-delete bg-btn-comment' />)}
+         </>)}     
       </div>
       {/* Parent */}
       {comment.parentCommentId && (<>
