@@ -3,9 +3,9 @@ import Image from 'next/image'
 import { FOOTER_LINKS } from '@/constants'
 import { FooterProps } from '@/types'
 
-const Footer: React.FC<FooterProps> = ({ bgLight, extraWrapper = false }) => (
+const Footer: React.FC<FooterProps> = ({ bgLight, extraWrapper = false, borderTop = true }) => (
    <div className={`${extraWrapper && "footer-extra"}`}>
-      <footer className={`flex flex-col ${bgLight ? "text-gray-600" : "text-gray-300"} mt-5 border-t border-gray-400`}>
+      <footer className={`flex flex-col ${bgLight ? "text-gray-600" : "text-gray-300"} ${borderTop && "mt-5 border-t border-gray-400"}`}>
          {/* Logo & Links */}
          <div className="flex max-md:flex-col flex-wrap justify-between sm:px-16 px-6 pb-1 pt-6 md:pt-8">
             <div className="flex flex-col md:justify-start md:items-start items-center gap-1">

@@ -535,7 +535,7 @@ body {
 }
 
 .ncContainer {
-   @apply flex flex-col items-center justify-center text-center py-24 px-6 font-shoulders cursor-pointer;
+   @apply flex flex-col items-center justify-center text-center py-24 px-6 font-shoulders cursor-pointer border-b border-gray-400;
 }
 
 .ncTitle {
@@ -772,17 +772,28 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Comment Card */
 
 .comment-card-container::after {
-  content: '';
-  display: block;
-  height: 0.75px;
-  background-color: #635f5f57;
-  position: absolute;
-  left: 2.5rem;
-  right: 2.5rem;
+   content: '';
+   display: block;
+   height: 0.5px;
+   background-color: #635f5f57;
+   position: absolute;
+   left: 2.5rem;
+   right: 2.5rem;
 }
 
 .comment-card-container::after {
-  bottom: 0;
+   bottom: 0;
+}
+
+.comment-card-container:first-child::before {
+   top: 0;
+   content: '';
+   display: block;
+   height: 0.5px;
+   background-color: #635f5f57;
+   position: absolute;
+   left: 2.5rem;
+   right: 2.5rem;
 }
 
 .comment-card-container {
@@ -828,7 +839,7 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Comment Prompt */
 
 .comment-prompt-container {
-   @apply relative pt-4 pb-6 lg:px-32 md:px-20 px-8;
+   @apply relative pt-4 pb-6 lg:px-32 md:px-20 px-8 mt-8 my-6;
 }
 
 .comment-prompt-input {
@@ -843,7 +854,7 @@ input[type="number"]::-webkit-outer-spin-button {
    color: #ccccccef;
    text-transform: uppercase;
    font-style: oblique;
-   font-family: 'Gill Sans', sans-serif;
+   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
    text-overflow: ellipsis;
    overflow: hidden;
    white-space: nowrap;

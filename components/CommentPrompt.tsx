@@ -64,7 +64,7 @@ const CommentPrompt: React.FC<CommentPromptProps> = ({ novelId, novel, mutate, r
       {/* Input */}
       <div className="comment-prompt-input">
          <textarea id="comment" name="comment" className="comment-textarea" 
-            placeholder={`💬 - What did you think of ❞ ${novel.title}❞ ? ...`} rows={7}
+            placeholder={`💬 - What did you think of ❞ ${novel.title}❞ ? ...`} rows={8}
             value={messageBody} onChange={(e) => setMessageBody(e.target.value)} />
          {(selectedCommentId && btnAction === 'reply') 
             ? <p className="comment-tab"><span style={{ backgroundColor: '#16a34a', color: 'white', padding: '0.25rem' }}>{btnAction} - {selectedCommentId}</span></p>

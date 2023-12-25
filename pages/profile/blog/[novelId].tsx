@@ -76,18 +76,6 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
          onPrevClick={onPrevClick} 
          onNextClick={onNextClick} 
       />)}
-      <CommentList
-         comments={fetchedComments} 
-         loading={loadComments} 
-         mutate={mutateComments} 
-         onReply={handleReply}
-         onEdit={handleEdit}
-         authUser={session.id}
-         buttonSelection={{
-            handleCommentClick,
-            selectedCommentId,
-            btnAction,
-         }} />
       {novels && novels.length > 0 && (
       <CommentPrompt
          novelId={novelId}
@@ -108,7 +96,19 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
             selectedCommentId,
             btnAction,
          }} />)}
-      <Footer bgLight={true} extraWrapper={true} />
+      <CommentList
+         comments={fetchedComments} 
+         loading={loadComments} 
+         mutate={mutateComments} 
+         onReply={handleReply}
+         onEdit={handleEdit}
+         authUser={session.id}
+         buttonSelection={{
+            handleCommentClick,
+            selectedCommentId,
+            btnAction,
+         }} />
+      <Footer bgLight={true} extraWrapper={true} borderTop={false} />
     </div>
   )
 }
