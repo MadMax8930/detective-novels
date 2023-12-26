@@ -11,7 +11,7 @@ export const metadata = {
    title: 'Vlad Novels',
    description: 'Detective Novels',
    keywords: 'Detective Novels Thrillers Romans',
-   applicationName: 'Vladislav Surnin',
+   applicationName: 'Vlad Surnin',
    themeColor: "#2d2e30",
 }
 

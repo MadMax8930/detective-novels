@@ -26,9 +26,8 @@ const BookAnimation: React.FC<BookAnimationProps> = ({ novel, onPrevClick, onNex
                <img src={novel?.coverImage || DEFAULT_COVER} alt="Book Cover" />
             </div>
             <div className="book-details-box">
-               <h1>{novel.title}</h1>
+               <h1>❞{novel.title}❞</h1>
                <p>{truncatedText}</p>
-               <p className="text-id">❞NovelId: {novel.id}❞</p>
                <div className="flex justify-between relative">
                   <Link href={`/profile/lounge/${novel.id}`}><Button title="Read" additionalStyles="button-book-anim" /></Link>
                   <div className="text-right">

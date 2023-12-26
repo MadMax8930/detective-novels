@@ -912,7 +912,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .book-image-box {
-   @apply relative w-full h-full origin-left transition duration-700;
+   @apply relative w-full h-full flex origin-left transition duration-700;
 }
 
 .book-inside {
@@ -938,17 +938,13 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .book-details-box h1 {
-   @apply text-lg text-center text-[#C0392B] pr-8 pb-2 underline font-shoulders transform rotate-[-10deg];
+   @apply text-center text-[#C0392B] font-semibold text-xs pr-8 pb-2 font-unbounded transform rotate-[-10deg];
 }
 
 .book-details-box p {
-   @apply text-xs leading-[25px] px-5 font-unbounded transform rotate-[-10deg];
+   @apply text-[9px] leading-[25px] px-5 font-unbounded transform rotate-[-10deg];
 }
 
 .book-details-box p:nth-last-child(2) {
    @apply mt-1;
-}
-
-.book-details-box .text-id {
-   @apply text-grey text-right font-light text-[9px];
 }
