@@ -72,6 +72,9 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                   {/* Main content */}
                   <div className="text-black md:text-base text-[11px] font-serif md:leading-7 leading-5 md:mb-6 mb-4 md:pr-4 pr-2 md:pt-2 pt-1"
                      style={{ height: `${linesPerPage * 1.55}em`, scrollSnapType: 'y mandatory', scrollBehavior: 'smooth' }}>
+                        {currentPage === 1 && selectedNovel?.quote && (
+                           <div className="novel-id-quote">{selectedNovel.quote}</div>
+                        )}
                         <div className="flex flex-col h-full" ref={innerContainerRef}>
                            {lines && lines.map((line: string, index: number) => (
                               <div key={index} id={`line-${index}`} className="flex-1 items-center md:mb-2 mb-1">

@@ -30,7 +30,7 @@ const InputBis: React.FC<InputBisProps> = ({ id, onChange, value, label, name, p
             rows={rows}
          />
          <label 
-            className="
+            className={`
                absolute
                text-base
                text-zinc-400
@@ -38,7 +38,8 @@ const InputBis: React.FC<InputBisProps> = ({ id, onChange, value, label, name, p
                transform
                -translate-y-3
                scale-75
-               top-4
+               top-[7.07px]
+               py-2
                z-10
                origin-[0]
                left-6
@@ -46,7 +47,8 @@ const InputBis: React.FC<InputBisProps> = ({ id, onChange, value, label, name, p
                peer-placeholder-shown:translate-y-0
                peer-focus:scale-75
                peer-focus:-translate-y-3
-            "
+               ${value && 'bg-admin-third right-0 w-[122.5%]'}
+            `}
             htmlFor={id}
          >
             {label}
