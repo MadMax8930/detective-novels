@@ -19,7 +19,7 @@ const LoungeId = () => {
    const paragraphs = typeof currentPageContent === 'string' ? currentPageContent.split('\n') : [currentPageContent];
 
    useEffect(() => {
-      if (!isNaN(currentPage) && (currentPage < 1 || isNaN(startIndex) || startIndex >= data?.content.length)) {
+      if (!isNaN(currentPage) && (currentPage < 1 || isNaN(startIndex) || startIndex >= data?.content?.length)) {
         router.push(`/profile/lounge/${novelId}`);
       }
    }, [currentPage, startIndex, novelId, data, router]);
@@ -51,8 +51,8 @@ const LoungeId = () => {
          </div>
          <div className="novel-id-pagination">   
             <Button title="Previous Page" btnType="button" isDisabled={currentPage === 1} action={() => router.push(`/profile/lounge/${novelId}?page=${currentPage - 1}`)} additionalStyles="button-pagination" leftIcon={<IoMdArrowRoundBack size={23} />} />
-            <span className="text-gray-600">Page {currentPage} of {Math.ceil(data?.content.length / WORDS_PER_PAGE)}</span>
-            <Button title="Next Page" btnType="button" isDisabled={endIndex >= data?.content.length} action={() => router.push(`/profile/lounge/${novelId}?page=${currentPage + 1}`)} additionalStyles="button-pagination" rightIcon={<IoMdArrowRoundForward size={23} />} />
+            <span className="text-gray-600">Page {currentPage} of {Math.ceil(data?.content?.length / WORDS_PER_PAGE)}</span>
+            <Button title="Next Page" btnType="button" isDisabled={endIndex >= data?.content?.length} action={() => router.push(`/profile/lounge/${novelId}?page=${currentPage + 1}`)} additionalStyles="button-pagination" rightIcon={<IoMdArrowRoundForward size={23} />} />
          </div>
       </div>
     </div>

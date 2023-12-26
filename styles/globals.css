@@ -893,10 +893,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* Book Animation */
 
-.book-container {
-   @apply bg-tooltip-container-200 py-4;
-}
-
 .book-card {
    @apply relative mx-auto w-[300px] h-[400px] text-[#013243] bg-[#e0e1dc];
 	transform-style: preserve-3d;

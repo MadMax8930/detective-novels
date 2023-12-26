@@ -5,7 +5,7 @@ import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-ico
 import { DEFAULT_COVER, BOOK_MAX_CHARS } from '@/constants'
 import { BookAnimationProps } from '@/types'
 
-const BookAnimation: React.FC<BookAnimationProps> = ({ novel, onPrevClick, onNextClick }) => {
+const BookAnimation: React.FC<BookAnimationProps> = ({ novel, onPrevClick, onNextClick, isPreviewPage }) => {
  
    const truncate = (text: string, maxChars: number) => {
      if (text.length <= maxChars) {
@@ -19,7 +19,7 @@ const BookAnimation: React.FC<BookAnimationProps> = ({ novel, onPrevClick, onNex
 
   return (
     <div className="relative">
-      <div className='book-container'>
+      <div className={`${isPreviewPage ? 'bg-transparent' : 'bg-tooltip-container-200'} py-4`}>
          <div className="book-card">
             <div className="book-image-box">
                <div className="book-inside"></div>
@@ -38,12 +38,13 @@ const BookAnimation: React.FC<BookAnimationProps> = ({ novel, onPrevClick, onNex
             </div>
          </div>
       </div>
+      {onPrevClick && onNextClick && (<>
       <div className="absolute left-20 top-40 text-grey">
          <Button tooltip="Prev" action={onPrevClick} leftIcon={<MdKeyboardDoubleArrowLeft size={70} />} />
       </div>
       <div className="absolute right-32 top-40 text-grey">
          <Button tooltip="Next" action={onNextClick} rightIcon={<MdKeyboardDoubleArrowRight size={70} />} />
-      </div>
+      </div></>)}
     </div>
   )
 }

@@ -74,7 +74,8 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
       <BookAnimation 
          novel={novels[currentNovelIndex]} 
          onPrevClick={onPrevClick} 
-         onNextClick={onNextClick} 
+         onNextClick={onNextClick}
+         isPreviewPage={false} 
       />)}
       {novels && novels.length > 0 && (
       <CommentPrompt

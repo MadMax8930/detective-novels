@@ -279,8 +279,9 @@ export interface CommBodyProps {
 
 export interface BookAnimationProps {
    novel: NovelDBProps;
-   onPrevClick: () => void;
-   onNextClick: () => void;
+   onPrevClick?: () => void;
+   onNextClick?: () => void;
+   isPreviewPage?: boolean;
 };
 
 export interface FooterProps {
