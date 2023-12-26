@@ -113,7 +113,7 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFe
                   <Input id="genre" name="genre" label="Genre" value={novel.genre} onChange={handleInputChange} adminPage={true} />
                   <Input id="coverImage" name="coverImage" label="Thumbnail" value={novel.coverImage} onChange={handleInputChange} adminPage={true} />
                </div>
-               <div className="mt-1.5 pb-2 flex flex-col gap-1">
+               <div className="mt-1.5 pb-2 flex flex-col gap-1.5">
                   <InputBis id="description" name="description" label="Description" rows={2} value={novel.description} onChange={handleInputChange} />
                   <InputBis id="preview" name="preview" label="Preview" rows={5} value={novel.preview} onChange={handleInputChange} />
                   <InputBis id="quote" name="quote" label="Quote" placeholderQuote="No quote provided for this novel" hasQuote={novel.quote ? false : true} rows={2} value={novel.quote || ''} onChange={handleInputChange} />

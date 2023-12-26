@@ -111,7 +111,11 @@ body {
 }
 
 .admin-profile {
-   @apply text-admin-outer hover:text-white-main font-shoulders uppercase flex items-center absolute top-0 xl:left-[10%] md:left-[15%] sm:left-[8%] left-[5%] cursor-pointer;
+   @apply text-admin-outer hover:text-white-main font-shoulders uppercase flex rotate-180 items-center absolute top-0 xl:left-[10%] md:left-[15%] sm:left-[8%] left-[5%] cursor-pointer;
+}
+
+.admin-lounge {
+   @apply text-admin-outer hover:text-white-main font-shoulders uppercase flex items-center absolute top-0 xl:right-[10%] md:right-[15%] sm:right-[8%] right-[5%] cursor-pointer;
 }
 
 .admin-button {
@@ -159,7 +163,7 @@ body {
 /* Carousel */
 
 .carousel-novel-id {
-   @apply font-unbounded pb-2;
+   @apply font-unbounded pb-2 text-center md:text-sm text-xs uppercase text-red-500;
 }
 
 .carousel-container {
@@ -417,7 +421,7 @@ body {
 }
 
 .admin-card {
-   @apply w-full my-4 overflow-x-auto bg-admin-inner rounded-xl p-8 border border-admin-third;
+   @apply w-full my-4 overflow-x-auto bg-admin-inner rounded-xl py-8 lg:px-20 md:px-12 px-8 border border-admin-third;
 }
 
 .admin-search-container {
@@ -629,7 +633,7 @@ body {
 }
 
 .fav-card {
-   @apply flex flex-row items-center rounded-[3px] md:min-w-[600px] sm:min-w-[550px] min-w-[500px] h-[90px] mb-2.5 bg-pages-container-300 border border-pages-container-200 overflow-hidden transition-all duration-100 cursor-pointer;
+   @apply flex flex-row items-center rounded-[3px] md:min-w-[600px] sm:min-w-[550px] min-w-[400px] h-[90px] mb-2.5 bg-pages-container-300 border-[1px] border-pages-container-100 overflow-hidden transition-all duration-100 cursor-pointer;
    perspective:600px;
    box-shadow:0px 2px 10px rgba(0,0,0,.2);
 }
@@ -668,23 +672,30 @@ body {
 }
 
 .fav-img {
-   @apply md:w-[120px] w-[100px] overflow-hidden transition-all duration-500;
+   @apply w-[120px] overflow-hidden transition-all duration-500 h-auto;
    box-shadow:0px 2px 10px rgba(0,0,0,0.3);
 }
 
+
 .fav-card.open .fav-img {
-   @apply min-h-[150px];
+   @apply min-h-[150px] block;
    -webkit-transform: rotate3d(0,1,0,50deg);
    -moz-transform: rotate3d(0,1,0,50deg);
    transform: rotate3d(0,1,0,50deg);
 }
 
+@media (max-width: 530px) {
+   .fav-card.open .fav-img {
+      display: none;
+   }
+}
+
 .fav-content {
-   @apply flex flex-col min-w-[200px] px-[30px] font-bold font-shoulders transition-all duration-200;
+   @apply flex flex-col min-w-[200px] md:px-[30px] sm:px-[20px] px-[10px] font-bold font-shoulders transition-all duration-200;
 }
 
 .fav-title {
-   @apply text-white-main text-[1em] tracking-[1px] ;
+   @apply text-white-main md:text-[1em] sm:text-[0.85em] text-[0.65em] sm:tracking-[1px] tracking-[0.1px];
 }
 
 .fav-genre {
@@ -692,11 +703,11 @@ body {
 }
 
 .fav-group {
-   @apply flex flex-col gap-3 md:ml-auto ml-3 py-2;
+   @apply flex flex-col gap-3 ml-auto py-2;
 }
 
 .fav-pages {
-   @apply flex items-center gap-1 bg-pages-container text-pages-container-100 font-unbounded p-8 transition-all duration-100;
+   @apply flex items-center justify-center w-auto gap-1 min-w-[145px] bg-pages-container text-pages-container-100 font-unbounded p-8 transition-all duration-100;
 }
 
 .fav-curr-page {

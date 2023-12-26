@@ -30,8 +30,9 @@ export const Admin: React.FC<AdminTokenProps> = ({ adminToken }) => {
    return (
       <div className="w-screen min-h-full bg-admin-outer">
          <div className="admin-header">
-            <Link href={'/profile'}><Button title="Profile" additionalStyles="admin-profile" leftIcon={<IoIosExit size={23} />} /></Link>
+            <Link href={'/profile'}><Button title="Profile" additionalStyles="admin-profile" textStyles="rotate-180" rightIcon={<IoIosExit size={23} />} /></Link>
             <span className="ml-6">Administrator</span>
+            <Link href={'/profile/lounge'}><Button title="Lounge" additionalStyles="admin-lounge" rightIcon={<IoIosExit size={23} />} /></Link>
          </div>
          <AdminInfoTabs />
          {!isLoading ? <> 
