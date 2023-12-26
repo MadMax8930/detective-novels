@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { NovelProps, NovelDBProps } from '@/types'
 import useAdminCrud from '@/hooks/useAdminCrud'
 import useNovel from '@/hooks/useNovel'
-import { Input, Button } from '@/components'
+import { Input, InputBis, Button } from '@/components'
 import { toast } from 'react-hot-toast'
 import { AdminFormProps } from '@/types'
 import { DEFAULT_COVER } from '@/constants'
 
-const EMPTY_NOVEL: NovelProps = { title: '', description: '', author: '', preview: '', content: '', genre: '', coverImage: '' };
+const EMPTY_NOVEL: NovelProps = { title: '', description: '', author: '', preview: '', quote: '', content: '', genre: '', coverImage: '' };
  
 const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFetchedUpdatedList }) => {
    // Hooks
@@ -37,6 +37,7 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFe
            description: novel.description,
            author: novel.author,
            preview: novel.preview,
+           quote: novel.quote,
            content: novel.content,
            genre: novel.genre,
            coverImage: novel.coverImage || DEFAULT_COVER,
@@ -112,10 +113,11 @@ const AdminForm: React.FC<AdminFormProps> = ({ token, adminSelectedNovelId, reFe
                   <Input id="genre" name="genre" label="Genre" value={novel.genre} onChange={handleInputChange} adminPage={true} />
                   <Input id="coverImage" name="coverImage" label="Thumbnail" value={novel.coverImage} onChange={handleInputChange} adminPage={true} />
                </div>
-               <div className="mt-1.5 pb-2">
-                  <textarea id="description" name="description" placeholder="Description" rows={2} value={novel.description} onChange={handleInputChange} className="admin-textarea" />      
-                  <textarea id="preview" name="preview" placeholder="Preview" rows={5} value={novel.preview} onChange={handleInputChange} className="admin-textarea" />
-                  <textarea id="content" name="content" placeholder="Content" rows={15} value={novel.content} onChange={handleInputChange} className="admin-textarea" />
+               <div className="mt-1.5 pb-2 flex flex-col gap-1">
+                  <InputBis id="description" name="description" label="Description" rows={2} value={novel.description} onChange={handleInputChange} />
+                  <InputBis id="preview" name="preview" label="Preview" rows={5} value={novel.preview} onChange={handleInputChange} />
+                  <InputBis id="quote" name="quote" label="Quote" placeholderQuote="No quote provided for this novel" hasQuote={novel.quote ? false : true} rows={2} value={novel.quote || ''} onChange={handleInputChange} />
+                  <InputBis id="content" name="content" label="Content" rows={15} value={novel.content} onChange={handleInputChange} />
                </div>
                <div className="flex justify-between gap-3 md:text-lg text-base mt-2 pb-4">
                   <Button title={isCreating ? 'Create Novel' : 'Update Novel'} btnType="submit" action={submitForm} additionalStyles={isCreating ? 'admin-button-create w-full' : 'admin-button-update w-full'} />

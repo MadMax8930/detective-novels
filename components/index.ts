@@ -2,6 +2,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import Button from './Button'
 import Input from './Input'
+import InputBis from './InputBis'
 import Content from './Content'
 import ContentModal from './ContentModal'
 import Pagination from './Pagination'
@@ -34,6 +35,7 @@ export {
    Footer,
    Button,
    Input,
+   InputBis,
    Content,
    ContentModal,
    Pagination,

@@ -24,6 +24,7 @@ export interface NovelProps {
    description: string;
    author: string;
    preview: string;
+   quote?: string;
    content: string;
    genre: string;
    coverImage: string;
@@ -66,6 +67,7 @@ export interface NovelDBProps {
    description: string;
    author: string;
    preview: string;
+   quote?: string;
    content: string;
    genre: string;
    coverImage: string;
@@ -93,6 +95,17 @@ export interface InputProps {
    type?: string;
    minLength?: number;
    adminPage: boolean;
+};
+
+export interface InputBisProps {
+   id: string;
+   onChange: any;
+   value: string;
+   label: string;
+   name?: string;
+   placeholderQuote?: string;
+   hasQuote?: boolean;
+   rows: number;
 };
 
 export interface AdminJwtPayload {
