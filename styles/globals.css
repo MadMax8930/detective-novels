@@ -168,11 +168,15 @@ body {
 
 .carousel {
    display: flex;
+   justify-content: center;
    overflow-x: hidden;
    overflow-y: hidden;
    scroll-snap-type: x mandatory;
    gap: 0.3rem;
+   padding-top: 1em;
    padding-bottom: 1rem;
+   margin: 0 auto;
+   scroll-behavior: smooth;
 }
  
 .carousel__nav-item {
@@ -184,7 +188,7 @@ body {
    transition: transform 0.3s ease;
    cursor: pointer;
    border-radius: 0.5rem;
-   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
  
 .carousel__nav-item img {
@@ -199,6 +203,10 @@ body {
    transform: scale(1.125) translateZ(0);
    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
    margin: 1rem;
+}
+
+.carousel-novel-title {
+   @apply absolute bottom-0 right-0 rounded-br-md text-primary-light font-semibold text-[8.5px] font-unbounded py-1.5 px-2 bg-primary-black;
 }
 
 .carousel-controls {
@@ -749,6 +757,10 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .novel-id-title {
    @apply text-primary-black font-shoulders uppercase font-extrabold pr-4;
+}
+
+.novel-id-quote {
+   @apply  ml-auto w-1/2 text-sm italic pt-2 pb-4 pl-4;
 }
 
 .novel-id-pagination {

@@ -35,6 +35,9 @@ const LoungeId = () => {
                <Button title="Lounge" btnType="button" action={() => router.push(`/profile/lounge`)} additionalStyles='button-lounge' leftIcon={<IoIosExit size={23} />} />
                <div className="novel-id-title">{data?.title || 'N/A'}</div>
             </div>
+            {currentPage === 1 && data?.quote && (
+               <div className="novel-id-quote">{data.quote}</div>
+            )}
             {paragraphs.length > 0 ?
                <div className="prose lg:prose-xl mt-2">
                   {paragraphs.map((paragraph, index) => (
