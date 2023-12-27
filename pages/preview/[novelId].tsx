@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { IoIosExit } from 'react-icons/io'
-import { LoaderDark, Button, Footer, Navbar, NoItem, NotFound, BookAnimation } from '@/components'
+import { LoaderDark, Button, Navbar, NoItem, NotFound, BookAnimation, FooterSimplified } from '@/components'
 import useNovel from '@/hooks/useNovel'
 import withLoading from '@/pages/_hoc'
 
@@ -20,8 +20,8 @@ const PreviewId = () => {
   return (
     <div className="bg-primary-black flex flex-col items-center h-auto min-h-full">
       <Navbar/>
-      <div className="flex flex-col lg:flex-row items-center justify-center mt-10">
-         <div className='p-16'><BookAnimation novel={data} isPreviewPage={true} /></div>
+      <div className="flex flex-col lg:flex-row lg:items-start items-center justify-center mt-24">
+         <div className='md:px-6 lg:pr-6 lg:pt-12 pb-4 lg:mb-32 mb-0'><BookAnimation novel={data} isPreviewPage={true} /></div>
          <div className="preview-id-container">
             <div className="preview-id-content">
                <div className="preview-id-header">
@@ -45,9 +45,9 @@ const PreviewId = () => {
                <Link href={{ pathname: '/auth', query: { variant: 'register' } }}><span className="text-red-500">Create</span></Link> or {" "}
                <Link href={{ pathname: '/auth', query: { variant: 'login' } }}><span className="text-red-500">login</span></Link> to your account. <br/> It takes 10 seconds and it is 100% free.</p>
             </div>
+            <FooterSimplified bgLight={false} />
          </div>
       </div>
-      <Footer bgLight={false} extraWrapper={true} />
     </div>
    )
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { GetServerSideProps } from 'next'
-import { LoaderLight, Navbar, Footer, NovelList, InfoModal } from '@/components'
+import { LoaderLight, Navbar, NovelList, InfoModal, FooterSimplified } from '@/components'
 import useInfoModal from '@/hooks/useInfoModal'
 import useNovelList from '@/hooks/useNovelList'
 import withLoading from '@/pages/_hoc'
@@ -34,7 +34,7 @@ const Home: React.FC<{ novelsSSR: [] }> = ({ novelsSSR }) => {
             <Navbar />
             <InfoModal visible={isOpen} onClose={closeModal} />
             <NovelList header="Романы сейчас в тренде" data={ novelsSSR || novelsCSR} />
-            <Footer bgLight={true} />
+            <FooterSimplified borderTop={false} />
          </div>
       </div>
    )

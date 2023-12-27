@@ -19,7 +19,7 @@ const BookAnimation: React.FC<BookAnimationProps> = ({ novel, onPrevClick, onNex
 
   return (
     <div className="relative">
-      <div className={`${isPreviewPage ? 'bg-transparent' : 'bg-tooltip-container-200'} py-4`}>
+      <div className={`${isPreviewPage ? 'bg-transparent' : 'bg-tooltip-container-200'} pb-4 pt-10`}>
          <div className="book-card">
             <div className="book-image-box">
                <div className="book-inside"></div>
@@ -39,10 +39,10 @@ const BookAnimation: React.FC<BookAnimationProps> = ({ novel, onPrevClick, onNex
          </div>
       </div>
       {onPrevClick && onNextClick && (<>
-      <div className="absolute left-20 top-40 text-grey">
+      <div className="absolute md:left-20 left-4 top-40 text-grey">
          <Button tooltip="Prev" action={onPrevClick} leftIcon={<MdKeyboardDoubleArrowLeft size={70} />} />
       </div>
-      <div className="absolute right-32 top-40 text-grey">
+      <div className="absolute md:right-32 right-16 top-40 text-grey">
          <Button tooltip="Next" action={onNextClick} rightIcon={<MdKeyboardDoubleArrowRight size={70} />} />
       </div></>)}
     </div>

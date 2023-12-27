@@ -42,12 +42,12 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
    };
 
    return (
-      <div className="pb-8 pl-10 md:pl-36 md:pr-24 pr-4 md:mr-4 text-justify relative w-full h-auto">
+      <div className="pl-10 md:pl-36 md:pr-24 pr-4 md:mr-4 text-justify relative w-full h-auto">
          {selectedNovel ? (
             <>
                <div className="flex flex-col md:flex-row justify-between md:items-center mb-2 pt-3 md:pb-4 pb-2 my-4 pr-6">
                    {/* Title & Info */}
-                  <p className="flex items-center text-primary-black text-xl md:text-2xl lg:text-4xl font-bold uppercase md:mb-0 mb-2">
+                  <div className="flex items-center text-primary-black text-xl md:text-2xl lg:text-4xl font-bold uppercase md:mb-0 mb-2">
                      <Link href={`/profile/lounge/${selectedNovel?.id}`} className="cursor-pointer">
                         <FcBookmark />
                      </Link>
@@ -58,7 +58,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                            <Link href={`/profile/blog/${selectedNovel?.id}`} title="Leave Comment" className=" hover:text-primary-red-200"><AiOutlineMessage size={24} /></Link>
                         </div>
                      )}
-                  </p>
+                  </div>
                   <div className="flex flex-col items-end gap-1 leading-tight md:pr-4 pr-2">
                      <div className="flex flex-row md:gap-2 gap-1 items-center justify-end">
                         <FaFeatherAlt color={'#c3aeca'} size={15} className="max-sm:hidden" />
@@ -68,7 +68,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                      <p className="text-gray-500 md:text-sm text-[10px]">{format(selectedNovel?.createdAt)}</p>
                   </div>
                </div>
-               <div className="md:h-[640px] h-[450px] min-h-full overflow-y-scroll overflow-x-hidden">
+               <div className="md:h-[640px] h-[450px] min-h-full overflow-y-scroll overflow-x-hidden border-b-2">
                   {/* Main content */}
                   <div className="text-black md:text-base text-[11px] font-serif md:leading-7 leading-5 md:mb-6 mb-4 md:pr-4 pr-2 md:pt-2 pt-1"
                      style={{ height: `${linesPerPage * 1.55}em`, scrollSnapType: 'y mandatory', scrollBehavior: 'smooth' }}>
@@ -84,7 +84,7 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                         </div>
                   </div>
                </div>
-               <div className="pt-2 my-4">
+               <div className="py-2">
                   {/* Full Screen */}
                   <ContentModal 
                        visible={isOpen} 

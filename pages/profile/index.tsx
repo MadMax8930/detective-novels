@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Carousel, Content, SearchBar, DonateContainer, LoaderLight, Footer } from '@/components'
+import { Carousel, Content, SearchBar, DonateContainer, LoaderLight, FooterSimplified } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import useNovelList from '@/hooks/useNovelList'
 import useNovel from '@/hooks/useNovel'
@@ -40,7 +40,7 @@ const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
             <Carousel novels={novels} adminPage={false} />
             <SearchBar initialValue={novelData?.title} />
             <Content linesPerPage={linesPerPage} />
-            <Footer bgLight={true} extraWrapper={true} />
+            <FooterSimplified borderTop={false} />
          </div>
         </>)}
       </div>

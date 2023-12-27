@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { NotFound, LoaderLight, CommentPrompt, CommentList, BookAnimation, Footer } from '@/components'
+import { NotFound, LoaderLight, CommentPrompt, CommentList, BookAnimation, FooterSimplified } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import type { NextPageWithLayout } from '@/pages/_app'
 import { ProfileProps, CommentProps, ButtonAction } from '@/types'
@@ -113,7 +113,7 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
             selectedCommentId,
             btnAction,
          }} />
-      <Footer bgLight={true} extraWrapper={true} borderTop={false} />
+      <FooterSimplified borderTop={false} />
     </div>
   )
 }

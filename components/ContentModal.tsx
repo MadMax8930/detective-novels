@@ -53,7 +53,9 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
                </div>
                <div className="px-6 md:px-10 lg:px-20 py-6 md:py-10 lg:py-20 flex flex-col md:h-[90vh] h-[95vh] md:pr-0 pr-3">
                   {currentPage === 1 && data?.quote && (<div className="novel-id-quote text-white-main text-right pr-8">{data.quote}</div>)}
-                  <p className="text-white md:text-base text-[12px] text-justify overflow-y-scroll px-1 md:px-3 overflow-x-hidden flex-grow mb-4 md:mb-8">{linesForCurrentPage?.join('\n')}</p>
+                  <p className="text-white md:text-base text-[12px] text-justify overflow-y-scroll px-1 md:px-3 overflow-x-hidden flex-grow mb-4 md:mb-8">
+                     {linesForCurrentPage?.join('\n')}
+                  </p>
                   {pagination.totalPages > 1 && (
                      <div className="flex justify-center">
                         <Pagination {...paginationProps} />

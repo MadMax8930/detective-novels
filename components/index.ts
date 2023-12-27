@@ -1,5 +1,4 @@
 import Navbar from './Navbar'
-import Footer from './Footer'
 import Button from './Button'
 import Input from './Input'
 import InputBis from './InputBis'
@@ -29,11 +28,12 @@ import AdminSearch from './AdminSearch'
 import AdminSender from './AdminSender'
 import FavoriteHeart from './FavoriteHeart'
 import FavoriteLibrary from './FavoriteLibrary'
+import Footer from './Footer'
+import FooterSimplified from './FooterSimplified'
 import { LoaderLight, LoaderDark, LoaderLine, LoaderRound, LoaderFav, LoaderAdmin, ErrorAdmin } from './Utilities'
 
 export { 
    Navbar,
-   Footer,
    Button,
    Input,
    InputBis,
@@ -63,6 +63,8 @@ export {
    AdminSender,
    FavoriteHeart,
    FavoriteLibrary,
+   Footer,
+   FooterSimplified,
    LoaderLight,
    LoaderDark,
    LoaderLine,

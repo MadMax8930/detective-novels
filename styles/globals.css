@@ -337,7 +337,7 @@ body {
    }
 
    .pagination-container {
-      margin: 1rem 1.75rem 0.5rem 0;
+      margin: 0 0.5rem;
    }
 }
 
@@ -399,7 +399,7 @@ body {
 }
 
 .preview-info {
-   @apply h-[50px] text-center pb-8 font-shoulders font-semibold;
+   @apply h-[50px] text-center pb-8 mb-12 font-shoulders font-semibold;
 }
 
 .preview-paragraph {
@@ -602,6 +602,10 @@ body {
    @apply container h-full mx-auto max-w-7xl pt-6;
 }
 
+.footer-simplified {
+   @apply mx-auto w-auto border-t-2 border-gray-300 sm:px-6 px-3 py-8 text-center md:text-base text-sm;
+}
+
 /* Auth */
 
 .shake-form {
@@ -795,7 +799,7 @@ input[type="number"]::-webkit-outer-spin-button {
 /* Comment List */
 
 .comment-list-container {
-   @apply flex flex-col w-full;
+   @apply flex flex-col w-full min-h-[215px] h-auto;
 }
 
 /* Comment Card */
@@ -826,7 +830,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .comment-card-container {
-   @apply relative pt-4 pb-12 lg:px-32 md:px-20 px-8;
+   @apply relative pt-8 pb-16 lg:px-32 md:px-20 px-8;
 }
 
 .comment-card-profile {

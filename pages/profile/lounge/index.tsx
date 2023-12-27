@@ -1,5 +1,5 @@
 import React from 'react'
-import { Toggler, LoaderLight, FavoriteLibrary, Footer } from '@/components'
+import { Toggler, LoaderLight, FavoriteLibrary, FooterSimplified } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import useCurrentUser from '@/hooks/useCurrentUser'
 
@@ -28,8 +28,8 @@ const Lounge: NextPageWithLayout<ProfileProps> = ({ session }) => {
             Sent by the author to&nbsp;{session.email}
          </p>
       </div>
-      <FavoriteLibrary /> 
-      <Footer bgLight={true} />
+      <FavoriteLibrary />
+      <FooterSimplified />
     </div>
   )
 }
