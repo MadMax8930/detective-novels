@@ -371,7 +371,7 @@ body {
 /* Preview */
 
 .preview-id-container {
-   @apply container mx-auto p-6 mt-16;
+   @apply container mx-auto p-6 lg:mt-16 mt-0;
 }
 
 .preview-id-content {
@@ -403,7 +403,7 @@ body {
 }
 
 .preview-paragraph {
-   @apply text-primary-lighter text-sm md:text-2xl uppercase;
+   @apply text-primary-lighter text-lg md:text-2xl uppercase;
 }
 
 /* Admin */
@@ -750,6 +750,12 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .newsletter-sub {
    @apply text-tooltip-text text-xs md:text-sm font-extralight pt-3;
+}
+
+/* Novel Card */
+
+.novel-card-new {
+   @apply absolute top-0 left-0 px-1 bg-primary-red text-white-main font-shoulders rounded-br-md md:text-base text-xs;
 }
 
 /* NovelId */

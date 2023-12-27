@@ -18,9 +18,9 @@ const PreviewId = () => {
    if (isLoading) { return <LoaderDark /> }
 
   return (
-    <div className="bg-primary-black flex flex-col items-center">
+    <div className="bg-primary-black flex flex-col items-center h-auto min-h-full">
       <Navbar/>
-      <div className="flex flex-col md:flex-row items-center justify-center mt-10">
+      <div className="flex flex-col lg:flex-row items-center justify-center mt-10">
          <div className='p-16'><BookAnimation novel={data} isPreviewPage={true} /></div>
          <div className="preview-id-container">
             <div className="preview-id-content">
