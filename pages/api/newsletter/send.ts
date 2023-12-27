@@ -78,7 +78,7 @@ async function sendEmail(recipient: string, title: string, content: string) {
      });
 
      const mailOptions = {
-         from: `VladsNovels <${process.env.SMTP_USER}>`,
+         from: `Vlads Novels <${process.env.SMTP_USER}>`,
          to: recipient,
          subject: `Newsletter - ${title}`,
          text: content,

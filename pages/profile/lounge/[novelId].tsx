@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosExit } from 'react-icons/io'
-import { NotFound, LoaderLight, Button, NoItem } from '@/components'
+import { SanitizedText, NotFound, LoaderLight, Button, NoItem } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import { WORDS_PER_PAGE } from '@/constants'
 import useNovel from '@/hooks/useNovel'
@@ -53,7 +53,7 @@ const LoungeId: NextPageWithLayout<ProfileProps> = ({ session }) => {
             {paragraphs.length > 0 ?
                <div className="prose lg:prose-xl mt-2">
                   {paragraphs.map((paragraph, index) => (
-                     <p key={index}>{paragraph}</p>
+                     <SanitizedText key={index} paragraph={paragraph}/>
                   ))}
                </div> :
                <div className="novel-id-no-container">

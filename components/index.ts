@@ -11,6 +11,7 @@ import InfoModal from './InfoModal'
 import NovelCard from './NovelCard'
 import NovelList from './NovelList'
 import Carousel from './Carousel'
+import SanitizedText from './SanitizedText'
 import CommentCard from './CommentCard'
 import CommentList from './CommentList'
 import CommentPrompt from './CommentPrompt'
@@ -44,6 +45,7 @@ export {
    NovelCard,
    NovelList,
    Carousel,
+   SanitizedText,
    CommentCard,
    CommentList,
    CommentPrompt,
