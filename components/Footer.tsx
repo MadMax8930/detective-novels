@@ -11,7 +11,7 @@ const Footer: React.FC<FooterProps> = ({ bgLight, extraWrapper = false, borderTo
             <div className="flex flex-col md:justify-start md:items-start items-center gap-1">
                <Image src='/images/logo.png' alt='logo' width={100} height={20} className="object-contain w-auto h-auto" priority />
                <div className="flex flex-col md:items-start items-center">
-                  <p className={`text-base ${bgLight ? "text-gray-700" : "text-gray-200"}`}>Vlad Novels &copy;</p>
+                  <p className={`text-base ${bgLight ? "text-gray-700" : "text-gray-200"}`}>Vlads Novels &copy;</p>
                   <p className={`text-xl font-bold" ${bgLight ? "text-gray-800" : "text-gray-100"}`}>Vladislav Surnin</p>
                </div>
             </div>
@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ bgLight, extraWrapper = false, borderTo
          </div>
          {/* Terms & Condition */}
          <div className="footer__bottom-container">
-            <p className={bgLight ? "text-gray-400 md:text-base text-sm" : "text-gray-200"}>@2023 Vlad Novels. All rights reserved</p>
+            <p className={bgLight ? "text-gray-400 md:text-base text-sm" : "text-gray-200"}>@2023 Vlads Novels. All rights reserved</p>
             <div className="footer__copyrights-link md:text-base text-sm">
                <Link href="/" className={bgLight ? "text-gray-400" : "text-gray-200"}>Privacy & Policy</Link>
                <Link href="/" className={bgLight ? "text-gray-400" : "text-gray-200"}>Terms & Condition</Link>

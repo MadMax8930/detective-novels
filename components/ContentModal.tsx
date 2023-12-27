@@ -44,8 +44,8 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
                <div className="relative w-full max-h-[80vh] mt-4 ml-1 md:ml-2 mb:pb-0 pb-4 md:pt-0 pt-4 md:mb-0 mb-4">
                    <div className="cursor-pointer absolute md:top-3 top-5 right-10 md:right-20 h-8 w-8 md:h-10 md:w-10 rounded-full bg-black bg-opacity-70 flex items-center justify-center" 
                         onClick={handleClose}>
-                        <AiOutlineClose className="text-white max-sm:hidden" size={20} />
-                        <AiOutlineClose className="text-white sm:hidden" size={16} />
+                        <AiOutlineClose className="text-white max-sm:hidden hover:bg-btn-comment" size={20} />
+                        <AiOutlineClose className="text-white sm:hidden hover:bg-btn-comment" size={16} />
                    </div>
                    <div className="absolute md:top-[20%] top[10%] md:left-20 left-10 text-white md:mt-3 mt-1">
                      <p className="text-white text-xl md:text-2l lg:text-3xl h-full font-bold md:mb-8 mb-4">{data?.title}</p>

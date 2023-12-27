@@ -15,10 +15,10 @@ const NovelCard: React.FC<NovelCardProps> = ({ data }) => {
    const biggerScreens = window.innerWidth >= 644;
 
    return (
-      <div className="group bg-primary-black col-span relative h-full border-primary-blue-100 border-4 outline-double">
+      <div className="group bg-primary-black col-span relative md:h-full h-80 border-primary-blue-100 border-4 outline-double">
          {/* Novel Card */}
          <img src={data.coverImage} alt="Novel Cover"
-              className="cursor-pointer object-cover transition duration delay-300 shadow-xl group-hover:opacity-90 sm:group-hover:opacity-0 w-full h-full" />
+              className="cursor-pointer object-cover transition duration delay-300 shadow-xl group-hover:opacity-90 sm:group-hover:opacity-0 w-full h-auto min-h-full" />
               <div className="novel-card-new">NEW</div>
          {/* Hover Card */}
          <div className={`opacity-0 w-full scale-0 absolute top-0 z-10 transition duration-200 delay-300 
