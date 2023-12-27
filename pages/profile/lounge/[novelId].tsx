@@ -2,10 +2,21 @@ import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosExit } from 'react-icons/io'
 import { NotFound, LoaderLight, Button, NoItem } from '@/components'
+import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import { WORDS_PER_PAGE } from '@/constants'
 import useNovel from '@/hooks/useNovel'
 
-const LoungeId = () => {
+import type { ReactElement } from 'react'
+import type { NextPageWithLayout } from '@/pages/_app'
+import { ProfileProps } from '@/types'
+import { metadata } from '@/pages/_app'
+import RootLayout from '@/pages/_layout'
+import ProfileLayout, { metadataProfile } from '../_layout'
+
+// Protecting routes by fetching user session on client side
+export const getServerSideProps = getUserSessionServerSideProps;
+
+const LoungeId: NextPageWithLayout<ProfileProps> = ({ session }) => {
    const router = useRouter();
    const { novelId, page } = router.query;
    const { data, isLoading, error } = useNovel(novelId as string);
@@ -24,15 +35,16 @@ const LoungeId = () => {
       }
    }, [currentPage, startIndex, novelId, data, router]);
 
+   if (!novelId) { return null }
    if (error) { return <NotFound/> }
    if (isLoading) { return <LoaderLight /> }
    
   return (
-    <div className="bg-primary-light">
+    <div className="bg-primary-light pt-20">
       <div className="novel-id-container">
          <div className="novel-id-content">
             <div className="novel-id-header">
-               <Button title="Lounge" btnType="button" action={() => router.push(`/profile/lounge`)} additionalStyles='button-lounge' leftIcon={<IoIosExit size={23} />} />
+               <Button title="Comment" btnType="button" action={() => router.push(`/profile/blog/${data?.id}`)} additionalStyles='button-lounge' leftIcon={<IoIosExit size={23} />} />
                <div className="novel-id-title">{data?.title || 'N/A'}</div>
             </div>
             {currentPage === 1 && data?.quote && (
@@ -57,6 +69,14 @@ const LoungeId = () => {
       </div>
     </div>
   )
+}
+
+LoungeId.getLayout = function getLayout(page: ReactElement, props: ProfileProps) {
+   return (
+      <RootLayout metadata={metadata}>
+         <ProfileLayout layoutMetadata={metadataProfile || metadata} session={props.session}>{page}</ProfileLayout>
+      </RootLayout>
+   )
 }
 
 export default LoungeId

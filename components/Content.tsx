@@ -54,8 +54,8 @@ const Content: React.FC<ContentProps> = ({ linesPerPage }) => {
                      {selectedNovel?.title}
                      {selectedNovel && (
                         <div className="ml-3 flex items-center gap-1 bg-primary-light text-primary-dark py-1 px-2 rounded-lg">
-                           <Link href={`/profile/lounge/${selectedNovel?.id}`} className=" hover:text-primary-red-200"><AiOutlineRead size={30} /></Link>
-                           <Link href={`/profile/blog/${selectedNovel?.id}`} className=" hover:text-primary-red-200"><AiOutlineMessage size={24} /></Link>
+                           <Link href={`/profile/lounge/${selectedNovel?.id}`} title="Read Mode" className=" hover:text-primary-red-200"><AiOutlineRead size={30} /></Link>
+                           <Link href={`/profile/blog/${selectedNovel?.id}`} title="Leave Comment" className=" hover:text-primary-red-200"><AiOutlineMessage size={24} /></Link>
                         </div>
                      )}
                   </p>

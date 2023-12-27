@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import LinesEllipsis from 'react-lines-ellipsis'
 import { BiBookContent, BiChevronDown } from 'react-icons/bi'
@@ -24,10 +25,11 @@ const NovelCard: React.FC<NovelCardProps> = ({ data }) => {
                         ${biggerScreens ? 'invisible sm:visible' : 'visible'}
                          group-hover:scale-110 group-hover:translate-x-0 group-hover:opacity-100 
                          ${biggerScreens ? 'group-hover:-translate-y-[2vw]' : 'group-hover:-translate-y-0'}`}>
-            <img src={data.coverImage} alt="Novel Cover on Hover" 
-                 className={`cursor-pointer object-cover transition duration shadow-xl w-full h-full
+            <Link href={`/profile/lounge/${data?.id}`}>
+                  <img src={data.coverImage} alt="Novel Cover on Hover" 
+                        className={`cursor-pointer object-cover transition duration shadow-xl w-full h-full
                              ${biggerScreens ? 'max-h-[17.5vw] min-h-[250px] rounded-t-md' : 'relative rounded-md'}`} />
-
+            </Link>
             <div className={`bg-zinc-800 w-full absolute z-10 p-2 lg:p-4 transition shadow-md rounded-b-md
                            ${biggerScreens ? 'max-h-42 h-auto' : 'min-h-16 max-h-24 absolute bottom-0'}`}>
                {/* Title */}

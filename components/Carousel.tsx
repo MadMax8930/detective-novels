@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti'
@@ -43,7 +44,7 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
                <div key={novel.id} onClick={() => novel.id && handleNovelClick(novel.id)}
                   className={`carousel__nav-item ${(selectedNovelId === novel.id && !adminPage) ? 'active' : (selectedNovelId === novel.id && adminPage) ? 'active-admin' : ''}`}>
                   <img src={novel.coverImage} alt={`Cover of ${novel.title}`} /> 
-                  <div className="carousel-novel-title">{novel.title}</div>  
+                  <Link href={`/profile/lounge/${novel.id}`}><div className="carousel-novel-title">{novel.title}</div></Link>
                   <FavoriteHeart novelId={novel.id} />
                </div>
             ))}

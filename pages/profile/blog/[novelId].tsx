@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Navbar, NotFound, LoaderLight, CommentPrompt, CommentList, BookAnimation, Footer } from '@/components'
+import { NotFound, LoaderLight, CommentPrompt, CommentList, BookAnimation, Footer } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import type { NextPageWithLayout } from '@/pages/_app'
 import { ProfileProps, CommentProps, ButtonAction } from '@/types'
 import useCommentList from '@/hooks/useCommentList'
 import useNovelList from '@/hooks/useNovelList'
+
+import type { ReactElement } from 'react'
+import { metadata } from '@/pages/_app'
+import RootLayout from '@/pages/_layout'
+import ProfileLayout, { metadataProfile } from '../_layout'
 
 // Protecting routes by fetching user session on client side
 export const getServerSideProps = getUserSessionServerSideProps;
@@ -69,7 +74,6 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
 
   return (
     <div className='pt-20 bg-primary-lighter'>
-      <Navbar isUser={!!session?.email} isAdmin={!!session?.adminId} />
       {novels && novels.length > 0 && (
       <BookAnimation 
          novel={novels[currentNovelIndex]} 
@@ -112,6 +116,14 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
       <Footer bgLight={true} extraWrapper={true} borderTop={false} />
     </div>
   )
+}
+
+BlogId.getLayout = function getLayout(page: ReactElement, props: ProfileProps) {
+   return (
+      <RootLayout metadata={metadata}>
+         <ProfileLayout layoutMetadata={metadataProfile || metadata} session={props.session}>{page}</ProfileLayout>
+      </RootLayout>
+   )
 }
 
 export default BlogId
