@@ -15,30 +15,19 @@ const NovelCard: React.FC<NovelCardProps> = ({ data }) => {
    const biggerScreens = window.innerWidth >= 644;
 
    return (
-      <div className="group bg-primary-black col-span relative md:h-full h-80 border-primary-blue-100 border-4 outline-double">
+      <div className="group bg-primary-black col-span relative lg:h-full h-80 border-primary-blue-100 border-4 outline-double">
          {/* Novel Card */}
-         <img src={data.coverImage} alt="Novel Cover"
-              className="cursor-pointer object-cover transition duration delay-300 shadow-xl group-hover:opacity-90 sm:group-hover:opacity-0 w-full h-auto min-h-full" />
-              <div className="novel-card-new">NEW</div>
+         <Link href={`/profile/lounge/${data?.id}`}>
+            <img src={data.coverImage} alt="Novel Cover" className="cursor-pointer object-cover transition duration delay-300 shadow-xl group-hover:opacity-90 sm:group-hover:opacity-0 w-full md:h-auto h-24 min-h-full" /><div className="novel-card-new">NEW</div>
+         </Link>
          {/* Hover Card */}
-         <div className={`opacity-0 w-full scale-0 absolute top-0 z-10 transition duration-200 delay-300 
-                        ${biggerScreens ? 'invisible sm:visible' : 'visible'}
-                         group-hover:scale-110 group-hover:translate-x-0 group-hover:opacity-100 
-                         ${biggerScreens ? 'group-hover:-translate-y-[2vw]' : 'group-hover:-translate-y-0'}`}>
+         <div className={`opacity-0 w-full h-auto scale-0 absolute top-0 z-10 transition duration-200 delay-300 ${biggerScreens ? 'invisible sm:visible' : 'visible'} group-hover:scale-110 group-hover:translate-x-0 group-hover:opacity-100 ${biggerScreens ? 'group-hover:-translate-y-[2vw]' : 'group-hover:-translate-y-0'}`}>
             <Link href={`/profile/lounge/${data?.id}`}>
-                  <img src={data.coverImage} alt="Novel Cover on Hover" 
-                        className={`cursor-pointer object-cover transition duration shadow-xl w-full h-full
-                             ${biggerScreens ? 'max-h-[17.5vw] min-h-[250px] rounded-t-md' : 'relative rounded-md'}`} />
+               <img src={data.coverImage} alt="Novel Cover on Hover" className={`cursor-pointer object-cover transition duration shadow-xl w-full h-full ${biggerScreens ? 'min-h-[250px] rounded-t-md' : 'relative rounded-md'}`} />
             </Link>
-            <div className={`bg-zinc-800 w-full absolute z-10 p-2 lg:p-4 transition shadow-md rounded-b-md
-                           ${biggerScreens ? 'max-h-42 h-auto' : 'min-h-16 max-h-24 absolute bottom-0'}`}>
-               {/* Title */}
+            <div className={`bg-zinc-800 w-full absolute z-10 p-4 transition shadow-md rounded-b-md ${biggerScreens ? 'max-h-42 h-auto' : 'min-h-12 max-h-24 absolute bottom-0'}`}>
                <h2 className="text-green-400 font-semibold font-unbounded md:text-[11.5px] text-[10px]">{data.title}</h2>
-               {/* Description */}
-               <div className="flex mt-2 items-center">
-                  <LinesEllipsis text={data.description} maxLine="1" ellipsis="..." className="text-white text-[0.5rem] lg:text-xs italic" />
-               </div>
-               {/* Genre & Buttons */}
+               <div className="flex mt-2 items-center"><LinesEllipsis text={data.description} maxLine="1" ellipsis="..." className="text-white text-[0.6rem] md:[0.65rem] lg:text-xs italic" /></div>
                <div className="flex justify-between items-end gap-2 mt-2 mb-1">
                   <p className="text-white text-[10px] lg:text-sm">{data.genre}</p>
                   <div className="flex flex-row items-center gap-1">
@@ -53,9 +42,7 @@ const NovelCard: React.FC<NovelCardProps> = ({ data }) => {
                      </div>
                   </div>
                </div>
-
             </div>
-
          </div>
       </div>
    )
