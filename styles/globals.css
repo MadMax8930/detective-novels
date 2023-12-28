@@ -798,7 +798,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .novel-id-quote {
-   @apply  ml-auto w-1/2 text-sm italic pt-2 pb-4 pl-4;
+   @apply  ml-auto 2xl:w-[40%] xl:w-[50%] lg:w-[60%] md:w-[50%] w-[70%] md:text-sm text-xs italic pt-2 md:pb-4 pb-3;
 }
 
 .novel-id-pagination {

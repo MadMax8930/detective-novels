@@ -21,15 +21,12 @@ const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
    const { data: novels = [], isLoading } = useNovelList();
    const { data: novelData = [] } = useNovel(novelId);
 
-   const [linesPerPage, setLinesPerPage] = useState<number>(0);
+   const [scrollHeight, setScrollHeight] = useState<number>(0);
    useEffect(() => {
       const novelContentLength = novelData?.content?.length || 0;
-      const minLinesPerPage = 10;
       const calculatedLinesPerPage = Math.max(
-         Math.ceil(novelContentLength / window.innerHeight * 0.035),
-         minLinesPerPage
-      );
-      setLinesPerPage(calculatedLinesPerPage);
+         Math.ceil(novelContentLength / window.innerHeight * 0.15), 10);
+      setScrollHeight(calculatedLinesPerPage);
    }, [novelData]);
 
    return (
@@ -39,7 +36,7 @@ const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
             <DonateContainer session={session} />
             <Carousel novels={novels} adminPage={false} />
             <SearchBar initialValue={novelData?.title} />
-            <Content linesPerPage={linesPerPage} />
+            <Content scrollHeight={scrollHeight} />
             <FooterSimplified borderTop={false} />
          </div>
         </>)}

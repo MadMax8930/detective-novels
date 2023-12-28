@@ -46,7 +46,6 @@ export interface ContentModalProps {
    visible?: boolean;
    onClose: any;
    pagination: PaginationProps;
-   linesPerPage: number;
 };
 
 export interface InfoModalProps {
