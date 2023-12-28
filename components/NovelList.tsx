@@ -21,7 +21,7 @@ const NovelList: React.FC<NovelListProps> = ({ header, data }) => {
                {data.map((novel) => (
                   <NovelCard key={novel.id} data={novel} />
                ))}
-               <div className="lg:hidden visible p-4 bg-tooltip-container-200 border-primary-blue-100 border-4 outline-double flex items-center justify-center">
+               <div className="lg:hidden visible p-4 bg-chart-title border-primary-blue-100 border-4 outline-double flex items-center justify-center">
                   <CgSandClock size={32} />in Production
                </div>
             </div>

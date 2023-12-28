@@ -3,7 +3,7 @@ import { ContentModalProps } from '@/types'
 import useInfoModal from '@/hooks/useInfoModal'
 import useNovel from '@/hooks/useNovel'
 import { AiOutlineClose } from 'react-icons/ai'
-import { Pagination } from '@/components'
+import { SanitizedText, Pagination } from '@/components'
 
 const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, pagination, linesPerPage  }) => {
    const [isVisible, setIsVisible] = useState(!!visible);
@@ -31,9 +31,16 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
       onPageChange: handlePageChange,
    };
 
-   const startIndex = (currentPage - 1) * linesPerPage;
-   const endIndex = Math.min(startIndex + linesPerPage, data?.content?.length || 0);
-   const linesForCurrentPage = data?.content?.split(/\n|\r\n|\r/).slice(startIndex, endIndex);
+   // const startIndex = (currentPage - 1) * linesPerPage;
+   // const endIndex = Math.min(startIndex + linesPerPage, data?.content?.length || 0);
+   // const linesForCurrentPage = data?.content?.split(/\n|\r\n|\r/).slice(startIndex, endIndex);
+
+   const startIndex = (currentPage - 1) * 2000;
+   const endIndex = startIndex + 2000;
+   
+   const contentArray = data?.content || [];
+   const currentPageContent = contentArray.slice(startIndex, endIndex);
+   const paragraphs = typeof currentPageContent === 'string' ? currentPageContent.split('\n') : [currentPageContent];
 
    if (!visible) return null;
    
@@ -51,11 +58,13 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
                      <p className="text-white text-xl md:text-2l lg:text-3xl h-full font-bold md:mb-8 mb-4">{data?.title}</p>
                    </div>
                </div>
-               <div className="px-6 md:px-10 lg:px-20 py-6 md:py-10 lg:py-20 flex flex-col md:h-[90vh] h-[95vh] md:pr-0 pr-3">
-                  {currentPage === 1 && data?.quote && (<div className="novel-id-quote text-white-main text-right pr-8">{data.quote}</div>)}
-                  <p className="text-white md:text-base text-[12px] text-justify overflow-y-scroll px-1 md:px-3 overflow-x-hidden flex-grow mb-4 md:mb-8">
-                     {linesForCurrentPage?.join('\n')}
-                  </p>
+               <div className="lg:px-12 py-6 md:py-10 lg:py-20 flex flex-col md:h-[90vh] h-[95vh]">
+                  {paragraphs.length > 0 && (
+                     <div className="prose lg:prose-xl border-b mx-auto text-white-main  md:text-lg sm:text-base text-[14px] text-justify overflow-y-scroll 3xl:w-full w-4/5 md:px-6 px-2 overflow-x-hidden flex-grow mb-4 md:mb-8">
+                        {currentPage === 1 && data?.quote && (<div className="novel-id-quote text-primary-light text-right pr-8">{data.quote}</div>)}
+                        {paragraphs.map((paragraph, index) => (<SanitizedText key={index} paragraph={paragraph}/>))}
+                     </div>
+                  )}
                   {pagination.totalPages > 1 && (
                      <div className="flex justify-center">
                         <Pagination {...paginationProps} />
