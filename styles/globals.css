@@ -225,6 +225,11 @@ body {
    outline: none;
 }
 
+.carousel-btn:disabled {
+   opacity: 0.1;
+   cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
    .carousel-container {
       width: 100%;
@@ -287,6 +292,18 @@ body {
 
    .carousel-btn:focus {
       outline: none;
+   }
+}
+
+@media (min-width: 1320px) {
+   .carousel-btn {
+      opacity: 0;
+   }
+}
+
+@media (max-width: 768px) {
+   .carousel-btn {
+      opacity: 0;
    }
 }
 

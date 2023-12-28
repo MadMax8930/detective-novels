@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti'
-import { FavoriteHeart } from '@/components'
+import { FavoriteHeart, Button } from '@/components'
 import { CarouselProps } from '@/types'
 
 const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelectedNovelId }) => {
@@ -31,27 +31,41 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
     }
   };
 
+  useEffect(() => {
+    let goRight: NodeJS.Timeout;
+    let goLeft: NodeJS.Timeout;
+
+    if (novels.length > 7) {
+      const startAutoplay = () => {
+         goRight = setInterval(() => { handleNextClick() }, 10000);
+         goLeft = setInterval(() => { handlePrevClick() }, 20000);
+      };
+
+      const stopAutoplay = () => { clearInterval(goRight); clearInterval(goLeft) };
+
+      startAutoplay();
+
+      return () => { stopAutoplay() };
+    }
+  }, [novels]);
+
   return (
    <div className={`px-12 pt-6 pb-2 ${adminPage ? 'bg-admin-inner' : 'bg-primary-light'}`}>
       <div className="carousel-container">
-         {adminPage && selectedNovelId && (
-            <div className="carousel-novel-id">
-              NOVEL ID : {selectedNovelId}
-            </div>
-         )}
+         {adminPage && selectedNovelId && (<div className="carousel-novel-id">NOVEL ID : {selectedNovelId}</div>)}
          <div className="carousel" ref={carouselRef}>
-            {novels.map((novel) => (
+            {novels.map((novel) => (<>
                <div key={novel.id} onClick={() => novel.id && handleNovelClick(novel.id)}
                   className={`carousel__nav-item ${(selectedNovelId === novel.id && !adminPage) ? 'active' : (selectedNovelId === novel.id && adminPage) ? 'active-admin' : ''}`}>
                   <img src={novel.coverImage} alt={`Cover of ${novel.title}`} /> 
                   <Link href={`/profile/lounge/${novel.id}`}><div className="carousel-novel-title">{novel.title}</div></Link>
                   <FavoriteHeart novelId={novel.id} />
                </div>
-            ))}
+            </>))}
          </div>
          <div className={`carousel-controls ${adminPage && 'text-white-main'}`}>
-            <button className="carousel-btn" onClick={handlePrevClick}><TiArrowLeftThick size={30} /></button>
-            <button className="carousel-btn" onClick={handleNextClick}><TiArrowRightThick size={30} /></button>
+            <Button action={handlePrevClick} leftIcon={<TiArrowLeftThick size={30} />} tooltip="Prev" additionalStyles="carousel-btn" />
+            <Button action={handleNextClick} rightIcon={<TiArrowRightThick size={30} />} tooltip="Next" additionalStyles="carousel-btn" />
          </div>
       </div>
    </div>
