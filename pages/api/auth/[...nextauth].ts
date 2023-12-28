@@ -1,13 +1,9 @@
-import NextAuth, { AuthOptions, CallbacksOptions } from 'next-auth'
+import NextAuth, { AuthOptions } from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { compare } from 'bcrypt'
 import prismadb from '@/lib/prismadb'
 import jwt from 'jsonwebtoken'
-
-interface CustomCallbacksOptions extends CallbacksOptions {
-   authorized: ({ auth, request }: { auth: any; request: any }) => boolean | Response;
-}
 
 // User and Admin authentication
 export const authOptions: AuthOptions = {
@@ -46,18 +42,6 @@ export const authOptions: AuthOptions = {
       })
    ],
    pages: { signIn: '/auth' },
-   // callbacks: {
-   //    authorized({ auth, request }) {
-   //       const isLoggedIn = auth?.user.sessionUser;
-   //       const isOnProfile = request.nextUrl.pathname.startsWith('/profile');
-   //       if (isLoggedIn && isOnProfile) {
-   //          return true;
-   //       } else if (isLoggedIn && !isOnProfile) {
-   //          return Response.redirect(new URL('/profile', request.nextUrl));
-   //       }
-   //       return false;
-   //    },
-   // } as CustomCallbacksOptions,
    debug: process.env.NODE_ENV === 'development',
    adapter: PrismaAdapter(prismadb),
    session: { strategy: 'jwt', maxAge: 7 * 24 * 60 * 60, updateAge: 24 * 60 },

@@ -11,6 +11,7 @@ import { ProfileProps } from '@/types'
 import { metadata } from '@/pages/_app'
 import ProfileLayout, { metadataProfile } from './_layout'
 import RootLayout from '../_layout'
+import { toast } from 'react-hot-toast'
  
 // Protecting routes by fetching user session on client side
 export const getServerSideProps = getUserSessionServerSideProps;
@@ -28,6 +29,14 @@ const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
          Math.ceil(novelContentLength / window.innerHeight * 0.15), 10);
       setScrollHeight(calculatedLinesPerPage);
    }, [novelData]);
+
+   useEffect(() => {
+      const hasShownLoginSuccessToast = localStorage.getItem('auth-toast');
+      if (!hasShownLoginSuccessToast) {
+        toast.success('Logged in successfully.');
+        localStorage.setItem('auth-toast', 'true');
+      }
+   }, []);
 
    return (
       <div className="w-screen min-h-full bg-primary-lighter">

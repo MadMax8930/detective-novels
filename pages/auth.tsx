@@ -63,7 +63,6 @@ const Auth = () => {
            email, password, callbackUrl: '/profile', redirect: true
         });
 
-        // toast.success('Logged in successfully.');
       } catch (error) {
         console.error(error);
         toast.error('Something went wrong.');
