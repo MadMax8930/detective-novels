@@ -119,7 +119,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       const adminDataNaked = await prismadb.admin.findMany();
 
       const adminDataIdObj = await prismadb.admin.findMany({
-         include: {
+         select: {
            users: {
              select: {
                id: true,
@@ -135,7 +135,11 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
 
       const adminDataFullObj = await prismadb.admin.findMany({
          include: {
-           users: true,
+           users: {
+             select: {
+               id: true
+             },
+           },
            newsletters: true
          },
       });
@@ -162,7 +166,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
       // console.log("newsletter model", newsletterData);
       // console.log("donation model", donationData);
 
-      const TESTING = commentDataIdObj
+      const TESTING = commentDataWithArray
 
       return res.status(200).json(TESTING);
    } catch (error) {

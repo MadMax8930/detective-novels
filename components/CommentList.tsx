@@ -2,7 +2,7 @@ import React from 'react'
 import { LoaderRound,  NoItem, CommentCard } from '@/components'
 import { CommentListProps } from '@/types'
 
-const CommentList: React.FC<CommentListProps> = ({ comments, loading, mutate, onReply, onEdit, authUser, buttonSelection }) => {
+const CommentList: React.FC<CommentListProps> = ({ comments, loading, mutate, onReply, onEdit, authUser, authAdmin, buttonSelection }) => {
 
    if (loading) { return <LoaderRound /> }
    if (!comments || comments.length === 0) { return <NoItem variation={'nc'} linkHref="/profile/lounge" title="No comments found" description="Be the first one to share your thoughts." imageSrc="/images/nocoms.png" imageAlt="No Comments" /> }
@@ -17,6 +17,7 @@ const CommentList: React.FC<CommentListProps> = ({ comments, loading, mutate, on
              onEdit={onEdit}
              commentId={comment.id} 
              authUser={authUser}
+             authAdmin={authAdmin}
              buttonSelection={{
                handleCommentClick: buttonSelection.handleCommentClick,
                isSelected: buttonSelection.selectedCommentId === comment.id,

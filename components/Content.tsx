@@ -87,14 +87,14 @@ const Content: React.FC<ContentProps> = ({ scrollHeight }) => {
                   </div>
                </div>
                <div className="py-2">
-                  {/* Full Screen */}
+                  {/* Dark Mode */}
                   <ContentModal 
                        visible={isOpen} 
                        onClose={closeModal} 
                        pagination={{ totalPages: totalPagesForModal, currentPage, onPageChange: handlePageChange }} />
                   <div className="flex justify-end items-center gap-1 group/item md:w-40 w-24 text-gray-400 transition cursor-pointer ml-auto"
                        onClick={() => openModal(selectedNovel?.id)}>
-                      <p className="md:text-lg text-[10px] uppercase group-hover/item:text-primary-black">Full screen</p>
+                      <p className="md:text-lg text-[10px] uppercase group-hover/item:text-primary-black">Dark mode</p>
                       <MdFitScreen size={20} className="text-gray-400 group-hover/item:text-primary-black max-sm:hidden"/>
                       <MdFitScreen size={15} className="text-gray-400 group-hover/item:text-primary-black sm:hidden"/>
                   </div>

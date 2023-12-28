@@ -94,6 +94,10 @@ body {
    @apply button-comment hover:bg-btn-comment-300;
 }
 
+.button-comment-delete-for-admin {
+   @apply button-comment hover:bg-admin-btn;
+}
+
 .button-comment-post {
    @apply button-comment hover:bg-btn-comment-400;
 }

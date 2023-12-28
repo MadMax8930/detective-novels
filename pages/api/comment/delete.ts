@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
      });
 
-     if (!comment || comment.userId !== currentUser.id) {
+     if (!comment || comment.userId !== currentUser.id && currentUser.adminId !== process.env.AUTHORIZED_ADMIN_ID) {
         return res.status(403).json({ error: 'Forbidden: You cannot delete this comment' });
      }
 

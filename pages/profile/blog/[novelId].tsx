@@ -108,6 +108,7 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
          onReply={handleReply}
          onEdit={handleEdit}
          authUser={session.id}
+         authAdmin={session.adminId}
          buttonSelection={{
             handleCommentClick,
             selectedCommentId,

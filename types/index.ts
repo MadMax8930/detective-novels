@@ -229,6 +229,7 @@ export interface CommentListProps {
    onReply: (comment: CommentProps) => void;
    onEdit: (comment: CommentProps) => void;
    authUser: string;
+   authAdmin: string | null;
    buttonSelection: {
      handleCommentClick: (commentId: string, action: ButtonAction) => void;
      selectedCommentId: string | null;
@@ -243,6 +244,7 @@ export interface CommentCardProps {
    onReply: (comment: CommentProps) => void;
    onEdit: (comment: CommentProps) => void;
    authUser: string;
+   authAdmin: string | null;
    buttonSelection: {
      handleCommentClick: (commentId: string, action: ButtonAction) => void;
      isSelected: boolean;
