@@ -1,5 +1,5 @@
 import DOMPurify from 'dompurify'
-import { REGEX_BOLD_SEPARATIONS, RGX_NUMBERS, RGX_TITLES, RGX_LOCATIONS, RGX_REFERENCES } from '@/contentRegex';
+import { REGEX_BOLD_SEPARATIONS, RGX_NUMBERS, RGX_TITLES, RGX_LOCATIONS, RGX_REFERENCES, RGX_OTHERS } from '@/contentRegex';
 
 const escapeRegex = (str: string) => str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
 
@@ -15,8 +15,10 @@ export const applyStylesToPhrases = (content: string) => {
          return `<p class="font-bold md:text-base text-sm mt:pt-6 pt-4 pb-3 text-center">${match}</p>`;
       } else if (RGX_REFERENCES.includes(match)) {
          return `<p class="font-semibold md:text-base text-xs italic pb-2 pl-1 text-left">${match}</p>`;
-      } else {
+      } else if (RGX_OTHERS.includes(match)) {
          return `<p class="font-light md:text-base text-sm text-center pt-1 pb-2">${match}</p>`;
+      } else {
+         return `<p class="pl-6">${'&nbsp;'.repeat(6)}</p>`;
       }
     }
   );

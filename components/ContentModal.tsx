@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useRef } from 'react'
 import { AiOutlineRead, AiOutlineMessage, AiOutlineClose } from 'react-icons/ai'
 import { SanitizedText, Pagination } from '@/components'
 import { WORDS_PER_PAGE } from '@/constants'
@@ -10,6 +10,7 @@ import useNovel from '@/hooks/useNovel'
 const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, pagination }) => {
    const [isVisible, setIsVisible] = useState(!!visible);
    const [currentPage, setCurrentPage] = useState(1);
+   const prevPage = useRef(1);
 
    const { novelId } = useInfoModal();
    const { data = {} } = useNovel(novelId);
@@ -20,7 +21,14 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
 
    useEffect(() => {
       const modalContent = document.getElementById("modal-content");
-      if (modalContent) { modalContent.scrollTop = 0 }
+      if (modalContent) {
+         if (currentPage > prevPage.current) {
+            modalContent.scrollTop = 0;
+         } else if (currentPage < prevPage.current) {
+            modalContent.scrollTop = modalContent.scrollHeight;
+         }
+      }
+      prevPage.current = currentPage;
    }, [currentPage]);
 
    const handleClose = useCallback(() => {
@@ -38,11 +46,13 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
       onPageChange: handlePageChange,
    };
 
-   const startIndex = (currentPage - 1) * WORDS_PER_PAGE;
-   const endIndex = Math.min(startIndex + WORDS_PER_PAGE, (data?.content?.length || 0));
-   
-   const currentPageContent = (data?.content || []).slice(startIndex, endIndex);
-   const paragraphs = typeof currentPageContent === 'string' ? currentPageContent.split('\n') : [currentPageContent];
+   let startIndex = (currentPage - 1) * WORDS_PER_PAGE;
+   let endIndex = startIndex + WORDS_PER_PAGE;
+   while (endIndex < data?.content?.length && !/\s|\p{P}/u.test(data.content[endIndex])) {
+      endIndex++;
+   }
+
+   const currentPageContent = (data?.content || '').substring(startIndex, endIndex);
 
    if (!visible) return null;
    
@@ -65,10 +75,10 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
                    </div>
                </div>
                <div className="lg:px-12 py-6 md:py-10 lg:py-20 flex flex-col md:h-[90vh] h-[95vh]">
-                  {paragraphs.length > 0 && (
-                     <div id="modal-content" className="prose lg:prose-xl border-b mx-auto text-white-main  md:text-lg sm:text-base text-[14px] text-justify overflow-y-scroll 3xl:w-full w-4/5 md:px-6 px-2 overflow-x-hidden flex-grow mb-4 md:mb-8">
+                  {currentPageContent.length > 0 && (
+                     <div id="modal-content" className="prose lg:prose-xl border-b mx-auto text-white-main  md:text-lg sm:text-base text-[14px] text-justify overflow-y-scroll 3xl:w-full w-4/5 md:px-6 px-2 overflow-x-hidden flex-grow mb-4 md:mb-8" style={{ whiteSpace: 'pre-line' }}>
                         {currentPage === 1 && data?.quote && (<div className="novel-id-quote text-primary-light text-right pr-8">{data.quote}</div>)}
-                        {paragraphs.map((paragraph, index) => (<SanitizedText key={index} paragraph={paragraph}/>))}
+                        <SanitizedText paragraph={currentPageContent} />
                      </div>
                   )}
                   {pagination.totalPages > 1 && (

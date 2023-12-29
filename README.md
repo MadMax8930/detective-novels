@@ -1,13 +1,17 @@
-## Novels Website made with [`Next.js`] for some client.
+## Novels Website made with [`Next.js`] for a client.
 Node version 18.2.0
 
 ### User will be able visit:
 
 - Home page: View different novels and read previews as an unauthenticated user.
+- Discover page: Visit author's biography.
+- Preview Id page: Introduce a novel's preview to encourage the user to read the rest.
 - Auth page: Register and Login to your account. 
 - Profile page: Read the whole content as an authenticated user.
+- Lounge page: Manage your favorites and subscribe to receive newsletters from the author.
+- Lounge Id page: Read a novel in unhinged mode.
+- Blog Id page: Comment, reply and leave feedback for a novel.
 - Admin page: Create, update and delete novels as an administrator.
-- Discover page: Visit author's biography.
 
 ### Run the dev server:
 
