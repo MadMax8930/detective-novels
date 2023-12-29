@@ -26,6 +26,7 @@ import AdminInfoTabs from './AdminInfoTabs'
 import AdminPagination from './AdminPagination'
 import AdminSearch from './AdminSearch'
 import AdminSender from './AdminSender'
+import MobileStack from './MobileStack'
 import FavoriteHeart from './FavoriteHeart'
 import FavoriteLibrary from './FavoriteLibrary'
 import Footer from './Footer'
@@ -61,6 +62,7 @@ export {
    AdminPagination,
    AdminSearch,
    AdminSender,
+   MobileStack,
    FavoriteHeart,
    FavoriteLibrary,
    Footer,

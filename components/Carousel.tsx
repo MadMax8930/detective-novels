@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React, { useState, useRef, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti'
-import { FavoriteHeart, Button } from '@/components'
+import { FavoriteHeart, Button, MobileStack } from '@/components'
 import { CarouselProps } from '@/types'
 
 const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelectedNovelId }) => {
@@ -67,6 +67,9 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
             <Button action={handlePrevClick} leftIcon={<TiArrowLeftThick size={30} />} tooltip="Prev" additionalStyles="carousel-btn" />
             <Button action={handleNextClick} rightIcon={<TiArrowRightThick size={30} />} tooltip="Next" additionalStyles="carousel-btn" />
          </div>
+      </div>
+      <div className="mobile-container">
+         <MobileStack novels={novels} onNovelClick={handleNovelClick} />
       </div>
    </div>
   );

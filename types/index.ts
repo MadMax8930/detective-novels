@@ -79,6 +79,11 @@ export interface CarouselProps {
    handleAdminSelectedNovelId?: (novelId: string) => void;
 };
 
+export interface MobileStackProps {
+   novels: Array<NovelDBProps>;
+   onNovelClick: (novelId: string) => void;
+};
+
 export interface AdminFormProps {
    token: string;
    adminSelectedNovelId?: string;

@@ -234,83 +234,6 @@ body {
    cursor: not-allowed;
 }
 
-@media (max-width: 768px) {
-   .carousel-container {
-      width: 100%;
-      overflow: hidden;
-      padding: 0rem 2rem 2rem;
-      position: relative;
-      z-index: 20;
-   }
-   
-   .carousel {
-      padding: 0;
-      gap: 0;
-   }
-
-   .carousel__nav-item {
-      min-width: 200px;
-      max-height: 310px;
-      width: 100%;
-      height: auto;
-      box-shadow: none;
-   }
-
-   .carousel__nav-item.active {
-      transform: scale(1) translateZ(0);
-      margin: 0rem 0.5rem;
-      border: 4px solid #444136;
-      border-radius: 0.75rem;
-      box-shadow: none;
-   }
-
-   .carousel__nav-item.active-admin {
-      transform: scale(1) translateZ(0);
-      margin: 0rem 0.5rem;
-      border: 4px solid #5d57c9;
-      border-radius: 0.75rem;
-      box-shadow: none;
-   }
-
-   .carousel__nav-item img.active, .carousel__nav-item img.active-admin {
-      box-shadow: none;
-   }
-
-   .carousel-controls {
-      display: flex;
-      justify-content: space-between;
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      transform: translateY(-60%);
-      z-index: 20;
-   }
-
-   .carousel-btn {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      font-size: 1.5rem;
-   }
-
-   .carousel-btn:focus {
-      outline: none;
-   }
-}
-
-@media (min-width: 1320px) {
-   .carousel-btn {
-      opacity: 0;
-   }
-}
-
-@media (max-width: 768px) {
-   .carousel-btn {
-      opacity: 0;
-   }
-}
-
 /* Carousel Arrows */
 
 .carousel-controls {
@@ -323,6 +246,49 @@ body {
 
 .carousel-btn.right-btn {
    @apply absolute right-5;
+}
+
+/* Mobile Container */
+
+.mobile-container {
+   @apply flex flex-col items-center min-h-[120px] overflow-hidden;
+}
+
+.mobile-card {
+   @apply flex flex-row items-center rounded-[3px] sm:min-w-[500px] min-w-[400px] h-[50px] mb-2.5 bg-pages-container-300 border-[1px] border-pages-container-100 overflow-hidden transition-all duration-100 cursor-pointer;
+   perspective:600px;
+   box-shadow:0px 2px 10px rgba(0,0,0,.2);
+}
+
+.mobile-img {
+   @apply w-[120px] overflow-hidden transition-all duration-500 h-auto;
+   box-shadow:0px 2px 10px rgba(0,0,0,0.3);
+}
+
+.mobile-content {
+   @apply flex flex-col min-w-[200px] md:px-[30px] sm:px-[20px] px-[10px] font-bold font-shoulders transition-all duration-200;
+}
+
+.mobile-title {
+   @apply text-white-main md:text-[1em] sm:text-[0.85em] text-[0.65em] sm:tracking-[1px] tracking-[0.1px];
+}
+
+.mobile-genre {
+   @apply text-[12px] text-pages-container-200 font-normal mb-2;
+}
+
+/* Handle Profile Display */
+
+@media (min-width: 768px) {
+   .mobile-container {
+      display: none;
+   }
+}
+
+@media (max-width: 768px) {
+   .carousel-container {
+      display: none;
+   }
 }
 
 /* Content Pagination */
