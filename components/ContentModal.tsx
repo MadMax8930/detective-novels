@@ -76,7 +76,7 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
                </div>
                <div className="lg:px-12 py-6 md:py-10 lg:py-20 flex flex-col md:h-[90vh] h-[95vh]">
                   {currentPageContent.length > 0 && (
-                     <div id="modal-content" className="prose lg:prose-xl border-b mx-auto text-white-main  md:text-lg sm:text-base text-[14px] text-justify overflow-y-scroll 3xl:w-full w-4/5 md:px-6 px-2 overflow-x-hidden flex-grow mb-4 md:mb-8" style={{ whiteSpace: 'pre-line' }}>
+                     <div id="modal-content" className="prose lg:prose-xl border-b mx-auto text-white-main md:text-lg sm:text-base text-[14px] text-left overflow-y-scroll 3xl:w-full w-4/5 md:px-6 px-2 overflow-x-hidden flex-grow mb-4 md:mb-8" style={{ whiteSpace: 'pre-line' }}>
                         {currentPage === 1 && data?.quote && (<div className="novel-id-quote text-primary-light text-right pr-8">{data.quote}</div>)}
                         <SanitizedText paragraph={currentPageContent} />
                      </div>

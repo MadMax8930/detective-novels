@@ -25,8 +25,8 @@ const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
    const [scrollHeight, setScrollHeight] = useState<number>(0);
    useEffect(() => {
       const novelContentLength = novelData?.content?.length || 0;
-      const calculatedLinesPerPage = Math.max(
-         Math.ceil(novelContentLength / window.innerHeight * 0.15), 10);
+      const calculatedLinesPerPage =
+         Math.ceil(novelContentLength / window.innerHeight * 0.25);
       setScrollHeight(calculatedLinesPerPage);
    }, [novelData]);
 

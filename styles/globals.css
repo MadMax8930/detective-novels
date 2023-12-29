@@ -427,6 +427,40 @@ body {
    @apply text-primary-lighter text-lg md:text-2xl uppercase;
 }
 
+/* Profile */
+
+.profile-novel-information {
+   @apply flex flex-col-reverse gap-2 md:flex-row justify-around pt-3 md:pb-4 pb-2 my-4 md:pr-0 pr-10;
+}
+
+.profile-novel-title {
+   @apply flex items-center md:justify-center justify-end text-primary-black text-base md:text-[20px] lg:text-2xl xl:text-3xl font-bold uppercase;
+}
+
+.profile-novel-buttons {
+   @apply ml-3 flex items-center gap-1 bg-primary-light text-primary-dark py-1 px-2 rounded-lg;
+}
+
+.profile-novel-more {
+   @apply flex flex-col items-end gap-1 leading-tight md:pr-4 pr-2;
+}
+
+.profile-novel-author {
+   @apply flex flex-row md:gap-2 gap-1 items-center justify-end;
+}
+
+.profile-novel-name {
+   @apply text-gray-400 lg:text-[14px] md:text-[12px] text-[10px] italic;
+}
+
+.profile-novel-date {
+   @apply text-gray-500 xl:text-[14px] md:text-[12px] text-[10px];
+}
+
+.profile-novel-not-found {
+   @apply text-red-500 md:text-xl text-sm font-semibold p-4;
+}
+
 /* Admin */
 
 .admin-header {
