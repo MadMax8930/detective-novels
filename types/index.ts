@@ -83,7 +83,7 @@ export interface CarouselProps {
    novels: Array<NovelDBProps>;
    adminPage: boolean;
    handleAdminSelectedNovelId?: (novelId: string) => void;
-   isClosed: boolean;
+   isClosed?: boolean;
 };
 
 export interface MobileStackProps {
