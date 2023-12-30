@@ -55,7 +55,7 @@ body {
 }
 
 .button-donate {
-   @apply bg-primary-black text-primary-light flex text-[15px];
+   @apply bg-primary-black text-primary-light flex md:text-[15px] text-[14px];
 }
 
 .button-fav {
@@ -255,7 +255,7 @@ body {
 }
 
 .mobile-card {
-   @apply flex flex-row items-center rounded-md sm:min-w-[500px] min-w-[370px] h-[60px] mb-2.5 border-[1px] border-pages-container-100 overflow-hidden transition-all duration-100 cursor-pointer;
+   @apply flex flex-row items-center rounded-md sm:min-w-[500px] min-w-[370px] h-[46px] mb-1 border-[1px] border-pages-container-100 overflow-hidden transition-all duration-100 cursor-pointer;
    perspective:600px;
    box-shadow:0px 2px 10px rgba(0,0,0,.2);
 }
@@ -266,7 +266,7 @@ body {
 }
 
 .mobile-content {
-   @apply flex flex-col min-w-[200px] md:px-[24px] sm:px-[16px] px-[10px] pt-1 font-bold font-shoulders transition-all duration-200;
+   @apply flex flex-col min-w-[200px] md:px-[24px] sm:px-[16px] px-[10px] pt-1.5 font-bold font-shoulders transition-all duration-200;
 }
 
 .mobile-title {
@@ -396,7 +396,7 @@ body {
 /* Profile */
 
 .profile-novel-information {
-   @apply flex flex-col-reverse gap-2 md:flex-row justify-around pt-3 md:pb-4 pb-2 md:pr-0 pr-10 my-1;
+   @apply flex flex-col-reverse gap-2 md:flex-row justify-around pt-3 md:pb-4 pb-2 md:pr-0 pr-5 my-1;
 }
 
 .profile-novel-title {
@@ -424,7 +424,7 @@ body {
 }
 
 .profile-novel-not-found {
-   @apply text-red-500 md:text-xl text-sm font-semibold p-4;
+   @apply text-red-500 md:text-xl text-sm text-center font-semibold pt-8 p-4;
 }
 
 /* Admin */
@@ -624,7 +624,7 @@ body {
 }
 
 .footer-simplified {
-   @apply mx-auto w-auto border-t-2 border-gray-300 sm:px-6 px-3 py-8 text-center md:text-base text-sm;
+   @apply mx-auto w-auto border-t-2 border-gray-300 sm:px-6 px-3 py-5 text-center md:text-base text-sm;
 }
 
 /* Auth */

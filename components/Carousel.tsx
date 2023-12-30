@@ -5,7 +5,7 @@ import { TiArrowLeftThick, TiArrowRightThick } from 'react-icons/ti'
 import { FavoriteHeart, Button, MobileStack } from '@/components'
 import { CarouselProps } from '@/types'
 
-const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelectedNovelId }) => {
+const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelectedNovelId, isClosed }) => {
   const router = useRouter();
   const [selectedNovelId, setSelectedNovelId] = useState<string | null>();
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -15,7 +15,7 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
     if (adminPage && handleAdminSelectedNovelId) {
       handleAdminSelectedNovelId(novelId);
     } else {
-      router.push(`/profile?novel=${novelId}`);
+      router.replace(`/profile?novel=${novelId}`, undefined, { shallow: true });
     }
   };
 
@@ -50,7 +50,7 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
   }, [novels]);
 
   return (
-   <div className={`px-12 pt-6 pb-2 ${adminPage ? 'bg-admin-inner' : 'bg-primary-light'}`}>
+   <div className={`px-12 pt-6 pb-2 ${adminPage ? 'bg-admin-inner' : 'bg-primary-light'} ${isClosed ? 'hidden' : 'block'}`}>
       <div className="carousel-container">
          {adminPage && selectedNovelId && (<div className="carousel-novel-id">NOVEL ID : {selectedNovelId}</div>)}
          <div className="carousel" ref={carouselRef}>

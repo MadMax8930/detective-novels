@@ -21,6 +21,8 @@ const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
    const novelId = router.query.novel as string;
    const { data: novels = [], isLoading } = useNovelList();
    const { data: novelData = [] } = useNovel(novelId);
+   const [isClosed, setIsClosed] = useState(false);
+   const handleTopSection = (() => setIsClosed((prev) => !prev));
 
    const [scrollHeight, setScrollHeight] = useState<number>(0);
    useEffect(() => {
@@ -43,9 +45,9 @@ const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
          {(isLoading || !novels) ? <LoaderLight /> : (<>
          <div className="flex-grow overflow-hidden">
             <DonateContainer session={session} />
-            <Carousel novels={novels} adminPage={false} />
+            <Carousel novels={novels} adminPage={false} isClosed={isClosed} />
             <SearchBar initialValue={novelData?.title} />
-            <Content scrollHeight={scrollHeight} />
+            <Content scrollHeight={scrollHeight} isClosed={isClosed} handleTopSection={handleTopSection} />
             <FooterSimplified borderTop={false} />
          </div>
         </>)}

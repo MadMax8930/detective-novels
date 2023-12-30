@@ -73,10 +73,17 @@ export interface NovelDBProps {
    adminId?: string;
 };
 
+export interface ContentProps {
+   scrollHeight: number;
+   isClosed: boolean;
+   handleTopSection: () => void;
+};
+
 export interface CarouselProps {
    novels: Array<NovelDBProps>;
    adminPage: boolean;
    handleAdminSelectedNovelId?: (novelId: string) => void;
+   isClosed: boolean;
 };
 
 export interface MobileStackProps {

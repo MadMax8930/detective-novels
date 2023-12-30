@@ -12,10 +12,10 @@ const DonationContainer: React.FC<{ session: SessionUserProps }> = ({ session })
       <strong className="user-container">Welcome {session.username}</strong> 
       <div className="donations-container">
          <Link href={COFFEE_URL} passHref target="_blank" rel="noopener noreferrer">
-            <Button title="Buy me a coffee" leftIcon={<SiBuymeacoffee size={20} />} additionalStyles="button-donate" />
+            <Button title="Buy me a coffee" leftIcon={<SiBuymeacoffee size={18} />} additionalStyles="button-donate" />
          </Link>
          <Link href={PAYPAL_URL} passHref target="_blank" rel="noopener noreferrer">
-            <Button title="Support my work" leftIcon={<FaPaypal size={20} />} additionalStyles="button-donate" />
+            <Button title="Support my work" leftIcon={<FaPaypal size={18} />} additionalStyles="button-donate" />
          </Link>
       </div>
     </div>
