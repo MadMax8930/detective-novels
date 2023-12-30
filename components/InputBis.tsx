@@ -38,7 +38,7 @@ const InputBis: React.FC<InputBisProps> = ({ id, onChange, value, label, name, p
                transform
                -translate-y-3
                scale-75
-               top-[7.07px]
+               lg:top-[6.6px] md:top-[7.07px] top-[6.9px]
                py-2
                z-10
                origin-[0]
@@ -47,7 +47,7 @@ const InputBis: React.FC<InputBisProps> = ({ id, onChange, value, label, name, p
                peer-placeholder-shown:translate-y-0
                peer-focus:scale-75
                peer-focus:-translate-y-3
-               ${value && 'bg-admin-third right-0 w-[122.5%]'}
+               ${value && 'bg-admin-third right-0 xl:w-[126.5%] lg:w-[124%] w-[122.5%]'}
             `}
             htmlFor={id}
          >

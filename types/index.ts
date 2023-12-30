@@ -81,6 +81,7 @@ export interface CarouselProps {
 
 export interface MobileStackProps {
    novels: Array<NovelDBProps>;
+   selectedNovelId: string | null | undefined;
    onNovelClick: (novelId: string) => void;
 };
 

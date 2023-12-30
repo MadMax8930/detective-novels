@@ -71,7 +71,7 @@ const Content: React.FC<ContentProps> = ({ scrollHeight }) => {
                   </div>
                </div>
                {/* Main Text */}
-               <div className="p-2 rounded-xl lg:mx-auto 2xl:w-[80%] xl:w-[85%] lg:w-[90%] md:h-[640px] h-[450px] min-h-full overflow-y-scroll overflow-x-hidden border-b-2 border-t-2">
+               <div className="p-2 lg:mx-auto 2xl:w-[80%] xl:w-[85%] lg:w-[90%] md:h-[640px] h-[450px] min-h-full overflow-y-scroll overflow-x-hidden border-b-2 border-t-2">
                   <div className="text-black xl:ml-20 lg:ml-12 lg:text-lg md:text-base text-[11px] md:leading-7 leading-5 md:mb-6 mb-4 xl:pr-16 pr-2 md:pt-2 pt-1"
                      style={{ height: '400px', scrollSnapType: 'y mandatory', scrollBehavior: 'smooth' }}>
                         {currentPage === 1 && selectedNovel?.quote && (

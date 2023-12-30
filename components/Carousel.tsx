@@ -69,7 +69,7 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
          </div>
       </div>
       <div className="mobile-container">
-         <MobileStack novels={novels} onNovelClick={handleNovelClick} />
+         <MobileStack novels={novels} selectedNovelId={selectedNovelId} onNovelClick={handleNovelClick} />
       </div>
    </div>
   );
