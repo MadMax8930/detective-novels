@@ -8,7 +8,7 @@ import useComment from '@/hooks/useComment'
 import getConfig from 'next/config'
 
 const { publicRuntimeConfig } = getConfig();
-const { AUTHORIZED_ADMIN_ID } = publicRuntimeConfig;
+const { AUTHORIZED_ADMIN_ID, AUTHORIZED_DEV_ADMIN_ID } = publicRuntimeConfig;
 
 const CommentCard: React.FC<CommentCardProps> = ({ comment, commentId, mutate, onReply, onEdit, authUser, authAdmin, buttonSelection }) => {
    const { handleCommentClick, isSelected, btnAction } = buttonSelection;
@@ -70,7 +70,7 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment, commentId, mutate, o
             <Button action={handleEdit} rightIcon={<BiSolidMessageEdit size={24} />} tooltip="Edit your comment" additionalStyles={`button-comment-edit ${isSelected && btnAction === 'edit' ? 'bg-btn-comment-200' : 'bg-btn-comment'}`} />)}
             {comment.userId === authUser && (
             <Button action={handleDelete} rightIcon={<BiSolidCommentX size={24} />} tooltip="Delete your comment" additionalStyles='button-comment-delete bg-btn-comment' />)}
-            {authAdmin && authAdmin === AUTHORIZED_ADMIN_ID && comment.userId !== authUser && (
+            {authAdmin && (authAdmin === AUTHORIZED_ADMIN_ID || authAdmin === AUTHORIZED_DEV_ADMIN_ID) && comment.userId !== authUser && (
             <Button action={handleDelete} rightIcon={<BiSolidCommentError size={24} />} tooltip={`Delete ${comment.user?.username || 'user'}'s comment`} additionalStyles='button-comment-delete-for-admin bg-btn-comment' />)}
          </>)}     
       </div>

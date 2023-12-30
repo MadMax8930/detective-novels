@@ -54,14 +54,14 @@ const Carousel: React.FC<CarouselProps> = ({ novels, adminPage, handleAdminSelec
       <div className="carousel-container">
          {adminPage && selectedNovelId && (<div className="carousel-novel-id">NOVEL ID : {selectedNovelId}</div>)}
          <div className="carousel" ref={carouselRef}>
-            {novels.map((novel) => (<>
+            {novels.map((novel) => (
                <div key={novel.id} onClick={() => novel.id && handleNovelClick(novel.id)}
                   className={`carousel__nav-item ${(selectedNovelId === novel.id && !adminPage) ? 'active' : (selectedNovelId === novel.id && adminPage) ? 'active-admin' : ''}`}>
                   <img src={novel.coverImage} alt={`Cover of ${novel.title}`} /> 
                   <Link href={`/profile/lounge/${novel.id}`}><div className="carousel-novel-title">{novel.title}</div></Link>
                   <FavoriteHeart novelId={novel.id} />
                </div>
-            </>))}
+            ))}
          </div>
          <div className={`carousel-controls ${adminPage && 'text-white-main'}`}>
             <Button action={handlePrevClick} leftIcon={<TiArrowLeftThick size={30} />} tooltip="Prev" additionalStyles="carousel-btn" />

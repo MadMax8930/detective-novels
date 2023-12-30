@@ -9,7 +9,7 @@ import useAdminData from '@/hooks/useAdminData'
 import getConfig from 'next/config'
 
 const { publicRuntimeConfig } = getConfig();
-const { AUTHORIZED_ADMIN_ID } = publicRuntimeConfig;
+const { AUTHORIZED_ADMIN_ID, AUTHORIZED_DEV_ADMIN_ID } = publicRuntimeConfig;
 
 const AdminInfoTabs = () => {
    const { navigateToUrl } = useAdminNavigation();
@@ -19,7 +19,7 @@ const AdminInfoTabs = () => {
    const pageQuery = searchParams.get("portion") || "1";   
    
    const { data, isLoading, error, mutate } = useAdminData({
-      adminId: AUTHORIZED_ADMIN_ID, query: userQuery, portion: pageQuery
+      adminId: (AUTHORIZED_ADMIN_ID || AUTHORIZED_DEV_ADMIN_ID), query: userQuery, portion: pageQuery
    });
 
    const [btnUserType, setBtnUserType] = useState(true);

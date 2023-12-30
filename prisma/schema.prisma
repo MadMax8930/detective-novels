@@ -74,9 +74,9 @@ model Comment {
 model Admin {
    id String @id @default(auto()) @map("_id") @db.ObjectId
    status String
-   authorName String
-   picture String
-   biography String
+   picture String?
+   biography String?
+   authorName String?
    favoriteBooks String[]
    createdAt DateTime @default(now())
 
