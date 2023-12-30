@@ -16,6 +16,11 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
       setIsVisible(!!visible);
    }, [visible]);
 
+   useEffect(() => {
+      const img = new Image();
+      img.src = data?.coverImage || '';
+   }, [data?.coverImage]);
+
    const handleClose = useCallback(() => {
       setIsVisible(false);
       setTimeout(() => { onClose() }, 300);

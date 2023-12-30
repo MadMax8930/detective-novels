@@ -34,6 +34,7 @@ export default function RootLayout({ children, metadata }: RootLayoutProps){
          <meta property="og:type" content="website" />
          <meta property="og:image" content="/images/logo.png" />
          <meta property="og:url" content="https://vladsurnin.com/" />
+         <link rel="preload" href="/images/hero.jpg" as="image" />
       </Head>
       <div className="relative h-screen">
          {children}
