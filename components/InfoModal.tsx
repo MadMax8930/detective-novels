@@ -18,11 +18,6 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
    }, [visible]);
 
    useEffect(() => {
-      const img = new Image();
-      img.src = data?.coverImage || '';
-   }, [data?.coverImage]);
-
-   useEffect(() => {
       if (data?.coverImage) {
         const img = new Image();
         img.src = data.coverImage;
