@@ -36,9 +36,6 @@ const Profile: NextPageWithLayout<ProfileProps> = ({ session }) => {
         toast.success('Logged in successfully.');
         localStorage.setItem('auth-toast', 'true');
       }
-      setTimeout(() => {
-         localStorage.removeItem('auth-toast');
-      }, 2500);
    }, []);
 
    return (
