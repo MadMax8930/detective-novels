@@ -21,8 +21,8 @@ const Content: React.FC<ContentProps> = ({ scrollHeight, isClosed, handleTopSect
    /* Pagination */
    const [currentPage, setCurrentPage] = useState(1);
    const innerContainerRef = useRef<HTMLDivElement | null>(null);
-   const lines = selectedNovel?.content.split(/\n|\r\n|\r/);
-   const totalPages = Math.ceil(selectedNovel?.content?.length / scrollHeight);
+   const lines = selectedNovel?.content.split(/\n|\r\n|\r/) || [];
+   const totalPages = Math.ceil(lines.length / scrollHeight);
    const totalPagesForModal = Math.ceil(selectedNovel?.content?.length / WORDS_PER_PAGE);
    
    const handlePageChange = (page: number) => {
