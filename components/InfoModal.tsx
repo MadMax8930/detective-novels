@@ -9,6 +9,7 @@ import { format } from '@/lib/dateFormat'
 const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
    const [isVisible, setIsVisible] = useState(!!visible);
    const [isImageLoaded, setIsImageLoaded] = useState(false);
+   const handleImageLoad = () => { setIsImageLoaded(true) };
 
    const { novelId } = useInfoModal();
    const { data = {} } = useNovel(novelId);
@@ -16,16 +17,6 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
    useEffect(() => {
       setIsVisible(!!visible);
    }, [visible]);
-
-   useEffect(() => {
-      if (data?.coverImage) {
-        const img = new Image();
-        img.src = data.coverImage;
-        img.onload = () => {
-          setIsImageLoaded(true);
-        };
-      }
-   }, [data?.coverImage]);
 
    const handleClose = useCallback(() => {
       setIsVisible(false);
@@ -39,7 +30,7 @@ const InfoModal: React.FC<InfoModalProps> = ({ visible, onClose }) => {
          <div className="relative w-auto mx-4 md:mx-auto max-w-3xl rounded-md overflow-hidden">
             <div className={`${isVisible ? 'scale-100' : 'scale-0'} md:min-h-[220px] min-h-auto md:min-w-[766px] min-w-[310px] transform duration-300 relative flex-auto bg-zinc-900 drop-shadow-md mt-2`}>
                <div className="relative md:h-40 h-20 md:min-w-[640px] w-full">
-                   {isImageLoaded && <img src={data?.coverImage} alt="Thumbnail Cover" className="w-full brightness-[75%] object-cover h-full opacity-30" />}
+                   {isImageLoaded && <img src={data?.coverImage} alt="Thumbnail Cover" className="w-full brightness-[75%] object-cover h-full opacity-30" onLoad={handleImageLoad} />}
                    <div className="cursor-pointer absolute top-3 right-3 h-10 w-10 rounded-full bg-black bg-opacity-70 flex items-center justify-center hover:bg-btn-comment" 
                         onClick={handleClose}>
                         <AiOutlineClose className="text-white" size={20} />
