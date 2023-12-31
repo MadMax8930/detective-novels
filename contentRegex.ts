@@ -67,6 +67,7 @@ export const REGEX_BOLD_SEPARATIONS = [
    "*Малакофф – город, примыкающий к Парижу",
    "*(фр.)Меня зовут господин Левюр.",
    "*(фр.) Levure = Левюр, переводится как Дрожжи",
+   "       "
 ];
 
 export const RGX_NUMBERS = [

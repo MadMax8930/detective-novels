@@ -2,11 +2,13 @@ import DOMPurify from 'dompurify'
 import { REGEX_BOLD_SEPARATIONS, RGX_NUMBERS, RGX_TITLES, RGX_LOCATIONS, RGX_REFERENCES, RGX_THEEND, RGX_OTHERS } from '@/contentRegex';
 
 const escapeRegex = (str: string) => str.replace(/[-/\\^$*+?.()|[\]{}]/g, '\\$&');
+const HTML_SPACES_INDENTATION = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
 
 export const applyStylesToPhrases = (content: string) => {
   const styledContent = content.replace(
     new RegExp(REGEX_BOLD_SEPARATIONS.map(escapeRegex).join('|'), 'g'),
-    (match) => { 
+    (match) => {
+
       if (RGX_NUMBERS.includes(match)) {
          return `<p class="font-bold md:text-lg text-base md:py-4 py-3 pl-2 text-left">${match}</p>`;
       } else if (RGX_TITLES.includes(match)) {
@@ -20,7 +22,7 @@ export const applyStylesToPhrases = (content: string) => {
       } else if (RGX_OTHERS.includes(match)) {
          return `<p class="font-light md:text-base text-sm text-center pt-1 pb-2">${match}</p>`;
       } else {
-         return `<p class="pl-6">${'&nbsp;'.repeat(6)}</p>`;
+         return `${HTML_SPACES_INDENTATION}${match}`;
       }
     }
   );
