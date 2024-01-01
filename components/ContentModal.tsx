@@ -48,8 +48,28 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
 
    let startIndex = (currentPage - 1) * WORDS_PER_PAGE;
    let endIndex = startIndex + WORDS_PER_PAGE;
-   while (endIndex < data?.content?.length && !/\s|\p{P}/u.test(data.content[endIndex])) {
+
+   const lastWordIndex = data?.content?.lastIndexOf(/[\s.,\p{P}]/u, endIndex) || 0;
+   if (lastWordIndex >= startIndex) {
+      endIndex = lastWordIndex;
+      startIndex = data?.content?.search(/[^\s,.\p{P}]/u, startIndex) || 0;
+   }
+  
+   while (endIndex < data?.content?.length && !/[.,]/u.test(data.content[endIndex - 1])) {
       endIndex++;
+   }
+
+   if (currentPage > 1) {
+      let match;
+      while (endIndex < data?.content?.length) {
+         match = data.content.substring(startIndex).match(/^[^.,]*[.,]/u);
+         if (match) {
+            const matchedText = match[0];
+            startIndex += matchedText.length;
+             break;
+         }
+         endIndex++;
+      }
    }
 
    const currentPageContent = (data?.content || '').substring(startIndex, endIndex);
