@@ -43,8 +43,8 @@ const ProfileLayout = ({ children, layoutMetadata, session }: ProfileLayoutProps
          {/* Open Graph Tags */}
          <meta property="og:title" content={layoutMetadata?.title} />
          <meta property="og:description" content={layoutMetadata?.description} />
-         <meta property="og:type" content="book" />
-         <meta property="og:image" content="https://vladsurnin.com/images/logo.png" />
+         {/* <meta property="og:type" content="book" /> */}
+         <meta property="og:image" content="https://vladsurnin.com/images/seo.jpg" />
          <meta property="og:url" content="https://vladsurnin.com/profile" />
          <meta property="og:site_name" content="Vlads Novels" />
          <meta property="og:locale" content="ru_RU" />

@@ -31,8 +31,8 @@ export default function RootLayout({ children, metadata }: RootLayoutProps){
          {/* Open Graph Tags */}
          <meta property="og:title" content={title} />
          <meta property="og:description" content={description} />
-         <meta property="og:type" content="book" />
-         <meta property="og:image" content="https://vladsurnin.com/images/logo.png" />
+         {/* <meta property="og:type" content="book" /> */}
+         <meta property="og:image" content="https://vladsurnin.com/images/seo.jpg" />
          <meta property="og:url" content="https://vladsurnin.com/" />
          <meta property="og:site_name" content="Vlads Novels" />
          <meta property="og:locale" content="ru_RU" />
