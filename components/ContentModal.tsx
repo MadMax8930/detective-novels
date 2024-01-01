@@ -72,6 +72,14 @@ const ContentModal: React.FC<ContentModalProps> = ({ visible, onClose, paginatio
       }
    }
 
+   if (currentPage === paginationProps.totalPages) {
+      const match = data.content.substring(startIndex).match(/^[^.,]*[.,]/u);
+      if (match) {
+         const matchedText = match[0];
+         startIndex += matchedText.length;
+      }
+   }
+
    const currentPageContent = (data?.content || '').substring(startIndex, endIndex);
 
    if (!visible) return null;
