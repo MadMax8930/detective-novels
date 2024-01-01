@@ -41,16 +41,13 @@ const ProfileLayout = ({ children, layoutMetadata, session }: ProfileLayoutProps
          <meta name="publisher" content="Vladislav Surnin" />
 
          {/* Open Graph Tags */}
+         <meta property="og:locale" content="ru_RU" />
+         <meta property="og:type" content="website" />
          <meta property="og:title" content={layoutMetadata?.title} />
          <meta property="og:description" content={layoutMetadata?.description} />
-         {/* <meta property="og:type" content="book" /> */}
-         <meta property="og:image" content="https://vladsurnin.com/opengraph-image.jpg" />
-         <meta property="og:image:type" content="image/png" />
-         <meta property="og:image:width" content="1200" />
-         <meta property="og:image:height" content="630" />
          <meta property="og:url" content="https://vladsurnin.com/profile" />
-         <meta property="og:site_name" content="Vlads Novels" />
-         <meta property="og:locale" content="ru_RU" />
+         <meta property="og:site_name" content="Vlad Surnin's Novels" />
+         <meta property="og:image" content="https://vladsurnin.com/opengraph-image.jpg" />
          <link rel="canonical" href="https://vladsurnin.com/profile" />
       </Head>
       <Navbar isUser={!!session?.email} isAdmin={!!session?.adminId} />

@@ -29,16 +29,13 @@ export default function RootLayout({ children, metadata }: RootLayoutProps){
          <meta name="publisher" content="Vladislav Surnin" />
 
          {/* Open Graph Tags */}
+         <meta property="og:locale" content="ru_RU" />
+         <meta property="og:type" content="website" />
          <meta property="og:title" content={title} />
          <meta property="og:description" content={description} />
-         {/* <meta property="og:type" content="book" /> */}
-         <meta property="og:image" content="https://vladsurnin.com/opengraph-image.jpg" />
-         <meta property="og:image:type" content="image/png" />
-         <meta property="og:image:width" content="1200" />
-         <meta property="og:image:height" content="630" />
          <meta property="og:url" content="https://vladsurnin.com/" />
-         <meta property="og:site_name" content="Vlads Novels" />
-         <meta property="og:locale" content="ru_RU" />
+         <meta property="og:site_name" content="Vlad Surnin's Novels" />
+         <meta property="og:image" content="https://vladsurnin.com/opengraph-image.jpg" />
          <link rel="icon" href="/favicon.ico" />
          <link rel="canonical" href="https://vladsurnin.com/" />
          <link rel="preload" href="/images/hero.jpg" as="image" />
