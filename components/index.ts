@@ -12,8 +12,9 @@ import NovelList from './NovelList'
 import Carousel from './Carousel'
 import SanitizedText from './SanitizedText'
 import CommentCard from './CommentCard'
-import CommentList from './CommentList'
+import CommentListSection from './CommentListSection'
 import CommentPrompt from './CommentPrompt'
+import CommentSender from './CommentSender'
 import DonateResponse from './DonateResponse'
 import DonateContainer from './DonateContainer'
 import BookAnimation from './BookAnimation'
@@ -48,8 +49,9 @@ export {
    Carousel,
    SanitizedText,
    CommentCard,
-   CommentList,
+   CommentListSection,
    CommentPrompt,
+   CommentSender,
    DonateResponse,
    DonateContainer,
    BookAnimation,

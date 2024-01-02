@@ -99,7 +99,7 @@ body {
 }
 
 .button-comment-post {
-   @apply button-comment hover:bg-btn-comment-400;
+   @apply button-comment hover:bg-primary-blue bg-btn-comment;
 }
 
 .button-book-anim {

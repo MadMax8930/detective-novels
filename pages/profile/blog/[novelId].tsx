@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { NotFound, LoaderLight, CommentPrompt, CommentList, BookAnimation, FooterSimplified } from '@/components'
+import { NotFound, LoaderLight, CommentSender, CommentListSection, BookAnimation, FooterSimplified } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import type { NextPageWithLayout } from '@/pages/_app'
 import { ProfileProps, CommentProps, ButtonAction } from '@/types'
@@ -74,34 +74,30 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
 
   return (
     <div className='pt-20 bg-primary-lighter'>
-      {novels && novels.length > 0 && (
+      {novels && novels.length > 0 && (<>
       <BookAnimation 
          novel={novels[currentNovelIndex]} 
          onPrevClick={onPrevClick} 
          onNextClick={onNextClick}
          isPreviewPage={false} 
-      />)}
-      {novels && novels.length > 0 && (
-      <CommentPrompt
+      />
+      <CommentSender
          novelId={novelId}
          novel={novels[currentNovelIndex]}
-         mutate={mutateComments} 
+         mutate={mutateComments}
+      />
+      <CommentListSection
+         novelId={novelId}
+         novel={novels[currentNovelIndex]}
          replyingComment={replyingComment}
          setReplyingComment={setReplyingComment}
          editingComment={editingComment} 
          setEditingComment={setEditingComment}
          cancelSend={cancelSend}
-         authUser={session.id} 
          messageBody={messageBody}
          setMessageBody={setMessageBody}
          parentMessageId={parentMessageId}
          setParentMessageId={setParentMessageId}
-         buttonSelection={{
-            handleCommentClick,
-            selectedCommentId,
-            btnAction,
-         }} />)}
-      <CommentList
          comments={fetchedComments} 
          loading={loadComments} 
          mutate={mutateComments} 
@@ -113,7 +109,7 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
             handleCommentClick,
             selectedCommentId,
             btnAction,
-         }} />
+         }} /></>)}
       <FooterSimplified borderTop={false} />
     </div>
   )

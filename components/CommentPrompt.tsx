@@ -1,20 +1,27 @@
 import React, { useEffect } from 'react'
 import { Button } from '@/components'
-import { BiSolidMessageDetail, BiSolidMessageEdit, BiSolidEnvelope, BiSolidCommentX } from 'react-icons/bi'
+import { BiSolidMessageDetail, BiSolidMessageEdit, BiSolidCommentX } from 'react-icons/bi'
 import { CommentPromptProps } from '@/types'
 import { toast } from 'react-hot-toast'
 import useComment from '@/hooks/useComment'
 
-const CommentPrompt: React.FC<CommentPromptProps> = ({ novelId, novel, mutate, replyingComment, setReplyingComment, editingComment, setEditingComment, cancelSend, authUser, messageBody, setMessageBody, parentMessageId, setParentMessageId, buttonSelection }) => {
+const CommentPrompt: React.FC<CommentPromptProps> = ({ novel, novelId, mutate, replyingComment, setReplyingComment, editingComment, setEditingComment, cancelSend, messageBody, setMessageBody, parentMessageId, setParentMessageId, buttonSelection }) => {
    const { btnAction, selectedCommentId, handleCommentClick } = buttonSelection;
-   const { addComment: addComment } = useComment(novelId, undefined);
    const { addComment: replyComment } = useComment(novelId, replyingComment?.id);
    const { editComment: editComment } = useComment(undefined, editingComment?.id);
+
+   const scrollToComment = (value: number) => {
+      window.scrollTo({
+         top: window.scrollY + value,
+         behavior: 'smooth',
+      });
+   };
    
    useEffect(() => {
      if (replyingComment) {   
         setEditingComment(null);
         setParentMessageId(replyingComment.id);
+        scrollToComment(220);
      }
    }, [replyingComment, setEditingComment, setParentMessageId]);
 
@@ -23,6 +30,7 @@ const CommentPrompt: React.FC<CommentPromptProps> = ({ novelId, novel, mutate, r
          setReplyingComment(null);
          setParentMessageId(editingComment.parentCommentId);
          setMessageBody(editingComment.content);
+         scrollToComment(220);
       }
    }, [editingComment, setReplyingComment, setParentMessageId, setMessageBody]);
 
@@ -42,10 +50,6 @@ const CommentPrompt: React.FC<CommentPromptProps> = ({ novelId, novel, mutate, r
          } else if (editingComment) {
             await editComment(commData);
             toast.success('Comment updated successfully');
-         } else {
-            setParentMessageId(null)
-            await addComment(commData);
-            toast.success('Comment posted successfully');
          }
          handleCommentClick(null, null);
          setEditingComment(null);
@@ -61,10 +65,9 @@ const CommentPrompt: React.FC<CommentPromptProps> = ({ novelId, novel, mutate, r
 
   return (
     <div className="comment-prompt-container">
-      {/* Input */}
       <div className="comment-prompt-input">
          <textarea id="comment" name="comment" className="comment-textarea" 
-            placeholder={`💬 - What did you think of ❞ ${novel.title}❞ ? ...`} rows={8}
+            placeholder={`💬 - What did you think of ❞ ${novel.title}❞ ? ...`} rows={4}
             value={messageBody} onChange={(e) => setMessageBody(e.target.value)} />
          {(selectedCommentId && btnAction === 'reply') 
             ? <p className="comment-tab"><span style={{ backgroundColor: '#16a34a', color: 'white', padding: '0.25rem' }}>{btnAction} - {selectedCommentId}</span></p>
@@ -72,7 +75,6 @@ const CommentPrompt: React.FC<CommentPromptProps> = ({ novelId, novel, mutate, r
             ? <p className="comment-tab"><span style={{ backgroundColor: '#eab308', color: 'white', padding: '0.25rem' }}>{btnAction} - {selectedCommentId}</span></p> 
             : null}
       </div>
-      {/* Controls */}
       <div className="comment-prompt-buttons">
          {replyingComment && (<>
             <Button action={handleSend} rightIcon={<BiSolidMessageDetail size={24} />} tooltip='Reply to comment' additionalStyles={`button-comment-reply ${selectedCommentId && btnAction === 'reply' ? 'bg-btn-comment-100' : 'bg-btn-comment'}`} />
@@ -81,9 +83,6 @@ const CommentPrompt: React.FC<CommentPromptProps> = ({ novelId, novel, mutate, r
          {editingComment && (<>
             <Button action={handleSend} rightIcon={<BiSolidMessageEdit size={24} />} tooltip='Update your comment' additionalStyles={`button-comment-edit ${selectedCommentId && btnAction === 'edit' ? 'bg-btn-comment-200' : 'bg-btn-comment'}`} />
             <Button action={cancelSend} rightIcon={<BiSolidCommentX size={24} />} tooltip="Cancel edit" additionalStyles={`button-comment-delete ${selectedCommentId && btnAction === 'edit' ? 'bg-btn-comment-300' : 'bg-btn-comment'}`} />
-         </>)}
-         {authUser && (<>
-            <Button action={handleSend} rightIcon={<BiSolidEnvelope size={24} />} tooltip='Post new comment' additionalStyles={`button-comment-post ${selectedCommentId ? 'bg-btn-comment' : 'bg-primary-blue'}`} />
          </>)}
       </div>
     </div>

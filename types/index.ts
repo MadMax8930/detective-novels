@@ -233,9 +233,15 @@ export interface CommentProps {
    replies?: CommentProps[];
 };
 
+export interface CommentSenderProps {
+   novelId: string;
+   novel: NovelProps;
+   mutate: () => void;
+};
+
 export type ButtonAction = 'edit' | 'reply' | null;
 
-export interface CommentListProps {
+export interface CommentListSectionProps {
    comments: CommentProps[];
    loading: boolean;
    mutate: () => void;
@@ -244,10 +250,21 @@ export interface CommentListProps {
    authUser: string;
    authAdmin: string | null;
    buttonSelection: {
-     handleCommentClick: (commentId: string, action: ButtonAction) => void;
+     handleCommentClick: (commentId: string | null, action: ButtonAction) => void;
      selectedCommentId: string | null;
      btnAction: ButtonAction;
    };
+   novel: NovelProps;
+   novelId: string;
+   replyingComment: CommentProps | null;
+   setReplyingComment: React.Dispatch<React.SetStateAction<CommentProps | null>>;
+   editingComment: CommentProps | null;
+   setEditingComment: React.Dispatch<React.SetStateAction<CommentProps | null>>;
+   cancelSend: () => void;
+   messageBody: string;
+   setMessageBody: React.Dispatch<React.SetStateAction<string>>;
+   parentMessageId: string | null;
+   setParentMessageId: React.Dispatch<React.SetStateAction<string | null>>;
 };
 
 export interface CommentCardProps {
@@ -266,15 +283,14 @@ export interface CommentCardProps {
 };
 
 export interface CommentPromptProps {
-   novelId: string;
    novel: NovelProps;
+   novelId: string;
    mutate: () => void;
    replyingComment: CommentProps | null;
    setReplyingComment: React.Dispatch<React.SetStateAction<CommentProps | null>>;
    editingComment: CommentProps | null;
    setEditingComment: React.Dispatch<React.SetStateAction<CommentProps | null>>;
    cancelSend: () => void;
-   authUser: string;
    messageBody: string;
    setMessageBody: React.Dispatch<React.SetStateAction<string>>;
    parentMessageId: string | null;
