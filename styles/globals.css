@@ -138,6 +138,14 @@ body {
    @apply bg-primary-red text-white-main;
 }
 
+.btn-cancel-delete {
+   @apply bg-comm-prompt border-2 border-primary-lighter text-primary-black p-2 py-1.5 flex gap-0.5;
+}
+
+.btn-confirm-delete {
+   @apply bg-primary-red-200 border-2 border-primary-lighter text-white-main p-2 py-1.5 flex gap-0.5;
+}
+
 /* Search Bar */
 
 .search-bar {

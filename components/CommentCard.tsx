@@ -3,7 +3,7 @@ import { Button } from '@/components'
 import { BiSolidMessageDetail, BiSolidMessageEdit, BiSolidCommentX, BiSolidCheckSquare, BiSolidXSquare, BiSolidCommentError } from 'react-icons/bi'
 import { format } from '@/lib/dateFormat'
 import { toast } from 'react-hot-toast'
-import { CommentCardProps } from '@/types'
+import { CommentCardProps, CommentProps } from '@/types'
 import useComment from '@/hooks/useComment'
 import getConfig from 'next/config'
 
@@ -39,6 +39,9 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment, commentId, mutate, o
 
    const handleDelete = () => {
       setConfirmationOpen(true);
+      onEdit(null as unknown as CommentProps);
+      onReply(null as unknown as CommentProps);
+      handleCommentClick(null, null);
    };
   
     const cancelDeletion = () => {
@@ -62,8 +65,8 @@ const CommentCard: React.FC<CommentCardProps> = ({ comment, commentId, mutate, o
       {/* Controls */}
       <div className="comment-card-buttons">
          {isConfirmationOpen ? (<>
-            <Button action={confirmDeletion} rightIcon={<BiSolidCheckSquare size={24} />} tooltip="Confirm deletion" additionalStyles='button-comment-reply bg-btn-comment bg-green-600' />
-            <Button action={cancelDeletion} rightIcon={<BiSolidXSquare size={24} />} tooltip="Cancel deletion" additionalStyles='button-comment-delete bg-btn-comment bg-red-600' />
+            <Button title="Cancel" action={cancelDeletion} leftIcon={<BiSolidXSquare size={24} />} tooltip="Cancel deletion" additionalStyles="btn-cancel-delete flex" />
+            <Button title="Confirm" action={confirmDeletion} leftIcon={<BiSolidCheckSquare size={24} />} tooltip="Confirm deletion" additionalStyles="btn-confirm-delete flex" />
          </>) : (<>
             <Button action={handleReply} rightIcon={<BiSolidMessageDetail size={24} />} tooltip="Reply to comment" additionalStyles={`button-comment-reply ${isSelected && btnAction === 'reply' ? 'bg-btn-comment-100' : 'bg-btn-comment'}`} />
             {comment.userId === authUser && (

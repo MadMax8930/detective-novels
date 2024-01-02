@@ -276,7 +276,7 @@ export interface CommentCardProps {
    authUser: string;
    authAdmin: string | null;
    buttonSelection: {
-     handleCommentClick: (commentId: string, action: ButtonAction) => void;
+     handleCommentClick: (commentId: string | null, action: ButtonAction) => void;
      isSelected: boolean;
      btnAction: ButtonAction;
    };
