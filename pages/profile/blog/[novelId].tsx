@@ -110,7 +110,7 @@ const BlogId: NextPageWithLayout<ProfileProps>  = ({ session }) => {
             selectedCommentId,
             btnAction,
          }} /></>)}
-      <FooterSimplified borderTop={false} />
+      <FooterSimplified borderTop={false} pB={true} />
     </div>
   )
 }

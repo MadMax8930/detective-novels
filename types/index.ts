@@ -318,4 +318,5 @@ export interface FooterProps {
    bgLight?: boolean;
    extraWrapper?: boolean;
    borderTop?: boolean;
+   pB?: boolean;
 };

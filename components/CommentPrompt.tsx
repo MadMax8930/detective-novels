@@ -21,7 +21,7 @@ const CommentPrompt: React.FC<CommentPromptProps> = ({ novel, novelId, mutate, r
      if (replyingComment) {   
         setEditingComment(null);
         setParentMessageId(replyingComment.id);
-        scrollToComment(220);
+        scrollToComment(250);
      }
    }, [replyingComment, setEditingComment, setParentMessageId]);
 
@@ -30,7 +30,7 @@ const CommentPrompt: React.FC<CommentPromptProps> = ({ novel, novelId, mutate, r
          setReplyingComment(null);
          setParentMessageId(editingComment.parentCommentId);
          setMessageBody(editingComment.content);
-         scrollToComment(220);
+         scrollToComment(250);
       }
    }, [editingComment, setReplyingComment, setParentMessageId, setMessageBody]);
 
@@ -64,7 +64,7 @@ const CommentPrompt: React.FC<CommentPromptProps> = ({ novel, novelId, mutate, r
    };
 
   return (
-    <div className="comment-prompt-container">
+    <div className="comment-prompt-container comment-prompt-separation">
       <div className="comment-prompt-input">
          <textarea id="comment" name="comment" className="comment-textarea" 
             placeholder={`💬 - What did you think of ❞ ${novel.title}❞ ? ...`} rows={4}

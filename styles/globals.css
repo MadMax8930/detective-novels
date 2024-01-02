@@ -833,9 +833,6 @@ input[type="number"]::-webkit-outer-spin-button {
    position: absolute;
    left: 2.5rem;
    right: 2.5rem;
-}
-
-.comment-card-container::after {
    bottom: 0;
 }
 
@@ -894,6 +891,17 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .comment-prompt-container {
    @apply relative pt-4 pb-6 lg:px-32 md:px-20 px-8 mt-8 my-6;
+}
+
+.comment-prompt-separation::after {
+   content: '';
+   display: block;
+   height: 0.5px;
+   background-color: #635f5f57;
+   position: absolute;
+   left: 2.5rem;
+   right: 2.5rem;
+   bottom: -12.5%;
 }
 
 .comment-prompt-input {
