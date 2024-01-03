@@ -13,7 +13,7 @@ export const applyStylesToPhrases = (content: string) => {
          return `<p class="font-bold md:text-lg text-base md:py-4 py-3 pl-2 text-left">${match}</p>`;
       } else if (RGX_TITLES.includes(match)) {
          return `<p class="font-bold md:text-xl text-sm md:pt-10 pt-4 md:pb-4 pb-2 text-center">${match}</p>`;
-      } else if (RGX_LOCATIONS.includes(match)) {
+      } else if (RGX_LOCATIONS.includes(match) || /^\[.*?\]$/.test(match)) {
          return `<p class="font-bold md:text-base text-xs mt:pt-6 pt-4 pb-3 text-center">${match}</p>`;
       } else if (RGX_REFERENCES.includes(match)) {
          return `<p class="font-semibold md:text-base text-xs italic pb-1 pl-1 text-left">${match}</p>`;
