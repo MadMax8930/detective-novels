@@ -302,6 +302,18 @@ export interface CommentPromptProps {
    };
 };
 
+export interface CommentReplyProps {
+   id: string;
+   userId: string;
+   content: string;
+   createdAt: Date | string;
+   novelId: string;
+   parentCommentId: string;
+   user: {
+      username: string;
+   };
+};
+
 export interface CommBodyProps {
    content: string;
    parentCommentId?: string | null;

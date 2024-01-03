@@ -13,6 +13,7 @@ import Carousel from './Carousel'
 import SanitizedText from './SanitizedText'
 import CommentCard from './CommentCard'
 import CommentListSection from './CommentListSection'
+import CommentNotification from './CommentNotification'
 import CommentPrompt from './CommentPrompt'
 import CommentSender from './CommentSender'
 import DonateResponse from './DonateResponse'
@@ -50,6 +51,7 @@ export {
    SanitizedText,
    CommentCard,
    CommentListSection,
+   CommentNotification,
    CommentPrompt,
    CommentSender,
    DonateResponse,
