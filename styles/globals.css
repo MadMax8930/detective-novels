@@ -938,6 +938,38 @@ input[type="number"]::-webkit-outer-spin-button {
    @apply absolute right-10 bottom-0 flex items-center gap-2 py-2 px-4 lg:mx-20 md:mx-12 mx-0 bg-comm-prompt rounded-lg;
 }
 
+/* Comment Notification */
+
+.comment-notif-container {
+   @apply bg-primary-lighter pr-2 flex flex-col gap-2 items-center w-auto max-w-[240px] absolute 2xl:right-[6%] xl:right-[-5%] lg:right-[-10%] md:right-[-5%] right-0 top-0 rounded-md cursor-pointer;
+}
+
+.comment-notif-common {
+   @apply bg-white-main p-1 rounded-md flex items-center gap-2 font-unbounded text-xs w-full;
+}
+
+.comment-notif-circle {
+   @apply absolute bottom-0 right-0 bg-red-500 text-white-main rounded-xl text-xs py-[0.5px] px-[5px];
+}
+
+.comment-notif-item {
+   @apply flex flex-col gap-1.5;
+}
+
+.comment-notif-item::before {
+   content: '';
+   display: block;
+   height: 0.25px;
+   background-color: #635f5f57;
+   position: absolute;
+   left: 2.5rem;
+   right: 2.5rem;
+}
+
+.comment-notif-content {
+   @apply italic capitalize md:text-xs pb-2;
+}
+
 /* Book Animation */
 
 .book-card {

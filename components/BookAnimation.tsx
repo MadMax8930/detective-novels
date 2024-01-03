@@ -3,18 +3,10 @@ import Link from 'next/link'
 import { Button } from '@/components'
 import { MdKeyboardDoubleArrowLeft, MdKeyboardDoubleArrowRight } from 'react-icons/md'
 import { DEFAULT_COVER, BOOK_MAX_CHARS } from '@/constants'
+import { truncate } from '@/lib/truncateContent'
 import { BookAnimationProps } from '@/types'
 
 const BookAnimation: React.FC<BookAnimationProps> = ({ novel, onPrevClick, onNextClick, isPreviewPage }) => {
- 
-   const truncate = (text: string, maxChars: number) => {
-     if (text.length <= maxChars) {
-       return text;
-     } else {
-       return text.substring(0, maxChars) + '...';
-     }
-   };
- 
    const truncatedText = truncate(novel.description || novel.preview, BOOK_MAX_CHARS);
 
   return (

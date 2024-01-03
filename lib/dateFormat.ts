@@ -19,4 +19,4 @@ export function format(dateString: string, locale: string = 'ru-RU'): string {
    const formattedDate = date.toLocaleString(locale, options);
 
    return formattedDate.replace(/(GMT\+\d+)/, '');
-}
+};
