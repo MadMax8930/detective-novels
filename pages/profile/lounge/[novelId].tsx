@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosExit } from 'react-icons/io'
-import { SanitizedText, NotFound, LoaderLight, Button, NoItem } from '@/components'
+import { SanitizedText, NotFound, LoaderLight, Button, NoItem, DarkMode } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
 import { WORDS_PER_PAGE } from '@/constants'
 import useNovel from '@/hooks/useNovel'
@@ -18,7 +18,7 @@ export const getServerSideProps = getUserSessionServerSideProps;
 
 const LoungeId: NextPageWithLayout<ProfileProps> = ({ session }) => {
    const router = useRouter();
-   const { novelId, page } = router.query;
+   const { novelId, page } = router.query as { novelId: string; page?: string };
    const { data, isLoading, error } = useNovel(novelId as string);
 
    const currentPage = parseInt(page as string, 10) || 1;
@@ -44,7 +44,10 @@ const LoungeId: NextPageWithLayout<ProfileProps> = ({ session }) => {
       <div className="novel-id-container">
          <div className="novel-id-content">
             <div className="novel-id-header">
-               <Button title="Comment" btnType="button" action={() => router.push(`/profile/blog/${data?.id}`)} additionalStyles='button-lounge' leftIcon={<IoIosExit size={23} />} />
+               <div className="flex items-center justify-center gap-1">
+                  <Button title="Comment" btnType="button" action={() => router.push(`/profile/blog/${data?.id}`)} additionalStyles='button-lounge' leftIcon={<IoIosExit size={23} />} />
+                  <DarkMode novelId={novelId} />
+               </div>
                <div className="novel-id-title">{data?.title || 'N/A'}</div>
             </div>
             {currentPage === 1 && data?.quote && (

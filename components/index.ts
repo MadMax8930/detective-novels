@@ -4,6 +4,7 @@ import Input from './Input'
 import InputBis from './InputBis'
 import Content from './Content'
 import ContentModal from './ContentModal'
+import DarkMode from './DarkMode'
 import Pagination from './Pagination'
 import SearchBar from './SearchBar'
 import InfoModal from './InfoModal'
@@ -42,6 +43,7 @@ export {
    InputBis,
    Content,
    ContentModal,
+   DarkMode,
    Pagination,
    SearchBar,
    InfoModal,
