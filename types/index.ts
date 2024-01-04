@@ -332,3 +332,8 @@ export interface FooterProps {
    borderTop?: boolean;
    pB?: boolean;
 };
+
+export interface WordCutOffProps {
+   currentPage: number;
+   data: { content: any };
+};

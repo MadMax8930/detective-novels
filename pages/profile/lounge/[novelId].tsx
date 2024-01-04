@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { IoMdArrowRoundBack, IoMdArrowRoundForward, IoIosExit } from 'react-icons/io'
 import { SanitizedText, NotFound, LoaderLight, Button, NoItem, DarkMode } from '@/components'
 import { getUserSessionServerSideProps } from '@/lib/sessionProps'
+import { formatPageContent } from '@/lib/regexPage'
 import { WORDS_PER_PAGE } from '@/constants'
 import useNovel from '@/hooks/useNovel'
 
@@ -22,18 +23,15 @@ const LoungeId: NextPageWithLayout<ProfileProps> = ({ session }) => {
    const { data, isLoading, error } = useNovel(novelId as string);
 
    const currentPage = parseInt(page as string, 10) || 1;
-   const startIndex = (currentPage - 1) * WORDS_PER_PAGE;
-   const endIndex = startIndex + WORDS_PER_PAGE;
-   
-   const contentArray = data?.content || [];
-   const currentPageContent = contentArray.slice(startIndex, endIndex);
-   const paragraphs = typeof currentPageContent === 'string' ? currentPageContent.split('\n') : [currentPageContent];
-
+   const { startIndex, endIndex, currentPageContent } = formatPageContent({ currentPage, data });
+  
    useEffect(() => {
       if (!isNaN(currentPage) && (currentPage < 1 || isNaN(startIndex) || startIndex >= data?.content?.length)) {
         router.push(`/profile/lounge/${novelId}`);
       }
    }, [currentPage, startIndex, novelId, data, router]);
+
+   const paragraphs = typeof currentPageContent === 'string' ? currentPageContent.split('\n') : [currentPageContent];
 
    if (!novelId) { return null }
    if (error) { return <NotFound/> }
