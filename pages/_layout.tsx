@@ -35,7 +35,7 @@ export default function RootLayout({ children, metadata }: RootLayoutProps){
          <meta property="og:description" content={description} />
          <meta property="og:url" content="https://vladsurnin.com/" />
          <meta property="og:site_name" content="Vlad Surnin" />
-         <meta property="og:image" content="https://vladsurnin.com/images/opengraph-image.jpg" />
+         <meta property="og:image" content="https://vladsurnin.com/opengraph-image.png" />
          <link rel="icon" href="/favicon.ico" />
          <link rel="canonical" href="https://vladsurnin.com/" />
          <link rel="preload" href="/images/hero.jpg" as="image" />

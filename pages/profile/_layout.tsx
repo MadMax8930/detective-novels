@@ -47,7 +47,7 @@ const ProfileLayout = ({ children, layoutMetadata, session }: ProfileLayoutProps
          <meta property="og:description" content={layoutMetadata?.description} />
          <meta property="og:url" content="https://vladsurnin.com/profile" />
          <meta property="og:site_name" content="Vlad Surnin" />
-         <meta property="og:image" content="https://vladsurnin.com/images/opengraph-image.jpg" />
+         <meta property="og:image" content="https://vladsurnin.com/opengraph-image.png" />
          <link rel="canonical" href="https://vladsurnin.com/profile" />
       </Head>
       <Navbar isUser={!!session?.email} isAdmin={!!session?.adminId} />
