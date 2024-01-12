@@ -41,11 +41,11 @@ export default function RootLayout({ children, metadata }: RootLayoutProps){
          <link rel="preload" href="/images/hero.jpg" as="image" />
       </Head>
       <div className="relative h-screen">
+         {children}
          <div itemScope itemType="https://schema.org/WebSite">
            <meta itemProp="url" content="https://vladsurnin.com/" />
            <meta itemProp="name" content="Vlads Novels" />
          </div>
-         {children}
       </div>
    </>
   )
