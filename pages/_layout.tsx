@@ -30,7 +30,7 @@ export default function RootLayout({ children, metadata }: RootLayoutProps){
 
          {/* Open Graph Tags */}
          <meta property="og:locale" content="ru_RU" />
-         <meta property="og:type" content="book" />
+         <meta property="og:type" content="website" />
          <meta property="og:title" content={title} />
          <meta property="og:description" content={description} />
          <meta property="og:url" content="https://vladsurnin.com/" />
@@ -45,6 +45,9 @@ export default function RootLayout({ children, metadata }: RootLayoutProps){
          <div itemScope itemType="https://schema.org/WebSite">
            <meta itemProp="url" content="https://vladsurnin.com/" />
            <meta itemProp="name" content="Vlads Novels" />
+           <meta itemProp="title" content="Vlad Surnin" />
+           <meta itemProp="keywords" content="vlad surnin, vladsurnin, влад сурнин, владислав сурнин, vladsnovels, vlads novels, детектив, триллер, повесть, жизнь по понятиям, крутые русские, триллеры книги, СССР, эсесовцы, партизаны, Франция, братва, спецслужбы, стрелок, бомж, метро, кладбище, концлагерь, чип, иммигрант, Родина, detective, novels, thrillers, romans, vladislav surnin" />
+           <meta itemProp="robots" content="index, follow" />
          </div>
       </div>
    </>
