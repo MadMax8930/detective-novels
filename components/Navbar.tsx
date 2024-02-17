@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { signOut } from 'next-auth/react'
 import { Button } from '@/components'
+import { PiBookmarksFill } from 'react-icons/pi'
 import { NavbarProps } from '@/types'
 
 const Navbar: React.FC<NavbarProps>  = ({ isUser, isAdmin }) => {
@@ -23,6 +24,9 @@ const Navbar: React.FC<NavbarProps>  = ({ isUser, isAdmin }) => {
                <Image src="/images/logo.png" alt="logo" width={36} height={18} className="object-contain md:hidden block w-auto h-auto" priority />
             </Link>
             <h1 className="border-b-2 border-t-2 text-3xl font-shoulders font-bold md:block hidden">Vlads Novels</h1>
+            <Link href={{ pathname: '/discover' }} className='button-discover'>
+               <PiBookmarksFill size={18} />
+            </Link>
          </div>
          {/* Right Side */}
          <div className="flex gap-2 md:mb-1 mb-3">   

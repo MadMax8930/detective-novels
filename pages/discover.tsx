@@ -62,6 +62,9 @@ const Discover: React.FC<{ authorData: AuthorDataProps }> = ({ authorData }) => 
                         ))}
                      </ul>
                      <p className="mt-2 text-sm text-gray-600">Status: {authorData.status}</p>
+                     <div className="md:hidden bg-primary-black relative h-[600px] mt-6">
+                        <Image src={authorData.picture} alt={authorData.authorName} fill={true} className="w-full h-full rounded-lg shadow-md object-cover p-8 filter grayscale" />
+                     </div>
                   </div>
                </div>
             </div>
